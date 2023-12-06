@@ -137,3 +137,22 @@ body {
   .sidebar-height {
     height: 100vh;
   }
+
+  /*
+
+  Maintenance
+
+  */
+
+  .maintenance_btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .maintenance_btn {
+    margin: 8px;
+    max-width: 200px;
+    height: 120px;
+  }
