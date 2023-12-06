@@ -72,15 +72,23 @@
             <li class="nav-item">
                   <a href="#" class="nav-link text-white" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
                     <i class="bi bi-table"></i>
-                      ÓRDENES
+                      VENTAS
                   </a>
                   <div class="collapse" id="orders-collapse">
                       <ul class="nav nav-pills flex-column mb-auto ms-3">
                           <li class="nav-item"><a href="#" class="nav-link text-white">Orden de Venta</a></li>
-                          <li class="nav-item"><a href="#" class="nav-link text-white">Orden de Compra</a></li>
+                          <li class="nav-item"><a href="#" class="nav-link text-white">Facturación</a></li>
+                          <li class="nav-item"><a href="#" class="nav-link text-white">Regula Documento</a></li>
+                          <li class="nav-item"><a href="#" class="nav-link text-white">Estado de Cuenta</a></li>
                       </ul>
                   </div>
               </li>
+            <li>
+              <a href="#" class="nav-link text-white" onclick="loadContent('views/products.php')">
+                <i class="bi bi-grid"></i>
+                COMPRA
+              </a>
+            </li>
             <li class="nav-item">
                   <a href="#" class="nav-link text-white" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
                     <i class="bi bi-table"></i>
@@ -92,17 +100,17 @@
                           <li class="nav-item"><a href="#" class="nav-link text-white">Registro de Compras</a></li>
                       </ul>
                   </div>
-              </li>
-            <li>
-              <a href="#" class="nav-link text-white" onclick="loadContent('views/products.php')">
-                <i class="bi bi-grid"></i>
-                PRODUCTOS
-              </a>
             </li>
             <li>
               <a href="#" class="nav-link text-white" onclick="loadContent('views/clients.php')">
                 <i class="bi bi-person-circle"></i>
                 CLIENTES
+              </a>
+            </li>
+            <li>
+              <a href="#" class="nav-link text-white" onclick="loadContent('views/maintenance.php')">
+                <i class="bi bi-clipboard-plus"></i>
+                MANTENIMIENTO
               </a>
             </li>
             <li>
@@ -151,6 +159,8 @@
         bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
   </script>
   <script src="assets/js/sidebar.js"></script>
+  <!-- <script src="assets/js/modals.js"></script> -->
+
 </body>
 
 </html>
