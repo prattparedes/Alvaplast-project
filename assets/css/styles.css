@@ -165,6 +165,16 @@ body {
     margin: 8px;
     max-width: 200px;
     height: 120px;
+    border: none;
+  }
+
+  .maintenance_btn--inactive {
+    cursor: not-allowed !important;
+    background-color: #c0c0c0;
+  }
+
+  .maintenance_btn--inactive:hover {
+    background-color: #c0c0c0 !important;
   }
 
   /*
@@ -173,7 +183,7 @@ body {
 
   */
   
-  .buyorder, .sellorder {
+  .buyorder, .sellorder, .billing, .stockentry {
     display: flex;
     justify-content: space-between;
   }
