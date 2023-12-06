@@ -21,6 +21,8 @@ Home
 .main-content {
   flex: 1;
   padding: 30px;
+  overflow-y: scroll;
+  overflow: scroll;
 }
 
 /*
@@ -41,6 +43,14 @@ Botones
 
 .btn-add:hover {
   background-color: rgb(55, 206, 87);
+}
+
+.form_btn {
+  background-color:#f5f5f5;
+}
+
+.form_btn:hover {
+  background-color: #c0c0c0;
 }
 
 /*
@@ -155,4 +165,15 @@ body {
     margin: 8px;
     max-width: 200px;
     height: 120px;
+  }
+
+  /*
+
+  Buy-Sell order Page
+
+  */
+  
+  .buyorder, .sellorder {
+    display: flex;
+    justify-content: space-between;
   }
