@@ -4,11 +4,11 @@
     </div>
 
     <div class="btns__right">
-        <button type="button" class="maintenance_btn btn btn-primary btn-lg">Grabar <i class="bi bi-floppy"></i></button>
-        <button type="button" class="maintenance_btn btn btn-primary btn-lg">Modificar <i class="bi bi-pencil-square"></i></button>
-        <button type="button" class="maintenance_btn btn btn-primary btn-lg">Eliminar <i class="bi bi-trash"></i></button>
+        <button type="button" class="maintenance_btn maintenance_btn--inactive btn btn-primary btn-lg">Grabar <i class="bi bi-floppy"></i></button>
+        <button type="button" class="maintenance_btn maintenance_btn--inactive btn btn-primary btn-lg">Modificar <i class="bi bi-pencil-square"></i></button>
+        <button type="button" class="maintenance_btn maintenance_btn--inactive btn btn-primary btn-lg">Eliminar <i class="bi bi-trash"></i></button>
         <button type="button" class="maintenance_btn btn btn-primary btn-lg">Buscar <i class="bi bi-search"></i></i></button>
-        <button type="button" class="maintenance_btn btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
+        <button type="button" class="maintenance_btn maintenance_btn--inactive btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
     </div>
     <!-- Contenido específico de la página de productos -->
 </div>

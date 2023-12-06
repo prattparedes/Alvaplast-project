@@ -77,7 +77,7 @@
                   <div class="collapse" id="orders-collapse">
                       <ul class="nav nav-pills flex-column mb-auto ms-3">
                           <li class="nav-item"><a href="#" class="nav-link text-white" onclick="loadContent('views/sellorder.php')">Orden de Venta</a></li>
-                          <li class="nav-item"><a href="#" class="nav-link text-white">Facturación</a></li>
+                          <li class="nav-item"><a href="#" class="nav-link text-white" onclick="loadContent('views/billing.php')">Facturación</a></li>
                           <li class="nav-item"><a href="#" class="nav-link text-white">Regula Documento</a></li>
                           <li class="nav-item"><a href="#" class="nav-link text-white">Estado de Cuenta</a></li>
                       </ul>
@@ -98,14 +98,22 @@
                       <ul class="nav nav-pills flex-column mb-auto ms-3">
                           <li class="nav-item"><a href="#" class="nav-link text-white">Registro de Ventas</a></li>
                           <li class="nav-item"><a href="#" class="nav-link text-white">Registro de Compras</a></li>
+                          <li class="nav-item"><a href="#" class="nav-link text-white" onclick="loadContent('views/records.php')">Registro de Facturación</a></li>
                       </ul>
                   </div>
             </li>
-            <li>
-              <a href="#" class="nav-link text-white" onclick="loadContent('views/clients.php')">
-                <i class="bi bi-person-circle"></i>
-                CLIENTES
-              </a>
+            <li class="nav-item">
+                  <a href="#" class="nav-link text-white" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                    <i class="bi bi-table"></i>
+                      INVENTARIOS
+                  </a>
+                  <div class="collapse" id="orders-collapse">
+                      <ul class="nav nav-pills flex-column mb-auto ms-3">
+                          <li class="nav-item"><a href="#" class="nav-link text-white" onclick="loadContent('views/stockentry.php')">Ingreso al Kardex</a></li>
+                          <li class="nav-item"><a href="#" class="nav-link text-white" onclick="loadContent('views/stockmovement.php')">Movimiento de Kardex</a></li>
+                          <li class="nav-item"><a href="#" class="nav-link text-white" onclick="loadContent('views/stockproducts.php')">Stock de Productos</a></li>
+                      </ul>
+                  </div>
             </li>
             <li>
               <a href="#" class="nav-link text-white" onclick="loadContent('views/maintenance.php')">
