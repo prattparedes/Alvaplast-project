@@ -76,7 +76,7 @@
                   </a>
                   <div class="collapse" id="orders-collapse">
                       <ul class="nav nav-pills flex-column mb-auto ms-3">
-                          <li class="nav-item"><a href="#" class="nav-link text-white">Orden de Venta</a></li>
+                          <li class="nav-item"><a href="#" class="nav-link text-white" onclick="loadContent('views/sellorder.php')">Orden de Venta</a></li>
                           <li class="nav-item"><a href="#" class="nav-link text-white">Facturación</a></li>
                           <li class="nav-item"><a href="#" class="nav-link text-white">Regula Documento</a></li>
                           <li class="nav-item"><a href="#" class="nav-link text-white">Estado de Cuenta</a></li>
@@ -84,7 +84,7 @@
                   </div>
               </li>
             <li>
-              <a href="#" class="nav-link text-white" onclick="loadContent('views/products.php')">
+              <a href="#" class="nav-link text-white" onclick="loadContent('views/buyorder.php')">
                 <i class="bi bi-grid"></i>
                 COMPRA
               </a>
