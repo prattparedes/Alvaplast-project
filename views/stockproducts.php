@@ -39,47 +39,36 @@ require_once("../Models/Linea.php");
 <br>
 <hr>
 <!-- Tabla -->
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Producto</th>
-            <th>Procedencia</th>
-            <th>Marca</th>
-            <th>Unidad</th>
-            <th>Descripcion</th>
-            <th>Imagen</th>
-            <th>Precio_venta</th>
-            <th>Precio_compra</th>
-            <th>Stock</th>
-        </tr>
-    </thead>
-    <tbody id="content">
-            <?php 
-            if(!isset($_GET["buscarProducto"])) {
-                require_once("../Models/Producto.php");
-                $data = new Producto();
-                $datos=$data->getProductos();
-            }
-                foreach($datos as $data){
-                    ?>
+<div class="table--container">
+    <table class="table">
+        <thead>
             <tr>
-                <td><?= $data->id_producto?></td>
-                <td><?= $data->nombre_producto?></td>
-                <td><?= $data->procedencia?></td>
-                <td><?= $data->marca?></td>
-                <td><?= $data->unidad?></td>
-                <td><?= $data->descripcion?></td>
-                <?php $imagen_bd = base64_encode($data->imagen); $imagen_mostrada= 'data:image/png;base64,'.$imagen_bd;?>
-                <td><img src="<?=$imagen_mostrada ?>" width="80px" alt="imagen de bd"></td>
-                <td><?= $data->moneda.number_format($data->precio_venta,2)?></td>
-                <td><?= $data->moneda.number_format($data->precio_compra,2)?></td>
-                <td><?=intval($data->stock)?></td>
+                <th>ID</th>
+                <th>Producto</th>
+                <th>Unidad</th>
+                <th>Línea</th>
+                <th>Marca</th>
+                <th>Stock</th>
             </tr>
-            <?php
-            }
-            ?>
-            
-        <!-- Agregar más filas si es necesario -->
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Producto A</td>
+                <td>Unidad X</td>
+                <td>Rollos</td>
+                <td>Marca 1</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Producto A</td>
+                <td>Unidad X</td>
+                <td>Rollos</td>
+                <td>Marca 1</td>
+                <td>50</td>
+            </tr>
+            <!-- Agregar más filas si es necesario -->
+        </tbody>
+    </table>
+</div>

@@ -79,26 +79,28 @@
     </div>
 </form>
 <hr>
-<table class="table">
-    <thead>
-        <tr>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Unidad</th>
-            <th>Precio Compra</th>
-            <th>Descuento</th>
-            <th>Total</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <!-- Agregar filas según sea necesario -->
-            <td>Ejemplo Producto</td>
-            <td>1</td>
-            <td>Unidad</td>
-            <td>100</td>
-            <td>90</td>
-            <td>10</td>
-        </tr>
-    </tbody>
-</table>
+<div class="table--container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Unidad</th>
+                <th>Precio Compra</th>
+                <th>Descuento</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <!-- Agregar filas según sea necesario -->
+                <td>Ejemplo Producto</td>
+                <td>1</td>
+                <td>Unidad</td>
+                <td>100</td>
+                <td>90</td>
+                <td>10</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
