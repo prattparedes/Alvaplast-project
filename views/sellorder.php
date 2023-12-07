@@ -114,4 +114,4 @@
   </tbody>
 </table>
 
-<?php include 'modals/test_modal.php'; ?>
+<?php include 'modals/generalModal.php'; ?>

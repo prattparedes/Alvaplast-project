@@ -63,7 +63,7 @@
 </form>
 
 <hr>
-<button type="button" class="btn btn-primary btn-lg" style="margin-bottom: 16px" id="openModalButton" onclick="loadModalContent('productsbuylist')">Añadir Producto <i class="bi bi-plus-circle"></i></button>
+<button type="button" class="btn btn-primary btn-lg" style="margin-bottom: 16px" id="openModalButton" onclick="loadModalContent('productsbuylist')">Seleccionar Producto <i class="bi bi-plus-circle"></i></button>
 <p style="font-weight:600">Producto seleccionado: <span style="margin-right: 20px;" id="productname">NINGUNO</span> Unidad: <input style="width: 60px;" type="text" id="productunit"> Cantidad: <input style="width: 60px;" type="number" id="productquantity"> Precio Unitario: <input style="width: 80px;" type="number" id="productprice"> Descuento: <input style="width: 60px;" type="text" id="productdiscount" value="0">
     % <button style="margin-left:32px;" class="btn btn-primary" id="addproduct">AÑADIR +</button>
 </p>
@@ -91,4 +91,4 @@
     </tbody>
 </table>
 
-<?php include 'modals/test_modal.php'; ?>
+<?php include 'modals/generalModal.php'; ?>

@@ -1,7 +1,8 @@
 <h2 style="text-align:center; margin-bottom: 8px;">Listado de Órdenes de Compra</h2>
-    <span style="font-weight: 600; width:fit-content;">Filtrar por proveedor: <input type="text" style="width: 240px;"></span><button class="modal__btn--search">Buscar</button>
-    <hr>
-    <table class="table">
+<span style="font-weight: 600; width:fit-content;">Filtrar por proveedor: <input type="text" style="width: 240px;"></span><button class="modal__btn--search">Buscar</button>
+<hr>
+<div class="modal__table--container">
+    <table class="table modal__table">
         <thead>
             <tr>
                 <th>Proveedor</th>
@@ -31,3 +32,4 @@
             </tr>
         </tbody>
     </table>
+</div>
