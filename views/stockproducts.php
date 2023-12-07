@@ -31,26 +31,36 @@
 </div>
 <hr>
 <!-- Tabla -->
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Producto</th>
-            <th>Unidad</th>
-            <th>Línea</th>
-            <th>Marca</th>
-            <th>Stock</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td>Producto A</td>
-            <td>Unidad X</td>
-            <td>Rollos</td>
-            <td>Marca 1</td>
-            <td>50</td>
-        </tr>
-        <!-- Agregar más filas si es necesario -->
-    </tbody>
-</table>
+<div class="table--container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Producto</th>
+                <th>Unidad</th>
+                <th>Línea</th>
+                <th>Marca</th>
+                <th>Stock</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Producto A</td>
+                <td>Unidad X</td>
+                <td>Rollos</td>
+                <td>Marca 1</td>
+                <td>50</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Producto A</td>
+                <td>Unidad X</td>
+                <td>Rollos</td>
+                <td>Marca 1</td>
+                <td>50</td>
+            </tr>
+            <!-- Agregar más filas si es necesario -->
+        </tbody>
+    </table>
+</div>
