@@ -36,7 +36,6 @@ require_once("../Models/Linea.php");
 <label for="filtroProducto" class="form-label">Producto:</label>
 <input type="text" class="form-control" id="filtroProducto">
 <br>
-<input type="submit" class=" btn btn-success"name="buscarProducto" onclick="getData()">
 <hr>
 
 <!-- Tabla -->
