@@ -21,23 +21,20 @@
         </tr>
     </thead>
     <tbody>
+        <?php
+        require_once("../../Models/Venta.php"); 
+        $ventas = Venta::getVentas();
+        foreach($ventas as $ven){
+        ?> 
         <tr>
-            <td>Nombre Cliente 1</td>
-            <td>Orden 123</td>
-            <td>2023-12-01</td>
-            <td>Efectivo</td>
-            <td>250.00</td>
-            <td>Dólares</td>
-            <td>Nombre del Vendedor</td>
+            <td><?=$ven->razon_social?></td>
+            <td><?='OV/'.$ven->numero_documento.'-'.$ven->serie_documento?></td>
+            <td><?=explode(' ',$ven->fecha_emision)[0]?></td>
+            <td><?=($ven->tipo_pago == "E") ? "Efectivo" : "Credito"?></td>
+            <td><?=$ven->total?></td>
+            <td><?=$ven->Moneda?></td>
+            <td><?=$ven->nombres.' '.$ven->ap_paterno.' '.$ven->ap_materno?></td>
         </tr>
-        <tr>
-            <td>Nombre Cliente 2</td>
-            <td>Orden 456</td>
-            <td>2023-12-03</td>
-            <td>Tarjeta de Crédito</td>
-            <td>150.00</td>
-            <td>Euros</td>
-            <td>Otro Nombre de Vendedor</td>
-        </tr>
+       <?php }?>
     </tbody>
 </table>
