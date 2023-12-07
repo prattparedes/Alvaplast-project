@@ -44,9 +44,13 @@ require_once("../Models/Linea.php");
         <tr>
             <th>ID</th>
             <th>Producto</th>
-            <th>Unidad</th>
-            <th>Imagen</th>
+            <th>Procedencia</th>
             <th>Marca</th>
+            <th>Unidad</th>
+            <th>Descripcion</th>
+            <th>Imagen</th>
+            <th>Precio_venta</th>
+            <th>Precio_compra</th>
             <th>Stock</th>
         </tr>
     </thead>
@@ -62,11 +66,15 @@ require_once("../Models/Linea.php");
             <tr>
                 <td><?= $data->id_producto?></td>
                 <td><?= $data->nombre_producto?></td>
+                <td><?= $data->procedencia?></td>
                 <td><?= $data->marca?></td>
+                <td><?= $data->unidad?></td>
+                <td><?= $data->descripcion?></td>
                 <?php $imagen_bd = base64_encode($data->imagen); $imagen_mostrada= 'data:image/png;base64,'.$imagen_bd;?>
-                <td><img src="<?=$imagen_mostrada ?>" width="100px" alt="imagen de bd"></td>
-                <td>Marca 1</td>
-                <td><?=$data->stock?></td>
+                <td><img src="<?=$imagen_mostrada ?>" width="80px" alt="imagen de bd"></td>
+                <td><?= $data->moneda.number_format($data->precio_venta,2)?></td>
+                <td><?= $data->moneda.number_format($data->precio_compra,2)?></td>
+                <td><?=intval($data->stock)?></td>
             </tr>
             <?php
             }

@@ -10,7 +10,7 @@ Fecha FIN:
     <thead>
         <tr>
             <th>Nro de Documento</th>
-            <th>Orden Venta</th>
+            <th>Razon Social</th>
             <th>Cliente</th>
             <th>Documento Cliente</th>
             <th>Vendedor</th>
@@ -21,9 +21,15 @@ Fecha FIN:
         </tr>
     </thead>
     <tbody>
+        <?php  
+            require_once("../Models/Facturacion.php");
+            $facturas = Facturacion::getFacturacion();
+            foreach ($facturas as $fact) {
+        ?>
+
         <tr>
-            <td>Documento 001</td>
-            <td>Orden 123</td>
+            <td><?=$fact->serie_documento?></td>
+            <td><?=$fact->Personal?></td>
             <td>Cliente Ejemplo</td>
             <td>123456789</td>
             <td>Vendedor A</td>
@@ -32,5 +38,8 @@ Fecha FIN:
             <td>Soles</td>
             <td>Pagado</td>
         </tr>
+
+     <?php }?>
+       
     </tbody>
 </table>
