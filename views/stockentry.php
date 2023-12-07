@@ -1,11 +1,11 @@
 <div class="stockentry">
     <div class="btns__left">
-        <button type="button" class="maintenance__btn btn btn-primary btn-lg">Nuevo Ingreso <i class="bi bi-plus-circle"></i></button>
+        <button type="button" class="order__btn btn btn-primary btn-lg">Nuevo Ingreso <i class="bi bi-plus-circle"></i></button>
     </div>
 
     <div class="btns__right">
-        <button type="button" class="maintenance__btn maintenance__btn--inactive btn btn-primary btn-lg">Grabar <i class="bi bi-floppy"></i></button>
-        <button type="button" class="maintenance__btn maintenance__btn--inactive btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
+        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Grabar <i class="bi bi-floppy"></i></button>
+        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
     </div>
     <!-- Contenido específico de la página de productos -->
 </div>

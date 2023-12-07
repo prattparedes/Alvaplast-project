@@ -1,6 +1,6 @@
 // Abrir modal desde los botones arriba de los formularios
 document
-  .querySelector(".main-content")
+  .querySelector(".main__content")
   .addEventListener("click", function (event) {
     if (event.target.id === "openModalButton") {
       var modalBackground = document.querySelector(".modal__background");
@@ -19,7 +19,7 @@ document
 
 // Abrir modal a través de los tres botones en el formulario
 document
-  .querySelector(".main-content")
+  .querySelector(".main__content")
   .addEventListener("click", function (event) {
     if (
       event.target.id === "threeDotsButton" ||
@@ -49,7 +49,7 @@ function loadModalContent(modalName) {
 }
 
 // Foto subida al modal de productos
-document.querySelector(".main-content").addEventListener("change", function (event) {
+document.querySelector(".main__content").addEventListener("change", function (event) {
   if (event.target.id === "foto") {
     const inputFoto = event.target;
     const imagenMostrada = document.getElementById("imagenMostrada");

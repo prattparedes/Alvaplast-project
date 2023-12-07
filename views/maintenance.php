@@ -1,18 +1,18 @@
 <div class="maintenance">
-  <!-- Contenido específico de la página de productos -->
+  <h1 style="text-align:center;">Mantenimiento</h1>
   <div class="maintenance__btns">
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de productos <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de clientes <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de proveedores <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de línea <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de marca <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de unidad <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de moneda <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de sucursal <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de almacén <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de vehículos <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de tipo de documento <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de transportistas <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Productos <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Clientes <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Proveedores <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Línea <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Marca <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Unidad <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Moneda <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Sucursal <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Almacén <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Vehículos <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Tipo de documento <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Transportistas <i class="bi bi-plus-circle"></i></button>
   </div>
   <hr>
   <h3>Listado</h3>

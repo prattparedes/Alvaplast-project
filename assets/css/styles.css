@@ -12,24 +12,24 @@ Home
   width: 1000px;
 }
 
-.main-container {
+.main__container {
   width: 100vw;
   height: 100vh;
   display: flex;
 }
 
-.main-content {
+.main__content {
   flex: 1;
   padding: 30px;
   overflow-y: scroll;
-  overflow: scroll;
+  overflow-x: hidden;
 }
 
 /*
 Botones
 */
 
-.btn-add {
+.btn__add {
   background-color: #2fc02f;
   color: #fff;
   border: none;
@@ -41,7 +41,7 @@ Botones
   transition: background-color 120ms ease;
 }
 
-.btn-add:hover {
+.btn__add:hover {
   background-color: rgb(55, 206, 87);
 }
 
@@ -155,17 +155,19 @@ body {
   */
 
   .maintenance__btns {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: grid;
+    gap: 12px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   }
 
   .maintenance__btn {
     margin: 8px;
-    max-width: 200px;
-    height: 120px;
+    max-width: 100%;
+    height: 80px;
     border: none;
+    display: grid;
+    align-items: center;
+    justify-content: center;
   }
 
   .maintenance__btn--inactive {
@@ -186,6 +188,18 @@ body {
   .buyorder, .sellorder, .billing, .stockentry {
     display: flex;
     justify-content: space-between;
+  }
+
+  .order__btn {
+    margin: 8px;
+    max-width: 200px;
+    height: 68px;
+    border: none;
+  }
+
+  .order__btn--inactive {
+    cursor: not-allowed !important;
+    background-color: #c0c0c0;
   }
 
   /*
