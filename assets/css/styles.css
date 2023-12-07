@@ -199,7 +199,7 @@ body {
 
   .order__btn--inactive {
     cursor: not-allowed !important;
-    background-color: #c0c0c0;
+    background-color: #c0c0c0 !important;
   }
 
   /*
@@ -223,7 +223,7 @@ body {
 
   .modal__container {
     opacity: 1;
-    width: 50%;
+    width: auto;
     height: 80%;
     border: #2b0fc9 1.5px solid;
     background-color: white;

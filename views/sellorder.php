@@ -1,29 +1,29 @@
 <div class="sellorder">
-    <div class="btns__left">
-        <button type="button" class="order__btn btn btn-primary btn-lg">Generar Orden de Venta <i class="bi bi-plus-circle"></i></button>
-    </div>
+  <div class="btns__left">
+    <button type="button" class="order__btn btn btn-primary btn-lg">Generar Orden de Venta <i class="bi bi-plus-circle"></i></button>
+  </div>
 
-    <div class="btns__right">
-        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Grabar <i class="bi bi-floppy"></i></button>
-        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Modificar <i class="bi bi-pencil-square"></i></button>
-        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Eliminar <i class="bi bi-trash"></i></button>
-        <button type="button" class="order__btn btn btn-primary btn-lg">Buscar <i class="bi bi-search"></i></i></button>
-        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
-    </div>
-    <!-- Contenido específico de la página de productos -->
+  <div class="btns__right">
+    <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Grabar <i class="bi bi-floppy"></i></button>
+    <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Modificar <i class="bi bi-pencil-square"></i></button>
+    <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Eliminar <i class="bi bi-trash"></i></button>
+    <button type="button" class="order__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('sellorderlist')">Buscar <i class="bi bi-search"></i></i></button>
+    <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
+  </div>
+  <!-- Contenido específico de la página de productos -->
 </div>
 <hr>
 <p style="font-size: 28px;">Orden de Venta N°: </p>
 <form action="/ruta/donde/enviar" method="POST" class="row g-3">
-<div class="col-md-6">
-        <label for="cliente" class="form-label">Cliente</label>
-        <div class="input-group">
-            <input type="text" class="form-control" id="cliente" name="cliente">
-            <button class="btn btn-outline-secondary" type="button" id="threeDotsButton">
-                <i class="bi bi-three-dots" id="threeDotsIco"></i>
-            </button>
-        </div>
+  <div class="col-md-6">
+    <label for="cliente" class="form-label">Cliente</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="cliente" name="cliente">
+      <button class="btn btn-outline-secondary" type="button" id="threeDotsButton" onclick="loadModalContent('clientslist')">
+        <i class="bi bi-three-dots" id="threeDotsIco"></i>
+      </button>
     </div>
+  </div>
   <div class="col-md-6">
     <label for="direccion" class="form-label">Dirección</label>
     <input type="text" class="form-control" id="direccion" name="direccion">
@@ -87,8 +87,11 @@
 </form>
 
 <hr>
-<button type="button" class="btn btn-primary btn-lg" style="margin-bottom: 8px">Añadir Producto <i class="bi bi-plus-circle"></i></button>
-<table class="table">
+<button type="button" class="btn btn-primary btn-lg" style="margin-bottom: 16px" id="openModalButton" onclick="loadModalContent('productsselllist')">Seleccionar Producto <i class="bi bi-plus-circle"></i></button>
+<p style="font-weight:600">Producto seleccionado: <span style="margin-right: 20px;" id="productname">NINGUNO</span> Unidad: <input style="width: 60px;" type="text" id="productunit"> Cantidad: <input style="width: 60px;" type="number" id="productquantity"> Precio Unitario: <input style="width: 80px;" type="number" id="productprice"> Descuento: <input style="width: 60px;" type="text" id="productdiscount" value="0">
+  % Stock Actual: <span id="productstock">N/A</span><button style="margin-left:32px;" class="btn btn-primary" id="addproduct">AÑADIR +</button>
+</p>
+<table id="ordertable" class="table">
   <thead>
     <tr>
       <th>Producto</th>
@@ -101,7 +104,6 @@
   </thead>
   <tbody>
     <tr>
-      <!-- Agregar filas según sea necesario -->
       <td>Ejemplo Producto</td>
       <td>1</td>
       <td>Unidad</td>
