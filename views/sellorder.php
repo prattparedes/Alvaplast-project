@@ -1,24 +1,29 @@
 <div class="sellorder">
     <div class="btns__left">
-        <button type="button" class="maintenance_btn btn btn-primary btn-lg">Generar Orden de Venta <i class="bi bi-plus-circle"></i></button>
+        <button type="button" class="maintenance__btn btn btn-primary btn-lg">Generar Orden de Venta <i class="bi bi-plus-circle"></i></button>
     </div>
 
     <div class="btns__right">
-        <button type="button" class="maintenance_btn maintenance_btn--inactive btn btn-primary btn-lg">Grabar <i class="bi bi-floppy"></i></button>
-        <button type="button" class="maintenance_btn maintenance_btn--inactive btn btn-primary btn-lg">Modificar <i class="bi bi-pencil-square"></i></button>
-        <button type="button" class="maintenance_btn maintenance_btn--inactive btn btn-primary btn-lg">Eliminar <i class="bi bi-trash"></i></button>
-        <button type="button" class="maintenance_btn btn btn-primary btn-lg">Buscar <i class="bi bi-search"></i></i></button>
-        <button type="button" class="maintenance_btn maintenance_btn--inactive btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
+        <button type="button" class="maintenance__btn maintenance__btn--inactive btn btn-primary btn-lg">Grabar <i class="bi bi-floppy"></i></button>
+        <button type="button" class="maintenance__btn maintenance__btn--inactive btn btn-primary btn-lg">Modificar <i class="bi bi-pencil-square"></i></button>
+        <button type="button" class="maintenance__btn maintenance__btn--inactive btn btn-primary btn-lg">Eliminar <i class="bi bi-trash"></i></button>
+        <button type="button" class="maintenance__btn btn btn-primary btn-lg">Buscar <i class="bi bi-search"></i></i></button>
+        <button type="button" class="maintenance__btn maintenance__btn--inactive btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
     </div>
     <!-- Contenido específico de la página de productos -->
 </div>
 <hr>
 <p style="font-size: 28px;">Orden de Venta N°: </p>
 <form action="/ruta/donde/enviar" method="POST" class="row g-3">
-  <div class="col-md-6">
-    <label for="cliente" class="form-label">Cliente</label> <button class="form_btn"><i class="bi bi-three-dots"></i></button>
-    <input type="text" class="form-control" id="cliente" name="cliente">
-  </div>
+<div class="col-md-6">
+        <label for="cliente" class="form-label">Cliente</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="cliente" name="cliente">
+            <button class="btn btn-outline-secondary" type="button" id="threeDotsButton">
+                <i class="bi bi-three-dots" id="threeDotsIco"></i>
+            </button>
+        </div>
+    </div>
   <div class="col-md-6">
     <label for="direccion" class="form-label">Dirección</label>
     <input type="text" class="form-control" id="direccion" name="direccion">
@@ -106,3 +111,5 @@
     </tr>
   </tbody>
 </table>
+
+<?php include 'modals/test_modal.php'; ?>

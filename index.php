@@ -90,11 +90,11 @@
               </a>
             </li>
             <li class="nav-item">
-                  <a href="#" class="nav-link text-white" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                  <a href="#" class="nav-link text-white" data-bs-toggle="collapse" data-bs-target="#reports-collapse" aria-expanded="false">
                     <i class="bi bi-table"></i>
                       REPORTES
                   </a>
-                  <div class="collapse" id="orders-collapse">
+                  <div class="collapse" id="reports-collapse">
                       <ul class="nav nav-pills flex-column mb-auto ms-3">
                           <li class="nav-item"><a href="#" class="nav-link text-white">Registro de Ventas</a></li>
                           <li class="nav-item"><a href="#" class="nav-link text-white">Registro de Compras</a></li>
@@ -103,11 +103,11 @@
                   </div>
             </li>
             <li class="nav-item">
-                  <a href="#" class="nav-link text-white" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+                  <a href="#" class="nav-link text-white" data-bs-toggle="collapse" data-bs-target="#inventory-collapse" aria-expanded="false">
                     <i class="bi bi-table"></i>
                       INVENTARIOS
                   </a>
-                  <div class="collapse" id="orders-collapse">
+                  <div class="collapse" id="inventory-collapse">
                       <ul class="nav nav-pills flex-column mb-auto ms-3">
                           <li class="nav-item"><a href="#" class="nav-link text-white" onclick="loadContent('views/stockentry.php')">Ingreso al Kardex</a></li>
                           <li class="nav-item"><a href="#" class="nav-link text-white" onclick="loadContent('views/stockmovement.php')">Movimiento de Kardex</a></li>
@@ -145,7 +145,7 @@
       <div class="main-content">
         <div class="home">
           <h1 class="">Bienvenido a</h1>
-          <img src="assets/img/alvaplast_logo.png" alt="" class="home_logo">
+          <img src="assets/img/alvaplast_logo.png" alt="" class="home__logo">
         </div>
       </div>
     </div>
@@ -167,7 +167,7 @@
         bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
   </script>
   <script src="assets/js/sidebar.js"></script>
-  <!-- <script src="assets/js/modals.js"></script> -->
+  <script src="assets/js/modals.js"></script>
 
 </body>
 

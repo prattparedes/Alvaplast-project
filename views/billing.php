@@ -1,14 +1,14 @@
 <div class="billing">
     <div class="btns__left">
-        <button type="button" class="maintenance_btn  btn btn-primary btn-lg">Nueva Facturación <i class="bi bi-plus-circle"></i></button>
+        <button type="button" class="maintenance__btn  btn btn-primary btn-lg">Nueva Facturación <i class="bi bi-plus-circle"></i></button>
     </div>
     <div class="btns__right">
-        <button type="button" class="maintenance_btn maintenance_btn--inactive btn btn-primary btn-lg">Grabar <i class="bi bi-floppy"></i></button>
-        <button type="button" class="maintenance_btn maintenance_btn--inactive btn btn-primary btn-lg">Modificar <i class="bi bi-pencil-square"></i></button>
-        <button type="button" class="maintenance_btn maintenance_btn--inactive btn btn-primary btn-lg">Eliminar <i class="bi bi-trash"></i></button>
-        <button type="button" class="maintenance_btn btn btn-primary btn-lg">Buscar <i class="bi bi-search"></i></i></button>
-        <button type="button" class="maintenance_btn maintenance_btn--inactive btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
-        <button type="button" class="maintenance_btn maintenance_btn--inactive btn btn-primary btn-lg">Imprimir <i class="bi bi-printer"></i></button>
+        <button type="button" class="maintenance__btn maintenance__btn--inactive btn btn-primary btn-lg">Grabar <i class="bi bi-floppy"></i></button>
+        <button type="button" class="maintenance__btn maintenance__btn--inactive btn btn-primary btn-lg">Modificar <i class="bi bi-pencil-square"></i></button>
+        <button type="button" class="maintenance__btn maintenance__btn--inactive btn btn-primary btn-lg">Eliminar <i class="bi bi-trash"></i></button>
+        <button type="button" class="maintenance__btn btn btn-primary btn-lg">Buscar <i class="bi bi-search"></i></i></button>
+        <button type="button" class="maintenance__btn maintenance__btn--inactive btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
+        <button type="button" class="maintenance__btn maintenance__btn--inactive btn btn-primary btn-lg">Imprimir <i class="bi bi-printer"></i></button>
     </div>
     <!-- Contenido específico de la página de productos -->
 </div>
@@ -27,7 +27,7 @@
 <form action="/ruta/donde/enviar" method="POST" class="row g-3">
     <!-- Columna izquierda -->
     <div class="col-md-6">
-        <label for="ordenVenta" class="form-label">Orden de Venta</label> <button class="form_btn"><i class="bi bi-three-dots"></i></button>
+        <label for="ordenVenta" class="form-label">Orden de Venta</label> <button class="form__btn"><i class="bi bi-three-dots"></i></button>
         <input type="text" class="form-control" id="ordenVenta" name="ordenVenta">
     </div>
     <div class="col-md-6">

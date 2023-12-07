@@ -1,18 +1,18 @@
 <div class="maintenance">
   <!-- Contenido específico de la página de productos -->
-  <div class="maintenance_btns">
-    <button type="button" class="maintenance_btn btn btn-primary btn-lg" id="openModalButton">Mantenimiento de productos <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance_btn btn btn-primary btn-lg">Mantenimiento de clientes <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance_btn btn btn-primary btn-lg">Mantenimiento de proveedores <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance_btn btn btn-primary btn-lg">Mantenimiento de línea <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance_btn btn btn-primary btn-lg">Mantenimiento de marca <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance_btn btn btn-primary btn-lg">Mantenimiento de unidad <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance_btn btn btn-primary btn-lg">Mantenimiento de moneda <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance_btn btn btn-primary btn-lg">Mantenimiento de sucursal <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance_btn btn btn-primary btn-lg">Mantenimiento de almacén <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance_btn btn btn-primary btn-lg">Mantenimiento de vehículos <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance_btn btn btn-primary btn-lg">Mantenimiento de tipo de documento <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance_btn btn btn-primary btn-lg">Mantenimiento de transportistas <i class="bi bi-plus-circle"></i></button>
+  <div class="maintenance__btns">
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de productos <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de clientes <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de proveedores <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de línea <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de marca <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de unidad <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de moneda <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de sucursal <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de almacén <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de vehículos <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de tipo de documento <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Mantenimiento de transportistas <i class="bi bi-plus-circle"></i></button>
   </div>
   <hr>
   <h3>Listado</h3>
@@ -83,5 +83,4 @@
   </div>
 </div>
 
-<!-- Script para manejar el modal -->
-<script src="assets/js/modals.js"></script>
+<?php include 'modals/test_modal.php'; ?>
