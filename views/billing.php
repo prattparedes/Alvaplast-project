@@ -6,7 +6,7 @@
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Grabar <i class="bi bi-floppy"></i></button>
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Modificar <i class="bi bi-pencil-square"></i></button>
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Eliminar <i class="bi bi-trash"></i></button>
-        <button type="button" class="order__btn btn btn-primary btn-lg">Buscar <i class="bi bi-search"></i></i></button>
+        <button type="button" class="order__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('billingorderlist')">Buscar <i class="bi bi-search"></i></i></button>
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Imprimir <i class="bi bi-printer"></i></button>
     </div>
@@ -27,8 +27,13 @@
 <form action="/ruta/donde/enviar" method="POST" class="row g-3">
     <!-- Columna izquierda -->
     <div class="col-md-6">
-        <label for="ordenVenta" class="form-label">Orden de Venta</label> <button class="form__btn"><i class="bi bi-three-dots"></i></button>
-        <input type="text" class="form-control" id="ordenVenta" name="ordenVenta">
+        <label for="billing" class="form-label">Orden de Venta</label>
+        <div class="input-group">
+            <input type="text" class="form-control" id="billing" name="billing">
+            <button class="btn btn-outline-secondary" type="button" id="threeDotsButton" onclick="loadModalContent('sellorderlist')">
+                <i class="bi bi-three-dots" id="threeDotsIco" onclick="loadModalContent('sellorderlist')"></i>
+            </button>
+        </div>
     </div>
     <div class="col-md-6">
         <label for="almacen" class="form-label">Almacén</label>
@@ -115,7 +120,6 @@
 </form>
 
 <hr>
-<button type="button" class="btn btn-primary btn-lg" style="margin-bottom: 8px">Añadir Producto <i class="bi bi-plus-circle"></i></button>
 <table class="table">
     <thead>
         <tr>
@@ -139,3 +143,5 @@
         </tr>
     </tbody>
 </table>
+
+<?php include 'modals/test_modal.php'; ?>

@@ -49,20 +49,147 @@ function loadModalContent(modalName) {
 }
 
 // Foto subida al modal de productos
-document.querySelector(".main__content").addEventListener("change", function (event) {
-  if (event.target.id === "foto") {
-    const inputFoto = event.target;
-    const imagenMostrada = document.getElementById("imagenMostrada");
+document
+  .querySelector(".main__content")
+  .addEventListener("change", function (event) {
+    if (event.target.id === "foto") {
+      const inputFoto = event.target;
+      const imagenMostrada = document.getElementById("imagenMostrada");
 
-    const file = inputFoto.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        if (imagenMostrada) {
-          imagenMostrada.src = e.target.result;
-        }
-      };
-      reader.readAsDataURL(file);
+      const file = inputFoto.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          if (imagenMostrada) {
+            imagenMostrada.src = e.target.result;
+          }
+        };
+        reader.readAsDataURL(file);
+      }
     }
-  }
-});
+  });
+
+// Añadir producto de la tabla de modal a producto seleccionado
+document
+  .querySelector(".main__content")
+  .addEventListener("dblclick", function (event) {
+    const isModalTable = event.target.closest("#modaltable");
+
+    if (isModalTable) {
+      const fila = event.target.closest("tr");
+      const columnas = fila.querySelectorAll("td");
+
+      // Crear un array con el contenido de las celdas de la fila clickeada
+      const contenidoFila = Array.from(columnas).map(
+        (columna) => columna.innerText
+      );
+
+      // Guardar los datos de la fila en una variable global para ser usada más tarde
+      window.clickedRowData = contenidoFila;
+
+      // Obtener elementos del array
+      const productName = contenidoFila[1];
+      const productPrice = contenidoFila[6];
+
+      // Cambiar el HTML de los spans por los datos
+      document.getElementById("productname").innerText = productName;
+      document.getElementById("productprice").value = productPrice;
+
+      // Verificar si existe el elemento productstock
+      const productStockElement = document.getElementById("productstock");
+      if (productStockElement) {
+        const productStock = contenidoFila[7];
+        productStockElement.innerText = productStock;
+      }
+
+      // Cerrar el modal
+      var modalBackground = document.querySelector(".modal__background");
+      modalBackground.classList.add("modal__inactive");
+    }
+  });
+
+// Añadir nueva fila en la tabla de órdenes de venta/compra
+let datosProducto = [];
+document
+  .querySelector(".main__content")
+  .addEventListener("click", function (event) {
+    if (event.target.id === "addproduct") {
+      const cantidad = parseFloat(
+        document.getElementById("productquantity").value
+      );
+      const precioUnitario = parseFloat(
+        document.getElementById("productprice").value
+      );
+      const descuento = parseFloat(
+        document.getElementById("productdiscount").value
+      );
+      const unidad = document.getElementById("productunit").value;
+
+      const descuentoAplicado =
+        isNaN(descuento) || descuento < 0 || descuento > 100 ? 0 : descuento;
+
+      const rowData = window.clickedRowData;
+
+      if (cantidad && unidad) {
+        if (rowData) {
+          const nombreProducto = rowData[1];
+          const precioReal = parseFloat(rowData[5]);
+
+          let datosProducto = [];
+
+          if (document.getElementById("productstock")) {
+            datosProducto = [
+              nombreProducto,
+              cantidad,
+              unidad,
+              precioUnitario,
+              precioReal,
+              (
+                cantidad *
+                precioUnitario *
+                (1 - descuentoAplicado / 100)
+              ).toFixed(2),
+            ];
+          } else {
+            datosProducto = [
+              nombreProducto,
+              cantidad,
+              unidad,
+              precioUnitario,
+              descuento,
+              (
+                cantidad *
+                precioUnitario *
+                (1 - descuentoAplicado / 100)
+              ).toFixed(2),
+            ];
+          }
+
+          const tablaExterna = document
+            .getElementById("ordertable")
+            .getElementsByTagName("tbody")[0];
+          const nuevaFila = tablaExterna.insertRow();
+
+          datosProducto.forEach((contenido) => {
+            console.log(contenido)
+            const celda = nuevaFila.insertCell();
+            celda.innerText = contenido;
+          });
+
+          // Limpiar datos del formulario
+          window.clickedRowData = null;
+          document.getElementById("productname").innerText = "NINGUNO";
+          document.getElementById("productprice").value = null;
+          document.getElementById("productdiscount").value = null;
+          document.getElementById("productquantity").value = null;
+          document.getElementById("productunit").value = null;
+
+          if (document.getElementById("productstock")) {
+            document.getElementById("productstock").innerText = null;
+          }
+        }
+      } else {
+        alert("La cantidad y la unidad no deben estar vacías.");
+      }
+    }
+  });

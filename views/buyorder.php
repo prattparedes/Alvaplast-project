@@ -63,15 +63,18 @@
 </form>
 
 <hr>
-<button type="button" class="btn btn-primary btn-lg" style="margin-bottom: 8px">Añadir Producto <i class="bi bi-plus-circle"></i></button>
-<table class="table">
+<button type="button" class="btn btn-primary btn-lg" style="margin-bottom: 16px" id="openModalButton" onclick="loadModalContent('productsbuylist')">Añadir Producto <i class="bi bi-plus-circle"></i></button>
+<p style="font-weight:600">Producto seleccionado: <span style="margin-right: 20px;" id="productname">NINGUNO</span> Unidad: <input style="width: 60px;" type="text" id="productunit"> Cantidad: <input style="width: 60px;" type="number" id="productquantity"> Precio Unitario: <input style="width: 80px;" type="number" id="productprice"> Descuento: <input style="width: 60px;" type="text" id="productdiscount" value="0">
+    % <button style="margin-left:32px;" class="btn btn-primary" id="addproduct">AÑADIR +</button>
+</p>
+<table id="ordertable" class="table">
     <thead>
         <tr>
             <th>Producto</th>
             <th>Cantidad</th>
             <th>Unidad</th>
             <th>Precio Compra</th>
-            <th>Precio Real</th>
+            <th>Descuento</th>
             <th>Total</th>
         </tr>
     </thead>
@@ -82,7 +85,7 @@
             <td>1</td>
             <td>Unidad</td>
             <td>100</td>
-            <td>90</td>
+            <td>0</td>
             <td>90</td>
         </tr>
     </tbody>
