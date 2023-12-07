@@ -1,5 +1,5 @@
 <div class="usuarios">
-  <h2>Página de Usuarios</h2> <button type="button" class="btn-add" id="btnAbrirModal">Agregar</button>
+  <h2>Página de Usuarios</h2> <button type="button" class="btn__add" id="btnAbrirModal">Agregar</button>
   <!-- Contenido específico de la página de Usuarios -->
   <hr>
   <table class="table">

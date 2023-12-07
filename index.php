@@ -49,7 +49,7 @@
 
   </header>
   <main>
-    <div class="main-container">
+    <div class="main__container">
       <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark sidebar-height" style="width: 280px;">
           <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
             <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
@@ -142,7 +142,7 @@
             </ul>
           </div>
       </div>
-      <div class="main-content">
+      <div class="main__content">
         <div class="home">
           <h1 class="">Bienvenido a</h1>
           <img src="assets/img/alvaplast_logo.png" alt="" class="home__logo">
