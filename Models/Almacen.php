@@ -1,5 +1,5 @@
 <?php
-require_once("../connection.phpconnection.php");
+require_once("../config/connection.php");
 
 class Almacen{
     
