@@ -26,20 +26,26 @@
         </table>
     </div>
     <!-- Columna derecha: formulario -->
-    <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
-        <div style="display: flex; flex-direction: column;">
-            <span>Código:</span>
-            <span>-</span>
+    <form action="Controller/MonedaController.php" method="POST">
+        
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; flex-direction: column;">
+                <span>Código:</span>
+                <span>-</span>
+            </div>
+            <div style="display: flex; flex-direction: column;">
+                <span>Descripción:</span>
+                <input style="height:32px; width: 100%;" type="text" id="descripcion" name="descripcion">
+            </div>
+            <div style="display: flex; flex-direction: column;">
+                <span style="width: 100px;">Símbolo:</span>
+                <input style="height:32px; width: 50%;" type="text" id="abreviatura" name="abreviatura">
+            </div>
         </div>
-        <div style="display: flex; flex-direction: column;">
-            <span>Descripción:</span>
-            <input style="height:32px; width: 100%;" type="text" id="descripcion" name="descripcion">
+        <div>
+            <input type="submit" name="grabar" value="nuevo">
         </div>
-        <div style="display: flex; flex-direction: column;">
-            <span style="width: 100px;">Símbolo:</span>
-            <input style="height:32px; width: 50%;" type="text" id="abreviatura" name="abreviatura">
-        </div>
-    </div>
+    </form>
 </div>
 <div style="margin-top: 16px; display:flex; justify-content: space-around;">
     <button class="btn btn-primary" style="width: 92px;" type="submit">Grabar</button>
