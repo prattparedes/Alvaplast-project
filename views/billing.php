@@ -1,6 +1,6 @@
 <div class="billing">
     <div class="btns__left">
-        <button type="button" class="order__btn  btn btn-primary btn-lg">Nueva Facturación <i class="bi bi-plus-circle"></i></button>
+        <button type="button" class="order__btn  btn btn-primary btn-lg" id="newbill">Nueva Facturación <i class="bi bi-plus-circle"></i></button>
     </div>
     <div class="btns__right">
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Grabar <i class="bi bi-floppy"></i></button>
@@ -15,7 +15,7 @@
 <hr>
 <p style="font-size: 28px;">Tipo de Documento: </p>
 <div class="col-md-6">
-    <select class="form-select" id="tipoDocumento" name="tipoDocumento">
+    <select class="form-select" id="tipoDocumento" name="tipoDocumento" disabled>
         <option value="Nota de Cobranza A">Nota de Cobranza A</option>
         <option value="Ticket">Ticket</option>
         <option value="Factura">Factura</option>
@@ -29,44 +29,44 @@
     <div class="col-md-6">
         <label for="billing" class="form-label">Orden de Venta</label>
         <div class="input-group">
-            <input type="text" class="form-control" id="billing" name="billing">
-            <button class="btn btn-outline-secondary" type="button" id="threeDotsButton" onclick="loadModalContent('sellorderlist')">
-                <i class="bi bi-three-dots" id="threeDotsIco" onclick="loadModalContent('sellorderlist')"></i>
+            <input type="text" class="form-control" id="billing" name="billing" disabled>
+            <button class="btn btn-outline-secondary order__btn--inactive" type="button" id="threeDotsButton" onclick="loadModalContent('sellorderlist')">
+                <i class="bi bi-three-dots order__btn--inactive" id="threeDotsIco" onclick="loadModalContent('sellorderlist')"></i>
             </button>
         </div>
     </div>
     <div class="col-md-6">
         <label for="almacen" class="form-label">Almacén</label>
-        <input type="text" class="form-control" id="almacen" name="almacen">
+        <input type="text" class="form-control" id="almacen" name="almacen" disabled>
     </div>
     <div class="col-md-6">
         <label for="rucDni" class="form-label">RUC o DNI</label>
-        <input type="text" class="form-control" id="rucDni" name="rucDni">
+        <input type="text" class="form-control" id="rucDni" name="rucDni" disabled>
     </div>
     <div class="col-md-6">
         <label for="cliente" class="form-label">Cliente</label>
-        <input type="text" class="form-control" id="cliente" name="cliente">
+        <input type="text" class="form-control" id="cliente" name="cliente" disabled>
     </div>
     <div class="col-md-6">
         <label for="direccion" class="form-label">Dirección</label>
-        <input type="text" class="form-control" id="direccion" name="direccion">
+        <input type="text" class="form-control" id="direccion" name="direccion" disabled>
     </div>
     <div class="col-md-6">
         <label for="vendedor" class="form-label">Vendedor</label>
-        <input type="text" class="form-control" id="vendedor" name="vendedor">
+        <input type="text" class="form-control" id="vendedor" name="vendedor" disabled>
     </div>
     <!-- Columna derecha -->
     <div class="col-md-6">
         <label for="fechaEmision" class="form-label">Fecha Emisión</label>
-        <input type="date" class="form-control" id="fechaEmision" name="fechaEmision">
+        <input type="date" class="form-control" id="fechaEmision" name="fechaEmision" disabled>
     </div>
     <div class="col-md-6">
         <label for="caja" class="form-label">Caja</label>
-        <input type="text" class="form-control" id="caja" name="caja">
+        <input type="text" class="form-control" id="caja" name="caja" disabled>
     </div>
     <div class="col-md-6">
         <label for="moneda" class="form-label">Moneda</label>
-        <select class="form-select" id="moneda" name="moneda">
+        <select class="form-select" id="moneda" name="moneda" disabled>
             <option value="soles">Soles</option>
             <option value="dolares">Dólares</option>
             <!-- Agregar más opciones si es necesario -->
@@ -74,47 +74,47 @@
     </div>
     <div class="col-md-6">
         <label for="inicial" class="form-label">Inicial</label>
-        <input type="number" class="form-control" id="inicial" name="inicial">
+        <input type="number" class="form-control" id="inicial" name="inicial" disabled>
     </div>
     <div class="col-md-6">
         <label for="financiado" class="form-label">Financiado</label>
-        <input type="number" class="form-control" id="financiado" name="financiado">
+        <input type="number" class="form-control" id="financiado" name="financiado" disabled>
     </div>
     <div class="col-md-6">
         <label for="cuotas" class="form-label">Cuotas</label>
-        <input type="number" class="form-control" id="cuotas" name="cuotas">
+        <input type="number" class="form-control" id="cuotas" name="cuotas" disabled>
     </div>
     <div class="col-md-6">
         <label for="montoCuota" class="form-label">Monto Cuota</label>
-        <input type="number" class="form-control" id="montoCuota" name="montoCuota">
+        <input type="number" class="form-control" id="montoCuota" name="montoCuota" disabled>
     </div>
     
     
     <div class="col-md-6">
         <label for="nroFacturaGuia" class="form-label">Nro Factura / Nro. Guía</label>
-        <input type="text" class="form-control" id="nroFacturaGuia" name="nroFacturaGuia">
+        <input type="text" class="form-control" id="nroFacturaGuia" name="nroFacturaGuia" disabled>
     </div>
     <hr>
     <h3>Transporte:</h3>
     <div class="col-md-6">
         <label for="puntoPartida" class="form-label">Punto Partida</label>
-        <input type="text" class="form-control" id="puntoPartida" name="puntoPartida">
+        <input type="text" class="form-control" id="puntoPartida" name="puntoPartida" disabled>
     </div>
     <div class="col-md-6">
         <label for="marcaUnidad" class="form-label">Marca Unidad</label>
-        <input type="text" class="form-control" id="marcaUnidad" name="marcaUnidad">
+        <input type="text" class="form-control" id="marcaUnidad" name="marcaUnidad" disabled>
     </div>
     <div class="col-md-6">
         <label for="placa" class="form-label">Placa</label>
-        <input type="text" class="form-control" id="placa" name="placa">
+        <input type="text" class="form-control" id="placa" name="placa" disabled>
     </div>
     <div class="col-md-6">
         <label for="transportistaRuc" class="form-label">Transportista/RUC</label>
-        <input type="text" class="form-control" id="transportistaRuc" name="transportistaRuc">
+        <input type="text" class="form-control" id="transportistaRuc" name="transportistaRuc" disabled>
     </div>
     <div class="col-md-6">
         <label for="choferLicencia" class="form-label">Chofer/Licencia</label>
-        <input type="text" class="form-control" id="choferLicencia" name="choferLicencia">
+        <input type="text" class="form-control" id="choferLicencia" name="choferLicencia" disabled>
     </div>
 
 </form>

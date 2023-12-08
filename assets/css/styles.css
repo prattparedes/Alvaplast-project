@@ -216,6 +216,14 @@ main {
   background-color: #c0c0c0 !important;
 }
 
+.order__btn--red {
+  background-color: red !important;
+}
+
+#threeDotsButton {
+  transition: all 0ms !important;
+}
+
 /*
 
   Modals
