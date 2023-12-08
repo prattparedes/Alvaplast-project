@@ -14,22 +14,20 @@
             </tr>
         </thead>
         <tbody>
+           <?php
+            require_once('../../Models/Compra.php');
+            $compras = Compra::getCompras();
+            foreach($compras as $compra){
+           ?>
             <tr>
-                <td>Nombre Proveedor 1</td>
-                <td>Orden 123</td>
-                <td>2023-12-01</td>
-                <td>Dólares</td>
-                <td>250.00</td>
-                <td>Nombre del Personal</td>
+                <td><?=$compra->razon_social?></td>
+                <td><?=$compra->numero_documento.$compra->serie_documento?></td>
+                <td><?=explode(' ',$compra->fecha_compra)[0]?></td>
+                <td><?=$compra->Moneda?></td>
+                <td><?=$compra->total?></td>
+                <td><?=$compra->Personal?></td>
             </tr>
-            <tr>
-                <td>Nombre Proveedor 2</td>
-                <td>Orden 456</td>
-                <td>2023-12-03</td>
-                <td>Euros</td>
-                <td>150.00</td>
-                <td>Otro Nombre de Personal</td>
-            </tr>
+            <?php }?>
         </tbody>
     </table>
 </div>

@@ -10,7 +10,6 @@ Fecha FIN:
     <thead>
         <tr>
             <th>Nro de Documento</th>
-            <th>Orden Venta</th>
             <th>Cliente</th>
             <th>Documento Cliente</th>
             <th>Vendedor</th>
@@ -21,16 +20,34 @@ Fecha FIN:
         </tr>
     </thead>
     <tbody>
+        <?php  
+            require_once("../Models/Facturacion.php");
+            $facturas = Facturacion::getFacturacion();
+            foreach ($facturas as $entro) {
+        ?>
+
         <tr>
-            <td>Documento 001</td>
-            <td>Orden 123</td>
-            <td>Cliente Ejemplo</td>
-            <td>123456789</td>
-            <td>Vendedor A</td>
-            <td>01/01/2023</td>
-            <td>100.00</td>
-            <td>Soles</td>
-            <td>Pagado</td>
+            <td><?=$entro->id_movimiento?></td>
+            <td><?=$entro->cliente?></td>
+            <?php $doc = trim($entro->dni); $doc2 = trim($entro->ruc);  
+            if(strlen($doc)>1 ){
+                $documento = "<b>dni/".$doc."</b>";    
+            }elseif(strlen($doc2)>1){
+                $documento = "<b>ruc/".$doc2."</b>";
+            }else{
+                $documento = "no señalado";
+            }
+            ?>
+            <td><?=$documento?></td>
+            <td><?=strtolower($entro->nombres)?></td>
+            <td><?=explode(' ',$entro->fecha_movimiento)[0]?></td>
+            <td><?=$entro->pago_inicial?></td>
+            <td><?=$entro->moneda?></td>
+            <?php ($entro)?>
+            <td><?= ($entro->estado == "1")? "pagado" : "pendiente"?></td>
         </tr>
+
+     <?php }?>
+       
     </tbody>
 </table>
