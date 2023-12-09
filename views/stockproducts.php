@@ -5,7 +5,7 @@
 <label for="almacenSelect" class="form-label">Almacén</label>
 <select class="form-select" id="almacenSelect">
     <?php 
-    require_once("../Models/Almacen.php");
+    require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Almacen.php");
     $almacenes = Almacen::getAlmacenes();
         foreach ($almacenes as $almac) {
             ?> 
@@ -21,7 +21,7 @@
 <select class="form-select" id="lineaSelect">
     <option value="">Ingrese linea</option>
 <?php
-require_once("../Models/Linea.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Linea.php");
  $listas = Linea::ListarLineas();
     foreach ($listas as $linea) {
 ?>

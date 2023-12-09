@@ -12,21 +12,22 @@
                 </tr>
             </thead>
             <tbody>
+                <?php
+                require_once("../../Models/Moneda.php"); 
+                $data = Moneda::getMonedas();
+                foreach($data as $money){
+                ?>
                 <tr>
-                    <td>1</td>
-                    <td>SOLES</td>
-                    <td>S/.</td>
+                    <td><?=$money->id_moneda?></td>
+                    <td><?=$money->descripcion?></td>
+                    <td><?=$money->simbolo?></td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>DOLARES</td>
-                    <td>$</td>
-                </tr>
+                <?php }?>
             </tbody>
         </table>
     </div>
     <!-- Columna derecha: formulario -->
-    <form action="Controller/MonedaController.php" method="POST">
+    <form action="" method="POST">
         
         <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
             <div style="display: flex; flex-direction: column;">
