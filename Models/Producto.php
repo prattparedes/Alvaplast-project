@@ -1,5 +1,5 @@
 <?php 
-require_once("../config/connection.php");
+require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/config/connection.php');
 class Producto {
        
         public  static function getProductos(){

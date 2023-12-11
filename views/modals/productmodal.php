@@ -64,25 +64,36 @@
             </select>
         </div>
 
-        <div style="display: flex; flex-direction: column;">
-            <label for="unidad">Unidad:</label>
-            <input style="height:32px; width:100px" type="text" id="unidad" name="unidad">
+        <div style="display: flex; flex-direction: row;">
+            <div>
+                <label for="unidad">Unidad:</label>
+                <input style="height:32px; width:100px" type="text" id="unidad" name="unidad">
+            </div>
+            <div>
+                <label for="volumen">Volumen:</label>
+                <input style="height:32px; width:100px" type="number" id="volumen" name="volumen">
+            </div>
         </div>
 
-        <div style="display: flex; flex-direction: column;">
-            <label for="volumen">Volumen:</label>
-            <input style="height:32px; width:100px" type="number" id="volumen" name="volumen">
+        <div style="display: flex; flex-direction: row;">
+            <div>
+                <label for="stockMinimo">Stock Mínimo:</label>
+                <input style="height:32px; width:100px" type="number" id="stockMinimo" name="stockMinimo">
+            </div>
+            <div>
+                <label for="stockMaximo">Stock Máximo:</label>
+                <input style="height:32px; width:100px" type="number" id="stockMaximo" name="stockMaximo">
+            </div>
         </div>
 
-        <div style="display: flex; flex-direction: column;">
-            <label for="stockMinimo">Stock Mínimo:</label>
-            <input style="height:32px; width:100px" type="number" id="stockMinimo" name="stockMinimo">
+        <div style="display: flex; flex-direction: column; text-align: left;">
+            <label for="descripcion">Estado:</label>
+            <div style="display:flex; align-items:center;">
+                <input style="height:32px; width:24px;" type="checkbox" id="descripcion" name="descripcion">
+                <span style="margin-left:8px; font-weight:600;">Habilitado</span>
+            </div>
         </div>
 
-        <div style="display: flex; flex-direction: column;">
-            <label for="stockMaximo">Stock Máximo:</label>
-            <input style="height:32px; width:100px" type="number" id="stockMaximo" name="stockMaximo">
-        </div>
     </div>
 </div>
 

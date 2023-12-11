@@ -4,14 +4,14 @@
 
 <label for="almacenSelect" class="form-label">Almacén</label>
 <select class="form-select" id="almacenSelect">
-    <?php
-    require_once("../Models/Almacen.php");
+    <?php 
+    require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Almacen.php");
     $almacenes = Almacen::getAlmacenes();
-    foreach ($almacenes as $almac) {
-    ?>
-        <option value="<?= $almac->id_almacen ?>"><?= $almac->descripcion ?></option>
-    <?php
-    }
+        foreach ($almacenes as $almac) {
+            ?> 
+        <option value="<?=$almac->id_almacen?>"><?=$almac->descripcion?></option>
+    <?php   
+        }
     ?>
     <!-- Agregar más opciones si es necesario -->
 </select>
@@ -20,17 +20,17 @@
 <label for="lineaSelect" class="form-label">Línea</label>
 <select class="form-select" id="lineaSelect">
     <option value="">Ingrese linea</option>
-    <?php
-    require_once("../Models/Linea.php");
-    $listas = Linea::ListarLineas();
+<?php
+require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Linea.php");
+ $listas = Linea::ListarLineas();
     foreach ($listas as $linea) {
-    ?>
-        <option value="<?= $linea->id_linea ?>"><?= $linea->descripcion ?></option>
-        <!-- Agregar más opciones si es necesario -->
+?>
+    <option value="<?= $linea->id_linea?>"><?=$linea->descripcion?></option>
+    <!-- Agregar más opciones si es necesario -->
     <?php
     }
     ?>
-</select>
+    </select>
 
 
 <!-- Input para filtrar por Producto -->
