@@ -1,6 +1,6 @@
 <div class="sellorder">
   <div class="btns__left">
-    <button type="button" class="order__btn btn btn-primary btn-lg">Generar Orden de Venta <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="order__btn btn btn-primary btn-lg" id="neworder">Generar Orden de Venta <i class="bi bi-plus-circle"></i></button>
   </div>
 
   <div class="btns__right">
@@ -18,23 +18,23 @@
   <div class="col-md-6">
     <label for="cliente" class="form-label">Cliente</label>
     <div class="input-group">
-      <input type="text" class="form-control" id="cliente" name="cliente">
-      <button class="btn btn-outline-secondary" type="button" id="threeDotsButton" onclick="loadModalContent('clientslist')">
-        <i class="bi bi-three-dots" id="threeDotsIco"></i>
+      <input type="text" class="form-control" id="cliente" name="cliente" disabled>
+      <button class="btn btn-outline-secondary order__btn--inactive" type="button" id="threeDotsButton" onclick="loadModalContent('clientslist')">
+        <i class="bi bi-three-dots order__btn--inactive" id="threeDotsIco"></i>
       </button>
     </div>
   </div>
   <div class="col-md-6">
     <label for="direccion" class="form-label">Dirección</label>
-    <input type="text" class="form-control" id="direccion" name="direccion">
+    <input type="text" class="form-control" id="direccion" name="direccion" disabled>
   </div>
   <div class="col-md-6">
     <label for="rucDni" class="form-label">RUC o DNI</label>
-    <input type="text" class="form-control" id="rucDni" name="rucDni">
+    <input type="text" class="form-control" id="rucDni" name="rucDni" disabled>
   </div>
   <div class="col-md-6">
     <label for="moneda" class="form-label">Moneda</label>
-    <select class="form-select" id="moneda" name="moneda">
+    <select class="form-select" id="moneda" name="moneda" disabled>
       <option value="soles">Soles</option>
       <option value="dolares">Dólares</option>
       <!-- Agregar más opciones si es necesario -->
@@ -42,54 +42,54 @@
   </div>
   <div class="col-md-6">
     <label for="tipoPago" class="form-label">Tipo de Pago</label>
-    <input type="text" class="form-control" id="tipoPago" name="tipoPago">
+    <input type="text" class="form-control" id="tipoPago" name="tipoPago" disabled>
   </div>
   <div class="col-md-6">
     <label for="inicial" class="form-label">Inicial</label>
-    <input type="number" class="form-control" id="inicial" name="inicial">
+    <input type="number" class="form-control" id="inicial" name="inicial" disabled>
   </div>
   <div class="col-md-6">
     <label for="cuotas" class="form-label">Cuotas</label>
-    <input type="number" class="form-control" id="cuotas" name="cuotas">
+    <input type="number" class="form-control" id="cuotas" name="cuotas" disabled>
   </div>
   <div class="col-md-6">
     <label for="montoFinanciado" class="form-label">Monto Financiado</label>
-    <input type="number" class="form-control" id="montoFinanciado" name="montoFinanciado">
+    <input type="number" class="form-control" id="montoFinanciado" name="montoFinanciado" disabled>
   </div>
   <div class="col-md-6">
     <label for="montoCuota" class="form-label">Monto Cuota</label>
-    <input type="number" class="form-control" id="montoCuota" name="montoCuota">
+    <input type="number" class="form-control" id="montoCuota" name="montoCuota" disabled>
   </div>
   <div class="col-md-6">
     <label for="vendedor" class="form-label">Vendedor</label>
-    <input type="text" class="form-control" id="vendedor" name="vendedor">
+    <input type="text" class="form-control" id="vendedor" name="vendedor" disabled>
   </div>
   <div class="col-md-6">
     <label for="sucursal" class="form-label">Sucursal</label>
-    <input type="text" class="form-control" id="sucursal" name="sucursal">
+    <input type="text" class="form-control" id="sucursal" name="sucursal" disabled>
   </div>
   <div class="col-md-6">
     <label for="almacen" class="form-label">Almacén</label>
-    <input type="text" class="form-control" id="almacen" name="almacen">
+    <input type="text" class="form-control" id="almacen" name="almacen" disabled>
   </div>
   <div class="col-md-6">
     <label for="fecha" class="form-label">Fecha</label>
-    <input type="date" class="form-control" id="fecha" name="fecha">
+    <input type="date" class="form-control" id="fecha" name="fecha" disabled>
   </div>
   <div class="col-md-6">
     <label for="tipoDocumento" class="form-label">Tipo de Documento</label>
-    <input type="text" class="form-control" id="tipoDocumento" name="tipoDocumento">
+    <input type="text" class="form-control" id="tipoDocumento" name="tipoDocumento" disabled>
   </div>
   <div class="col-md-12">
     <label for="notas" class="form-label">Notas</label>
-    <textarea class="form-control" id="notas" name="notas" rows="3"></textarea>
+    <textarea class="form-control" id="notas" name="notas" rows="3" disabled></textarea>
   </div>
 </form>
 
 <hr>
-<button type="button" class="btn btn-primary btn-lg" style="margin-bottom: 16px" id="openModalButton" onclick="loadModalContent('productsselllist')">Seleccionar Producto <i class="bi bi-plus-circle"></i></button>
-<p style="font-weight:600">Producto seleccionado: <span style="margin-right: 20px;" id="productname">NINGUNO</span> Unidad: <input style="width: 60px;" type="text" id="productunit"> Cantidad: <input style="width: 60px;" type="number" id="productquantity"> Precio Unitario: <input style="width: 80px;" type="number" id="productprice"> Descuento: <input style="width: 60px;" type="text" id="productdiscount" value="0">
-  % Stock Actual: <span id="productstock">N/A</span><button style="margin-left:32px;" class="btn btn-primary" id="addproduct">AÑADIR +</button>
+<button type="button" class="btn btn-primary btn-lg order__btn--inactive" style="margin-bottom: 16px;  border: none;" id="selectproduct" onclick="loadModalContent('productsselllist')">Seleccionar Producto <i class="bi bi-plus-circle"></i></button>
+<p style="font-weight:600">Producto seleccionado: <span style="margin-right: 20px;" id="productname">NINGUNO</span> Unidad: <input style="width: 60px;" type="text" id="productunit" disabled> Cantidad: <input style="width: 60px;" type="number" id="productquantity" disabled> Precio Unitario: <input style="width: 80px;" type="number" id="productprice" disabled> Descuento: <input style="width: 60px;" type="text" id="productdiscount" value="0" disabled>
+  % Stock Actual: <span id="productstock">N/A</span><button style="margin-left:32px; border:none;" class="btn btn-primary order__btn--inactive" id="addproduct">AÑADIR +</button>
 </p>
 <table id="ordertable" class="table">
   <thead>
