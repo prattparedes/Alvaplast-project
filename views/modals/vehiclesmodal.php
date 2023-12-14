@@ -67,5 +67,4 @@
     <button class="btn btn-primary" style="width: 92px;" type="submit">Grabar</button>
     <button class="btn btn-primary" style="width: 92px;" type="button">Modificar</button>
     <button class="btn btn-primary" style="width: 92px;" type="button">Eliminar</button>
-    <button class="btn btn-primary" style="width: 92px;" type="button">Buscar</button>
 </div>
