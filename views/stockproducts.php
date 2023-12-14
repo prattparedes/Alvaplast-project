@@ -1,42 +1,56 @@
 <h2 style="text-align: center">STOCK DE PRODUCTOS</h2>
 
-<!-- Select de Almacén -->
+<div style="display: flex;">
+    <!-- Select de Almacén -->
+    <div style="display: flex; flex-direction: column; gap: 10px; width:60%;">
+        <div style="display: flex; align-items: center;">
+            <label for="almacenSelect" class="form-label" style="width: 100px; margin-right: 10px;">Almacén</label>
+            <select class="form-select" id="almacenSelect" style="max-width: 500px;">
+                <?php
+                require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Almacen.php");
+                $almacenes = Almacen::getAlmacenes();
+                foreach ($almacenes as $almac) {
+                ?>
+                    <option value="<?= $almac->id_almacen ?>"><?= $almac->descripcion ?></option>
+                <?php
+                }
+                ?>
+            </select>
+        </div>
 
-<label for="almacenSelect" class="form-label">Almacén</label>
-<select class="form-select" id="almacenSelect">
-    <?php 
-    require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Almacen.php");
-    $almacenes = Almacen::getAlmacenes();
-        foreach ($almacenes as $almac) {
-            ?> 
-        <option value="<?=$almac->id_almacen?>"><?=$almac->descripcion?></option>
-    <?php   
-        }
-    ?>
-    <!-- Agregar más opciones si es necesario -->
-</select>
+        <!-- Select de Línea -->
+        <div style="display: flex; align-items: center;">
+            <label for="lineaSelect" class="form-label" style="width: 100px; margin-right: 10px;">Línea</label>
+            <select class="form-select" id="lineaSelect" style="max-width: 500px;">
+                <option value="">Ingrese línea</option>
+                <?php
+                require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Linea.php");
+                $listas = Linea::ListarLineas();
+                foreach ($listas as $linea) {
+                ?>
+                    <option value="<?= $linea->id_linea ?>"><?= $linea->descripcion ?></option>
+                    <!-- Agregar más opciones si es necesario -->
+                <?php
+                }
+                ?>
+            </select>
+        </div>
 
-<!-- Select de Línea -->
-<label for="lineaSelect" class="form-label">Línea</label>
-<select class="form-select" id="lineaSelect">
-    <option value="">Ingrese linea</option>
-<?php
-require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Linea.php");
- $listas = Linea::ListarLineas();
-    foreach ($listas as $linea) {
-?>
-    <option value="<?= $linea->id_linea?>"><?=$linea->descripcion?></option>
-    <!-- Agregar más opciones si es necesario -->
-    <?php
-    }
-    ?>
-    </select>
+        <!-- Input para filtrar por Producto -->
+        <div style="display: flex; align-items: center;">
+            <label for="filtroProducto" class="form-label" style="width: 100px; margin-right: 10px;">Producto:</label>
+            <input type="text" class="form-control" id="filtroProducto" style="max-width: 800px;">
+        </div>
+    </div>
 
 
-<!-- Input para filtrar por Producto -->
-<label for="filtroProducto" class="form-label">Producto:</label>
-<input type="text" class="form-control" id="filtroProducto">
-<br>
+    <!-- Botones -->
+    <div style="display: flex; justify-content: flex-end; align-items:center">
+        <button type="button" class="order__btn btn btn-primary btn-lg">Buscar <i class="bi bi-search"></i></i></button>
+        <button type="button" class="order__btn btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
+        <button type="button" class="order__btn btn btn-primary btn-lg">Imprimir <i class="bi bi-printer"></i></button>
+    </div>
+</div>
 <hr>
 <!-- Tabla -->
 <div class="table--container">

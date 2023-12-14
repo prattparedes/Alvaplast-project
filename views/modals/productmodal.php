@@ -67,7 +67,10 @@
         <div style="display: flex; flex-direction: row;">
             <div>
                 <label for="unidad">Unidad:</label>
-                <input style="height:32px; width:100px" type="text" id="unidad" name="unidad">
+                <select style="height:32px;" id="marca" name="marca">
+                    <option value="fardos">F</option>
+                    <option value="millares">MLL</option>
+                </select>
             </div>
             <div>
                 <label for="volumen">Volumen:</label>
