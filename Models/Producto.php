@@ -1,37 +1,46 @@
-<?php 
-require_once("../config/connection.php");
-class Producto {
-       
-        public  static function getProductos(){
-            $connection = Connection::Conectar();
-            $DATA=$connection->query("exec sp_ListarProducto");
-            $productos =$DATA->fetchAll(PDO::FETCH_OBJ);   
-            return $productos;
-        }
-   
-        public static function getProductosByAlmacen(int $idAlmacen){
-            $con = Connection::Conectar();  
-            $stmt = $con->prepare("exec sp_ListarProducto_AlmacenXAlmacen :almacen");
-            $stmt->bindParam(":idalmacen", $idAlmacen, PDO::PARAM_INT);
-            $stmt->execute();   
-            return $stmt->fetchAll(PDO::FETCH_OBJ);
-        }
+<?php
+// Se requiere el archivo de conexión que probablemente contiene la clase Connection.
+require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/config/connection.php');
 
-        public static function getProductosByLineaAlmacen(int $almacen, int $linea) :array {
-            $con = Connection::Conectar();  
-            $tsmt = $con->prepare("exec sp_ListarProducto_AlmacenXAlmacenConLinea :almacen , :linea");
-            $tsmt->bindParam(":almacen", $almacen, PDO::PARAM_INT);
-            $tsmt->bindParam(":linea",$linea,PDO::PARAM_INT);
-            $tsmt->execute();
-            return $tsmt->fetchAll(PDO::FETCH_OBJ);
-        }
+class Producto {
+    // Método estático para obtener todos los productos.
+    public static function getProductos() {
+        // Se establece la conexión utilizando la clase Connection.
+        $connection = Connection::Conectar();
+        
+        // Se ejecuta un procedimiento almacenado para obtener la lista de productos.
+        $DATA = $connection->query("exec sp_ListarProducto");
+        
+        // Se recuperan los resultados en formato de objeto y se retornan.
+        $productos = $DATA->fetchAll(PDO::FETCH_OBJ);
+        return $productos;
     }
 
+    // Método estático para obtener productos por almacén.
+    public static function getProductosByAlmacen(int $idAlmacen) {
+        $con = Connection::Conectar();
+        
+        // Se utiliza una consulta preparada para obtener productos filtrados por un ID de almacén.
+        $stmt = $con->prepare("exec sp_ListarProducto_AlmacenXAlmacen :almacen");
+        $stmt->bindParam(":idalmacen", $idAlmacen, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        // Se retornan los resultados en formato de objeto.
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 
-
-
-
-
-
-
+    // Método estático para obtener productos por almacén y línea.
+    public static function getProductosByLineaAlmacen(int $almacen, int $linea): array {
+        $con = Connection::Conectar();
+        
+        // Se utiliza una consulta preparada para obtener productos filtrados por un ID de almacén y línea.
+        $tsmt = $con->prepare("exec sp_ListarProducto_AlmacenXAlmacenConLinea :almacen , :linea");
+        $tsmt->bindParam(":almacen", $almacen, PDO::PARAM_INT);
+        $tsmt->bindParam(":linea", $linea, PDO::PARAM_INT);
+        $tsmt->execute();
+        
+        // Se retornan los resultados en formato de objeto.
+        return $tsmt->fetchAll(PDO::FETCH_OBJ);
+    }
+}
 ?>
