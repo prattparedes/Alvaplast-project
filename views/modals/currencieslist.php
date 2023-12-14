@@ -13,7 +13,7 @@
             </thead>
             <tbody>
                 <?php
-                require_once("../../Models/Moneda.php"); 
+                require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Moneda.php"); 
                 $data = Moneda::getMonedas();
                 foreach($data as $money){
                 ?>
@@ -27,7 +27,7 @@
         </table>
     </div>
     <!-- Columna derecha: formulario -->
-    <form action="" method="POST">
+    <form  method="POST" id="miFormulario">
         
         <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
             <div style="display: flex; flex-direction: column;">
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div>
-            <input type="submit" name="grabar" value="nuevo">
+            <button type="submit" >Guardar</button>
         </div>
     </form>
 </div>

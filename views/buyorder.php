@@ -1,3 +1,4 @@
+<?php require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Compra.php')?>
 <div class="buyorder">
     <div class="btns__left">
         <button type="button" class="order__btn btn btn-primary btn-lg">Generar Orden de Compra <i class="bi bi-plus-circle"></i></button>
@@ -13,7 +14,7 @@
     <!-- Contenido específico de la página de productos -->
 </div>
 <hr>
-<p style="font-size: 28px;">Orden de Compra N°: </p>
+<p style="font-size: 28px;">Orden de Compra N°: <?=Compra::getIdCompra();?></p>
 <form action="/ruta/donde/enviar" method="POST" class="row g-3">
     <div class="col-md-6">
         <label for="proveedor" class="form-label">Proveedor</label>
