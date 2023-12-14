@@ -20,17 +20,22 @@
             <div style="display: flex; flex-direction: column;">
                 <label for="linea">Línea:</label>
                 <select style="height:32px;" id="linea" name="linea">
-                    <option value="rollos">Rollos</option>
-                    <option value="bolsas">Bolsas</option>
-                    <option value="cubiertos">Cubiertos</option>
+                <?php require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Linea.php');
+                 $lineas = Linea::ListarLineas();
+                 foreach($lineas as $lin){ ?>
+                    <option value="<?=$lin->id_linea?>"><?=$lin->descripcion?></option>
+                <?php }?>
                 </select>
             </div>
 
             <div style="display: flex; flex-direction: column;">
                 <label for="moneda">Moneda:</label>
                 <select style="height:32px; width:100px" id="moneda" name="moneda">
-                    <option value="soles">Soles</option>
-                    <option value="dolares">Dólares</option>
+                <?php require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Moneda.php');
+                $monedas = Moneda::getMonedas();
+                foreach($monedas as $moneda) { ?>
+                    <option value="<?=$moneda->id_moneda?>"><?=$moneda->descripcion?></option>
+                <?php } ?>
                 </select>
             </div>
 
@@ -57,10 +62,11 @@
         <div style="display: flex; flex-direction: column;">
             <label for="marca">Marca:</label>
             <select style="height:32px;" id="marca" name="marca">
-                <option value="alfa">ALFA</option>
-                <option value="plastimiq">PLASTIMIQ</option>
-                <option value="rayo">RAYO</option>
-                <option value="rey">REY</option>
+            <?php  require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Marca.php');
+                $marcas = Marca::getMarcas();
+                foreach($marcas as $marca){?>
+                <option value="<?=$marca->id_marca?>"><?=$marca->descripcion?></option>
+            <?php }?>
             </select>
         </div>
 

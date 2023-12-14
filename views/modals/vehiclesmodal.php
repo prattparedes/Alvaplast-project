@@ -46,20 +46,19 @@
                 </tr>
             </thead>
             <tbody>
+                <?php 
+                require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Vehiculo.php');
+                $vehiculos = Vehiculo::getVehiculos();
+                foreach($vehiculos as $vehiculo){
+                    ?>
                 <tr>
-                    <td>2</td>
-                    <td>ADS-878</td>
-                    <td>Camion</td>
-                    <td>Gasolina</td>
-                    <td>Hyunday</td>
+                    <td><?=$vehiculo->id_vehiculo?></td>
+                    <td><?=$vehiculo->placa?></td>
+                    <td><?=$vehiculo->modelo?></td>
+                    <td><?=$vehiculo->tipo_vehiculo?></td>
+                    <td><?=$vehiculo->marca_vehiculo?></td>
                 </tr>
-                <tr>
-                    <td>7</td>
-                    <td>B5T-889</td>
-                    <td>Furgoneta</td>
-                    <td>Petroleo</td>
-                    <td>KIA</td>
-                </tr>
+                <?php }?>
             </tbody>
         </table>
     </div>

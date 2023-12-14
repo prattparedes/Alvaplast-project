@@ -11,7 +11,5 @@ class Connection{
             echo  $e->getMessage() ;
     }
     }
-
 }
-
 ?>
