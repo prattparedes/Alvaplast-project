@@ -15,22 +15,19 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Nombre Proveedor 1</td>
-                <td>Orden 123</td>
-                <td>2023-12-01</td>
-                <td>Dólares</td>
-                <td>250.00</td>
-                <td>Nombre del Personal</td>
-            </tr>
-            <tr>
-                <td>Nombre Proveedor 2</td>
-                <td>Orden 456</td>
-                <td>2023-12-03</td>
-                <td>Euros</td>
-                <td>150.00</td>
-                <td>Otro Nombre de Personal</td>
-            </tr>
+        <?php
+                require_once('../../Models/Proveedor.php');
+                $proveedores = Proveedor::getProveedores();
+                foreach ($proveedores as $proveedor) {
+            ?>
+                <tr>
+                <td><?= $proveedor->id_proveedor ?></td>
+                <td><?= $proveedor->nombre ?></td>
+                <td><?= $proveedor->ruc ?></td>
+                <td><?= $proveedor->direccion ?></td>
+                <td><?= $proveedor->telefono ?></td> 
+                </tr>
+            <?php }?>
         </tbody>
     </table>`
 </div>

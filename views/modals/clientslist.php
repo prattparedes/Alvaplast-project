@@ -32,9 +32,7 @@
                     <td><?= $cliente->direccion ?></td>
                     <td><?= $cliente->celular ?></td>
                 </tr>
-            <?php
-            }
-            ?> 
+            <?php }?> 
         </tbody>
     </table>
 </div>
