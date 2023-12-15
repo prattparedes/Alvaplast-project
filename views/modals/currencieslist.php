@@ -27,7 +27,7 @@
         </table>
     </div>
     <!-- Columna derecha: formulario -->
-    <form  method="POST" id="miFormulario">
+    <form method="POST"  id="miFormulario">
         
         <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
             <div style="display: flex; flex-direction: column;">
@@ -44,12 +44,12 @@
             </div>
         </div>
         <div>
-            <button type="submit" >Guardar</button>
+            
         </div>
     </form>
 </div>
 <div style="margin-top: 16px; display:flex; justify-content: space-around;">
-    <button class="btn btn-primary" style="width: 92px;" type="submit">Grabar</button>
-    <button class="btn btn-primary" style="width: 92px;" type="button">Modificar</button>
-    <button class="btn btn-primary" style="width: 92px;" type="button">Eliminar</button>
+    <button class="btn btn-primary" style="width: 92px;" type="submit" id="money_submit">Grabar</button>
+    <button class="btn btn-primary" style="width: 92px;" type="submit" id="money_submit">Modificar</button>
+    <button class="btn btn-primary" style="width: 92px;" type="submit" id="money_submit">Eliminar</button>
 </div>

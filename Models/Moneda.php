@@ -11,10 +11,16 @@ class Moneda
     }
 
     public static function RegistrarMoneda(int $id_moneda,string $descripcion, string $abr){ 
+       try{
         $con = Connection::Conectar();
         $tsmt = $con->prepare("exec sp_RegistrarMoneda ?, ?, ?");
         $result=$tsmt->execute([$id_moneda,$descripcion,$abr]);
         echo $result ;
+       }catch(Exception $ex){
+        echo "ERROR:" .$ex->getMessage();
+        
+        }
+        
     }
 
     public static function ModificarMoneda(int $id,string $descripcion, string $abr,): bool

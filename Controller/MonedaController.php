@@ -6,11 +6,11 @@ if(isset($_POST)){
     $descripcion = $_POST["descripcion"];
     $abre = $_POST["abreviatura"];
     
-    if($_POST['metodo'] == "nuevo"){
+    if($_POST['metodo'] == "Grabar"){
          Moneda::RegistrarMoneda($id, $descripcion, $abre);
-    }else if ($POST['metodo'] == "editar"){
+    }else if ($POST['metodo'] == "Modificar"){
         $result = Moneda::ModificarMoneda($id, $descripcion, $abre);
-    }else if ($_POST['metodo'] == "eliminar"){
+    }else if ($_POST['metodo'] == "Eliminar"){
         $result = Moneda::EliminarMoneda($id);
     }
 }

@@ -31,8 +31,6 @@
 
     require_once('../../Models/Cliente.php');
 
-    $clientes = Cliente::getClientes();
-
     foreach ($clientes as $cliente) {
     ?>
         <tr>
