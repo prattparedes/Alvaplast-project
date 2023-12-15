@@ -23,15 +23,20 @@ class Moneda
         
     }
 
-    public static function ModificarMoneda(int $id,string $descripcion, string $abr,): bool
+    public static function ModificarMoneda(int $id,string $descripcion, string $abr,)
     {
-        $con = Connection::Conectar();
-        $tsmt = $con->prepare("exec sp_ModificarMoneda :id, :desc, :abre");
-        $tsmt->bindParam(":id",$id,PDO::PARAM_INT,10);
-        $tsmt->bindParam(":desc",$descripcion,PDO::PARAM_STR,20);
-        $tsmt->bindParam(":abre",$abr,PDO::PARAM_STR,4);
-        $result=$tsmt->execute();
-        return $result;
+        try{
+            $con = Connection::Conectar();
+            $tsmt = $con->prepare("exec sp_ModificarMoneda :id, :desc, :abre");
+            $tsmt->bindParam(":id",$id,PDO::PARAM_INT,10);
+            $tsmt->bindParam(":desc",$descripcion,PDO::PARAM_STR,20);
+            $tsmt->bindParam(":abre",$abr,PDO::PARAM_STR,4);
+            $result=$tsmt->execute();
+            echo $result;
+        }catch(Exception $e){
+            echo $e->getMessage();
+        }
+        
     }
 
     public static function EliminarMoneda(int $id):bool

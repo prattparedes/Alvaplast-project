@@ -2,7 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Moneda.php");
     
 if(isset($_POST)){
-    $id = 1;
+    $id = $_POST["id"];
     $descripcion = $_POST["descripcion"];
     $abre = $_POST["abreviatura"];
     
@@ -13,6 +13,7 @@ if(isset($_POST)){
     }else if ($_POST['metodo'] == "Eliminar"){
         $result = Moneda::EliminarMoneda($id);
     }
+    echo $result;
 }
 
 ?>
