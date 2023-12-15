@@ -1,25 +1,26 @@
 // Abrir modal desde los botones, seleccionar producto, icono de los tres puntos.
-document.querySelector(".main__content").addEventListener("click", function (event) {
-  const modalBackground = document.querySelector(".modal__background");
+document
+  .querySelector(".main__content")
+  .addEventListener("click", function (event) {
+    const modalBackground = document.querySelector(".modal__background");
 
-  if (
-    event.target.id === "openModalButton" ||
-    event.target.id === "threeDotsButton" ||
-    event.target.id === "threeDotsIco" ||
-    event.target.id === "selectproduct"
-  ) {
-    const btn = document.getElementById(event.target.id);
+    if (
+      event.target.id === "openModalButton" ||
+      event.target.id === "threeDotsButton" ||
+      event.target.id === "threeDotsIco" ||
+      event.target.id === "selectproduct"
+    ) {
+      const btn = document.getElementById(event.target.id);
 
-    if (!btn.classList.contains("order__btn--inactive")) {
-      modalBackground.classList.remove("modal__inactive");
+      if (!btn.classList.contains("order__btn--inactive")) {
+        modalBackground.classList.remove("modal__inactive");
+      }
     }
-  }
 
-  if (event.target.id === "closeModalButton") {
-    modalBackground.classList.add("modal__inactive");
-  }
-});
-
+    if (event.target.id === "closeModalButton") {
+      modalBackground.classList.add("modal__inactive");
+    }
+  });
 
 // Carga Dinámica de los modals
 function loadModalContent(modalName) {
@@ -105,7 +106,7 @@ document
     }
   });
 
-// Añadir Proveedor, Dirección e ID al formulario órdenes del listado
+// Añadir Proveedor, Dirección e ID al formulario órden de compra
 document
   .querySelector(".main__content")
   .addEventListener("dblclick", function (event) {
@@ -123,12 +124,52 @@ document
       const providerID = contenidoFila[0];
       const providerName = contenidoFila[1];
       const providerDirection = contenidoFila[3];
-      console.log(providerID, providerName, providerDirection)
 
       // Cambiar el HTML de los spans por los datos
       document.getElementById("idproveedor").value = providerID;
       document.getElementById("proveedor").value = providerName;
       document.getElementById("direccion").value = providerDirection;
+
+      // Cerrar el modal
+      var modalBackground = document.querySelector(".modal__background");
+      modalBackground.classList.add("modal__inactive");
+    }
+  });
+
+// Añadir Proveedor, Dirección e ID al formulario órden de compra
+document
+  .querySelector(".main__content")
+  .addEventListener("dblclick", function (event) {
+    const isModalTable = event.target.closest("#clienttable");
+    if (isModalTable) {
+      const fila = event.target.closest("tr");
+      const columnas = fila.querySelectorAll("td");
+
+      // Crear un array con el contenido de las celdas de la fila clickeada
+      const contenidoFila = Array.from(columnas).map(
+        (columna) => columna.innerText
+      );
+
+      // Obtener elementos del array
+      const clientID = contenidoFila[0];
+      const clientName = contenidoFila[1];
+      const clientDirection = contenidoFila[4];
+      const clientRUC = contenidoFila[2];
+      const clientDNI = contenidoFila[3];
+
+      // Cambiar el HTML de los spans por los datos
+      document.getElementById("idcliente").value = clientID;
+      document.getElementById("cliente").value = clientName;
+      document.getElementById("direccion").value = clientDirection;
+      
+      const rucDniInput = document.getElementById("rucDni");
+
+      // Verificar si hay RUC o DNI y asignar el valor correspondiente al input
+      if (clientRUC !== "-") {
+        rucDniInput.value = clientRUC;
+      } else if (clientDNI !== "-") {
+        rucDniInput.value = clientDNI;
+      }
 
       // Cerrar el modal
       var modalBackground = document.querySelector(".modal__background");
@@ -193,18 +234,20 @@ document
             ];
           }
 
-          const tablaExterna = document.getElementById("ordertable").getElementsByTagName("tbody")[0];
+          const tablaExterna = document
+            .getElementById("ordertable")
+            .getElementsByTagName("tbody")[0];
           const nuevaFila = tablaExterna.insertRow();
-      
+
           datosProducto.forEach((contenido, index) => {
             const celda = nuevaFila.insertCell();
             celda.textContent = contenido;
-      
+
             if (index === datosProducto.length - 1) {
               agregarCeldaEliminar(nuevaFila);
             }
           });
-          
+
           // Limpiar datos del formulario
           window.clickedRowData = null;
           document.getElementById("productname").innerText = "NINGUNO";
