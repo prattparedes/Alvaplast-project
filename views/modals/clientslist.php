@@ -41,7 +41,7 @@
             <td><?= $cliente->ruc ?></td>
             <td><?= $cliente->dni ?></td>
             <td><?= $cliente->direccion ?></td>
-            <td><?= $cliente->telefono ?></td>
+            <td><?= $cliente->celular ?></td>
         </tr>
     <?php
     }
