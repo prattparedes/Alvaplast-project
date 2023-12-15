@@ -21,11 +21,12 @@
                 foreach ($proveedores as $proveedor) {
             ?>
                 <tr>
-                <td><?= $proveedor->id_proveedor ?></td>
-                <td><?= $proveedor->nombre ?></td>
-                <td><?= $proveedor->ruc ?></td>
-                <td><?= $proveedor->direccion ?></td>
-                <td><?= $proveedor->telefono ?></td> 
+                 <td><?= $proveedor->nombre ?></td>
+                 <td><?= $proveedor->orden ?></td>
+                 <td><?= $proveedor->fecha_emision ?></td>
+                 <td><?= $proveedor->moneda ?></td>
+                 <td><?= $proveedor->importe ?></td>
+                 <td><?= $proveedor->personal ?></td>
                 </tr>
             <?php }?>
         </tbody>
