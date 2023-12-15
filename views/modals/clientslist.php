@@ -16,36 +16,25 @@
             </tr>
         </thead>
         <tbody>
-        <thead>
-    <tr>
-        <th>Código</th>
-        <th>Razón Social</th>
-        <th>RUC</th>
-        <th>DNI</th>
-        <th>Dirección</th>
-        <th>Teléfono</th>
-    </tr>
-</thead>
-<tbody>
-    <?php
+            <?php
 
-    require_once('../../Models/Cliente.php');
+            require_once('../../Models/Cliente.php');
 
-    $clientes = Cliente::getClientes();
+            $clientes = Cliente::getClientes();
 
-    foreach ($clientes as $cliente) {
-    ?>
-        <tr>
-            <td><?= $cliente->codigo ?></td>
-            <td><?= $cliente->razon_social ?></td>
-            <td><?= $cliente->ruc ?></td>
-            <td><?= $cliente->dni ?></td>
-            <td><?= $cliente->direccion ?></td>
-            <td><?= $cliente->celular ?></td>
-        </tr>
-    <?php
-    }
-    ?> 
+            foreach ($clientes as $cliente) {
+            ?>
+                <tr>
+                    <td><?= $cliente->id_cliente ?></td>
+                    <td><?= $cliente->razon_social ?></td>
+                    <td><?= $cliente->ruc ?></td>
+                    <td><?= $cliente->dni ?></td>
+                    <td><?= $cliente->direccion ?></td>
+                    <td><?= $cliente->celular ?></td>
+                </tr>
+            <?php
+            }
+            ?> 
         </tbody>
     </table>
 </div>
