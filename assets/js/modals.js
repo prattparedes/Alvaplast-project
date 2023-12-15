@@ -162,17 +162,18 @@ document
             ];
           }
 
-          const tablaExterna = document
-            .getElementById("ordertable")
-            .getElementsByTagName("tbody")[0];
+          const tablaExterna = document.getElementById("ordertable").getElementsByTagName("tbody")[0];
           const nuevaFila = tablaExterna.insertRow();
-
-          datosProducto.forEach((contenido) => {
-            console.log(contenido);
+      
+          datosProducto.forEach((contenido, index) => {
             const celda = nuevaFila.insertCell();
-            celda.innerText = contenido;
+            celda.textContent = contenido;
+      
+            if (index === datosProducto.length - 1) {
+              agregarCeldaEliminar(nuevaFila);
+            }
           });
-
+          
           // Limpiar datos del formulario
           window.clickedRowData = null;
           document.getElementById("productname").innerText = "NINGUNO";
@@ -193,6 +194,29 @@ document
       }
     }
   });
+
+// Función para crear celda que elimina filas en las tablas
+function agregarCeldaEliminar(fila) {
+  const celda = fila.insertCell();
+  celda.style.textAlign = "center";
+  const eliminar = document.createElement("span");
+  eliminar.textContent = "X";
+  eliminar.style.color = "red";
+  eliminar.style.fontWeight = "700";
+  eliminar.style.cursor = "pointer";
+  celda.appendChild(eliminar);
+}
+
+// Eliminar producto de la tabla de órdenes
+document.addEventListener("click", function (event) {
+  if (event.target.tagName === "SPAN" && event.target.textContent === "X") {
+    const rowToDelete = event.target.closest("tr");
+    const table = rowToDelete.closest("table");
+    if (table && table.id === "ordertable") {
+      rowToDelete.remove();
+    }
+  }
+});
 
 // Añadir Vehículo del listado del modal a los datos para editar
 document
