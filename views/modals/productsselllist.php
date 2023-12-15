@@ -18,7 +18,7 @@
             </tr>
         </thead>
         <tbody>
-        <?php
+            <?php
                 require_once('../../Models/Producto.php');
                 $producto = Producto::getProductos();
                 foreach($producto as $produc){
