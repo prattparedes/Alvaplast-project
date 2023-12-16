@@ -3,7 +3,7 @@
 <span style="font-weight: 600; width:fit-content; margin-left:20px">Filtrar por RUC: <input type="text" style="width: 120px;"></span><button class="modal__btn--search">Buscar</button>
 <hr>
 <div class="modal__table--container">
-    <table class="table">
+    <table class="table" id="providertable">
         <thead>
             <tr>
                 <th>id</th>

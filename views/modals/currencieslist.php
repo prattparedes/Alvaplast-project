@@ -41,6 +41,7 @@
             <div style="display: flex; flex-direction: column;">
                 <span style="width: 100px;">Símbolo:</span>
                 <input style="height:32px; width: 50%;" type="text" id="abreviatura" name="abreviatura">
+                <input type="hidden" id="metodo" name="metodo" value="nuevo">
             </div>
         </div>
         <div>

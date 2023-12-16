@@ -4,7 +4,7 @@
 <span style="font-weight: 600; width:fit-content; margin-left:8px;">Filtrar por DNI: <input type="text" style="width: 240px;"></span><button class="modal__btn--search">Buscar</button>
 <hr>
 <div class="modal__table--container">
-    <table class="table">
+    <table class="table" id="clienttable">
         <thead>
             <tr>
                 <th>Código</th>
@@ -19,7 +19,7 @@
             <?php
 
             require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/Models/Cliente.php');
-            $clientes = Cliente::getClients();
+            $clientes = Cliente::getClientes();
             foreach ($clientes as $cliente) {
             ?>
                 <tr>
@@ -28,11 +28,9 @@
                     <td><?= $cliente->ruc ?></td>
                     <td><?= $cliente->dni ?></td>
                     <td><?= $cliente->direccion ?></td>
-                    <td><?= $cliente->telefono ?></td>
+                    <td><?= $cliente->celular ?></td>
                 </tr>
-            <?php
-            }
-            ?>
+            <?php }?> 
         </tbody>
     </table>
 </div>

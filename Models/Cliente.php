@@ -1,19 +1,21 @@
-<?php 
-require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/config/Connection.php");
-class Cliente{
+<?php
 
+require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/config/connection.php');
 
-    //Metodo de lista clientes
-    public static function getClients(){
-        try{
-            $con = Connection::Conectar();
-            $data = $con->query("exec sp_ListarCliente");
-            return $data->fetchAll(PDO::FETCH_OBJ);
-        }catch(Exception $err){
-            echo $err->getMessage();
-        }
+class Cliente {
+    // Método estático para obtener todos los clientes.
+    public static function getClientes() {
+        // Se establece la conexión utilizando la clase Connection.
+        $connection = Connection::Conectar();
+        
+        // Se ejecuta un procedimiento almacenado para obtener la lista de clientes.
+        $data = $connection->query("exec sp_ListarCliente");
+        
+        // Se recuperan los resultados en formato de objeto y se retornan.
+        $clientes = $data->fetchAll(PDO::FETCH_OBJ);
+        return $clientes;
     }
+
+    // Otros métodos para operaciones relacionadas con clientes pueden ser agregados según sea necesario.
 }
-
-
 ?>

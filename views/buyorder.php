@@ -11,10 +11,9 @@
         <button type="button" class="order__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('buyorderlist')">Buscar <i class="bi bi-search"></i></i></button>
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
     </div>
-    <!-- Contenido específico de la página de productos -->
 </div>
 <hr>
-<p style="font-size: 28px;">Orden de Compra N°: <?=Compra::getIdCompra();?></p>
+<p style="font-size: 28px;">Orden de Compra N°:<span id="numerocompra"><?=Compra::getIdCompra();?></span></p>
 <form action="/ruta/donde/enviar" method="POST" class="row g-3">
     <div class="col-md-6">
         <label for="proveedor" class="form-label">Proveedor</label>
@@ -71,35 +70,64 @@
         <label for="detallesCompra" class="form-label">Detalles de la Compra</label>
         <textarea class="form-control" id="detallesCompra" name="detallesCompra" rows="3" disabled></textarea>
     </div>
-</form>
+    <div class="order__right">
+        <p style="font-weight: 600; font-size: 32px; display:flex; gap:20px;">
+            <button type="button" class="btn btn-primary btn-lg order__btn--inactive" style="margin-bottom: 16px; border: none;" id="selectproduct" onclick="loadModalContent('productsbuylist')">Seleccionar Producto <i class="bi bi-plus-circle"></i></button>
+            <span style="font-size: 28px;">Producto seleccionado:</span>
+            <span style="margin-right: 20px; font-size: 28px;" id="productname">NINGUNO</span>
+        </p>
+        <div style="display:flex; justify-content:space-between; margin-bottom:20px;">
+            <table style="margin-top: 10px;">
+                <thead>
+                    <tr>
+                        <th style="padding-right: 15px;">Unidad</th>
+                        <th style="padding-right: 15px;">Cantidad</th>
+                        <th style="padding-right: 15px;">Precio Unitario</th>
+                        <th style="padding-right: 15px;">Descuento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <select style="width: 60px;" name="" id="productunit" disabled>
+                                <option value="fardo">F</option>
+                            </select>
+                        </td>
+                        <td><input style="width: 60px;" type="number" id="productquantity" disabled></td>
+                        <td><input style="width: 80px;" type="number" id="productprice" disabled></td>
+                        <td><input style="width: 60px;" type="text" id="productdiscount" value="0" disabled></td>
+                    </tr>
+                </tbody>
+            </table>
 
-<hr>
-<button type="button" class="btn btn-primary btn-lg order__btn--inactive" style="margin-bottom: 16px; border:none;" id="selectproduct" onclick="loadModalContent('productsbuylist')">Seleccionar Producto <i class="bi bi-plus-circle"></i></button>
-<p style="font-weight:600">Producto seleccionado: <span style="margin-right: 20px;" id="productname">NINGUNO</span> Unidad: <input style="width: 60px;" type="text" id="productunit"> Cantidad: <input style="width: 60px;" type="number" id="productquantity"> Precio Unitario: <input style="width: 80px;" type="number" id="productprice"> Descuento: <input style="width: 60px;" type="text" id="productdiscount" value="0">
-    % <button style="margin-left:32px; border:none;" class="btn btn-primary order__btn--inactive" id="addproduct">AÑADIR +</button>
-</p>
-<table id="ordertable" class="table">
-    <thead>
-        <tr>
-            <th>Producto</th>
-            <th>Cantidad</th>
-            <th>Unidad</th>
-            <th>Precio Compra</th>
-            <th>Descuento</th>
-            <th>Total</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <!-- Agregar filas según sea necesario -->
-            <td>Ejemplo Producto</td>
-            <td>1</td>
-            <td>Unidad</td>
-            <td>100</td>
-            <td>0</td>
-            <td>90</td>
-        </tr>
-    </tbody>
-</table>
+            <button style="border: none;" class="btn btn-primary order__btn--inactive" id="addproduct">AÑADIR +</button>
+        </div>
+
+        <table id="ordertable" class="table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Unidad</th>
+                    <th>Precio Compra</th>
+                    <th>Descuento (%)</th>
+                    <th>Total</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- <tr>
+                    <td>Ejemplo Producto</td>
+                    <td>1</td>
+                    <td>Unidad</td>
+                    <td>100</td>
+                    <td>90</td>
+                    <td>90</td>
+                    <td id="deleteProduct" style="color:red !important; font-weight:700; text-align: center;">X</td>
+                </tr> -->
+            </tbody>
+        </table>
+    </div>
+</div>
 
 <?php include 'modals/generalModal.php'; ?>
