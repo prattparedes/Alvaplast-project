@@ -89,9 +89,7 @@
                 <tbody>
                     <tr>
                         <td>
-                            <select style="width: 60px;" name="" id="productunit" disabled>
-                                <option value="fardo">F</option>
-                            </select>
+                            <input type="text" style="width: 60px;" id="productunit">
                         </td>
                         <td><input style="width: 60px;" type="number" id="productquantity" disabled></td>
                         <td><input style="width: 80px;" type="number" id="productprice" disabled></td>

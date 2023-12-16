@@ -24,10 +24,10 @@ foreach($productos as $producto){?>
                 <td><?=$producto->id_producto?></td>
                 <td><?=$producto->nombre_producto?></td>
                 <td><?=$producto->linea?></td>
-                <td><?=$producto->procedencia?></td>
+                <td><?=$producto->unidad?></td>
                 <td><?=$producto->descripcion?></td>
-                <td><?=$producto->precio_compra?></td>
-                <td><?=$producto->precio_venta?></td>
+                <td><?=number_format($producto->precio_compra,2)?></td>
+                <td><?=number_format($producto->precio_venta,2)?></td>
             </tr>
             <?php }?>
         </tbody>

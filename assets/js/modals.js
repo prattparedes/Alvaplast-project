@@ -87,12 +87,13 @@ document
 
       // Obtener elementos del array
       const productName = contenidoFila[1];
+      const productUnit = contenidoFila[3];
       const productPrice = contenidoFila[6];
 
       // Cambiar el HTML de los spans por los datos
       document.getElementById("productname").innerText = productName;
       document.getElementById("productprice").value = productPrice;
-
+      document.getElementById("productunit").value = productUnit;
       // Verificar si existe el elemento productstock
       const productStockElement = document.getElementById("productstock");
       if (productStockElement) {
@@ -161,7 +162,7 @@ document
       document.getElementById("idcliente").value = clientID;
       document.getElementById("cliente").value = clientName;
       document.getElementById("direccion").value = clientDirection;
-      
+
       const rucDniInput = document.getElementById("rucDni");
 
       // Verificar si hay RUC o DNI y asignar el valor correspondiente al input
