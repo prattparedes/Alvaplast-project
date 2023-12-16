@@ -9,6 +9,7 @@ class Marca
         $data = $con->query("exec sp_ListarMarca");
         return $data->fetchAll(PDO::FETCH_OBJ);
     }
+
 }
 
 

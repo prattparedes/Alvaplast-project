@@ -16,34 +16,23 @@
             </tr>
         </thead>
         <tbody>
-        <thead>
-    <tr>
-        <th>Código</th>
-        <th>Razón Social</th>
-        <th>RUC</th>
-        <th>DNI</th>
-        <th>Dirección</th>
-        <th>Teléfono</th>
-    </tr>
-</thead>
-<tbody>
-    <?php
+            <?php
 
-    require_once('../../Models/Cliente.php');
-
-    foreach ($clientes as $cliente) {
-    ?>
-        <tr>
-            <td><?= $cliente->codigo ?></td>
-            <td><?= $cliente->razon_social ?></td>
-            <td><?= $cliente->ruc ?></td>
-            <td><?= $cliente->dni ?></td>
-            <td><?= $cliente->direccion ?></td>
-            <td><?= $cliente->telefono ?></td>
-        </tr>
-    <?php
-    }
-    ?> 
+            require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/Models/Cliente.php');
+            $clientes = Cliente::getClients();
+            foreach ($clientes as $cliente) {
+            ?>
+                <tr>
+                    <td><?= $cliente->id_cliente ?></td>
+                    <td><?= $cliente->razon_social ?></td>
+                    <td><?= $cliente->ruc ?></td>
+                    <td><?= $cliente->dni ?></td>
+                    <td><?= $cliente->direccion ?></td>
+                    <td><?= $cliente->telefono ?></td>
+                </tr>
+            <?php
+            }
+            ?>
         </tbody>
     </table>
 </div>

@@ -6,6 +6,7 @@
     <table class="table">
         <thead>
             <tr>
+                <th>id</th>
                 <th>Proveedor</th>
                 <th>Ruc</th>
                 <th>Dirección</th>
@@ -19,6 +20,7 @@
             $providers = Proveedor::listarProveedores();
             foreach($providers as $provider){?>
             <tr>
+                <td><?=$provider->id_proveedor?></td>
                 <td><?=$provider->razon_social?></td>
                 <td><?=$provider->ruc?></td>
                 <td><?=$provider->direccion?></td>

@@ -9,9 +9,9 @@ if(isset($_POST)){
     if($_POST['metodo'] == "Grabar"){
          Moneda::RegistrarMoneda($id, $descripcion, $abre);
     }else if ($POST['metodo'] == "Modificar"){
-        $result = Moneda::ModificarMoneda($id, $descripcion, $abre);
+         Moneda::ModificarMoneda($id, $descripcion, $abre);
     }else if ($_POST['metodo'] == "Eliminar"){
-        $result = Moneda::EliminarMoneda($id);
+         Moneda::EliminarMoneda($id);
     }
     echo $result;
 }
