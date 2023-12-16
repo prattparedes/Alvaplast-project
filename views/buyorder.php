@@ -13,62 +13,93 @@
     </div>
 </div>
 <hr>
-<p style="font-size: 28px;">Orden de Compra N°:<span id="numerocompra"><?=Compra::getIdCompra();?></span></p>
-<form action="/ruta/donde/enviar" method="POST" class="row g-3">
-    <div class="col-md-6">
-        <label for="proveedor" class="form-label">Proveedor</label>
-        <div class="input-group">
-            <input type="text" class="form-control" id="proveedor" name="proveedor" disabled>
-            <button class="btn btn-outline-secondary order__btn--inactive" type="button" id="threeDotsButton" onclick="loadModalContent('providerlist')">
-                <i class="bi bi-three-dots order__btn--inactive" id="threeDotsIco" onclick="loadModalContent('providerlist')"></i>
-            </button>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <label for="sucursal" class="form-label">Sucursal</label>
-        <select class="form-control" id="sucursal" name="sucursal">
-            <option value="">Seleccione una sucursal</option>
-            <?php require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Sucursal.php");
-            $sucursales = Sucursal::getSucursales(); ?>
-            <option value="<?=$sucursales->id_sucursal?>"><?=$sucursales->descripcion?></option>
-        </select>
-    </div>
-    <div class="col-md-6">
-        <label for="direccion" class="form-label">Dirección</label>
-        <input type="text" class="form-control" id="direccion" name="direccion" disabled>
-    </div>
-    <div class="col-md-6">
-        <label for="moneda" class="form-label">Moneda</label>
-        <select class="form-select" id="moneda" name="moneda" disabled>
-            <option value="">Elije una moneda</option>
-            <?php require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Moneda.php");
-            $monedas = Moneda::getMonedas();
-            foreach($monedas as $moneda){
-            ?>
-            <option value="<?=$moneda->id_moneda?>"><?=$moneda->descripcion?></option>
-            <?php }?>
-            <!-- Agregar más opciones si es necesario -->
-        </select>
-    </div>
-    <div class="col-md-6">
-        <label for="almacen" class="form-label">Almacén</label>
-        <input type="text" class="form-control" id="almacen" name="almacen" disabled>
-    </div>
-    <div class="col-md-6">
-        <label for="tipoPago" class="form-label">Tipo de Pago</label>
-        <input type="text" class="form-control" id="tipoPago" name="tipoPago" disabled>
-    </div>
-    <div class="col-md-6">
-        <label for="fecha" class="form-label">Fecha</label>
-        <input type="date" class="form-control" id="fecha" name="fecha" disabled>
-    </div>
-    <div class="col-md-12">
-        <label for="descripcion" class="form-label">Descripción</label>
-        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" disabled></textarea>
-    </div>
-    <div class="col-md-12">
-        <label for="detallesCompra" class="form-label">Detalles de la Compra</label>
-        <textarea class="form-control" id="detallesCompra" name="detallesCompra" rows="3" disabled></textarea>
+
+<div style="display:flex;">
+    <div class="order__left">
+        <p style="font-size: 28px;">Orden de Compra N°: <span id="numerocompra"></span></p>
+        <form action="/ruta/donde/enviar" method="POST" class="row g-3">
+            <!-- Columna Izquierda -->
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="display: flex; gap: 10px;">
+                    <div class="col-md-6" style="display: flex; flex-direction: column;">
+                        <label for="proveedor" class="form-label">Proveedor</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="proveedor" name="proveedor" disabled>
+                            <button class="btn btn-outline-secondary order__btn--inactive" type="button" id="threeDotsButton" onclick="loadModalContent('providerlist')">
+                                <i class="bi bi-three-dots order__btn--inactive" id="threeDotsIco"></i>
+                            </button>
+                            <input type="hidden" id="idproveedor" value="0">
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="display: flex; flex-direction: column;">
+                        <label for="direccion" class="form-label">Dirección</label>
+                        <input type="text" class="form-control" id="direccion" name="direccion" disabled>
+                    </div>
+                </div>
+                <!-- ... -->
+                <div style="display: flex; gap: 10px;">
+                    <div class="col-md-6" style="display: flex; flex-direction: column;">
+                        <label for="sucursal" class="form-label">Sucursal</label>
+                        <select name="sucursal" class="form-select" style="width:50%;" id="sucursal" disabled>
+                            <option value="1">Principal</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6" style="display: flex; flex-direction: column;">
+                        <label for="moneda" class="form-label">Moneda</label>
+                        <select class="form-select" style="width:50%;" id="moneda" name="moneda" disabled>
+                            <option value="soles">Soles</option>
+                            <option value="dolares">Dólares</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px;">
+                    <!-- Almacén -->
+                    <div class="col-md-6" style="display: flex; flex-direction: column;">
+                        <label for="almacen" class="form-label">Almacén</label>
+                        <select name="almacen" class="form-select" style="width:50%;" id="almacen" disabled>
+                            <option value="almacen1">Almacén 1</option>
+                        </select>
+                    </div>
+                    <!-- Tipo de Pago -->
+                    <div class="col-md-6" style="display: flex; flex-direction: column;">
+                        <label for="tipoPago" class="form-label">Tipo de Pago</label>
+                        <select name="tipoPago" class="form-select" style="width:50%;" id="tipoPago" disabled>
+                            <option value="">Elija una opción</option>
+                            <option value="efectivo">EFECTIVO</option>
+                            <option value="credito">CREDITO</option>
+                            <option value="tarjeta">TARJETA</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Fecha, Descripción y Detalles de la Compra -->
+                <div style="display: flex; gap: 10px;">
+                    <!-- Fecha -->
+                    <div class="col-md-6" style="display: flex; flex-direction: column;">
+                        <label for="fecha" class="form-label">Fecha</label>
+                        <input type="date" class="form-control" id="fecha" name="fecha" disabled>
+                    </div>
+                    <div class="col-md-6" style="display: flex; flex-direction: column;">
+                        <label for="igv" class="form-label">Incluye IGV:</label>
+                        <div class="form-check" style="display: flex; align-items: center; height: 36px; font-size: 18px;">
+                            <input type="checkbox" class="form-check-input" id="igv" name="igv" disabled style="margin: 0 10px;">
+                            <label class="form-check-label" for="igv">Habilitado</label>
+                        </div>
+                    </div>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <div class="col-md-12" style="display: flex; flex-direction: column;">
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" disabled></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- Columna Derecha -->
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="display: flex; gap: 10px;">
+
+                </div>
+            </div>
+        </form>
     </div>
     <div class="order__right">
         <p style="font-weight: 600; font-size: 32px; display:flex; gap:20px;">
