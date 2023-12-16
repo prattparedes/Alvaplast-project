@@ -1,3 +1,4 @@
+<?php require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Compra.php')?>
 <div class="buyorder">
     <div class="btns__left">
         <button type="button" class="order__btn btn btn-primary btn-lg" id="neworder">Generar Orden de Compra <i class="bi bi-plus-circle"></i></button>
@@ -13,7 +14,7 @@
     <!-- Contenido específico de la página de productos -->
 </div>
 <hr>
-<p style="font-size: 28px;">Orden de Compra N°: </p>
+<p style="font-size: 28px;">Orden de Compra N°: <?=Compra::getIdCompra();?></p>
 <form action="/ruta/donde/enviar" method="POST" class="row g-3">
     <div class="col-md-6">
         <label for="proveedor" class="form-label">Proveedor</label>
@@ -26,7 +27,12 @@
     </div>
     <div class="col-md-6">
         <label for="sucursal" class="form-label">Sucursal</label>
-        <input type="text" class="form-control" id="sucursal" name="sucursal" disabled>
+        <select class="form-control" id="sucursal" name="sucursal">
+            <option value="">Seleccione una sucursal</option>
+            <?php require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Sucursal.php");
+            $sucursales = Sucursal::getSucursales(); ?>
+            <option value="<?=$sucursales->id_sucursal?>"><?=$sucursales->descripcion?></option>
+        </select>
     </div>
     <div class="col-md-6">
         <label for="direccion" class="form-label">Dirección</label>
@@ -35,8 +41,13 @@
     <div class="col-md-6">
         <label for="moneda" class="form-label">Moneda</label>
         <select class="form-select" id="moneda" name="moneda" disabled>
-            <option value="soles">Soles</option>
-            <option value="dolares">Dólares</option>
+            <option value="">Elije una moneda</option>
+            <?php require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Moneda.php");
+            $monedas = Moneda::getMonedas();
+            foreach($monedas as $moneda){
+            ?>
+            <option value="<?=$moneda->id_moneda?>"><?=$moneda->descripcion?></option>
+            <?php }?>
             <!-- Agregar más opciones si es necesario -->
         </select>
     </div>

@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <title>Title</title>
   <!-- Required meta tags -->
@@ -118,6 +117,7 @@
   <script src="assets/js/loadcontent.js"></script>
   <script src="assets/js/modals.js"></script>
   <script src="assets/js/orders.js"></script>
+  <script src="assets/js/formController.js"></script>
 </body>
 
 </html>

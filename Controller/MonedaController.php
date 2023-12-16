@@ -1,19 +1,19 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Moneda.php");
     
-class MonedaController{
-
-    public static function grabarMoneda(){
-        try{
-            $descripcion = $_POST["descripcion"];
-            $abr = $_POST["abreviatura"];
-            $id = Moneda::RegistrarMoneda($descripcion, $abr);
-            
-        }catch(Exception $e){
-            echo  $e->getMessage() ;
-        }
-        return $id;
+if(isset($_POST)){
+    $id = $_POST["id"];
+    $descripcion = $_POST["descripcion"];
+    $abre = $_POST["abreviatura"];
+    
+    if($_POST['metodo'] == "Grabar"){
+         Moneda::RegistrarMoneda($id, $descripcion, $abre);
+    }else if ($POST['metodo'] == "Modificar"){
+        $result = Moneda::ModificarMoneda($id, $descripcion, $abre);
+    }else if ($_POST['metodo'] == "Eliminar"){
+        $result = Moneda::EliminarMoneda($id);
     }
+    echo $result;
+}
 
-    }
 ?>

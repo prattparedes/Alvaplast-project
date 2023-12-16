@@ -242,3 +242,48 @@ document
   });
 
 // Borrar todos los datos de un formulario dentro de modal
+document
+  .querySelector(".main__content")
+  .addEventListener("dblclick", function (event) {
+    const isModalTable = event.target.closest("#vehicletable");
+
+    if (isModalTable) {
+      const fila = event.target.closest("tr");
+      const columnas = fila.querySelectorAll("td");
+
+      // Crear un array con el contenido de las celdas de la fila clickeada
+      const contenidoFila = Array.from(columnas).map(
+        (columna) => columna.innerText
+      );
+
+      // Guardar los datos de la fila en una variable global para ser usada más tarde
+      window.clickedRowData = contenidoFila;
+
+      console.log(contenidoFila);
+
+      // Obtener elementos del array
+      const vehiculoCodigo = contenidoFila[0];
+      const vehiculoPlaca = contenidoFila[1];
+      const vehiculoModelo = contenidoFila[2];
+      const vehiculoTipo = contenidoFila[3];
+      const vehiculoMarca = contenidoFila[4];
+
+      // Cambiar el HTML de los spans por los datos
+      document.getElementById("codigo").innerText = vehiculoCodigo;
+      document.getElementById("placa").value = vehiculoPlaca;
+      document.getElementById("modelo").value = vehiculoModelo;
+
+      // Asignar valor seleccionado al select 'tipo'
+      const tipoSelect = document.getElementById("tipo");
+      const marcaInput = document.getElementById("marca");
+
+      for (let i = 0; i < tipoSelect.options.length; i++) {
+        if (tipoSelect.options[i].value === vehiculoTipo) {
+          tipoSelect.options[i].selected = true;
+          break;
+        }
+      }
+
+      marcaInput.value = vehiculoMarca;
+    }
+  });
