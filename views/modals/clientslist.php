@@ -4,7 +4,7 @@
 <span style="font-weight: 600; width:fit-content; margin-left:8px;">Filtrar por DNI: <input type="text" style="width: 240px;"></span><button class="modal__btn--search">Buscar</button>
 <hr>
 <div class="modal__table--container">
-    <table class="table">
+    <table class="table" id="clienttable">
         <thead>
             <tr>
                 <th>Código</th>
@@ -16,22 +16,23 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Código 001</td>
-                <td>Razón Social A</td>
-                <td>RUC 12345678901</td>
-                <td>DNI 12345678</td>
-                <td>Dirección 123, Ciudad</td>
-                <td>Teléfono 123456789</td>
-            </tr>
-            <tr>
-                <td>Código 002</td>
-                <td>Razón Social B</td>
-                <td>RUC 98765432109</td>
-                <td>DNI 87654321</td>
-                <td>Dirección 456, Otra Ciudad</td>
-                <td>Teléfono 987654321</td>
-            </tr>
+            <?php
+
+            require_once('../../Models/Cliente.php');
+
+            $clientes = Cliente::getClientes();
+
+            foreach ($clientes as $cliente) {
+            ?>
+                <tr>
+                    <td><?= $cliente->id_cliente ?></td>
+                    <td><?= $cliente->razon_social ?></td>
+                    <td><?= $cliente->ruc ?></td>
+                    <td><?= $cliente->dni ?></td>
+                    <td><?= $cliente->direccion ?></td>
+                    <td><?= $cliente->celular ?></td>
+                </tr>
+            <?php }?> 
         </tbody>
     </table>
 </div>

@@ -27,8 +27,7 @@
         </table>
     </div>
     <!-- Columna derecha: formulario -->
-    <form  method="POST" id="miFormulario">
-        
+    <form method="POST"  id="miFormulario">
         <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
             <div style="display: flex; flex-direction: column;">
                 <span>Código:</span>
@@ -41,10 +40,11 @@
             <div style="display: flex; flex-direction: column;">
                 <span style="width: 100px;">Símbolo:</span>
                 <input style="height:32px; width: 50%;" type="text" id="abreviatura" name="abreviatura">
+                <input type="hidden" id="metodo" name="metodo" value="nuevo">
             </div>
         </div>
         <div>
-            <button type="submit" >Guardar</button>
+            <button type="submit" id="money_submit">Guardar</button>
         </div>
     </form>
 </div>
@@ -52,5 +52,4 @@
     <button class="btn btn-primary" style="width: 92px;" type="submit">Grabar</button>
     <button class="btn btn-primary" style="width: 92px;" type="button">Modificar</button>
     <button class="btn btn-primary" style="width: 92px;" type="button">Eliminar</button>
-    <button class="btn btn-primary" style="width: 92px;" type="button">Buscar</button>
 </div>

@@ -1,22 +1,29 @@
+<h2 style="text-align:center;">REGISTRO DE COMPRAS</h1>
 <h4>Filtro: </h4>
-Fecha INICIO
-<input type="date" class="form-control" id="fecha" name="fecha">
-
-Fecha FIN:
-<input type="date" class="form-control" id="fecha" name="fecha">
-
+<div style="display: flex; gap: 20px;">
+    <div style="display: flex; flex-direction: column;">
+        <label for="fechaInicio" class="form-label">Fecha INICIO</label>
+        <input type="date" class="form-control" id="fechaInicio" name="fechaInicio" style="max-width: 500px;">
+    </div>
+    <div style="display: flex; flex-direction: column;">
+        <label for="fechaFin" class="form-label">Fecha FIN</label>
+        <input type="date" class="form-control" id="fechaFin" name="fechaFin" style="max-width: 500px;">
+    </div>
+    <Button class="btn btn-primary" style="margin-top:8px; height:68px;">BUSCAR</Button>
+    <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
+        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Imprimir <i class="bi bi-printer"></i></button>
+</div>
 <hr>
+<h1 style="color:red;">Falta actualizar esta tabla</h1>
 <table class="table">
     <thead>
         <tr>
-            <th>Nro de Documento</th>
-            <th>Cliente</th>
-            <th>Documento Cliente</th>
-            <th>Vendedor</th>
-            <th>Fecha de Emisión</th>
-            <th>Monto</th>
+            <th>Proveedor</th>
+            <th>Comprobante</th>
+            <th>Fecha</th>
             <th>Moneda</th>
-            <th>Estado</th>
+            <th>Importe</th>
+            <th>Almacén</th>
         </tr>
     </thead>
     <tbody>

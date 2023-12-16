@@ -12,7 +12,7 @@
     <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('storemodal')">Almacén <i class="bi bi-plus-circle"></i></button>
     <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('vehiclesmodal')">Vehículos <i class="bi bi-plus-circle"></i></button>
     <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('documentsmodal')">Tipo de documento <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Transportistas <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('carrierslist')">Transportistas <i class="bi bi-plus-circle"></i></button>
   </div>
   <hr>
   <h3 style="text-align: center;">Listado</h3>
@@ -25,7 +25,9 @@
     <option value="marcas">Marcas</option>
     <option value="unidades">Unidades</option>
     <option value="almacenes">Almacenes</option>
+    <option value="vehiculos">Vehículos</option>
     <option value="transportistas">Transportistas</option>
+    <option value="documentos">Documentos</option>
   </select>
   <span>Filtrar por Nombre: </span>
   <input type="text" id="maintenancefilter" style="margin-right: 32px">

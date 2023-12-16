@@ -3,14 +3,6 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/config/connection.php
 
 class Compra{
     
-    public static function getIdCompra()
-    {
-        $con = Connection::Conectar();  
-        $tsmt = $con->prepare('exec sp_BuscarIdCompra ?');
-        $tsmt->bindParam(1,$id_compra,PDO::PARAM_INT|PDO::PARAM_INPUT_OUTPUT,32);
-        $tsmt->execute();
-        return $id_compra;
-    }
 
     public static function getCompras(){
         $con = Connection::Conectar();
@@ -35,5 +27,7 @@ class Compra{
         return $result;    
     }
 }
+
+
 
 ?>

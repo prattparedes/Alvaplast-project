@@ -1,34 +1,24 @@
-// Abrir modal desde los botones arriba de los formularios
+// Abrir modal desde los botones, seleccionar producto, icono de los tres puntos.
 document
   .querySelector(".main__content")
   .addEventListener("click", function (event) {
-    if (event.target.id === "openModalButton") {
-      var modalBackground = document.querySelector(".modal__background");
+    const modalBackground = document.querySelector(".modal__background");
 
-      // Remover la clase "modal__inactive"
-      modalBackground.classList.remove("modal__inactive");
+    if (
+      event.target.id === "openModalButton" ||
+      event.target.id === "threeDotsButton" ||
+      event.target.id === "threeDotsIco" ||
+      event.target.id === "selectproduct"
+    ) {
+      const btn = document.getElementById(event.target.id);
+
+      if (!btn.classList.contains("order__btn--inactive")) {
+        modalBackground.classList.remove("modal__inactive");
+      }
     }
 
     if (event.target.id === "closeModalButton") {
-      var modalBackground = document.querySelector(".modal__background");
-
-      // Agregar la clase "modal__inactive"
       modalBackground.classList.add("modal__inactive");
-    }
-  });
-
-// Abrir modal a través de los tres botones en el formulario
-document
-  .querySelector(".main__content")
-  .addEventListener("click", function (event) {
-    if (
-      event.target.id === "threeDotsButton" ||
-      event.target.id === "threeDotsIco"
-    ) {
-      var modalBackground = document.querySelector(".modal__background");
-
-      // Remover la clase "modal__inactive"
-      modalBackground.classList.remove("modal__inactive");
     }
   });
 
@@ -49,30 +39,33 @@ function loadModalContent(modalName) {
 }
 
 // Foto subida al modal de productos
-document.querySelector(".main__content").addEventListener("click", function(event) {
-  if (event.target.id === "selectImageButton" || event.target.id === "foto") {
-    if (event.target.id === "selectImageButton") {
-      document.getElementById('foto').click(); // Simula el clic en el input file al hacer clic en el botón
-    }
-
-    document.getElementById('foto').addEventListener('change', function(event) {
-      const inputFoto = event.target;
-      const imagenMostrada = document.getElementById('imagenMostrada');
-
-      const file = inputFoto.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          if (imagenMostrada) {
-            imagenMostrada.src = e.target.result;
-          }
-        };
-        reader.readAsDataURL(file);
+document
+  .querySelector(".main__content")
+  .addEventListener("click", function (event) {
+    if (event.target.id === "selectImageButton" || event.target.id === "foto") {
+      if (event.target.id === "selectImageButton") {
+        document.getElementById("foto").click(); // Simula el clic en el input file al hacer clic en el botón
       }
-    });
-  }
-});
 
+      document
+        .getElementById("foto")
+        .addEventListener("change", function (event) {
+          const inputFoto = event.target;
+          const imagenMostrada = document.getElementById("imagenMostrada");
+
+          const file = inputFoto.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+              if (imagenMostrada) {
+                imagenMostrada.src = e.target.result;
+              }
+            };
+            reader.readAsDataURL(file);
+          }
+        });
+    }
+  });
 
 // Añadir producto de la tabla de modal a producto seleccionado
 document
@@ -105,6 +98,77 @@ document
       if (productStockElement) {
         const productStock = contenidoFila[7];
         productStockElement.innerText = productStock;
+      }
+
+      // Cerrar el modal
+      var modalBackground = document.querySelector(".modal__background");
+      modalBackground.classList.add("modal__inactive");
+    }
+  });
+
+// Añadir Proveedor, Dirección e ID al formulario órden de compra
+document
+  .querySelector(".main__content")
+  .addEventListener("dblclick", function (event) {
+    const isModalTable = event.target.closest("#providertable");
+    if (isModalTable) {
+      const fila = event.target.closest("tr");
+      const columnas = fila.querySelectorAll("td");
+
+      // Crear un array con el contenido de las celdas de la fila clickeada
+      const contenidoFila = Array.from(columnas).map(
+        (columna) => columna.innerText
+      );
+
+      // Obtener elementos del array
+      const providerID = contenidoFila[0];
+      const providerName = contenidoFila[1];
+      const providerDirection = contenidoFila[3];
+
+      // Cambiar el HTML de los spans por los datos
+      document.getElementById("idproveedor").value = providerID;
+      document.getElementById("proveedor").value = providerName;
+      document.getElementById("direccion").value = providerDirection;
+
+      // Cerrar el modal
+      var modalBackground = document.querySelector(".modal__background");
+      modalBackground.classList.add("modal__inactive");
+    }
+  });
+
+// Añadir Proveedor, Dirección e ID al formulario órden de compra
+document
+  .querySelector(".main__content")
+  .addEventListener("dblclick", function (event) {
+    const isModalTable = event.target.closest("#clienttable");
+    if (isModalTable) {
+      const fila = event.target.closest("tr");
+      const columnas = fila.querySelectorAll("td");
+
+      // Crear un array con el contenido de las celdas de la fila clickeada
+      const contenidoFila = Array.from(columnas).map(
+        (columna) => columna.innerText
+      );
+
+      // Obtener elementos del array
+      const clientID = contenidoFila[0];
+      const clientName = contenidoFila[1];
+      const clientDirection = contenidoFila[4];
+      const clientRUC = contenidoFila[2];
+      const clientDNI = contenidoFila[3];
+
+      // Cambiar el HTML de los spans por los datos
+      document.getElementById("idcliente").value = clientID;
+      document.getElementById("cliente").value = clientName;
+      document.getElementById("direccion").value = clientDirection;
+      
+      const rucDniInput = document.getElementById("rucDni");
+
+      // Verificar si hay RUC o DNI y asignar el valor correspondiente al input
+      if (clientRUC !== "-") {
+        rucDniInput.value = clientRUC;
+      } else if (clientDNI !== "-") {
+        rucDniInput.value = clientDNI;
       }
 
       // Cerrar el modal
@@ -175,10 +239,13 @@ document
             .getElementsByTagName("tbody")[0];
           const nuevaFila = tablaExterna.insertRow();
 
-          datosProducto.forEach((contenido) => {
-            console.log(contenido);
+          datosProducto.forEach((contenido, index) => {
             const celda = nuevaFila.insertCell();
-            celda.innerText = contenido;
+            celda.textContent = contenido;
+
+            if (index === datosProducto.length - 1) {
+              agregarCeldaEliminar(nuevaFila);
+            }
           });
 
           // Limpiar datos del formulario
@@ -194,54 +261,82 @@ document
           }
         }
       } else {
-        alert("La cantidad y la unidad no deben estar vacías.");
+        const añadirProductoBoton = document.getElementById("addproduct");
+        if (!añadirProductoBoton.classList.contains("order__btn--inactive")) {
+          alert("La cantidad y la unidad no deben estar vacías.");
+        }
       }
     }
   });
 
+// Función para crear celda que elimina filas en las tablas
+function agregarCeldaEliminar(fila) {
+  const celda = fila.insertCell();
+  celda.style.textAlign = "center";
+  const eliminar = document.createElement("span");
+  eliminar.textContent = "X";
+  eliminar.style.color = "red";
+  eliminar.style.fontWeight = "700";
+  eliminar.style.cursor = "pointer";
+  celda.appendChild(eliminar);
+}
 
-  // Añadir Vehículo del listado del modal a los datos para editar
-  document.querySelector(".main__content").addEventListener("dblclick", function (event) {
+// Eliminar producto de la tabla de órdenes
+document.addEventListener("click", function (event) {
+  if (event.target.tagName === "SPAN" && event.target.textContent === "X") {
+    const rowToDelete = event.target.closest("tr");
+    const table = rowToDelete.closest("table");
+    if (table && table.id === "ordertable") {
+      rowToDelete.remove();
+    }
+  }
+});
+
+// Añadir Vehículo del listado del modal a los datos para editar
+document
+  .querySelector(".main__content")
+  .addEventListener("dblclick", function (event) {
     const isModalTable = event.target.closest("#vehicletable");
-  
+
     if (isModalTable) {
       const fila = event.target.closest("tr");
       const columnas = fila.querySelectorAll("td");
-  
+
       // Crear un array con el contenido de las celdas de la fila clickeada
-      const contenidoFila = Array.from(columnas).map((columna) => columna.innerText);
-  
+      const contenidoFila = Array.from(columnas).map(
+        (columna) => columna.innerText
+      );
+
       // Guardar los datos de la fila en una variable global para ser usada más tarde
       window.clickedRowData = contenidoFila;
-  
+
       console.log(contenidoFila);
-  
+
       // Obtener elementos del array
       const vehiculoCodigo = contenidoFila[0];
       const vehiculoPlaca = contenidoFila[1];
       const vehiculoModelo = contenidoFila[2];
       const vehiculoTipo = contenidoFila[3];
       const vehiculoMarca = contenidoFila[4];
-  
+
       // Cambiar el HTML de los spans por los datos
       document.getElementById("codigo").innerText = vehiculoCodigo;
       document.getElementById("placa").value = vehiculoPlaca;
       document.getElementById("modelo").value = vehiculoModelo;
-  
+
       // Asignar valor seleccionado al select 'tipo'
       const tipoSelect = document.getElementById("tipo");
       const marcaInput = document.getElementById("marca");
-  
+
       for (let i = 0; i < tipoSelect.options.length; i++) {
         if (tipoSelect.options[i].value === vehiculoTipo) {
           tipoSelect.options[i].selected = true;
           break;
         }
       }
-  
+
       marcaInput.value = vehiculoMarca;
     }
   });
 
-  // Borrar todos los datos de un formulario dentro de modal
-  
+// Borrar todos los datos de un formulario dentro de modal
