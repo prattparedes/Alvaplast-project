@@ -4,7 +4,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/config/connection.php
 
 class Proveedor {
     // Método estático para obtener todos los proveedores.
-    public static function getProveedores() {
+    public static function listarProveedores() {
         // Se establece la conexión utilizando la clase Connection.
         $connection = Connection::Conectar();
         

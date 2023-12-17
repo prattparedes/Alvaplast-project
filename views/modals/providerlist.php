@@ -3,31 +3,31 @@
 <span style="font-weight: 600; width:fit-content; margin-left:20px">Filtrar por RUC: <input type="text" style="width: 120px;"></span><button class="modal__btn--search">Buscar</button>
 <hr>
 <div class="modal__table--container">
-    <table class="table">
+    <table class="table" id="providertable">
         <thead>
             <tr>
+                <th>id</th>
                 <th>Proveedor</th>
-                <th>Orden</th>
-                <th>Fecha Emisión</th>
-                <th>Moneda</th>
-                <th>Importe</th>
-                <th>Personal</th>
+                <th>Ruc</th>
+                <th>Dirección</th>
+                <th>Telefono</th>
+                <th>Fax</th>
+                <th>Email</th>
             </tr>
         </thead>
         <tbody>
-        <?php
-                require_once('../../Models/Proveedor.php');
-                $proveedores = Proveedor::getProveedores();
-                foreach ($proveedores as $proveedor) {
-            ?>
-                <tr>
-                 <td><?= $proveedor->nombre ?></td>
-                 <td><?= $proveedor->orden ?></td>
-                 <td><?= $proveedor->fecha_emision ?></td>
-                 <td><?= $proveedor->moneda ?></td>
-                 <td><?= $proveedor->importe ?></td>
-                 <td><?= $proveedor->personal ?></td>
-                </tr>
+            <?php  require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Proveedor.php");
+            $providers = Proveedor::listarProveedores();
+            foreach($providers as $provider){?>
+            <tr>
+                <td><?=$provider->id_proveedor?></td>
+                <td><?=$provider->razon_social?></td>
+                <td><?=$provider->ruc?></td>
+                <td><?=$provider->direccion?></td>
+                <td><?=$provider->telefono?></td>
+                <td><?=$provider->fax?></td>
+                <td><?=$provider->email?></td>
+            </tr>
             <?php }?>
         </tbody>
     </table>`
