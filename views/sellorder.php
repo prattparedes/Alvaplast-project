@@ -29,6 +29,7 @@
               <button class="btn btn-outline-secondary order__btn--inactive" type="button" id="threeDotsButton" onclick="loadModalContent('clientslist')">
                 <i class="bi bi-three-dots order__btn--inactive" id="threeDotsIco"></i>
               </button>
+              <input type="hidden" id="idcliente" value="0">
             </div>
           </div>
           <div class="col-md-6" style="display: flex; flex-direction: column;">
@@ -175,17 +176,18 @@
           <th>Precio Venta</th>
           <th>Precio Real</th>
           <th>Total</th>
+          <th>Eliminar</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td>Ejemplo Producto</td>
+          <!-- <td>Ejemplo Producto</td>
           <td>1</td>
           <td>Unidad</td>
           <td>100</td>
           <td>90</td>
           <td>90</td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   </div>

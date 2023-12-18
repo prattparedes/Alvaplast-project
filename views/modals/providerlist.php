@@ -3,34 +3,32 @@
 <span style="font-weight: 600; width:fit-content; margin-left:20px">Filtrar por RUC: <input type="text" style="width: 120px;"></span><button class="modal__btn--search">Buscar</button>
 <hr>
 <div class="modal__table--container">
-    <table class="table">
+    <table class="table" id="providertable">
         <thead>
             <tr>
+                <th>id</th>
                 <th>Proveedor</th>
-                <th>Orden</th>
-                <th>Fecha Emisión</th>
-                <th>Moneda</th>
-                <th>Importe</th>
-                <th>Personal</th>
+                <th>Ruc</th>
+                <th>Dirección</th>
+                <th>Telefono</th>
+                <th>Fax</th>
+                <th>Email</th>
             </tr>
         </thead>
         <tbody>
+            <?php  require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Proveedor.php");
+            $providers = Proveedor::listarProveedores();
+            foreach($providers as $provider){?>
             <tr>
-                <td>Nombre Proveedor 1</td>
-                <td>Orden 123</td>
-                <td>2023-12-01</td>
-                <td>Dólares</td>
-                <td>250.00</td>
-                <td>Nombre del Personal</td>
+                <td><?=$provider->id_proveedor?></td>
+                <td><?=$provider->razon_social?></td>
+                <td><?=$provider->ruc?></td>
+                <td><?=$provider->direccion?></td>
+                <td><?=$provider->telefono?></td>
+                <td><?=$provider->fax?></td>
+                <td><?=$provider->email?></td>
             </tr>
-            <tr>
-                <td>Nombre Proveedor 2</td>
-                <td>Orden 456</td>
-                <td>2023-12-03</td>
-                <td>Euros</td>
-                <td>150.00</td>
-                <td>Otro Nombre de Personal</td>
-            </tr>
+            <?php }?>
         </tbody>
     </table>`
 </div>
