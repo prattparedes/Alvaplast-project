@@ -161,7 +161,7 @@ document
       document.getElementById("idcliente").value = clientID;
       document.getElementById("cliente").value = clientName;
       document.getElementById("direccion").value = clientDirection;
-      
+
       const rucDniInput = document.getElementById("rucDni");
 
       // Verificar si hay RUC o DNI y asignar el valor correspondiente al input
@@ -178,6 +178,7 @@ document
   });
 
 // Añadir nueva fila en la tabla de órdenes de venta/compra
+let productosAgregados = []; // Lista para llevar registro de productos
 let datosProducto = [];
 document
   .querySelector(".main__content")
@@ -189,14 +190,14 @@ document
       const precioUnitario = parseFloat(
         document.getElementById("productprice").value
       );
-      const descuento = parseFloat(
+      let descuento = parseFloat(
         document.getElementById("productdiscount").value
       );
       const unidad = document.getElementById("productunit").value;
 
+      descuento = isNaN(descuento) ? 0 : descuento;
       const descuentoAplicado =
         isNaN(descuento) || descuento < 0 || descuento > 100 ? 0 : descuento;
-
       const rowData = window.clickedRowData;
 
       if (cantidad && unidad) {
@@ -204,9 +205,26 @@ document
           const nombreProducto = rowData[1];
           const precioReal = parseFloat(rowData[5]);
 
+          if (productosAgregados.includes(nombreProducto)) {
+            alert("El producto ya ha sido agregado.");
+            return; // Sale de la función si el producto ya existe
+          }
+
           let datosProducto = [];
+          let addToProducts = true; // Variable para controlar la adición a productosAgregados
 
           if (document.getElementById("productstock")) {
+            const stock = parseFloat(
+              document.getElementById("productstock").innerText
+            );
+            if (cantidad > stock) {
+              alert("No hay stock suficiente");
+              addToProducts = false; // No agrega el producto si no hay suficiente stock
+            }
+          }
+
+          if (addToProducts) {
+            productosAgregados.push(nombreProducto);
             datosProducto = [
               nombreProducto,
               cantidad,
@@ -219,45 +237,38 @@ document
                 (1 - descuentoAplicado / 100)
               ).toFixed(2),
             ];
-          } else {
-            datosProducto = [
-              nombreProducto,
-              cantidad,
-              unidad,
-              precioUnitario,
-              descuento,
-              (
-                cantidad *
-                precioUnitario *
-                (1 - descuentoAplicado / 100)
-              ).toFixed(2),
-            ];
-          }
 
-          const tablaExterna = document
-            .getElementById("ordertable")
-            .getElementsByTagName("tbody")[0];
-          const nuevaFila = tablaExterna.insertRow();
+            const tablaExterna = document
+              .getElementById("ordertable")
+              .getElementsByTagName("tbody")[0];
+            const nuevaFila = tablaExterna.insertRow();
 
-          datosProducto.forEach((contenido, index) => {
-            const celda = nuevaFila.insertCell();
-            celda.textContent = contenido;
+            datosProducto.forEach((contenido, index) => {
+              const celda = nuevaFila.insertCell();
+              celda.textContent = contenido;
 
-            if (index === datosProducto.length - 1) {
-              agregarCeldaEliminar(nuevaFila);
+              if (index === datosProducto.length - 1) {
+                agregarCeldaEliminar(nuevaFila);
+              }
+            });
+
+            // Resto del código para limpiar datos del formulario y actualizar tabla de precios
+            // ...
+
+            // Limpiar datos del formulario
+            window.clickedRowData = null;
+            document.getElementById("productname").innerText = "NINGUNO";
+            document.getElementById("productprice").value = null;
+            document.getElementById("productdiscount").value = null;
+            document.getElementById("productquantity").value = null;
+            document.getElementById("productunit").value = null;
+
+            if (document.getElementById("productstock")) {
+              document.getElementById("productstock").innerText = null;
             }
-          });
 
-          // Limpiar datos del formulario
-          window.clickedRowData = null;
-          document.getElementById("productname").innerText = "NINGUNO";
-          document.getElementById("productprice").value = null;
-          document.getElementById("productdiscount").value = null;
-          document.getElementById("productquantity").value = null;
-          document.getElementById("productunit").value = null;
-
-          if (document.getElementById("productstock")) {
-            document.getElementById("productstock").innerText = null;
+            // Actualiza tabla de precios
+            actualizarTablaPrecios();
           }
         }
       } else {
@@ -268,6 +279,46 @@ document
       }
     }
   });
+
+function actualizarTablaPrecios() {
+  const ordertable = document.getElementById("ordertable");
+  const preciosTable = document.getElementById("preciosTable");
+
+  // Obtener las filas de la tabla de productos
+  const filasProductos = Array.from(ordertable.querySelectorAll("tbody tr"));
+
+  let totalPrecioCompra = 0;
+  let totalDescuento = 0;
+  let total = 0;
+
+  // Calcular totales recorriendo las filas de la tabla de productos
+  filasProductos.forEach((fila) => {
+    const cells = fila.querySelectorAll("td");
+
+    const cantidad = parseInt(cells[1].innerText);
+    const precio = parseFloat(cells[3].innerText);
+    const totalFila = parseFloat(cells[5].innerText); // Total de la fila
+
+    totalPrecioCompra += cantidad * precio;
+    total += totalFila; // Sumar el total de la fila directamente
+  });
+
+  // Calcular total de descuento
+  totalDescuento = totalPrecioCompra - total;
+
+  // Resto del cálculo
+  const igv = total * 0.18; // Suponiendo un IGV del 18%
+
+  // Actualizar la fila de la tabla de precios
+  const preciosRow = preciosTable.querySelector("tbody tr");
+  const cellsPrecios = preciosRow.querySelectorAll("td");
+
+  cellsPrecios[0].innerText = (total - igv).toFixed(2);
+  cellsPrecios[1].innerText = totalDescuento.toFixed(2);
+  cellsPrecios[2].innerText = (total - igv).toFixed(2);
+  cellsPrecios[3].innerText = igv.toFixed(2);
+  cellsPrecios[4].innerText = total.toFixed(2);
+}
 
 // Función para crear celda que elimina filas en las tablas
 function agregarCeldaEliminar(fila) {
@@ -287,7 +338,17 @@ document.addEventListener("click", function (event) {
     const rowToDelete = event.target.closest("tr");
     const table = rowToDelete.closest("table");
     if (table && table.id === "ordertable") {
+      const productName = rowToDelete.cells[0].textContent; // Nombre del producto en la primera celda
+
+      // Eliminar el nombre del producto de la lista de productos agregados
+      const index = productosAgregados.indexOf(productName);
+      if (index !== -1) {
+        productosAgregados.splice(index, 1);
+      }
+
       rowToDelete.remove();
+      //Actualiza tabla de precios
+      actualizarTablaPrecios();
     }
   }
 });
@@ -309,8 +370,6 @@ document
 
       // Guardar los datos de la fila en una variable global para ser usada más tarde
       window.clickedRowData = contenidoFila;
-
-      console.log(contenidoFila);
 
       // Obtener elementos del array
       const vehiculoCodigo = contenidoFila[0];
