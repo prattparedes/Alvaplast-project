@@ -398,4 +398,31 @@ document
     }
   });
 
+// Añadir Moneda del listado del modal a los datos para editar
+document
+  .querySelector(".main__content")
+  .addEventListener("dblclick", function (event) {
+    const isModalTable = event.target.closest("#currenciesTable");
+
+    if (isModalTable) {
+      const fila = event.target.closest("tr");
+      const columnas = fila.querySelectorAll("td");
+
+      // Crear un array con el contenido de las celdas de la fila clickeada
+      const contenidoFila = Array.from(columnas).map(
+        (columna) => columna.innerText
+      );
+
+      // Obtener elementos del array
+      const monedaCodigo = contenidoFila[0];
+      const monedaDescripcion = contenidoFila[1];
+      const monedaSimbolo = contenidoFila[2];
+
+      // Cambiar el HTML de los spans por los datos
+      document.getElementById("codigo").innerText = monedaCodigo;
+      document.getElementById("descripcion").value = monedaDescripcion;
+      document.getElementById("abreviatura").value = monedaSimbolo;
+    }
+  });
+
 // Borrar todos los datos de un formulario dentro de modal
