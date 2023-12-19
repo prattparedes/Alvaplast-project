@@ -3,6 +3,17 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/config/connection.php
 
 class Compra{
     
+    public static function getIdCompra()
+    {
+        $con = Connection::Conectar();  
+        $tsmt = $con->prepare('exec sp_BuscarIdCompra ?');
+        $tsmt->bindParam(1,$id_compra,PDO::PARAM_INT|PDO::PARAM_INPUT_OUTPUT,32);
+        $tsmt->execute();
+        $longitud = 7;
+        $document_number = str_pad($id_compra,$longitud,"0",STR_PAD_LEFT);
+        return $document_number;
+    }
+
 
     public static function getCompras(){
         $con = Connection::Conectar();
@@ -13,7 +24,6 @@ class Compra{
     public static function RegistrarCompra(int $idCompra, string $date,float $total,float $subtotal, float $igv, int $idMoneda, string $numeroDocumento,string $serieDocumento, int $idProveedor,int $idAlmacen,string $tipoPago,int $idPersonal){
         $con = Connection::Conectar();
         $tsmt = $con->prepare('exec sp_RegistrarCompra ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?');
-
         $result=$tsmt->execute([$idCompra,$date,$total,$subtotal,$igv,$idMoneda,$numeroDocumento,$serieDocumento,$idProveedor,$idAlmacen,$tipoPago,$idPersonal]);
         return $result;
     }
@@ -27,7 +37,4 @@ class Compra{
         return $result;    
     }
 }
-
-
-
 ?>

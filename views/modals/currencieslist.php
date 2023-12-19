@@ -28,10 +28,11 @@
     </div>
     <!-- Columna derecha: formulario -->
     <form method="POST"  id="miFormulario">
+        
         <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
             <div style="display: flex; flex-direction: column;">
                 <span>Código:</span>
-                <span id="codigo">-</span>
+                <input id="codigo" type="number" disabled>
             </div>
             <div style="display: flex; flex-direction: column;">
                 <span>Descripción:</span>
@@ -44,12 +45,12 @@
             </div>
         </div>
         <div>
-            <button type="submit" id="money_submit">Guardar</button>
+            
         </div>
     </form>
 </div>
 <div style="margin-top: 16px; display:flex; justify-content: space-around;">
-    <button class="btn btn-primary" style="width: 92px;" type="submit">Grabar</button>
-    <button class="btn btn-primary" style="width: 92px;" type="button">Modificar</button>
-    <button class="btn btn-primary" style="width: 92px;" type="button">Eliminar</button>
+    <button class="btn btn-primary money_submit"  style="width: 92px;" type="submit">Grabar</button>
+    <button class="btn btn-primary money_submit" style="width: 92px;" type="submit" >Modificar</button>
+    <button class="btn btn-primary money_submit" style="width: 92px;" type="submit" >Eliminar</button>
 </div>

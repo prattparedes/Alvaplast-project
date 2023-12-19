@@ -86,10 +86,12 @@ document
       window.clickedRowData = contenidoFila;
 
       // Obtener elementos del array
+      const productUnit = contenidoFila[3];
       const productName = contenidoFila[1];
       const productPrice = contenidoFila[6];
 
       // Cambiar el HTML de los spans por los datos
+      document.getElementById("productunit").value = productUnit;
       document.getElementById("productname").innerText = productName;
       document.getElementById("productprice").value = productPrice;
 
@@ -178,7 +180,6 @@ document
   });
 
 // Añadir nueva fila en la tabla de órdenes de venta/compra
-let productosAgregados = []; // Lista para llevar registro de productos
 let datosProducto = [];
 document
   .querySelector(".main__content")
@@ -202,6 +203,7 @@ document
 
       if (cantidad && unidad) {
         if (rowData) {
+          const idPro = rowData[0];
           const nombreProducto = rowData[1];
           const precioReal = parseFloat(rowData[5]);
 
@@ -226,6 +228,7 @@ document
           if (addToProducts) {
             productosAgregados.push(nombreProducto);
             datosProducto = [
+              idPro,
               nombreProducto,
               cantidad,
               unidad,
@@ -252,9 +255,6 @@ document
               }
             });
 
-            // Resto del código para limpiar datos del formulario y actualizar tabla de precios
-            // ...
-
             // Limpiar datos del formulario
             window.clickedRowData = null;
             document.getElementById("productname").innerText = "NINGUNO";
@@ -279,46 +279,6 @@ document
       }
     }
   });
-
-function actualizarTablaPrecios() {
-  const ordertable = document.getElementById("ordertable");
-  const preciosTable = document.getElementById("preciosTable");
-
-  // Obtener las filas de la tabla de productos
-  const filasProductos = Array.from(ordertable.querySelectorAll("tbody tr"));
-
-  let totalPrecioCompra = 0;
-  let totalDescuento = 0;
-  let total = 0;
-
-  // Calcular totales recorriendo las filas de la tabla de productos
-  filasProductos.forEach((fila) => {
-    const cells = fila.querySelectorAll("td");
-
-    const cantidad = parseInt(cells[1].innerText);
-    const precio = parseFloat(cells[3].innerText);
-    const totalFila = parseFloat(cells[5].innerText); // Total de la fila
-
-    totalPrecioCompra += cantidad * precio;
-    total += totalFila; // Sumar el total de la fila directamente
-  });
-
-  // Calcular total de descuento
-  totalDescuento = totalPrecioCompra - total;
-
-  // Resto del cálculo
-  const igv = total * 0.18; // Suponiendo un IGV del 18%
-
-  // Actualizar la fila de la tabla de precios
-  const preciosRow = preciosTable.querySelector("tbody tr");
-  const cellsPrecios = preciosRow.querySelectorAll("td");
-
-  cellsPrecios[0].innerText = (total - igv).toFixed(2);
-  cellsPrecios[1].innerText = totalDescuento.toFixed(2);
-  cellsPrecios[2].innerText = (total - igv).toFixed(2);
-  cellsPrecios[3].innerText = igv.toFixed(2);
-  cellsPrecios[4].innerText = total.toFixed(2);
-}
 
 // Función para crear celda que elimina filas en las tablas
 function agregarCeldaEliminar(fila) {
@@ -419,7 +379,7 @@ document
       const monedaSimbolo = contenidoFila[2];
 
       // Cambiar el HTML de los spans por los datos
-      document.getElementById("codigo").innerText = monedaCodigo;
+      document.getElementById("codigo").value = monedaCodigo;
       document.getElementById("descripcion").value = monedaDescripcion;
       document.getElementById("abreviatura").value = monedaSimbolo;
     }

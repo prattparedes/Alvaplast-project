@@ -10,7 +10,6 @@ class Marca
         return $data->fetchAll(PDO::FETCH_OBJ);
     }
 
-
 }
 
 
