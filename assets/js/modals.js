@@ -86,11 +86,13 @@ document
       window.clickedRowData = contenidoFila;
 
       // Obtener elementos del array
+      const productId = contenidoFila[0];
       const productName = contenidoFila[1];
       const productUnit = contenidoFila[3];
       const productPrice = contenidoFila[6];
 
       // Cambiar el HTML de los spans por los datos
+      document.getElementById("productid").value = productId;
       document.getElementById("productname").innerText = productName;
       document.getElementById("productprice").value = productPrice;
       document.getElementById("productunit").value = productUnit;
@@ -184,6 +186,7 @@ document
   .querySelector(".main__content")
   .addEventListener("click", function (event) {
     if (event.target.id === "addproduct") {
+      const idpro = document.getElementById("productid").value;
       const cantidad = parseFloat(
         document.getElementById("productquantity").value
       );
@@ -222,6 +225,7 @@ document
             ];
           } else {
             datosProducto = [
+              idpro,
               nombreProducto,
               cantidad,
               unidad,
@@ -243,7 +247,7 @@ document
           datosProducto.forEach((contenido, index) => {
             const celda = nuevaFila.insertCell();
             celda.textContent = contenido;
-
+            if (index === 0) { celda.style.display = "none" }
             if (index === datosProducto.length - 1) {
               agregarCeldaEliminar(nuevaFila);
             }
