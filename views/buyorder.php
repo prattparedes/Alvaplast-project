@@ -158,6 +158,28 @@
                 </tr> -->
             </tbody>
         </table>
+        <div class="pricetable--container" style="display:flex; justify-content:flex-end;">
+            <table style="margin-top: 10px; width: 60%; text-align:center;" id="preciosTable" border="1">
+                <thead>
+                    <tr>
+                        <th style="width: 20%;">Precio Bruto</th>
+                        <th style="width: 20%;">Descuento</th>
+                        <th style="width: 20%;">Precio Neto</th>
+                        <th style="width: 20%; border-right: none;">IGV</th>
+                        <th style="width: 20%; border-left: none;">Total S/.</th>
+                    </tr>
+                </thead>
+                <tbody style="background-color: #f2f2f2;">
+                    <tr>
+                        <td style="border-right: none;">0.00</td>
+                        <td style="border-right: none;">0.00</td>
+                        <td style="border-right: none;">0.00</td>
+                        <td style="border-right: none; border-bottom: none;">0.00</td>
+                        <td style="border-bottom: none;">0.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 
