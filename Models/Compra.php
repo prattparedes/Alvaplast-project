@@ -2,9 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/config/connection.php');
 
 class Compra{
-    
-<<<<<<< HEAD
-=======
+
     public static function getIdCompra()
     {
         $con = Connection::Conectar();  
@@ -13,7 +11,6 @@ class Compra{
         $tsmt->execute();
         return $id_compra;
     }
->>>>>>> fabian
 
     public static function getCompras(){
         $con = Connection::Conectar();
@@ -39,9 +36,4 @@ class Compra{
     }
 }
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> fabian
 ?>

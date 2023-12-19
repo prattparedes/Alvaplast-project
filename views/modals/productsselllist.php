@@ -19,19 +19,22 @@
         </thead>
         <tbody>
             <?php
-                require_once('../../Models/Producto.php');
-                $producto = Producto::getProductos();
-                foreach($producto as $produc){
+                require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Producto.php");
+
+                $id_almacen = 1; // Define el ID del almacén antes de llamar a la función
+
+                $productos = Producto::getProductoByStock($id_almacen);
+                foreach ($productos as $produc) {
             ?>
                 <tr>
                     <td><?='COD/'.$produc->id_producto?></td>
                     <td><?=$produc->nombre_producto?></td>
+                    <td><?=$produc->codigo_producto?></td>
                     <td><?=$produc->modelo_producto?></td>
-                    <td><?=$produc->modelo_producto?></td>
-                    <td><?=$produc->procedencia?></td>
+                    <td><?=($produc->procedencia== "N") ? "NACIONAL" : "EXTRANJERO"?></td>
                     <td><?=$produc->precio_venta?></td>
                     <td><?=$produc->precio_compra?></td>
-                    <td><?=$produc->stock_min?></td> 
+                    <td><?=$produc->stock?></td> 
                 </tr>
             <?php }?>
         </tbody>

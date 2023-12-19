@@ -17,24 +17,21 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Código 001</td>
-                <td>Nombre A</td>
-                <td>Código Producto 123</td>
-                <td>Modelo 1</td>
-                <td>Nacional</td>
-                <td>150.00</td>
-                <td>200.00</td>
-            </tr>
-            <tr>
-                <td>Código 002</td>
-                <td>Nombre B</td>
-                <td>Código Producto 456</td>
-                <td>Modelo 2</td>
-                <td>Importado</td>
-                <td>200.00</td>
-                <td>250.00</td>
-            </tr>
+            <?php
+                require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Producto.php");
+                $productos = Producto::getProductos();
+                foreach ($productos as $produc) {
+            ?>
+                <tr>
+                    <td><?='COD/'.$produc->id_producto?></td>
+                    <td><?=$produc->nombre_producto?></td>
+                    <td><?=$produc->modelo_producto?></td>
+                    <td><?=$produc->modelo_producto?></td>
+                    <td><?=($produc->procedencia== "N") ? "EXTRANJERO" : "NACIONAL"?></td>
+                    <td><?=$produc->precio_compra?></td>
+                    <td><?=$produc->precio_venta?></td>
+                </tr>
+            <?php }?>
         </tbody>
     </table>
 </div>

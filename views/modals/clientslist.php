@@ -20,7 +20,6 @@
 
             require_once('../../Models/Cliente.php');
 
-<<<<<<< HEAD
             $clientes = Cliente::getClientes();
 
             foreach ($clientes as $cliente) {
@@ -36,21 +35,6 @@
             <?php
             }
             ?> 
-=======
-    foreach ($clientes as $cliente) {
-    ?>
-        <tr>
-            <td><?= $cliente->codigo ?></td>
-            <td><?= $cliente->razon_social ?></td>
-            <td><?= $cliente->ruc ?></td>
-            <td><?= $cliente->dni ?></td>
-            <td><?= $cliente->direccion ?></td>
-            <td><?= $cliente->telefono ?></td>
-        </tr>
-    <?php
-    }
-    ?> 
->>>>>>> fabian
         </tbody>
     </table>
 </div>
