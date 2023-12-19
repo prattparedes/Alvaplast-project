@@ -2,18 +2,24 @@
 require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Moneda.php");
     
 if(isset($_POST)){
-    $id = $_POST["id"];
+     $id = isset($_POST["id"]) && $_POST["id"] !== "" ? $_POST["id"] : 1;
     $descripcion = $_POST["descripcion"];
     $abre = $_POST["abreviatura"];
-    
+
+    $message = "";
     if($_POST['metodo'] == "Grabar"){
-         Moneda::RegistrarMoneda($id, $descripcion, $abre);
-    }else if ($POST['metodo'] == "Modificar"){
-         Moneda::ModificarMoneda($id, $descripcion, $abre);
+          $result= Moneda::RegistrarMoneda($id, $descripcion, $abre);
+          $message="moneda registrada";
+    }else if ($_POST['metodo'] == "Modificar"){
+          $result=Moneda::ModificarMoneda($id, $descripcion, $abre);
+          $message = "moneda modificada";
     }else if ($_POST['metodo'] == "Eliminar"){
-         Moneda::EliminarMoneda($id);
+          $result=Moneda::EliminarMoneda($id);
+          $message = "moneda eliminada";
     }
-    echo $result;
+    if($result){
+          echo $message;
+    }
 }
 
 ?>

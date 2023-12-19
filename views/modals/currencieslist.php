@@ -3,7 +3,7 @@
     <!-- Columna izquierda: tabla de monedas -->
     <div style="flex: 1; width:500px;">
         <h4 style="text-align:center;">Monedas</h4>
-        <table border="1" style="width:100%;">
+        <table border="1" style="width:100%;" id="currenciesTable">
             <thead>
                 <tr>
                     <th>Código</th>
@@ -32,7 +32,7 @@
         <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
             <div style="display: flex; flex-direction: column;">
                 <span>Código:</span>
-                <span>-</span>
+                <input id="codigo" type="number" disabled>
             </div>
             <div style="display: flex; flex-direction: column;">
                 <span>Descripción:</span>
@@ -50,7 +50,7 @@
     </form>
 </div>
 <div style="margin-top: 16px; display:flex; justify-content: space-around;">
-    <button class="btn btn-primary" style="width: 92px;" type="submit" id="money_submit">Grabar</button>
-    <button class="btn btn-primary" style="width: 92px;" type="submit" id="money_submit">Modificar</button>
-    <button class="btn btn-primary" style="width: 92px;" type="submit" id="money_submit">Eliminar</button>
+    <button class="btn btn-primary money_submit"  style="width: 92px;" type="submit">Grabar</button>
+    <button class="btn btn-primary money_submit" style="width: 92px;" type="submit" >Modificar</button>
+    <button class="btn btn-primary money_submit" style="width: 92px;" type="submit" >Eliminar</button>
 </div>

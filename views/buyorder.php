@@ -5,7 +5,7 @@
     </div>
 
     <div class="btns__right">
-        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Grabar <i class="bi bi-floppy"></i></button>
+        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg buy_submit">Grabar <i class="bi bi-floppy"></i></button>
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Modificar <i class="bi bi-pencil-square"></i></button>
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Eliminar <i class="bi bi-trash"></i></button>
         <button type="button" class="order__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('buyorderlist')">Buscar <i class="bi bi-search"></i></i></button>
@@ -167,6 +167,28 @@
                 </tr> -->
             </tbody>
         </table>
+        <div class="pricetable--container" style="display:flex; justify-content:flex-end;">
+            <table style="margin-top: 10px; width: 60%; text-align:center;" id="preciosTable" border="1">
+                <thead>
+                    <tr>
+                        <th style="width: 20%;">Precio Bruto</th>
+                        <th style="width: 20%;">Descuento</th>
+                        <th style="width: 20%;">Precio Neto</th>
+                        <th style="width: 20%; border-right: none;">IGV</th>
+                        <th style="width: 20%; border-left: none;">Total S/.</th>
+                    </tr>
+                </thead>
+                <tbody style="background-color: #f2f2f2;">
+                    <tr>
+                        <td style="border-right: none;">0.00</td>
+                        <td style="border-right: none;">0.00</td>
+                        <td style="border-right: none;" id="productsubtotal">0.00</td>
+                        <td style="border-right: none; border-bottom: none;" id="productigv" >0.00</td>
+                        <td style="border-bottom: none;" id="productTotal" >0.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 

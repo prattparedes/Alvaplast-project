@@ -17,9 +17,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
       botonesInactivos.forEach(function (boton) {
         boton.classList.remove('order__btn--inactive');
       });
-      const fechalocal = fechaActual.toLocaleString('sv-PE', { timeZone: 'America/Lima' });
-      const fecharForm = fechalocal.slice(0, 16);
-      document.getElementById("fecha").value = fecharForm;
+      document.getElementById("fecha").value = establecerFechaHora();
       formularios.forEach(function (formulario) {
         formulario.removeAttribute("disabled");
       });
@@ -109,3 +107,22 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     }
   }
 });
+
+
+function establecerFechaHora() {
+  const fecha = new Date(); // Obtener la fecha actual
+
+  // Obtener los componentes de la fecha
+  const year = fecha.getFullYear();
+  const month = (fecha.getMonth() + 1).toString().padStart(2, '0'); // El mes comienza desde 0
+  const day = fecha.getDate().toString().padStart(2, '0');
+  const hours = fecha.getHours().toString().padStart(2, '0');
+  const minutes = fecha.getMinutes().toString().padStart(2, '0');
+  const seconds = fecha.getSeconds().toString().padStart(2, '0');
+
+  // Construir la cadena en el formato deseado
+  const fechaHora = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+
+  // Establecer el valor en el input datetime-local
+  return fechaHora;
+}
