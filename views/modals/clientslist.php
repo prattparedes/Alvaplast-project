@@ -4,7 +4,7 @@
 <span style="font-weight: 600; width:fit-content; margin-left:8px;">Filtrar por DNI: <input type="text" style="width: 240px;"></span><button class="modal__btn--search">Buscar</button>
 <hr>
 <div class="modal__table--container">
-    <table class="table">
+    <table class="table" id="clienttable">
         <thead>
             <tr>
                 <th>Código</th>
@@ -32,9 +32,7 @@
                     <td><?= $cliente->direccion ?></td>
                     <td><?= $cliente->celular ?></td>
                 </tr>
-            <?php
-            }
-            ?> 
+            <?php }?> 
         </tbody>
     </table>
 </div>

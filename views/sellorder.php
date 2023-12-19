@@ -29,6 +29,7 @@
               <button class="btn btn-outline-secondary order__btn--inactive" type="button" id="threeDotsButton" onclick="loadModalContent('clientslist')">
                 <i class="bi bi-three-dots order__btn--inactive" id="threeDotsIco"></i>
               </button>
+              <input type="hidden" id="idcliente" value="0">
             </div>
           </div>
           <div class="col-md-6" style="display: flex; flex-direction: column;">
@@ -175,21 +176,43 @@
           <th>Precio Venta</th>
           <th>Precio Real</th>
           <th>Total</th>
+          <th>Eliminar</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <!-- <tr>
           <td>Ejemplo Producto</td>
           <td>1</td>
           <td>Unidad</td>
           <td>100</td>
           <td>90</td>
           <td>90</td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
+    <div class="pricetable--container" style="display:flex; justify-content:flex-end;">
+      <table style="margin-top: 10px; width: 60%; text-align:center;" id="preciosTable" border="1">
+        <thead>
+          <tr>
+            <th style="width: 20%;">Precio Bruto</th>
+            <th style="width: 20%;">Descuento</th>
+            <th style="width: 20%;">Precio Neto</th>
+            <th style="width: 20%; border-right: none;">IGV</th>
+            <th style="width: 20%; border-left: none;">Total S/.</th>
+          </tr>
+        </thead>
+        <tbody style="background-color: #f2f2f2;">
+          <tr>
+            <td style="border-right: none;">0.00</td>
+            <td style="border-right: none;">0.00</td>
+            <td style="border-right: none;">0.00</td>
+            <td style="border-right: none; border-bottom: none;">0.00</td>
+            <td style="border-bottom: none;">0.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
 
 
-<?php include 'modals/generalModal.php'; ?>
+  <?php include 'modals/generalModal.php'; ?>

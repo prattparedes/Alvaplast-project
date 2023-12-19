@@ -10,6 +10,7 @@ class Moneda
         return $data->fetchAll(PDO::FETCH_OBJ);
     }
 
+<<<<<<< HEAD
     public static function RegistrarMoneda(int $id_moneda,string $descripcion, string $abr){ 
        try{
         $con = Connection::Conectar();
@@ -24,6 +25,16 @@ class Moneda
     }
 
     public static function ModificarMoneda(int $id,string $descripcion, string $abr,)
+=======
+    public static function RegistrarMoneda(int $id_moneda,string $descripcion, string $abr):bool{ 
+        $con = Connection::Conectar();
+        $tsmt = $con->prepare("exec sp_RegistrarMoneda ?, ?, ?");
+        $result=$tsmt->execute([$id_moneda,$descripcion,$abr]);
+        return $result ;
+    }
+
+    public static function ModificarMoneda(int $id,string $descripcion, string $abr,): bool
+>>>>>>> pruebas
     {
         try{
             $con = Connection::Conectar();

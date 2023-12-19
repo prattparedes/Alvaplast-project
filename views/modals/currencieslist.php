@@ -3,7 +3,7 @@
     <!-- Columna izquierda: tabla de monedas -->
     <div style="flex: 1; width:500px;">
         <h4 style="text-align:center;">Monedas</h4>
-        <table border="1" style="width:100%;">
+        <table border="1" style="width:100%;" id="currenciesTable">
             <thead>
                 <tr>
                     <th>Código</th>
@@ -28,11 +28,10 @@
     </div>
     <!-- Columna derecha: formulario -->
     <form method="POST"  id="miFormulario">
-        
         <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
             <div style="display: flex; flex-direction: column;">
                 <span>Código:</span>
-                <span>-</span>
+                <span id="codigo">-</span>
             </div>
             <div style="display: flex; flex-direction: column;">
                 <span>Descripción:</span>
@@ -41,10 +40,11 @@
             <div style="display: flex; flex-direction: column;">
                 <span style="width: 100px;">Símbolo:</span>
                 <input style="height:32px; width: 50%;" type="text" id="abreviatura" name="abreviatura">
+                <input type="hidden" id="metodo" name="metodo" value="nuevo">
             </div>
         </div>
         <div>
-            
+            <button type="submit" id="money_submit">Guardar</button>
         </div>
     </form>
 </div>
