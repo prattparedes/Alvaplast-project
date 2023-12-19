@@ -250,6 +250,7 @@ document
               const celda = nuevaFila.insertCell();
               celda.textContent = contenido;
 
+              if (index === 0) { celda.style.display = "none" }
               if (index === datosProducto.length - 1) {
                 agregarCeldaEliminar(nuevaFila);
               }
@@ -279,6 +280,57 @@ document
       }
     }
   });
+function actualizarTablaPrecios() {
+  const ordertable = document.getElementById("ordertable");
+  const preciosTable = document.getElementById("preciosTable");
+
+  // Obtener las filas de la tabla de productos
+  const filasProductos = Array.from(ordertable.querySelectorAll("tbody tr"));
+
+  let totalPrecioCompra = 0;
+  let totalDescuento = 0;
+  let total = 0;
+
+  // Calcular totales recorriendo las filas de la tabla de productos
+  filasProductos.forEach((fila) => {
+    const cells = fila.querySelectorAll("td");
+
+    const cantidad = parseInt(cells[2].innerText);
+    const precio = parseFloat(cells[4].innerText);
+    const totalFila = parseFloat(cells[6].innerText); // Total de la fila
+
+    totalPrecioCompra += cantidad * precio;
+    total += totalFila; // Sumar el total de la fila directamente
+  });
+
+  // Calcular total de descuento
+  totalDescuento = totalPrecioCompra - total;
+
+  // Resto del cálculo
+  const igv = total * 0.18; // Suponiendo un IGV del 18%
+
+  // Actualizar la fila de la tabla de precios
+  const preciosRow = preciosTable.querySelector("tbody tr");
+  const cellsPrecios = preciosRow.querySelectorAll("td");
+
+  cellsPrecios[0].innerText = (total - igv).toFixed(2);
+  cellsPrecios[1].innerText = totalDescuento.toFixed(2);
+  cellsPrecios[2].innerText = (total - igv).toFixed(2);
+  cellsPrecios[3].innerText = igv.toFixed(2);
+  cellsPrecios[4].innerText = total.toFixed(2);
+}
+
+// Función para crear celda que elimina filas en las tablas
+function agregarCeldaEliminar(fila) {
+  const celda = fila.insertCell();
+  celda.style.textAlign = "center";
+  const eliminar = document.createElement("span");
+  eliminar.textContent = "X";
+  eliminar.style.color = "red";
+  eliminar.style.fontWeight = "700";
+  eliminar.style.cursor = "pointer";
+  celda.appendChild(eliminar);
+}
 
 // Función para crear celda que elimina filas en las tablas
 function agregarCeldaEliminar(fila) {
