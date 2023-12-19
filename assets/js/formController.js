@@ -60,6 +60,10 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         const cadena = event.target.innerHTML.split(' ');
         const metodo = cadena[0];
 
+        // Obtener los datos de la tabla de órdenes
+        const datosTabla = obtenerDatosTabla()
+        console.log(datosTabla)
+ 
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
         const url = "/Alvaplast-project/Controller/CompraController.php"; // Ruta del controlador PHP
@@ -98,3 +102,25 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     }
 });
 
+//Función para recuperar datos de la tabla órdenes compra/venta y retornar valores
+function obtenerDatosTabla() {
+    const tabla = document.getElementById("ordertable");
+    const filas = tabla.querySelectorAll("tbody tr");
+    const datos = [];
+  
+    filas.forEach((fila) => {
+      const columnas = fila.querySelectorAll("td");
+      const datosFila = [];
+  
+      // Obtener datos de la primera, tercera, cuarta y quinta columna
+      datosFila.push(columnas[0].textContent.trim()); // Primera columna
+      datosFila.push(columnas[2].textContent.trim()); // Tercera columna
+      datosFila.push(columnas[4].textContent.trim()); // Cuarta columna
+      datosFila.push(columnas[5].textContent.trim()); // Quinta columna
+      datosFila.push(columnas[6].textContent.trim()); // Quinta columna
+  
+      datos.push(datosFila);
+    });
+  
+    return datos;
+  }
