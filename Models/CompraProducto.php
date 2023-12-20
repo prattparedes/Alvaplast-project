@@ -16,6 +16,17 @@ public static function RegistrarCompraProducto(int $idCompra,int $idProducto,flo
     
 }
 
+public static function ListarDetalleCompraXid(int $idCompra){
+    try{
+        $con = Connection::Conectar();
+        $stmt = $con->prepare("exec sp_ListaDetalleCompraXCompra ?");
+        $stmt->execute([$idCompra]);
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }catch(Exception $e){
+        echo $e->getMessage();
+    }
+}
+
 
 
 }

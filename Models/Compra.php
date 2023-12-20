@@ -36,5 +36,12 @@ class Compra{
         $result=$tsmt->execute();
         return $result;    
     }
+
+    public static function ListarCompraXid(int $id){
+        $con =  Connection::Conectar();
+        $stmt = $con->prepare("exec sp_ListaCompraXID ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
 }
 ?>

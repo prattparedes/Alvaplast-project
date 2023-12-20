@@ -1,7 +1,7 @@
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/CompraProducto.php");
 
-if(isset($_POST)){
+if(isset($_POST["metodo"])){
     $idCompra =(int) $_POST["idCompra"] ;
     $idProducto =(int) $_POST["idProducto"];
     $cantidad =(float) $_POST["cantidad"];
@@ -19,6 +19,12 @@ if(isset($_POST)){
 
     }
     echo $message;
+}
+if(isset($_GET["idCompra"])){
+    $idCompra = $_GET["idCompra"];
+
+    $data=CompraProducto::ListarDetalleCompraXid($idCompra);
+    echo json_encode($data);
 }
 
 

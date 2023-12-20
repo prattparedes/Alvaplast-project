@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Compra.php");
 
-if(isset($_POST)){
+if(isset($_POST["metodo"])){
     $idCompra =intval($_POST["idCompra"]);
     $fecha=strtotime($_POST["fecha"]);
     $fechaFormateada = date("Y-m-d H:i:s", $fecha);
@@ -33,6 +33,12 @@ if(isset($_POST)){
 
 
 
+}
+if(isset($_GET["idCompra"]))
+{
+    $idCompra = $_GET["idCompra"];
+    $data = Compra::ListarCompraXid($idCompra);
+    echo json_encode($data);
 }
 
 
