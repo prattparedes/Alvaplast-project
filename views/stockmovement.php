@@ -1,33 +1,44 @@
 <div class="kardex__movement">
     <div class="kardex__left">
         <h3 style="background: black; color: white; text-align:center;">Lista de Productos</h3>
-        Almacén <select name="almacen" id="">
-            <option value="1">1</option>
-            <option value="2">2</option>
-        </select>
-        Filtro <input type="text">
+        <div>
+            <span style="display:inline-block; width:80px; margin-bottom:8px;">Almacén:</span>
+            <select name="almacen" id="almacenSelect">
+                <?php
+                require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Almacen.php");
+                $almacenes = Almacen::getAlmacenes();
+                foreach ($almacenes as $almac) {
+                ?>
+                    <option value="<?= $almac->id_almacen ?>"><?= $almac->descripcion ?></option>
+                <?php
+                }
+                ?>
+            </select>
+        </div>
+        <div>
+            <span style="display:inline-block; width:80px;">Filtro:</span> <input type="text"> <button>Buscar</button>
+        </div>
         <hr>
-        <div class="table__container">
-            <table border="1" style="width:100%;">
+        <div class="table--container">
+            <table border="1" style="width:100%;" class="table" id="productosKardex">
                 <thead>
                     <tr>
                         <th>Producto</th>
                         <th style="width:60px;">Unidad</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>Lápices</td>
-                        <td>PL</td>
-                    </tr>
-                    <tr>
-                        <td>Agua</td>
-                        <td>ML</td>
-                    </tr>
-                    <tr>
-                        <td>Telas</td>
-                        <td>F</td>
-                    </tr>
+                <tbody style="font-size: 12px !important">
+                    <?php
+                    require_once('../Models/Producto.php');
+                    $producto = Producto::getProductos();
+                    foreach ($producto as $produc) {
+                    ?>
+                        <tr>
+                            <td style="display:none;"><?= $produc->id_producto ?></td>
+                            <td><?= $produc->nombre_producto ?></td>
+                            <td><?= $produc->unidad ?></td>
+                        </tr>
+                    <?php } ?>
                 </tbody>
             </table>
         </div>
@@ -45,23 +56,23 @@
             </div>
         </div>
         <hr>
-        <div class="table__container">
-            <table border="1" style="width:100%;">
+        <div class="table--container">
+            <table border="1" style="width:100%;" class="table" id="movimientosKardex">
                 <thead>
                     <tr>
-                        <th>Fecha</th>
-                        <th>Proveedor/Cliente</th>
-                        <th>Motivo</th>
-                        <th>Documento</th>
-                        <th>Monto</th>
-                        <th>Inicio</th>
-                        <th>Ingreso</th>
-                        <th>Salida</th>
-                        <th>Saldo</th>
+                        <th style="min-width: 116px;">Fecha</th>
+                        <th style="min-width: 230px;">Proveedor/Cliente</th>
+                        <th style="min-width: 71.5px;">Motivo</th>
+                        <th style="min-width: 117.3px;">Documento</th>
+                        <th style="min-width: 77.8px;">Monto</th>
+                        <th style="min-width: 58.3px;">Inicio</th>
+                        <th style="min-width: 73.44px;">Ingreso</th>
+                        <th style="min-width: 62.19px;">Salida</th>
+                        <th style="min-width: 58.84px;">Saldo</th>
                     </tr>
                 </thead>
-                <tbody style="font-size: 14px;">
-                    <tr>
+                <tbody style="font-size: 12px !important;">
+                    <!-- <tr>
                         <td>07/12/2023 19:24:00</td>
                         <td>Proveedor 1</td>
                         <td>Compra</td>
@@ -82,11 +93,9 @@
                         <td>2.00</td>
                         <td>0</td>
                         <td>3.00</td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
-
-
     </div>
 </div>

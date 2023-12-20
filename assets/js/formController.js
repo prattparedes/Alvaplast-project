@@ -31,6 +31,7 @@ document
       } else {
         alert("faltan datos");
       }
+      
       // Manejar la respuesta del servidor
       xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
