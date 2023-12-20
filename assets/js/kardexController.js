@@ -6,8 +6,8 @@ document
     const id_almacen = almacenSelect.value;
 
     if (id_almacen === "0") {
-      alert("Selecciona un almacén")
-      return
+      alert("Selecciona un almacén");
+      return;
     }
 
     if (isKardexTable) {
@@ -60,6 +60,17 @@ function actualizarTablaMovimientosKardex(datos) {
 
   // Parsear la respuesta JSON a un array de objetos
   const movimientos = JSON.parse(datos);
+
+  // Agregar stock fisico final
+  if (movimientos.length > 0) {
+    const spanStock = document.getElementById("stockfinal");
+    if (movimientos[0].tipo === "V") {
+      saldoFisicoFinal = movimientos[0].stock - movimientos[0].cantidad;
+    } else {
+      saldoFisicoFinal = movimientos[0].stock + movimientos[0].cantidad;
+    }
+    spanStock.innerHTML = saldoFisicoFinal;
+  }
 
   // Iterar sobre los datos y agregar filas a la tabla
   movimientos.forEach((movimiento) => {

@@ -45,7 +45,7 @@
     </div>
     <div class="kardex__right">
         <div style="display:flex; align-items:center; ">
-            Stock Físico Final: <span id="stockfinal" style="font-weight:700;">9999</span>
+            Stock Físico Final: <span id="stockfinal" style="font-weight:700; margin-left:8px;">-</span>
             <div style="margin-left: 80px;">
                 <p>Desde: <input type="date" id="fecha1" name="fecha1"></p>
                 <p style="margin-bottom:0;">Hasta: <input type="date" id="fecha1" name="fecha2"></p>
