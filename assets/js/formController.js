@@ -60,10 +60,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         const cadena = event.target.innerHTML.split(' ');
         const metodo = cadena[0];
 
-        // Obtener los datos de la tabla de órdenes
-        const datosTabla = obtenerDatosTabla()
-        console.log(datosTabla)
- 
+
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
         const url = "/Alvaplast-project/Controller/CompraController.php"; // Ruta del controlador PHP
@@ -85,14 +82,8 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                 if (xhr.status === 200) {
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
-                    if (xhr.responseText != "1") {
-                        alert('Hubo un error al registrar' + xhr.responseText);
-
-                        console.log(xhr.responseText)
-                    } else {
-                        alert("Moneda Registrada");
-                    }
-
+                    alert(xhr.responseText);
+                    obtenerDatosTabla(idCompra, metodo);
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');
@@ -103,24 +94,66 @@ document.querySelector(".main__content").addEventListener("click", function (eve
 });
 
 //Función para recuperar datos de la tabla órdenes compra/venta y retornar valores
-function obtenerDatosTabla() {
+function obtenerDatosTabla(idCompra, metodo) {
+    const tabla = document.getElementById("ordertable");
+    const filas = tabla.querySelectorAll("tbody tr");
+
+    filas.forEach((fila) => {
+        const columnas = fila.querySelectorAll("td");
+        //Asignar los datos para mandar a la casa 
+        const idProducto = columnas[0].textContent.trim();
+        const cantidad = columnas[2].textContent.trim();
+        const precioCompra = columnas[4].textContent.trim();
+        const descuento = columnas[5].textContent.trim();
+        const subTotal = columnas[6].textContent.trim();
+        // comenzamos con el protocolo http
+        const http = new XMLHttpRequest();
+        const url = "/Alvaplast-project/Controller/CompraProductoController.php";
+        //configuración de la solicitud
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        if (precioCompra && subTotal) {
+            //Enviamos los datos al controlador
+            http.send("idCompra=" + idCompra + "&idProducto=" + idProducto + "&cantidad=" + cantidad + "&precioCompra=" + precioCompra + "&descuento=" + descuento + "&subtotal=" + subTotal + "&metodo=" + metodo);
+        } else {
+            alert("faltan datos")
+        }
+
+        http.onreadystatechange = function () {
+            if (http.readyState === XMLHttpRequest.DONE) {
+                if (http.status === 200) {
+                    // La solicitud se completó correctamente
+                    // Puedes manejar la respuesta del servidor aquí
+                    console.log(http.responseText);
+                    loadContent("views/buyorder.php");
+                } else {
+                    // Hubo un error en la solicitud
+                    console.error('Error en la insercion de los datos');
+                }
+            }
+        }
+    });
+
+}
+
+function RegistrarDatosTabla() {
     const tabla = document.getElementById("ordertable");
     const filas = tabla.querySelectorAll("tbody tr");
     const datos = [];
-  
+
     filas.forEach((fila) => {
-      const columnas = fila.querySelectorAll("td");
-      const datosFila = [];
-  
-      // Obtener datos de la primera, tercera, cuarta y quinta columna
-      datosFila.push(columnas[0].textContent.trim()); // Primera columna
-      datosFila.push(columnas[2].textContent.trim()); // Tercera columna
-      datosFila.push(columnas[4].textContent.trim()); // Cuarta columna
-      datosFila.push(columnas[5].textContent.trim()); // Quinta columna
-      datosFila.push(columnas[6].textContent.trim()); // Quinta columna
-  
-      datos.push(datosFila);
+        const columnas = fila.querySelectorAll("td");
+        const datosFila = [];
+
+        // Obtener datos de la primera, tercera, cuarta y quinta columna
+        datosFila.push(columnas[0].textContent.trim()); // Primera columna
+        datosFila.push(columnas[2].textContent.trim()); // Tercera columna
+        datosFila.push(columnas[4].textContent.trim()); // Cuarta columna
+        datosFila.push(columnas[5].textContent.trim()); // Quinta columna
+        datosFila.push(columnas[6].textContent.trim()); // Quinta columna
+
+        datos.push(datosFila);
     });
-  
+
     return datos;
-  }
+}

@@ -11,7 +11,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     const iconoTresPuntos = document.getElementById('threeDotsIco');
     const botonesInactivos = document.querySelectorAll('.order__btn--inactive');
     const formularios = document.querySelectorAll("input, select, textarea");
-    const fechaActual = new Date();
+    document.getElementById("fecha").value = establecerFechaHora();;
 
     if (!elementosActivados) {
       botonesInactivos.forEach(function (boton) {
