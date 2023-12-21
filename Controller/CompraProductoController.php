@@ -1,7 +1,7 @@
 <?php 
 require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/CompraProducto.php");
 
-if(isset($_POST["metodo"])){
+if($_SERVER["REQUEST_METHOD"] === "POST"){
     $idCompra =(int) $_POST["idCompra"] ;
     $idProducto =(int) $_POST["idProducto"];
     $cantidad =(float) $_POST["cantidad"];
@@ -20,7 +20,7 @@ if(isset($_POST["metodo"])){
     }
     echo $message;
 }
-if(isset($_GET["idCompra"])){
+if($_SERVER["REQUEST_METHOD"] === "GET"){
     $idCompra = $_GET["idCompra"];
 
     $data=CompraProducto::ListarDetalleCompraXid($idCompra);

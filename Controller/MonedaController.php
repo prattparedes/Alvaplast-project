@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Moneda.php");
     
-if(isset($_POST)){
+if($_SERVER["REQUEST_METHOD"] === "POST"){
      $id = isset($_POST["id"]) && $_POST["id"] !== "" ? $_POST["id"] : 1;
     $descripcion = $_POST["descripcion"];
     $abre = $_POST["abreviatura"];
