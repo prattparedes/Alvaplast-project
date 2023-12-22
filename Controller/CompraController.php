@@ -3,8 +3,9 @@ require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Compra.php");
 
 if($_SERVER["REQUEST_METHOD"] === "POST"){
     $idCompra =intval($_POST["idCompra"]);
-    $fecha=strtotime($_POST["fecha"]);
-    $fechaFormateada = date("Y-m-d H:i:s", $fecha);
+    $fecha = date("Y-m-d H:i:s", strtotime($_POST["fecha"]));
+    $fechaFormateada = str_replace(' ','T',$fecha);
+    echo $fechaFormateada;
     $total=(float) $_POST["total"] ;
     $subtotal=(float) $_POST["subtotal"];
     $igv=(float) $_POST["igv"];
