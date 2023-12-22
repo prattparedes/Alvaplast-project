@@ -22,10 +22,15 @@ class Compra{
     }
 
     public static function RegistrarCompra(int $idCompra, string $date,float $total,float $subtotal, float $igv, int $idMoneda, string $numeroDocumento,string $serieDocumento, int $idProveedor,int $idAlmacen,string $tipoPago,int $idPersonal){
+       try{
         $con = Connection::Conectar();
         $tsmt = $con->prepare('exec sp_RegistrarCompra ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?');
         $result=$tsmt->execute([$idCompra,$date,$total,$subtotal,$igv,$idMoneda,$numeroDocumento,$serieDocumento,$idProveedor,$idAlmacen,$tipoPago,$idPersonal]);
         return $result;
+       }catch(Exception $e){
+        echo $e->getMessage();
+       }
+        
     }
 
     public static function EliminarCompra(int $idCompra, int $idPersonal){
