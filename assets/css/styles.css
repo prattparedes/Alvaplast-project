@@ -114,7 +114,7 @@ td a {
   color: red !important;
   font-weight: 700;
   text-align: center;
-  cursor:pointer;
+  cursor: pointer;
 }
 /*
 Navbar
@@ -152,7 +152,7 @@ main {
 }
 
 .navbar-nav .nav-item .nav-link:hover {
-  background-color:  var(--bs-btn-hover-bg);
+  background-color: var(--bs-btn-hover-bg);
 }
 
 .dropdown-toggle {
@@ -257,7 +257,8 @@ main {
   transition: all 0ms !important;
 }
 
-.order__left, .order__right {
+.order__left,
+.order__right {
   padding: 20px;
   width: 50%;
 }
@@ -378,4 +379,36 @@ main {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+/*
+
+Kardex Movement
+
+*/
+
+.kardex__movement {
+  display: flex;
+  height: 100%;
+}
+
+.kardex__left {
+  min-width: 400px;
+  padding: 8px 16px;
+  background-color: lightgray;
+  width: 22%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: black 1.25px solid;
+}
+
+.kardex__right {
+  min-width: 900px;
+  padding: 8px 16px;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: black 1.25px solid;
 }

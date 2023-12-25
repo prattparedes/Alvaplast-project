@@ -118,6 +118,7 @@
   <script src="assets/js/modals.js"></script>
   <script src="assets/js/orders.js"></script>
   <script src="assets/js/formController.js"></script>
+  <script src="assets/js/kardexController.js"></script>
 </body>
 
 </html>
