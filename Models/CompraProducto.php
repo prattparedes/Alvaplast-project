@@ -27,8 +27,32 @@ public static function ListarDetalleCompraXid(int $idCompra){
     }
 }
 
-
-
+//Funcion para eliminar los productos de una compra realizada 
+public static function EliminarProductoXcompra(int $idCompra):bool
+{
+    try{
+        $con = Connection::Conectar();
+        $stmt =$con->prepare("exec sp_EliminarCompra_Producto ?");
+        $result=$stmt->execute([$idCompra]);
+        return $result;
+    }catch(Exception $e){
+        echo $e->getMessage();
+        return false;
+    }
+}
+//Función para eliminar 
+public static function EliminarProductoXProducto(int $idCompra, int $idProducto):bool
+{
+    try{
+        $con = Connection::Conectar();
+        $stmt = $con->prepare("exec sp_EliminarCompra_ProductoxProducto ?, ?");
+        $result=$stmt->execute([$idCompra,$idProducto]);
+        return $result;
+    }catch(Exception $e){
+        echo $e->getMessage();
+        return false;
+    }
+}
 }
 
 

@@ -21,7 +21,8 @@ class Compra{
         return $data->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public static function RegistrarCompra(int $idCompra, string $date,float $total,float $subtotal, float $igv, int $idMoneda, string $numeroDocumento,string $serieDocumento, int $idProveedor,int $idAlmacen,string $tipoPago,int $idPersonal){
+    public static function RegistrarCompra(int $idCompra, string $date,float $total,float $subtotal, float $igv, int $idMoneda, string $numeroDocumento,string $serieDocumento, int $idProveedor,int $idAlmacen,string $tipoPago,int $idPersonal) : bool
+    {
        try{
         $con = Connection::Conectar();
         $tsmt = $con->prepare('exec sp_RegistrarCompra ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?');
@@ -29,17 +30,25 @@ class Compra{
         return $result;
        }catch(Exception $e){
         echo $e->getMessage();
+        return false;
        }
         
     }
 
-    public static function EliminarCompra(int $idCompra, int $idPersonal){
-        $con = Connection::Conectar();  
-        $tsmt = $con->prepare('sp_EliminarCompra :idCompra, :idPersonal');
-        $tsmt->bindParam(":idCompra", $idCompra, PDO::PARAM_INT,32);
-        $tsmt->bindParam(":idPersonal", $idPersonal, PDO::PARAM_INT,32);
-        $result=$tsmt->execute();
-        return $result;    
+    public static function EliminarCompra(int $idCompra, int $idPersonal):bool
+    {
+        try{
+            $con = Connection::Conectar();  
+            $tsmt = $con->prepare('sp_EliminarCompra :idCompra, :idPersonal');
+            $tsmt->bindParam(":idCompra", $idCompra, PDO::PARAM_INT,32);
+            $tsmt->bindParam(":idPersonal", $idPersonal, PDO::PARAM_INT,32);
+            $result=$tsmt->execute();
+            return $result;   
+        }catch(Exception $er){
+            echo $er->getMessage();
+            return false;
+        }
+         
     }
 
     public static function ListarCompraXid(int $id){
@@ -47,6 +56,19 @@ class Compra{
         $stmt = $con->prepare("exec sp_ListaCompraXID ?");
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
+    public static function ModificarCompra(int $idCompra, string $fecha, float $total,float $subtotal, float $igv, int $idMoneda,string $numeroDocumento, string $serieDocumento, int $idProveedor,int $idAlmacen, string $tipoPago, int $idPersonal) :bool
+    {
+        try{
+            $con = Connection::Conectar();
+            $stmt = $con->prepare("exec sp_ModificarCompra ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?");
+            $result=$stmt->execute([$idCompra,$fecha,$total,$subtotal,$igv,$idMoneda,$numeroDocumento,$serieDocumento,$idProveedor,$idAlmacen,$tipoPago,$idPersonal]);
+            return $result;
+        }catch(Exception $er){
+            echo $er->getMessage();
+            return false;
+        }
     }
 }
 ?>
