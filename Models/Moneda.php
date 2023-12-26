@@ -14,12 +14,16 @@ class Moneda
                    // id_moneda
                    //descripcion
                    //abreviatura
-    public static function RegistrarMoneda(int $id_moneda,string $descripcion, string $abr):bool{
+    public static function RegistrarMoneda(int $idMoneda,string $descripcion, string $abr):bool{
          
        try{
         $con = Connection::Conectar();
-        $tsmt = $con->prepare("exec sp_RegistrarMoneda ?, ?, ?");
-        $result=$tsmt->execute([$id_moneda,$descripcion,$abr]);
+        $tsmt = $con->prepare("exec sp_RegistrarMoneda :id,:desc,:abre");
+        $tsmt->bindParam(":id",$idMoneda,PDO::PARAM_INT);
+        $tsmt->bindParam(":desc",$descripcion,PDO::PARAM_STR);
+        $tsmt->bindParam(":abre",$abr,PDO::PARAM_STR);
+        $result = $tsmt->execute();
+        // $result=$tsmt->execute([$id_moneda,$descripcion,$abr]);
         return $result ;
        }catch(Exception $ex){
         echo "ERROR:" .$ex->getMessage();
@@ -32,12 +36,16 @@ class Moneda
                     id_moneda
                     descripcion
                     abreciatura*/ 
-    public static function ModificarMoneda(int $id,string $descripcion, string $abr,):bool
+    public static function ModificarMoneda(int $idMoneda,string $descripcion, string $abr,):bool
     {
         try{
             $con = Connection::Conectar();  //Conexión a la base de datos
             $tsmt = $con->prepare("exec sp_ModificarMoneda :id, :desc, :abre");  //Preparamos el procedimiento con los parametros necesarios
-            $result=$tsmt->execute([$id,$descripcion,$abr]);
+            $tsmt->bindParam(":id",$idMoneda,PDO::PARAM_INT);
+            $tsmt->bindParam(":desc",$descripcion,PDO::PARAM_STR);
+            $tsmt->bindParam(":abre",$abr,PDO::PARAM_STR);
+            $result=$tsmt->execute();
+            //$result=$tsmt->execute([$id,$descripcion,$abr]);
             return $result;
         }catch(Exception $e){
             echo $e->getMessage();
@@ -50,12 +58,14 @@ class Moneda
     parametros :
                     id_moneda
      */
-    public static function EliminarMoneda(int $id):bool
+    public static function EliminarMoneda(int $idMoneda):bool
     {
         try{
             $con = Connection::Conectar();
-            $tsmt = $con->prepare("sp_EliminarMoneda ?");
-            $result = $tsmt->execute([$id]);
+            $tsmt = $con->prepare("sp_EliminarMoneda :id");
+            $tsmt->bindParam(":id",$idMoneda,PDO::PARAM_INT);
+            $result=$tsmt->execute();
+            //$result = $tsmt->execute([$id]);
             return $result;
         }catch(Exception $e){
             echo $e->getMessage();

@@ -93,7 +93,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     }
 });
 
-//Función para recuperar datos de la tabla órdenes compra/venta y retornar valores
+//Función para recuperar datos de la tabla órdenes compra/venta y mandarlos al backend
 function obtenerDatosTabla(idCompra, metodo) {
     const tabla = document.getElementById("ordertable");
     const filas = tabla.querySelectorAll("tbody tr");

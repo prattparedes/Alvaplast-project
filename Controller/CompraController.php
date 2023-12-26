@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Compra.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Movimiento.php");
 
 if($_SERVER["REQUEST_METHOD"] === "POST"){
     $idCompra =intval($_POST["idCompra"]);
@@ -23,6 +24,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         $result = Compra::RegistrarCompra($idCompra,$fechaFormateada,$total,$subtotal,$igv,$idMoneda,$numeroDocumento,$serieDocumento,$idProveedor,$idAlmacen,$tipoPago,$idPersonal);
         $message = "Compra grabada";
     }else if($_POST["metodo"]== "Modificar"){
+        $result = Compra::ModificarCompra($idCompra,$fechaFormateada,$total,$subtotal,$igv,$idMoneda,$numeroDocumento,$serieDocumento,$idProveedor,$idAlmacen,$tipoPago,$idPersonal);
         $message = "Compra editada";
     }else if($_POST["metodo"]== "Eliminar"){
         $message = "Compra eliminada";
@@ -38,6 +40,10 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
 if($_SERVER["REQUEST_METHOD"] === "GET")
 {
     $idCompra = $_GET["idCompra"];
+    $datos=Movimiento::BuscarMovimientoCompra($idCompra);
+    if($datos){
+        echo "compra registrada en el kardex <br>";
+    }
     $data = Compra::ListarCompraXid($idCompra);
     echo json_encode($data);
 }
