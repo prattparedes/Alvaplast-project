@@ -1,8 +1,13 @@
+window.jsPDF = window.jspdf.jsPDF;
+
 document
   .querySelector(".main__content")
   .addEventListener("dblclick", function (event) {
     const isKardexTable = event.target.closest("#productosKardex");
     const almacenSelect = document.getElementById("almacenSelect");
+    const productoSeleccionado = document.getElementById(
+      "productoSeleccionadoKardex"
+    );
     const id_almacen = almacenSelect.value;
 
     if (id_almacen === "0") {
@@ -15,6 +20,8 @@ document
       if (!fila) return; // Si no se hace clic en una fila, salimos
 
       const id_producto = fila.cells[0].textContent.trim();
+      const nombreProducto = fila.cells[1].textContent.trim();
+      productoSeleccionado.innerHTML = nombreProducto;
 
       // Mostrar la fila de carga antes de enviar la solicitud
       mostrarFilaDeCarga();
@@ -159,4 +166,170 @@ function mostrarFilaDeCarga() {
 
   // Agregar la fila de carga al tbody
   tbody.appendChild(filaCarga);
+}
+
+function FiltrarListaProductosKardex() {
+  const filtroInput = document.getElementById("filtroProductos");
+  const filtro = filtroInput.value.toLowerCase().trim();
+
+  const filasProductos = document.querySelectorAll("#productosKardex tbody tr");
+
+  filasProductos.forEach((fila) => {
+    const nombreProducto = fila
+      .querySelector("td:nth-child(2)")
+      .textContent.toLowerCase()
+      .trim();
+
+    if (nombreProducto.includes(filtro)) {
+      fila.style.display = "table-row";
+    } else {
+      fila.style.display = "none";
+    }
+  });
+}
+
+function filtrarKardexPorFechas() {
+  // Obtener las fechas de los inputs
+  const fecha1Input = new Date(document.getElementById("fecha1").value);
+  const fecha2Input = new Date(document.getElementById("fecha2").value);
+
+  // Ajustar la zona horaria sumando 5 horas (GMT-0500)
+  const ajusteHorario = 5 * 60 * 60 * 1000; // 5 horas en milisegundos
+  const fecha1Ajustada = new Date(fecha1Input.getTime() + ajusteHorario);
+  const fecha2Ajustada = new Date(fecha2Input.getTime() + ajusteHorario);
+
+  const filasMovimientos = document.querySelectorAll(
+    "#movimientosKardex tbody tr"
+  );
+
+  filasMovimientos.forEach((fila) => {
+    const fechaFilaText = fila.querySelector("td:nth-child(1)").textContent;
+
+    // Separar la cadena en sus componentes de fecha y hora
+    const components = fechaFilaText.split(" ");
+    const fechaComponents = components[0].split("/");
+    const horaComponents = components[1].split(":");
+
+    // Crear un objeto de fecha con los componentes
+    const fechaFila = new Date(
+      parseInt(fechaComponents[2]),
+      parseInt(fechaComponents[1]) - 1,
+      parseInt(fechaComponents[0]),
+      0, // Establecer la hora a 00:00:00
+      0,
+      0
+    );
+
+    const fecha1SinHora = new Date(
+      fecha1Ajustada.getFullYear(),
+      fecha1Ajustada.getMonth(),
+      fecha1Ajustada.getDate()
+    );
+    const fecha2SinHora = new Date(
+      fecha2Ajustada.getFullYear(),
+      fecha2Ajustada.getMonth(),
+      fecha2Ajustada.getDate()
+    );
+
+    if (!isNaN(fechaFila)) {
+      if (fechaFila >= fecha1SinHora && fechaFila <= fecha2SinHora) {
+        fila.style.display = "table-row";
+      } else {
+        fila.style.display = "none";
+      }
+    } else {
+      console.log("Fecha no válida:", fechaFilaText);
+    }
+  });
+}
+
+// Función para exportar la tabla a PDF
+function exportarPDF() {
+  const productoSeleccionado = document.getElementById(
+    "productoSeleccionadoKardex"
+  ).innerHTML;
+  const fecha1 = new Date(document.getElementById("fecha1").value);
+  const fecha2 = new Date(document.getElementById("fecha2").value);
+
+  // Ajustar la zona horaria sumando 5 horas (GMT-0500)
+  const ajusteHorario = 5 * 60 * 60 * 1000; // 5 horas en milisegundos
+  const fecha1Ajustada = new Date(fecha1.getTime() + ajusteHorario);
+  const fecha2Ajustada = new Date(fecha2.getTime() + ajusteHorario);
+
+  //Fecha por día mes y año
+  const fechaFormateada1 = fecha1Ajustada.toLocaleDateString("es-ES", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  const fechaFormateada2 = fecha2Ajustada.toLocaleDateString("es-ES", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+
+  // Crear un objeto jsPDF
+  const doc = new jsPDF();
+
+  // Título del documento
+  doc.text("Movimientos de " + productoSeleccionado, 14, 10); // Texto y posición
+  console.log(fechaFormateada1, fechaFormateada2);
+  if (
+    !(
+      fechaFormateada1 === "Invalid Date" || fechaFormateada2 === "Invalid Date"
+    )
+  ) {
+    doc.text(
+      "Desde: " + fechaFormateada1 + " Hasta: " + fechaFormateada2,
+      14,
+      20
+    ); // Texto y posición
+  }
+
+  // Obtener todas las filas de la tabla
+  const filas = document.querySelectorAll("#movimientosKardex tbody tr");
+
+  // Crear un array de datos de las filas visibles
+  const datosFilas = [];
+  filas.forEach((fila) => {
+    if (window.getComputedStyle(fila).display !== "none") {
+      const contenido = fila.innerText || fila.textContent;
+      datosFilas.push(contenido.split("\n"));
+    }
+  });
+
+  // Configurar tamaño de fuente para las filas
+  const fontSize = 10; // Tamaño de fuente para las filas
+  doc.setFontSize(fontSize);
+
+  if (
+    !(
+      fechaFormateada1 === "Invalid Date" || fechaFormateada2 === "Invalid Date"
+    )
+  ) {
+    // Agregar las filas al PDF usando autoTable
+    doc.autoTable({
+      head: [], // No hay encabezados en este caso
+      body: datosFilas, // Datos de las filas visibles
+      margin: { top: 25 }, // Margen superior para dejar espacio para el título
+      styles: {
+        fontSize: 7, // Tamaño de fuente para las filas
+        overflow: "ellipsize", // Controlar el desbordamiento de texto
+      },
+    });
+  } else {
+    // Agregar las filas al PDF usando autoTable
+    doc.autoTable({
+      head: [], // No hay encabezados en este caso
+      body: datosFilas, // Datos de las filas visibles
+      margin: { top: 18 }, // Margen superior para dejar espacio para el título
+      styles: {
+        fontSize: 7, // Tamaño de fuente para las filas
+        overflow: "ellipsize", // Controlar el desbordamiento de texto
+      },
+    });
+  }
+
+  // Guardar el PDF
+  doc.save("movimientos.pdf");
 }
