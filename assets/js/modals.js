@@ -73,6 +73,8 @@ document
   .addEventListener("dblclick", function (event) {
     const isModalTable = event.target.closest("#modaltable");
 
+    console.log(isModalTable);
+
     if (isModalTable) {
       const fila = event.target.closest("tr");
       const columnas = fila.querySelectorAll("td");
@@ -113,6 +115,7 @@ document
   .querySelector(".main__content")
   .addEventListener("dblclick", function (event) {
     const isModalTable = event.target.closest("#providertable");
+
     if (isModalTable) {
       const fila = event.target.closest("tr");
       const columnas = fila.querySelectorAll("td");
@@ -143,6 +146,7 @@ document
   .querySelector(".main__content")
   .addEventListener("dblclick", function (event) {
     const isModalTable = event.target.closest("#clienttable");
+
     if (isModalTable) {
       const fila = event.target.closest("tr");
       const columnas = fila.querySelectorAll("td");
@@ -250,7 +254,9 @@ document
               const celda = nuevaFila.insertCell();
               celda.textContent = contenido;
 
-              if (index === 0) { celda.style.display = "none" }
+              if (index === 0) {
+                celda.style.display = "none";
+              }
               if (index === datosProducto.length - 1) {
                 agregarCeldaEliminar(nuevaFila);
               }
@@ -348,6 +354,7 @@ function agregarCeldaEliminar(fila) {
 document.addEventListener("click", function (event) {
   if (event.target.tagName === "SPAN" && event.target.textContent === "X") {
     const rowToDelete = event.target.closest("tr");
+
     const table = rowToDelete.closest("table");
     if (table && table.id === "ordertable") {
       const productName = rowToDelete.cells[0].textContent; // Nombre del producto en la primera celda
@@ -434,6 +441,25 @@ document
       document.getElementById("codigo").value = monedaCodigo;
       document.getElementById("descripcion").value = monedaDescripcion;
       document.getElementById("abreviatura").value = monedaSimbolo;
+    }
+  });
+
+// Pasar datos del Listado de Órdenes de Compra al formulario compras (Botón Consultar)
+document
+  .querySelector(".main__content")
+  .addEventListener("dblclick", function (event) {
+    const isModalTable = event.target.closest("#buyorderslist");
+
+    if (isModalTable) {
+      const fila = event.target.closest("tr");
+      const columnas = fila.querySelectorAll("td");
+
+      // Crear un array con el contenido de las celdas de la fila clickeada
+      const contenidoFila = Array.from(columnas).map(
+        (columna) => columna.innerText
+      );
+
+      
     }
   });
 

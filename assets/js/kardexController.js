@@ -4,18 +4,20 @@ document
   .querySelector(".main__content")
   .addEventListener("dblclick", function (event) {
     const isKardexTable = event.target.closest("#productosKardex");
-    const almacenSelect = document.getElementById("almacenSelect");
-    const productoSeleccionado = document.getElementById(
-      "productoSeleccionadoKardex"
-    );
-    const id_almacen = almacenSelect.value;
 
-    if (id_almacen === "0") {
-      alert("Selecciona un almacén");
-      return;
-    }
 
     if (isKardexTable) {
+      const almacenSelect = document.getElementById("almacenSelect");
+      const productoSeleccionado = document.getElementById(
+        "productoSeleccionadoKardex"
+      );
+      const id_almacen = almacenSelect.value;
+
+      if (id_almacen === "0") {
+        alert("Selecciona un almacén");
+        return;
+      }
+
       const fila = event.target.closest("tr");
       if (!fila) return; // Si no se hace clic en una fila, salimos
 
