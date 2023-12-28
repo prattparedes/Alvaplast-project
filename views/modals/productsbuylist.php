@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-<?php  require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Producto.php');
+<?php  require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Mantenimiento/Producto.php');
 $productos = Producto::getProductos();
 foreach($productos as $producto){?>
             <tr>

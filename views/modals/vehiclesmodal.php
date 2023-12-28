@@ -47,7 +47,7 @@
             </thead>
             <tbody>
                 <?php 
-                require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Vehiculo.php');
+                require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Mantenimiento/Vehiculo.php');
                 $vehiculos = Vehiculo::getVehiculos();
                 foreach($vehiculos as $vehiculo){
                     ?>

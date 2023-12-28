@@ -13,7 +13,7 @@
             </thead>
             <tbody>
                 <?php
-                require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Moneda.php"); 
+                require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Mantenimiento/Moneda.php"); 
                 $data = Moneda::getMonedas();
                 foreach($data as $money){
                 ?>

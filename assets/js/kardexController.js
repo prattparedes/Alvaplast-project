@@ -160,3 +160,46 @@ function mostrarFilaDeCarga() {
   // Agregar la fila de carga al tbody
   tbody.appendChild(filaCarga);
 }
+
+
+function FiltrarListaProveedores() {
+  const filtroInput = document.getElementById("filtroproveedor");
+  const filtro = filtroInput.value.toLowerCase().trim();
+
+  const filasProductos = document.querySelectorAll("#providertable tbody tr");
+
+  filasProductos.forEach((fila) => {
+    const nombreProveedor = fila
+      .querySelector("td:nth-child(2)")
+      .textContent.toLowerCase()
+      .trim();
+
+    if (nombreProveedor.includes(filtro)) {
+      fila.style.display = "table-row";
+    } else {
+      fila.style.display = "none";
+    }
+  });
+}
+
+function FiltrarComprasXProveedor() {
+  const filtro = document.getElementById("compraFiltro");
+  const filtroFormato = filtro.value.toLowerCase().trim();
+
+  const filasCompras = document.querySelectorAll("#comprasLista tbody tr");
+
+  filasCompras.forEach((fila) => {
+    const proveedorCompra = fila
+      .querySelector("td:nth-child(1)")
+      .textContent.toLowerCase()
+      .trim();
+    if (proveedorCompra.includes(filtroFormato)) {
+      fila.style.display = "table-row";
+    } else {
+      fila.style.display = "none";
+    }
+
+
+
+  })
+}

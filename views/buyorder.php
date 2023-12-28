@@ -1,4 +1,9 @@
-<?php require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Compra.php')?>
+<?php 
+require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Operaciones/Compras/Compra.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Mantenimiento/Sucursal.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Mantenimiento/Moneda.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Mantenimiento/Almacen.php');
+?>
 <div class="buyorder">
     <div class="btns__left">
         <button type="button" class="order__btn btn btn-primary btn-lg" id="neworder">Generar Orden de Compra <i class="bi bi-plus-circle"></i></button>
@@ -6,8 +11,8 @@
 
     <div class="btns__right">
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg buy_submit">Grabar <i class="bi bi-floppy"></i></button>
-        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Modificar <i class="bi bi-pencil-square"></i></button>
-        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Eliminar <i class="bi bi-trash"></i></button>
+        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg buy_submit">Modificar <i class="bi bi-pencil-square"></i></button>
+        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg buy_submit">Eliminar <i class="bi bi-trash"></i></button>
         <button type="button" class="order__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('buyorderlist')">Buscar <i class="bi bi-search"></i></i></button>
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
     </div>
@@ -43,7 +48,6 @@
                         <select name="sucursal" class="form-select" style="width:50%;" id="sucursal" disabled>
                             <option value="">Seleccionar </option>
                             <?php 
-                            require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Sucursal.php');
                             $data= Sucursal::getSucursales();?>
                                 <option value="<?=$data->id_compra?>"><?=$data->descripcion?></option>
                         </select>
@@ -52,8 +56,7 @@
                         <label for="moneda" class="form-label">Moneda</label>
                         <select class="form-select" style="width:50%;" id="moneda" name="moneda" disabled>
                                     <option value="">Seleccionar una moneda</option> 
-                        <?php require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Moneda.php');
-                        $monedas = Moneda::getMonedas();
+                        <?php $monedas = Moneda::getMonedas();
                         foreach($monedas as $moneda){?>
                             <option value="<?=$moneda->id_moneda?>"><?=$moneda->descripcion?></option>
                         <?php }?>
@@ -66,7 +69,7 @@
                         <label for="almacen" class="form-label">Almacén</label>
                         <select name="almacen" class="form-select" style="width:50%;" id="almacen" disabled>
                         <option value="">Seleccionar almacen</option>
-                        <?php require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Almacen.php');
+                        <?php 
                         $almacenes = Almacen::getAlmacenes();
                         foreach($almacenes as $almacen){?>
                             <option value="<?=$almacen->id_almacen?>"><?=$almacen->descripcion?></option>

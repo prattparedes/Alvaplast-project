@@ -1,8 +1,8 @@
 <h2 style="text-align:center; margin-bottom: 8px;">Listado de Órdenes de Compra</h2>
-<span style="font-weight: 600; width:fit-content;">Filtrar por proveedor: <input type="text" style="width: 240px;"></span><button class="modal__btn--search">Buscar</button>
+<span style="font-weight: 600; width:fit-content;">Filtrar por proveedor: <input type="text" style="width: 240px;" id="compraFiltro" onkeyup="FiltrarComprasXProveedor()"></span><button class="modal__btn--search">Buscar</button>
 <hr>
 <div class="modal__table--container">
-    <table class="table modal__table">
+    <table class="table modal__table" id="comprasLista">
         <thead>
             <tr>
                 <th>Proveedor</th>
@@ -15,7 +15,7 @@
         </thead>
         <tbody>
            <?php
-            require_once('../../Models/Compra.php');
+            require_once($_SERVER["DOCUMENT_ROOT"].'/Alvaplast-project/Models/Operaciones/Compras/Compra.php');
             $compras = Compra::getCompras();
             foreach($compras as $compra){
            ?>

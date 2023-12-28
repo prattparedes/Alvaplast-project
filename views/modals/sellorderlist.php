@@ -22,7 +22,7 @@
     </thead>
     <tbody>
         <?php
-        require_once("../../Models/Venta.php"); 
+        require_once($_SERVER["DOCUMENT_ROOT"]."/Alvaplast-project/Models/Operaciones/Ventas/Venta.php"); 
         $ventas = Venta::getVentas();
         foreach($ventas as $ven){
         ?> 

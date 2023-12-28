@@ -9,7 +9,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         const metodo = event.target.innerHTML;
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
-        const url = "/Alvaplast-project/Controller/MonedaController.php"; // Ruta del controlador PHP
+        const url = "/Alvaplast-project/Controller/Mantenimiento/MonedaController.php"; // Ruta del controlador PHP
 
         // Configurar la solicitud
         xhr.open("POST", url, true);
@@ -63,7 +63,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
 
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
-        const url = "/Alvaplast-project/Controller/CompraController.php"; // Ruta del controlador PHP
+        const url = "/Alvaplast-project/Controller/Operaciones/Compras/CompraController.php"; // Ruta del controlador PHP
 
         // Configurar la solicitud
         xhr.open("POST", url, true);
@@ -108,7 +108,7 @@ function obtenerDatosTabla(idCompra, metodo) {
         const subTotal = columnas[6].textContent.trim();
         // comenzamos con el protocolo http
         const http = new XMLHttpRequest();
-        const url = "/Alvaplast-project/Controller/CompraProductoController.php";
+        const url = "/Alvaplast-project/Controller/Operaciones/Compras/CompraProductoController.php";
         //configuración de la solicitud
         http.open("POST", url, true);
         http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

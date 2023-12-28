@@ -1,6 +1,6 @@
 <?php 
-require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/CompraProducto.php");
-require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Compra.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Operaciones/Compras/CompraProducto.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Operaciones/Compras/Compra.php");
 if($_SERVER["REQUEST_METHOD"] === "POST"){
     $idCompra =(int) $_POST["idCompra"] ;
     $idProducto =(int) $_POST["idProducto"];
@@ -18,6 +18,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         $mov = Movimiento::BuscarMovimientoCompra($idCompra);
         if(isset($mov) && ($mov->id_operacion == $idCompra)){
             $result = CompraProducto::EliminarProductoXProducto($idCompra,$idProducto);
+            
         }
     }else if($_POST["metodo"] == "Eliminar"){
             

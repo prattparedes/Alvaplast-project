@@ -1,12 +1,11 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Compra.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Operaciones/Compras/Compra.php");
 require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Movimiento.php");
 
 if($_SERVER["REQUEST_METHOD"] === "POST"){
     $idCompra =intval($_POST["idCompra"]);
     $fecha = date("Y-m-d H:i:s", strtotime($_POST["fecha"]));
     $fechaFormateada = str_replace(' ','T',$fecha);
-    echo $fechaFormateada;
     $total=(float) $_POST["total"] ;
     $subtotal=(float) $_POST["subtotal"];
     $igv=(float) $_POST["igv"];
@@ -27,7 +26,11 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         $result = Compra::ModificarCompra($idCompra,$fechaFormateada,$total,$subtotal,$igv,$idMoneda,$numeroDocumento,$serieDocumento,$idProveedor,$idAlmacen,$tipoPago,$idPersonal);
         $message = "Compra editada";
     }else if($_POST["metodo"]== "Eliminar"){
-        $message = "Compra eliminada";
+        $result = Compra::EliminarCompra($idCompra,$idPersonal);
+        $delete = ($result)? CompraProducto::EliminarProductoXcompra($idCompra) : null;
+        if($delete){
+            $message="Compra Eliminada";
+        }
     }
     if($result){
         echo $message;
@@ -42,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] === "GET")
     $idCompra = $_GET["idCompra"];
     $datos=Movimiento::BuscarMovimientoCompra($idCompra);
     if($datos){
-        echo "compra registrada en el kardex <br>";
+        echo $datos->id_operacion." compra registrada en el kardex <br>";
     }
     $data = Compra::ListarCompraXid($idCompra);
     echo json_encode($data);

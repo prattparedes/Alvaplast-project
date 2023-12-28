@@ -18,7 +18,7 @@
         <tbody>
             <?php
 
-            require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/Models/Cliente.php');
+            require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/Models/Mantenimiento/Cliente.php');
             $clientes = Cliente::getClientes();
             foreach ($clientes as $cliente) {
             ?>
