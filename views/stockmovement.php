@@ -5,7 +5,7 @@
             <span style="display:inline-block; width:80px; margin-bottom:8px;">Almacén:</span>
             <select name="almacen" id="almacenSelect">
                 <?php
-                require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Almacen.php");
+                require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Mantenimiento/Almacen.php");
                 $almacenes = Almacen::getAlmacenes();
                 foreach ($almacenes as $almac) {
                 ?>
@@ -29,7 +29,7 @@
                 </thead>
                 <tbody style="font-size: 12px !important">
                     <?php
-                    require_once('../Models/Producto.php');
+                    require_once($_SERVER["DOCUMENT_ROOT"].'/Alvaplast-project/Models/Mantenimiento/Producto.php');
                     $producto = Producto::getProductos();
                     foreach ($producto as $produc) {
                     ?>

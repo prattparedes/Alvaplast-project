@@ -7,7 +7,7 @@
             <label for="almacenSelect" class="form-label" style="width: 100px; margin-right: 10px;">Almacén</label>
             <select class="form-select" id="almacenSelect" style="max-width: 500px;">
                 <?php
-                require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Almacen.php");
+                require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Mantenimiento/Almacen.php");
                 $almacenes = Almacen::getAlmacenes();
                 foreach ($almacenes as $almac) {
                 ?>
@@ -24,7 +24,7 @@
             <select class="form-select" id="lineaSelect" style="max-width: 500px;">
                 <option value="">Ingrese línea</option>
                 <?php
-                require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Linea.php");
+                require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Mantenimiento/Linea.php");
                 $listas = Linea::ListarLineas();
                 foreach ($listas as $linea) {
                 ?>
@@ -72,7 +72,7 @@
         <tbody id="content">
             <?php
             if (!isset($_GET["buscarProducto"])) {
-                require_once("../Models/Producto.php");
+                require_once($_SERVER["DOCUMENT_ROOT"]."Alvaplast-project/Models/Mantenimiento/Producto.php");
                 $data = new Producto();
                 $datos = $data->getProductos();
             }
