@@ -6,7 +6,7 @@
 
     <div class="btns__right">
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg buy_submit">Grabar <i class="bi bi-floppy"></i></button>
-        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Modificar <i class="bi bi-pencil-square"></i></button>
+        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg" id="modificarFormulario">Modificar <i class="bi bi-pencil-square"></i></button>
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Eliminar <i class="bi bi-trash"></i></button>
         <button type="button" class="order__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('buyorderlist')">Buscar <i class="bi bi-search"></i></i></button>
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
@@ -16,7 +16,7 @@
 
 <div style="display:flex;">
     <div class="order__left">
-        <p style="font-size: 28px;">Orden de Compra N°: <span id="numerocompra"><?=Compra::getIdCompra();?></span></p>
+        <p style="font-size: 28px;">Orden de Compra N°: 001-<span id="numerocompra"><?=Compra::getIdCompra();?></span></p>
         <form action="/ruta/donde/enviar" method="POST" class="row g-3">
             <!-- Columna Izquierda -->
             <div style="display: flex; flex-direction: column; gap: 10px;">
@@ -45,7 +45,7 @@
                             <?php 
                             require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Sucursal.php');
                             $data= Sucursal::getSucursales();?>
-                                <option value="<?=$data->id_compra?>"><?=$data->descripcion?></option>
+                                <option value="<?=$data->id_sucursal?>"><?=$data->descripcion?></option>
                         </select>
                     </div>
                     <div class="col-md-6" style="display: flex; flex-direction: column;">

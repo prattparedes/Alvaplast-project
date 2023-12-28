@@ -4,6 +4,10 @@ let buscarActivo = true; // Control de estado para el quinto botón
 
 document.querySelector(".main__content").addEventListener("click", function (event) {
   if (event.target.id === "neworder") {
+    //Limpiar datos del formulario completo
+    limpiarFormularioCompra()
+
+    //Referenciar elementos
     const botones = document.querySelectorAll('.order__btn:not(#openModalButton)');
     const botonSeleccionarProducto = document.getElementById('selectproduct');
     const botonAñadirProducto = document.getElementById('addproduct');
@@ -11,7 +15,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     const iconoTresPuntos = document.getElementById('threeDotsIco');
     const botonesInactivos = document.querySelectorAll('.order__btn--inactive');
     const formularios = document.querySelectorAll("input, select, textarea");
-    document.getElementById("fecha").value = establecerFechaHora();;
+    document.getElementById("fecha").value = establecerFechaHora();
 
     if (!elementosActivados) {
       botonesInactivos.forEach(function (boton) {
@@ -124,4 +128,31 @@ function establecerFechaHora() {
 
   // Establecer el valor en el input datetime-local
   return fechaHora;
+}
+
+function limpiarFormularioCompra() {
+    // Limpiar tabla de precios
+    const preciosTable = document.getElementById("preciosTable");
+    const productSubtotal = document.getElementById("productsubtotal");
+    const productIgv = document.getElementById("productigv");
+    const productTotal = document.getElementById("productTotal");
+  
+    preciosTable.querySelectorAll("td").forEach((td) => {
+      td.textContent = "0.00";
+    });
+  
+    // Limpiar formulario de compra
+    const formInputs = document.querySelectorAll("#almacen, #descripcion, #direccion, #fecha, #moneda, #proveedor, #sucursal, #tipoPago");
+    formInputs.forEach((input) => {
+      if (input.tagName === "SELECT") {
+        input.value = "";
+      } else {
+        input.value = "";
+      }
+    });
+  
+    // Limpiar tabla de orden
+    const orderTable = document.getElementById("ordertable");
+    const orderTableBody = orderTable.querySelector("tbody");
+    orderTableBody.innerHTML = "";
 }
