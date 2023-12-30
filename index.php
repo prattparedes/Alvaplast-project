@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <title>Title</title>
   <!-- Required meta tags -->
@@ -99,6 +100,7 @@
       </nav>
       <div class="main__content">
         <?php include 'views/home.php'; ?>
+        <?php include 'views/modals/alertModal.php'; ?>
       </div>
     </div>
   </main>
@@ -111,16 +113,13 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
-
-  <script>
-    var triggerEl = document.querySelector('#navId a')
-    bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
-  </script>
   <script src="assets/js/loadcontent.js"></script>
   <script src="assets/js/modals.js"></script>
   <script src="assets/js/orders.js"></script>
   <script src="assets/js/formController.js"></script>
   <script src="assets/js/kardexController.js"></script>
+  <script src="assets/js/maintenance/filtrosTablas.js"></script>
+  <script src="assets/js/maintenance/maintenance_modals.js"></script>
 </body>
 
 </html>

@@ -199,6 +199,8 @@ main {
   */
 
 .maintenance__btns {
+  margin: 0 auto;
+  max-width: 1360px;
   display: grid;
   gap: 12px;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -359,6 +361,23 @@ main {
   border: 1px solid #ccc;
   padding: 8px;
   text-align: left;
+}
+
+.table__maintenance {
+  max-width: 600px;
+}
+
+.table__maintenance tbody tr td, .table__maintenance thead th{
+  text-align: center;
+}
+
+.table__maintenance td, .table__maintenance th{
+  padding: 0;
+  border: none;
+}
+
+.table__maintenance--big  {
+  font-size: 12px;
 }
 
 /* Fijar encabezados */

@@ -17,7 +17,10 @@ document
       }
     }
 
-    if (event.target.id === "closeModalButton") {
+    if (
+      event.target.id === "closeModalButton" ||
+      event.target.classList.contains("closeModalButton")
+    ) {
       modalBackground.classList.add("modal__inactive");
     }
   });
@@ -28,14 +31,12 @@ function loadModalContent(modalName) {
     ".modal__content--dynamic"
   ).innerHTML = `<img src="assets/img/tube-spinner.svg" alt="Cargando..." class="modal__loading" style="width: 30%;">`;
 
-  setTimeout(() => {
-    fetch(`views/modals/${modalName}.php`)
-      .then((response) => response.text())
-      .then((data) => {
-        document.querySelector(".modal__content--dynamic").innerHTML = data;
-      })
-      .catch((error) => console.error("Error:", error));
-  }, 120);
+  fetch(`views/modals/${modalName}.php`)
+    .then((response) => response.text())
+    .then((data) => {
+      document.querySelector(".modal__content--dynamic").innerHTML = data;
+    })
+    .catch((error) => console.error("Error:", error));
 }
 
 // Foto subida al modal de productos
@@ -392,7 +393,7 @@ document.addEventListener("click", function (event) {
     const spanProductos = document.querySelectorAll(".productspan");
 
     if (!modificarActivo) {
-      guardarCopiaSeguridadCompra()
+      guardarCopiaSeguridadCompra();
       modificarActivo = true;
       //Quitar el disabled a los inputs y botones del formulario
       elementosActivados = true;
@@ -411,7 +412,7 @@ document.addEventListener("click", function (event) {
         span.classList.remove("productspan--inactive");
       });
     } else {
-      restaurarCopiaSeguridadCompra()
+      restaurarCopiaSeguridadCompra();
       //Quitar el disabled a los inputs y botones del formulario
       modificarActivo = false;
       elementosActivados = false;
@@ -437,7 +438,7 @@ document.addEventListener("click", function (event) {
 // Guardar Copia Seguridad de un Formulario si se cancela modificaciones
 let copiaSeguridadFormulario = {};
 function guardarCopiaSeguridadCompra() {
-  console.log('haciendo copia de seguridad')
+  console.log("haciendo copia de seguridad");
   // Obtener filas de la tabla productos
   const tablaProductos = document.getElementById("ordertable");
   const filasProductos = tablaProductos.querySelectorAll("tbody tr");
@@ -488,7 +489,7 @@ function guardarCopiaSeguridadCompra() {
 
 //Restaurar copia de seguridad
 function restaurarCopiaSeguridadCompra() {
-  console.log('restaurando')
+  console.log("restaurando");
   // Restaurar los valores de la tabla de precios
   const preciosTabla = document.getElementById("preciosTable");
   const celdasPrecios = preciosTabla.querySelectorAll("tbody td");
@@ -522,13 +523,13 @@ function restaurarCopiaSeguridadCompra() {
     columnasProducto.forEach((columna, index) => {
       const nuevaCelda = document.createElement("td");
       nuevaCelda.textContent = columna;
-    
+
       // Aplicar display: none al primer td (con id="id_producto")
       if (index === 0) {
         nuevaCelda.id = "id_producto";
         nuevaCelda.style.display = "none";
       }
-    
+
       nuevaFila.appendChild(nuevaCelda);
     });
 
@@ -536,90 +537,18 @@ function restaurarCopiaSeguridadCompra() {
   });
 
   // Restaurar los valores principales del formulario
-  document.getElementById("proveedor").value = copiaSeguridadFormulario.proveedor;
-  document.getElementById("direccion").value = copiaSeguridadFormulario.direccion;
+  document.getElementById("proveedor").value =
+    copiaSeguridadFormulario.proveedor;
+  document.getElementById("direccion").value =
+    copiaSeguridadFormulario.direccion;
   document.getElementById("sucursal").value = copiaSeguridadFormulario.sucursal;
   document.getElementById("moneda").value = copiaSeguridadFormulario.moneda;
   document.getElementById("almacen").value = copiaSeguridadFormulario.almacen;
   document.getElementById("tipoPago").value = copiaSeguridadFormulario.tipoPago;
   document.getElementById("fecha").value = copiaSeguridadFormulario.fecha;
-  document.getElementById("descripcion").value = copiaSeguridadFormulario.descripcion;
+  document.getElementById("descripcion").value =
+    copiaSeguridadFormulario.descripcion;
 }
-
-// Añadir Vehículo del listado del modal a los datos para editar
-document
-  .querySelector(".main__content")
-  .addEventListener("dblclick", function (event) {
-    const isModalTable = event.target.closest("#vehicletable");
-
-    if (isModalTable) {
-      const fila = event.target.closest("tr");
-      if (fila && fila.querySelectorAll("td").length > 0) {
-        const columnas = fila.querySelectorAll("td");
-
-        // Crear un array con el contenido de las celdas de la fila clickeada
-        const contenidoFila = Array.from(columnas).map(
-          (columna) => columna.innerText
-        );
-
-        // Guardar los datos de la fila en una variable global para ser usada más tarde
-        window.clickedRowData = contenidoFila;
-
-        // Obtener elementos del array
-        const vehiculoCodigo = contenidoFila[0];
-        const vehiculoPlaca = contenidoFila[1];
-        const vehiculoModelo = contenidoFila[2];
-        const vehiculoTipo = contenidoFila[3];
-        const vehiculoMarca = contenidoFila[4];
-
-        // Cambiar el HTML de los spans por los datos
-        document.getElementById("codigo").innerText = vehiculoCodigo;
-        document.getElementById("placa").value = vehiculoPlaca;
-        document.getElementById("modelo").value = vehiculoModelo;
-
-        // Asignar valor seleccionado al select 'tipo'
-        const tipoSelect = document.getElementById("tipo");
-        const marcaInput = document.getElementById("marca");
-
-        for (let i = 0; i < tipoSelect.options.length; i++) {
-          if (tipoSelect.options[i].value === vehiculoTipo) {
-            tipoSelect.options[i].selected = true;
-            break;
-          }
-        }
-
-        marcaInput.value = vehiculoMarca;
-      }
-    }
-  });
-
-// Añadir Moneda del listado del modal a los datos para editar
-document
-  .querySelector(".main__content")
-  .addEventListener("dblclick", function (event) {
-    const isModalTable = event.target.closest("#currenciesTable");
-
-    if (isModalTable) {
-      const fila = event.target.closest("tr");
-
-      if (fila && fila.querySelectorAll("td").length > 0) {
-        const columnas = fila.querySelectorAll("td");
-        console.log(fila);
-
-        // Resto del código...
-        const contenidoFila = Array.from(columnas).map(
-          (columna) => columna.innerText
-        );
-        const monedaCodigo = contenidoFila[0];
-        const monedaDescripcion = contenidoFila[1];
-        const monedaSimbolo = contenidoFila[2];
-
-        document.getElementById("codigo").value = monedaCodigo;
-        document.getElementById("descripcion").value = monedaDescripcion;
-        document.getElementById("abreviatura").value = monedaSimbolo;
-      }
-    }
-  });
 
 // Pasar datos del Listado de Órdenes de Compra al formulario compras (Botón Consultar)
 document

@@ -17,7 +17,7 @@
                 <option value="Petroleo">Petroleo</option>
             </select>
         </div>
-        
+
         <div style="display: flex; flex-direction: column;">
             <span>Marca:</span>
             <select name="" id="marca" value="">
@@ -30,6 +30,11 @@
         <div style="display: flex; flex-direction: column;">
             <span>Modelo:</span>
             <input style="height:32px; width: 100%;" type="text" id="modelo" name="modelo">
+        </div>
+        <div style="margin-top: 16px; display:flex; justify-content: space-around; max-width:360px;">
+            <button class="btn btn-primary" style="width: 92px;" type="submit">Grabar</button>
+            <button class="btn btn-primary" style="width: 92px;" type="button">Modificar</button>
+            <button class="btn btn-primary" style="width: 92px;" type="button">Eliminar</button>
         </div>
     </div>
     <!-- Columna derecha: formulario -->
@@ -46,25 +51,20 @@
                 </tr>
             </thead>
             <tbody>
-                <?php 
-                require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Vehiculo.php');
+                <?php
+                require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/Models/Vehiculo.php');
                 $vehiculos = Vehiculo::getVehiculos();
-                foreach($vehiculos as $vehiculo){
-                    ?>
-                <tr>
-                    <td><?=$vehiculo->id_vehiculo?></td>
-                    <td><?=$vehiculo->placa?></td>
-                    <td><?=$vehiculo->modelo?></td>
-                    <td><?=$vehiculo->tipo_vehiculo?></td>
-                    <td><?=$vehiculo->marca_vehiculo?></td>
-                </tr>
-                <?php }?>
+                foreach ($vehiculos as $vehiculo) {
+                ?>
+                    <tr>
+                        <td><?= $vehiculo->id_vehiculo ?></td>
+                        <td><?= $vehiculo->placa ?></td>
+                        <td><?= $vehiculo->modelo ?></td>
+                        <td><?= $vehiculo->tipo_vehiculo ?></td>
+                        <td><?= $vehiculo->marca_vehiculo ?></td>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
     </div>
-</div>
-<div style="margin-top: 16px; display:flex; justify-content: space-around;">
-    <button class="btn btn-primary" style="width: 92px;" type="submit">Grabar</button>
-    <button class="btn btn-primary" style="width: 92px;" type="button">Modificar</button>
-    <button class="btn btn-primary" style="width: 92px;" type="button">Eliminar</button>
 </div>

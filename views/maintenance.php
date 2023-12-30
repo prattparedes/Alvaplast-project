@@ -1,76 +1,27 @@
 <div class="maintenance">
-  <h1 style="text-align:center;">Mantenimiento</h1>
+  <h2 style="text-align:center;">Mantenimiento</h2>
   <div class="maintenance__btns">
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productmodal')">Productos <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('clientmodal')">Clientes <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('providermodal')">Proveedores <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productlines')">Línea <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productbrands')">Marca <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('productunits')">Unidad <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('currencieslist')">Moneda <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('branchmodal')">Sucursal <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('storemodal')">Almacén <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('vehiclesmodal')">Vehículos <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('documentsmodal')">Tipo de documento <i class="bi bi-plus-circle"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('carrierslist')">Transportistas <i class="bi bi-plus-circle"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('productmodal')">Productos <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('productmodal')"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('clientmodal')">Clientes <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('clientmodal')"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('providermodal')">Proveedores <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('providermodal')"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('productlines')">Línea <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('productlines')"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('productbrands')">Marca <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('productbrands')"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('productunits')">Unidad <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('productunits')"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('currencieslist')">Moneda <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('currencieslist')"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('branchmodal')">Sucursal <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('branchmodal')"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('storemodal')">Almacén <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('storemodal')"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('vehiclesmodal')">Vehículos <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('vehiclesmodal')"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('documentsmodal')">Documento <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('documentsmodal')"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('carrierslist')">Transportistas <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('carrierslist')"></i></button>
   </div>
   <hr>
-  <h3 style="text-align: center;">Listado</h3>
-  <span>Filtrar por Tipo: </span>
-  <select id="filtro" style="margin-right: 32px">
-    <option value="productos">Productos</option>
-    <option value="clientes">Clientes</option>
-    <option value="proveedores">Proveedores</option>
-    <option value="lineas">Líneas</option>
-    <option value="marcas">Marcas</option>
-    <option value="unidades">Unidades</option>
-    <option value="almacenes">Almacenes</option>
-    <option value="vehiculos">Vehículos</option>
-    <option value="transportistas">Transportistas</option>
-    <option value="documentos">Documentos</option>
-  </select>
-  <span>Filtrar por Nombre: </span>
-  <input type="text" id="maintenancefilter" style="margin-right: 32px">
-  <button>Buscar </button>
-  <hr>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Código</th>
-        <th>Producto</th>
-        <th>Precio de venta</th>
-        <th>Precio de compra</th>
-        <th>Moneda</th>
-        <th>Marca</th>
-        <th>Unidad</th>
-        <th>Volumen</th>
-        <th>Stock Min.</th>
-        <th>Stock Max.</th>
-        <th>Stock</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>284</td>
-        <td>Charola Redonda N° 30 San Gabriel</td>
-        <td>549.99</td>
-        <td>120</td>
-        <td>S/.</td>
-        <td>Super Fast</td>
-        <td>MLL</td>
-        <td>1</td>
-        <td>0</td>
-        <td>999</td>
-        <td>300</td>
-      </tr>
-      <!-- Agregar más filas según sea necesario -->
-    </tbody>
-  </table>
+  <div class="maintenance__container" style="max-width: 1600px; margin:16px auto;">
+    <h3 style="text-align:center;">↑ Seleccione una opción arriba ↑</h3>
+  </div>
 </div>
 
-
 <!-- Modal -->
-<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -86,6 +37,6 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <?php include 'modals/generalModal.php'; ?>
