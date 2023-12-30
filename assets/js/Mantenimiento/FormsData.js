@@ -1,3 +1,4 @@
+//Formulario de envio de datos para la moneda Controller
 document.querySelector(".main__content").addEventListener("click", function (event) {
 
     if (event.target.classList.contains("money_submit")) {
@@ -38,8 +39,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     }
 });
 
-
-
+//Formulario de envio de datos para la CompraController
 document.querySelector(".main__content").addEventListener("click", function (event) {
 
     if (event.target.classList.contains("buy_submit")) {
@@ -83,7 +83,8 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    obtenerDatosTabla(idCompra, metodo);
+                    //Envio de los datos de CompraProducto
+                    RegistrarDatosTabla(idCompra, metodo);
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');
@@ -93,8 +94,8 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     }
 });
 
-//Función para recuperar datos de la tabla órdenes compra/venta y mandarlos al backend
-function obtenerDatosTabla(idCompra, metodo) {
+//Funcion para registrar los productos por compra
+function RegistrarDatosTabla(idCompra, metodo) {
     const tabla = document.getElementById("ordertable");
     const filas = tabla.querySelectorAll("tbody tr");
 
@@ -133,27 +134,4 @@ function obtenerDatosTabla(idCompra, metodo) {
             }
         }
     });
-
-}
-
-function RegistrarDatosTabla() {
-    const tabla = document.getElementById("ordertable");
-    const filas = tabla.querySelectorAll("tbody tr");
-    const datos = [];
-
-    filas.forEach((fila) => {
-        const columnas = fila.querySelectorAll("td");
-        const datosFila = [];
-
-        // Obtener datos de la primera, tercera, cuarta y quinta columna
-        datosFila.push(columnas[0].textContent.trim()); // Primera columna
-        datosFila.push(columnas[2].textContent.trim()); // Tercera columna
-        datosFila.push(columnas[4].textContent.trim()); // Cuarta columna
-        datosFila.push(columnas[5].textContent.trim()); // Quinta columna
-        datosFila.push(columnas[6].textContent.trim()); // Quinta columna
-
-        datos.push(datosFila);
-    });
-
-    return datos;
 }

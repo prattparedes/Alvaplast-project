@@ -72,7 +72,7 @@
         <tbody id="content">
             <?php
             if (!isset($_GET["buscarProducto"])) {
-                require_once($_SERVER["DOCUMENT_ROOT"]."Alvaplast-project/Models/Mantenimiento/Producto.php");
+                require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/Models/Mantenimiento/Producto.php");
                 $data = new Producto();
                 $datos = $data->getProductos();
             }

@@ -29,7 +29,7 @@
         </thead>
         <tbody>
             <?php
-            require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/Models/Facturacion.php');
+            require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/Models/Operaciones/Ventas/Facturacion/Facturacion.php');
             $facturas = Facturacion::getFacturacion();
             foreach ($facturas as $entro) {
             ?>

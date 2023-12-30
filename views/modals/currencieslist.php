@@ -13,22 +13,22 @@
             </thead>
             <tbody>
                 <?php
-                require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Mantenimiento/Moneda.php"); 
+                require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Mantenimiento/Moneda.php");
                 $data = Moneda::getMonedas();
-                foreach($data as $money){
+                foreach ($data as $money) {
                 ?>
-                <tr>
-                    <td><?=$money->id_moneda?></td>
-                    <td><?=$money->descripcion?></td>
-                    <td><?=$money->simbolo?></td>
-                </tr>
-                <?php }?>
+                    <tr>
+                        <td><?= $money->id_moneda ?></td>
+                        <td><?= $money->descripcion ?></td>
+                        <td><?= $money->simbolo ?></td>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
     </div>
     <!-- Columna derecha: formulario -->
-    <form method="POST"  id="miFormulario">
-        
+    <form method="POST" id="miFormulario">
+
         <div style="flex: 1; display: flex; flex-direction: column; gap: 10px;">
             <div style="display: flex; flex-direction: column;">
                 <span>Código:</span>
@@ -45,12 +45,12 @@
             </div>
         </div>
         <div>
-            
+
         </div>
     </form>
 </div>
 <div style="margin-top: 16px; display:flex; justify-content: space-around;">
-    <button class="btn btn-primary money_submit"  style="width: 92px;" type="submit">Grabar</button>
-    <button class="btn btn-primary money_submit" style="width: 92px;" type="submit" >Modificar</button>
-    <button class="btn btn-primary money_submit" style="width: 92px;" type="submit" >Eliminar</button>
+    <button class="btn btn-primary money_submit" style="width: 92px;" type="submit">Grabar</button>
+    <button class="btn btn-primary money_submit" style="width: 92px;" type="submit">Modificar</button>
+    <button class="btn btn-primary money_submit" style="width: 92px;" type="submit">Eliminar</button>
 </div>
