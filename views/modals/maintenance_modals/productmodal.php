@@ -62,7 +62,7 @@
             <div style="display: flex; flex-direction: column; gap: 10px; width: 48%;">
                 <div style="display: flex; flex-direction: column;">
                     <label for="descripcion">Descripción:</label>
-                    <input style="height:32px;" type="text" id="descripcion" name="descripcion">
+                    <textarea style="height: 98px; width: 100%; word-wrap: break-word;" id="descripcion" name="descripcion"></textarea>
                 </div>
 
                 <div style="display: flex; flex-direction: column;">
@@ -80,11 +80,11 @@
                     <div>
                         <label for="unidad">Unidad:</label>
                         <select style="height:32px;" id="unidad" name="unidad">
-                        <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/Models/Unidad.php');
-                        $unidades = Unidad::getUnidades();
-                        foreach ($unidades as $unidad) { ?>
-                            <option value="<?= $unidad->id_unidad ?>"><?= $unidad->abreviatura ?></option>
-                        <?php } ?>
+                            <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/Models/Unidad.php');
+                            $unidades = Unidad::getUnidades();
+                            foreach ($unidades as $unidad) { ?>
+                                <option value="<?= $unidad->id_unidad ?>"><?= $unidad->abreviatura ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <div style="margin-left:12px;">
@@ -136,7 +136,7 @@
         </div>
     </div>
     <div style="flex: 60%; border-left:1.25px solid lightgray; padding-left: 16px;">
-        <h4 style="text-align:center;">Listado de Productos</h4>
+        <h4 style="text-align:center;">Listado de Productos <button onclick="listarProductosMantenimiento()">Listar</button></h4>
         Filtrar por razon social: <input type="text" onkeyup="FiltrarProductosMantenimiento(this.value)" id="filtroProductos">
         Filtrar por Línea de Productos: <select name="" id="" onchange="FiltrarLineaProductosMantenimiento(this.value)">
             <option value="0">Ingrese línea</option>
@@ -172,34 +172,8 @@
                         <th>Stock</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php
-                    require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Producto.php");
-                    $data = Producto::getProductos();
-                    foreach ($data as $product) {
-                    ?>
-                        <tr>
-                            <td><?= $product->id_producto ?></td>
-                            <td><?= $product->nombre_producto ?></td>
-                            <td><?= $product->precio_venta ?></td>
-                            <td><?= $product->precio_compra ?></td>
-                            <td><?= $product->moneda ?></td>
-                            <td><?= $product->marca ?></td>
-                            <td><?= $product->unidad ?></td>
-                            <td><?= $product->volumen ?></td>
-                            <td><?= $product->stock_min ?></td>
-                            <td><?= $product->stock_max ?></td>
-                            <td><?= $product->stock ?></td>
-                            <td style="display:none;"><?= $product->id_moneda ?></td>
-                            <td style="display:none;"><?= $product->procedencia ?></td>
-                            <td style="display:none;"><?= $product->id_marca ?></td>
-                            <td style="display:none;"><?= $product->id_linea ?></td>
-                            <td style="display:none;"><?= $product->imagen ?></td>
-                            <td style="display:none;"><?= $product->descripcion ?></td>
-                            <td style="display:none;"><?= $product->id_unidad ?></td>
-                            <td style="display:none;"><?= $product->estado ?></td>
-                        </tr>
-                    <?php } ?>
+                <tbody id="productsTableBody">
+
                 </tbody>
             </table>
         </div>

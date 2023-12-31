@@ -38,6 +38,18 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/exchangerate.php')">
+                  <i class="bi bi-grid"></i>
+                  TIPO DE CAMBIO
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/buyorder.php')">
+                  <i class="bi bi-grid"></i>
+                  COMPRA
+                </a>
+              </li>
+              <li class="nav-item">
                 <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-table"></i>
@@ -50,12 +62,6 @@
                     <li class="nav-item"><a href="#" class="nav-link">Estado de Cuenta</a></li>
                   </ul>
                 </div>
-              <li class="nav-item">
-                <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/buyorder.php')">
-                  <i class="bi bi-grid"></i>
-                  COMPRA
-                </a>
-              </li>
               <li class="nav-item">
                 <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="reportsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -89,18 +95,30 @@
                 </a>
               </li>
               <li class="nav-item">
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="reportsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-table"></i>
+                    PERSONAL
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="reportsDropdown">
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/staffmaintenance.php')">Mantenimiento de Personal</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/staffpermissions.php')">Asignar Permisos</a></li>
+                  </ul>
+                </div>
+              </li>
+              <!-- <li class="nav-item">
                 <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/users.php')">
                   <i class="bi bi-people"></i>
                   USUARIOS
                 </a>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
       </nav>
       <div class="main__content">
         <?php include 'views/home.php'; ?>
-        <?php include 'views/modals/alertModal.php'; ?>
+        <?php include 'views/modals/alerts/alertModal.php'; ?>
       </div>
     </div>
   </main>
@@ -120,6 +138,7 @@
   <script src="assets/js/kardexController.js"></script>
   <script src="assets/js/maintenance/filtrosTablas.js"></script>
   <script src="assets/js/maintenance/maintenance_modals.js"></script>
+  <script src="assets/js/alerts/alertmodal.js"></script>
 </body>
 
 </html>
