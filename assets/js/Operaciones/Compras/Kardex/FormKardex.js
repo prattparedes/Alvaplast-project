@@ -29,7 +29,7 @@ document
 
             // Crear una solicitud XMLHttpRequest
             const xhr = new XMLHttpRequest();
-            const url = "/Alvaplast-project/Controller/KardexController.php"; // Ruta del controlador PHP
+            const url = "/Alvaplast-project/Controller/Operaciones/Compras/Kardex/KardexController.php"; // Ruta del controlador PHP
 
             // Configurar la solicitud
             xhr.open("POST", url, true);
