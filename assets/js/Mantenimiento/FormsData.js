@@ -57,8 +57,14 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         const idAlmacen = document.getElementById("almacen").value;
         const tipoPago = document.getElementById("tipoPago").value;
         const idPersonal = 2;
+        const TipoMetodo = document.getElementById("metodo").value;
         const cadena = event.target.innerHTML.split(' ');
-        const metodo = cadena[0];
+        var metodo;
+        if (TipoMetodo) {
+            metodo = TipoMetodo;
+        } else {
+            metodo = cadena[0];
+        }
 
 
         // Crear una solicitud XMLHttpRequest
@@ -126,7 +132,11 @@ function RegistrarDatosTabla(idCompra, metodo) {
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     console.log(http.responseText);
-                    loadContent("views/buyorder.php");
+                    if (metodo == "eliminar") {
+
+                    } else {
+                        loadContent("views/buyorder.php");
+                    }
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la insercion de los datos');

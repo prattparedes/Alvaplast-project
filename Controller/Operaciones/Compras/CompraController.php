@@ -1,5 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Operaciones/Compras/Compra.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Operaciones/Compras/CompraProducto.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Operaciones/Movimientos/Movimiento.php");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -21,9 +22,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($_POST["metodo"] == "Grabar") {
         $result = Compra::RegistrarCompra($idCompra, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $idProveedor, $idAlmacen, $tipoPago, $idPersonal);
         $message = "Compra grabada";
-    } else if ($_POST["metodo"] == "Modificar") {
+    } else if ($_POST["metodo"] == "modificar") {
         $data = Movimiento::BuscarMovimientoCompra($idCompra);
-        if ($data->id_movimiento == $idCompra) {
+        if ($data) {
         } else {
             $result = Compra::ModificarCompra($idCompra, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $idProveedor, $idAlmacen, $tipoPago, $idPersonal);
             if ($result) {
@@ -38,9 +39,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $message = "Compra Eliminada";
         }
     }
-    if ($result) {
-        echo $message;
-    }
+
+    echo $message;
 }
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $idCompra = $_GET["idCompra"];

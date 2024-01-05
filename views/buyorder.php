@@ -10,9 +10,9 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/Models/Mantenimient
     </div>
 
     <div class="btns__right">
-        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg buy_submit">Grabar <i class="bi bi-floppy"></i></button>
+        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg buy_submit" id="nuevo ">Grabar <i class="bi bi-floppy"></i></button>
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg" id="modificarFormulario">Modificar <i class="bi bi-pencil-square"></i></button>
-        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Eliminar <i class="bi bi-trash"></i></button>
+        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg buy_submit">Eliminar <i class="bi bi-trash"></i></button>
         <button type="button" class="order__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('buyorderlist')">Buscar <i class="bi bi-search"></i></i></button>
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
     </div>
@@ -24,6 +24,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/Models/Mantenimient
         <p style="font-size: 28px;">Orden de Compra N°: 001-<span id="numerocompra"><?= Compra::getIdCompra(); ?></span></p>
         <form action="/ruta/donde/enviar" method="POST" class="row g-3">
             <!-- Columna Izquierda -->
+            <input type="hidden" id="metodo" value="">
             <div style="display: flex; flex-direction: column; gap: 10px;">
                 <div style="display: flex; gap: 10px;">
                     <div class="col-md-6" style="display: flex; flex-direction: column;">

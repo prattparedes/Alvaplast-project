@@ -1,6 +1,5 @@
     <script src="assets/js/loadcontent.js"></script>
     <script src="assets/js/modals.js"></script>
-    <script src="assets/js/orders"></script>
     <script src="assets/js/Mantenimiento/FormsData.js"></script>
     <script src="assets/js/Mantenimiento/loadDataModals.js"></script>
     <script src="assets/js/Mantenimiento/filtrosTablas.js"></script>

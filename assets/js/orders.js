@@ -131,28 +131,28 @@ function establecerFechaHora() {
 }
 
 function limpiarFormularioCompra() {
-    // Limpiar tabla de precios
-    const preciosTable = document.getElementById("preciosTable");
-    const productSubtotal = document.getElementById("productsubtotal");
-    const productIgv = document.getElementById("productigv");
-    const productTotal = document.getElementById("productTotal");
-  
-    preciosTable.querySelectorAll("td").forEach((td) => {
-      td.textContent = "0.00";
-    });
-  
-    // Limpiar formulario de compra
-    const formInputs = document.querySelectorAll("#almacen, #descripcion, #direccion, #fecha, #moneda, #proveedor, #sucursal, #tipoPago");
-    formInputs.forEach((input) => {
-      if (input.tagName === "SELECT") {
-        input.value = "";
-      } else {
-        input.value = "";
-      }
-    });
-  
-    // Limpiar tabla de orden
-    const orderTable = document.getElementById("ordertable");
-    const orderTableBody = orderTable.querySelector("tbody");
-    orderTableBody.innerHTML = "";
+  // Limpiar tabla de precios
+  const preciosTable = document.getElementById("preciosTable");
+  const productSubtotal = document.getElementById("productsubtotal");
+  const productIgv = document.getElementById("productigv");
+  const productTotal = document.getElementById("productTotal");
+
+  preciosTable.querySelectorAll("td").forEach((td) => {
+    td.textContent = "0.00";
+  });
+
+  // Limpiar formulario de compra
+  const formInputs = document.querySelectorAll("#almacen, #descripcion, #direccion, #fecha, #moneda, #proveedor, #sucursal, #tipoPago");
+  formInputs.forEach((input) => {
+    if (input.tagName === "SELECT") {
+      input.value = "";
+    } else {
+      input.value = "";
+    }
+  });
+
+  // Limpiar tabla de orden
+  const orderTable = document.getElementById("ordertable");
+  const orderTableBody = orderTable.querySelector("tbody");
+  orderTableBody.innerHTML = "";
 }

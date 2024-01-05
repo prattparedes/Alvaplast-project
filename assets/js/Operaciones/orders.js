@@ -1,9 +1,12 @@
-// Activar los botones/formulario y desactivarlos en Sección orden de Venta/Compra
 let elementosActivados = false; // Control de estado para los elementos
 let buscarActivo = true; // Control de estado para el quinto botón
 
 document.querySelector(".main__content").addEventListener("click", function (event) {
   if (event.target.id === "neworder") {
+    //Limpiar datos del formulario completo
+    limpiarFormularioCompra()
+
+    //Referenciar elementos
     const botones = document.querySelectorAll('.order__btn:not(#openModalButton)');
     const botonSeleccionarProducto = document.getElementById('selectproduct');
     const botonAñadirProducto = document.getElementById('addproduct');
@@ -11,7 +14,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     const iconoTresPuntos = document.getElementById('threeDotsIco');
     const botonesInactivos = document.querySelectorAll('.order__btn--inactive');
     const formularios = document.querySelectorAll("input, select, textarea");
-    document.getElementById("fecha").value = establecerFechaHora();;
+    document.getElementById("fecha").value = establecerFechaHora();
 
     if (!elementosActivados) {
       botonesInactivos.forEach(function (boton) {
@@ -61,7 +64,6 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     }
   }
 });
-
 
 // Activar los botones/formulario y desactivarlos en Sección Facturación
 document.querySelector(".main__content").addEventListener("click", function (event) {
@@ -126,7 +128,32 @@ function establecerFechaHora() {
   return fechaHora;
 }
 
+function limpiarFormularioCompra() {
+  // Limpiar tabla de precios
+  const preciosTable = document.getElementById("preciosTable");
+  const productSubtotal = document.getElementById("productsubtotal");
+  const productIgv = document.getElementById("productigv");
+  const productTotal = document.getElementById("productTotal");
 
+  preciosTable.querySelectorAll("td").forEach((td) => {
+    td.textContent = "0.00";
+  });
+
+  // Limpiar formulario de compra
+  const formInputs = document.querySelectorAll("#almacen, #descripcion, #direccion, #fecha, #moneda, #proveedor, #sucursal, #tipoPago");
+  formInputs.forEach((input) => {
+    if (input.tagName === "SELECT") {
+      input.value = "";
+    } else {
+      input.value = "";
+    }
+  });
+
+  // Limpiar tabla de orden
+  const orderTable = document.getElementById("ordertable");
+  const orderTableBody = orderTable.querySelector("tbody");
+  orderTableBody.innerHTML = "";
+}
 
 // Añadir nueva fila en la tabla de órdenes de venta/compra
 let datosProducto = [];
@@ -366,6 +393,7 @@ document.addEventListener("click", function (event) {
     !event.target.classList.contains("order__btn--inactive")
   ) {
     //Referenciar elementos
+    this.getElementById("metodo").value = "modificar";
     const botónModificar = document.getElementById("modificarFormulario");
     const botonSeleccionarProducto = document.getElementById("selectproduct");
     const botonAñadirProducto = document.getElementById("addproduct");
@@ -396,6 +424,7 @@ document.addEventListener("click", function (event) {
     } else {
       restaurarCopiaSeguridadCompra();
       //Quitar el disabled a los inputs y botones del formulario
+      document.getElementById("metodo").value = "";
       modificarActivo = false;
       elementosActivados = false;
       botónModificar.innerHTML = `Modificar <i class="bi bi-pencil-square"></i>`;
@@ -597,11 +626,8 @@ document
     modalBackground.classList.add("modal__inactive");
 
     // Cambiar estado de botones
-    const botónNuevaOrder = document.getElementById("neworder");
+    const botónNuevaOrder = document.getElementById("nuevo");
     const botonesInactivos = document.querySelectorAll(".order__btn--inactive");
-    botónNuevaOrder.innerHTML = "Nueva Orden de Compra X";
-    botónNuevaOrder.classList.add("order__btn--red");
-
     document
       .getElementById("openModalButton")
       .classList.add("order__btn--inactive");
@@ -616,6 +642,7 @@ document
 
 // Función para pasar los datos obtenidos de la lista de compras al formulario de compras
 function rellenarFormularioCompra(datosCompra, datosProductos, datosProveedor) {
+  const idCompra = document.getElementById("numerocompra");
   const proveedorInput = document.getElementById("proveedor");
   const direccionInput = document.getElementById("direccion");
   const sucursalSelect = document.getElementById("sucursal");
@@ -627,6 +654,7 @@ function rellenarFormularioCompra(datosCompra, datosProductos, datosProveedor) {
   const descripcionTextarea = document.getElementById("descripcion");
 
   //Rellenar Formulario
+  idCompra.innerText = datosCompra.serie_documento;
   proveedorInput.value = datosProveedor.razon_social;
   direccionInput.value = datosProveedor.direccion;
   sucursalSelect.value = "1";
