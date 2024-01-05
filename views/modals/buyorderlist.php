@@ -2,7 +2,7 @@
 <span style="font-weight: 600; width:fit-content;">Filtrar por proveedor: <input type="text" style="width: 240px;" id="compraFiltro" onkeyup="FiltrarComprasXProveedor()"></span><button class="modal__btn--search">Buscar</button>
 <hr>
 <div class="modal__table--container">
-    <table class="table modal__table" id="comprasLista">
+    <table class="table modal__table" id="buyorderslist">
         <thead>
             <tr>
                 <th>Proveedor</th>
@@ -14,20 +14,20 @@
             </tr>
         </thead>
         <tbody>
-           <?php
-            require_once($_SERVER["DOCUMENT_ROOT"].'/Alvaplast-project/Models/Operaciones/Compras/Compra.php');
+            <?php
+            require_once($_SERVER["DOCUMENT_ROOT"] . '/Alvaplast-project/Models/Operaciones/Compras/Compra.php');
             $compras = Compra::getCompras();
-            foreach($compras as $compra){
-           ?>
-            <tr>
-                <td><?=$compra->razon_social?></td>
-                <td><?=$compra->numero_documento.$compra->serie_documento?></td>
-                <td><?=explode(' ',$compra->fecha_compra)[0]?></td>
-                <td><?=$compra->Moneda?></td>
-                <td><?=$compra->total?></td>
-                <td><?=$compra->Personal?></td>
-            </tr>
-            <?php }?>
+            foreach ($compras as $compra) {
+            ?>
+                <tr>
+                    <td><?= $compra->razon_social ?></td>
+                    <td><?= $compra->numero_documento . $compra->serie_documento ?></td>
+                    <td><?= explode(' ', $compra->fecha_compra)[0] ?></td>
+                    <td><?= $compra->Moneda ?></td>
+                    <td><?= $compra->total ?></td>
+                    <td><?= $compra->Personal ?></td>
+                </tr>
+            <?php } ?>
         </tbody>
     </table>
 </div>

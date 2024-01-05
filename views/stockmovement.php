@@ -16,7 +16,7 @@
             </select>
         </div>
         <div>
-            <span style="display:inline-block; width:80px;">Filtro:</span> <input type="text"> <button>Buscar</button>
+            <span style="display:inline-block; width:80px;">Filtro:</span> <input type="text" id="filtroProductos" onkeyup="FiltrarListaProductosKardex()">
         </div>
         <hr>
         <div class="table--container">
@@ -45,14 +45,19 @@
     </div>
     <div class="kardex__right">
         <div style="display:flex; align-items:center; ">
-            Stock Físico Final: <span id="stockfinal" style="font-weight:700; margin-left:8px;">-</span>
+            <div style="display:flex; flex-direction:column;">
+                <p id="productoSeleccionadoKardex" style="font-weight:700;">-</p>
+                <div>
+                    Stock Físico Final: <span id="stockfinal" style="font-weight:700; margin-left:8px;">-</span>
+                </div>
+            </div>
             <div style="margin-left: 80px;">
                 <p>Desde: <input type="date" id="fecha1" name="fecha1"></p>
-                <p style="margin-bottom:0;">Hasta: <input type="date" id="fecha1" name="fecha2"></p>
+                <p style="margin-bottom:0;">Hasta: <input type="date" id="fecha2" name="fecha2"></p>
             </div>
             <div style="margin-left: 20px;">
-                <button type="button" class="order__btn btn btn-primary btn-lg">Consultar <i class="bi bi-search"></i></i></button>
-                <button type="button" class="order__btn btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
+                <button type="button" class="order__btn btn btn-primary btn-lg" onclick="filtrarKardexPorFechas()">Consultar <i class="bi bi-search"></i></i></button>
+                <button type="button" class="order__btn btn btn-primary btn-lg" onclick="exportarPDF()">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
             </div>
         </div>
         <hr>

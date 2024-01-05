@@ -1,8 +1,8 @@
-<?php 
-require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Operaciones/Compras/Compra.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Mantenimiento/Sucursal.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Mantenimiento/Moneda.php');
-require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Mantenimiento/Almacen.php');
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/Models/Operaciones/Compras/Compra.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/Models/Mantenimiento/Sucursal.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/Models/Mantenimiento/Moneda.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/Models/Mantenimiento/Almacen.php');
 ?>
 <div class="buyorder">
     <div class="btns__left">
@@ -11,8 +11,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Mantenimiento/
 
     <div class="btns__right">
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg buy_submit">Grabar <i class="bi bi-floppy"></i></button>
-        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg buy_submit">Modificar <i class="bi bi-pencil-square"></i></button>
-        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg buy_submit">Eliminar <i class="bi bi-trash"></i></button>
+        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg" id="modificarFormulario">Modificar <i class="bi bi-pencil-square"></i></button>
+        <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Eliminar <i class="bi bi-trash"></i></button>
         <button type="button" class="order__btn btn btn-primary btn-lg" id="openModalButton" onclick="loadModalContent('buyorderlist')">Buscar <i class="bi bi-search"></i></i></button>
         <button type="button" class="order__btn order__btn--inactive btn btn-primary btn-lg">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
     </div>
@@ -21,7 +21,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Mantenimiento/
 
 <div style="display:flex;">
     <div class="order__left">
-        <p style="font-size: 28px;">Orden de Compra N°: <span id="numerocompra"><?=Compra::getIdCompra();?></span></p>
+        <p style="font-size: 28px;">Orden de Compra N°: 001-<span id="numerocompra"><?= Compra::getIdCompra(); ?></span></p>
         <form action="/ruta/donde/enviar" method="POST" class="row g-3">
             <!-- Columna Izquierda -->
             <div style="display: flex; flex-direction: column; gap: 10px;">
@@ -47,19 +47,19 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Mantenimiento/
                         <label for="sucursal" class="form-label">Sucursal</label>
                         <select name="sucursal" class="form-select" style="width:50%;" id="sucursal" disabled>
                             <option value="">Seleccionar </option>
-                            <?php 
-                            $data= Sucursal::getSucursales();?>
-                                <option value="<?=$data->id_compra?>"><?=$data->descripcion?></option>
+                            <?php
+                            $data = Sucursal::getSucursales(); ?>
+                            <option value="<?= $data->id_sucursal ?>"><?= $data->descripcion ?></option>
                         </select>
                     </div>
                     <div class="col-md-6" style="display: flex; flex-direction: column;">
                         <label for="moneda" class="form-label">Moneda</label>
                         <select class="form-select" style="width:50%;" id="moneda" name="moneda" disabled>
-                                    <option value="">Seleccionar una moneda</option> 
-                        <?php $monedas = Moneda::getMonedas();
-                        foreach($monedas as $moneda){?>
-                            <option value="<?=$moneda->id_moneda?>"><?=$moneda->descripcion?></option>
-                        <?php }?>
+                            <option value="">Seleccionar una moneda</option>
+                            <?php $monedas = Moneda::getMonedas();
+                            foreach ($monedas as $moneda) { ?>
+                                <option value="<?= $moneda->id_moneda ?>"><?= $moneda->descripcion ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>
@@ -68,12 +68,12 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Mantenimiento/
                     <div class="col-md-6" style="display: flex; flex-direction: column;">
                         <label for="almacen" class="form-label">Almacén</label>
                         <select name="almacen" class="form-select" style="width:50%;" id="almacen" disabled>
-                        <option value="">Seleccionar almacen</option>
-                        <?php 
-                        $almacenes = Almacen::getAlmacenes();
-                        foreach($almacenes as $almacen){?>
-                            <option value="<?=$almacen->id_almacen?>"><?=$almacen->descripcion?></option>
-                        <?php }?>
+                            <option value="">Seleccionar almacen</option>
+                            <?php
+                            $almacenes = Almacen::getAlmacenes();
+                            foreach ($almacenes as $almacen) { ?>
+                                <option value="<?= $almacen->id_almacen ?>"><?= $almacen->descripcion ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                     <!-- Tipo de Pago -->
@@ -186,8 +186,8 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/Alvaplast-project/Models/Mantenimiento/
                         <td style="border-right: none;">0.00</td>
                         <td style="border-right: none;">0.00</td>
                         <td style="border-right: none;" id="productsubtotal">0.00</td>
-                        <td style="border-right: none; border-bottom: none;" id="productigv" >0.00</td>
-                        <td style="border-bottom: none;" id="productTotal" >0.00</td>
+                        <td style="border-right: none; border-bottom: none;" id="productigv">0.00</td>
+                        <td style="border-bottom: none;" id="productTotal">0.00</td>
                     </tr>
                 </tbody>
             </table>

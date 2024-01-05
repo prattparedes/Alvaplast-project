@@ -356,3 +356,316 @@ document
       modalBackground.classList.add("modal__inactive");
     }
   });
+
+
+// Botón Modificar Habilitar y Deshabilitar inputs
+let modificarActivo = false;
+document.addEventListener("click", function (event) {
+  if (
+    event.target.id === "modificarFormulario" &&
+    !event.target.classList.contains("order__btn--inactive")
+  ) {
+    //Referenciar elementos
+    const botónModificar = document.getElementById("modificarFormulario");
+    const botonSeleccionarProducto = document.getElementById("selectproduct");
+    const botonAñadirProducto = document.getElementById("addproduct");
+    const botonTresPuntos = document.getElementById("threeDotsButton");
+    const iconoTresPuntos = document.getElementById("threeDotsIco");
+    const formularios = document.querySelectorAll("input, select, textarea");
+    const spanProductos = document.querySelectorAll(".productspan");
+
+    if (!modificarActivo) {
+      guardarCopiaSeguridadCompra();
+      modificarActivo = true;
+      //Quitar el disabled a los inputs y botones del formulario
+      elementosActivados = true;
+      botónModificar.innerHTML = `Cancelar <i class="bi bi-x-circle"></i>`;
+      formularios.forEach(function (formulario) {
+        formulario.removeAttribute("disabled");
+      });
+      botonSeleccionarProducto.classList.remove("order__btn--inactive");
+      botonAñadirProducto.classList.remove("order__btn--inactive");
+      botonTresPuntos.classList.remove("order__btn--inactive");
+      iconoTresPuntos.classList.remove("order__btn--inactive");
+
+      // Quitar la clase inactiva al span de la tabla de productos
+
+      spanProductos.forEach((span) => {
+        span.classList.remove("productspan--inactive");
+      });
+    } else {
+      restaurarCopiaSeguridadCompra();
+      //Quitar el disabled a los inputs y botones del formulario
+      modificarActivo = false;
+      elementosActivados = false;
+      botónModificar.innerHTML = `Modificar <i class="bi bi-pencil-square"></i>`;
+
+      formularios.forEach(function (formulario) {
+        formulario.setAttribute("disabled", "disabled");
+      });
+
+      botonSeleccionarProducto.classList.add("order__btn--inactive");
+      botonAñadirProducto.classList.add("order__btn--inactive");
+      botonTresPuntos.classList.add("order__btn--inactive");
+      iconoTresPuntos.classList.add("order__btn--inactive");
+
+      // Quitar la clase inactiva al span de la tabla de productos
+      spanProductos.forEach((span) => {
+        span.classList.add("productspan--inactive");
+      });
+    }
+  }
+});
+
+let copiaSeguridadFormulario = {};
+function guardarCopiaSeguridadCompra() {
+  console.log("haciendo copia de seguridad");
+  // Obtener filas de la tabla productos
+  const tablaProductos = document.getElementById("ordertable");
+  const filasProductos = tablaProductos.querySelectorAll("tbody tr");
+
+  // Obtener tabla precios
+  const preciosTabla = document.getElementById("preciosTable");
+  const celdasPrecios = preciosTabla.querySelectorAll("tbody td");
+  const datosPrecios = [];
+
+  // Guardar datos de la tabla de precios en un array
+  celdasPrecios.forEach((celda, index) => {
+    if (index < 5) {
+      datosPrecios.push(celda.innerText);
+    }
+  });
+
+  // Guardar las claves y valores principales
+  copiaSeguridadFormulario = {
+    proveedor: document.getElementById("proveedor").value,
+    direccion: document.getElementById("direccion").value,
+    sucursal: document.getElementById("sucursal").value,
+    moneda: document.getElementById("moneda").value,
+    almacen: document.getElementById("almacen").value,
+    tipoPago: document.getElementById("tipoPago").value,
+    fecha: document.getElementById("fecha").value,
+    descripcion: document.getElementById("descripcion").value,
+    precios: datosPrecios, // Guardar el array con los valores de la tabla precios
+    productos: [], // Inicializar un array vacío para los productos
+  };
+
+  // Guardar los datos de las filas de productos en el array correspondiente
+  filasProductos.forEach((fila) => {
+    const columnas = fila.querySelectorAll("td");
+
+    const rowData = {
+      id_producto: columnas[0].innerText,
+      producto: columnas[1].innerText,
+      cantidad: columnas[2].innerText,
+      unidad: columnas[3].innerText,
+      precioCompra: columnas[4].innerText,
+      descuento: columnas[5].innerText,
+      total: columnas[6].innerText,
+    };
+
+    copiaSeguridadFormulario.productos.push(rowData);
+  });
+}
+
+//Restaurar copia de seguridad
+function restaurarCopiaSeguridadCompra() {
+  console.log("restaurando");
+  // Restaurar los valores de la tabla de precios
+  const preciosTabla = document.getElementById("preciosTable");
+  const celdasPrecios = preciosTabla.querySelectorAll("tbody td");
+
+  copiaSeguridadFormulario.precios.forEach((precio, index) => {
+    if (index < 5) {
+      celdasPrecios[index].innerText = precio;
+    }
+  });
+
+  // Restaurar los valores de la tabla de productos
+  const tablaProductos = document.getElementById("ordertable");
+  const cuerpoTablaProductos = tablaProductos.querySelector("tbody");
+
+  // Limpiar la tabla de productos antes de restaurar los datos
+  cuerpoTablaProductos.innerHTML = "";
+
+  copiaSeguridadFormulario.productos.forEach((producto) => {
+    const nuevaFila = document.createElement("tr");
+
+    const columnasProducto = [
+      producto.id_producto,
+      producto.producto,
+      producto.cantidad,
+      producto.unidad,
+      producto.precioCompra,
+      producto.descuento,
+      producto.total,
+    ];
+
+    columnasProducto.forEach((columna, index) => {
+      const nuevaCelda = document.createElement("td");
+      nuevaCelda.textContent = columna;
+
+      // Aplicar display: none al primer td (con id="id_producto")
+      if (index === 0) {
+        nuevaCelda.id = "id_producto";
+        nuevaCelda.style.display = "none";
+      }
+
+      nuevaFila.appendChild(nuevaCelda);
+    });
+
+    cuerpoTablaProductos.appendChild(nuevaFila);
+  });
+
+  // Restaurar los valores principales del formulario
+  document.getElementById("proveedor").value =
+    copiaSeguridadFormulario.proveedor;
+  document.getElementById("direccion").value =
+    copiaSeguridadFormulario.direccion;
+  document.getElementById("sucursal").value = copiaSeguridadFormulario.sucursal;
+  document.getElementById("moneda").value = copiaSeguridadFormulario.moneda;
+  document.getElementById("almacen").value = copiaSeguridadFormulario.almacen;
+  document.getElementById("tipoPago").value = copiaSeguridadFormulario.tipoPago;
+  document.getElementById("fecha").value = copiaSeguridadFormulario.fecha;
+  document.getElementById("descripcion").value =
+    copiaSeguridadFormulario.descripcion;
+}
+// Pasar datos del Listado de Órdenes de Compra al formulario compras (Botón Consultar)
+document
+  .querySelector(".main__content")
+  .addEventListener("dblclick", async function (event) {
+    const isModalTable = event.target.closest("#buyorderslist");
+
+    if (!isModalTable) return;
+
+    const fila = event.target.closest("tr");
+    const columnas = fila.querySelectorAll("td");
+
+    // Obtener el valor de la segunda columna (posición 1 en base a índices)
+    const valorSegundaColumna = columnas[1].innerText.trim().substring(3);
+
+    // URLs dinámicas basadas en los valores extraídos
+    const urlCompra = `http://localhost/Alvaplast-project/Controller/Operaciones/Compras/CompraController.php?idCompra=${valorSegundaColumna}`;
+    const urlCompraProducto = `http://localhost/Alvaplast-project/Controller/Operaciones/Compras/CompraProductoController.php?idCompra=${valorSegundaColumna}`;
+
+    try {
+      // Realizar las solicitudes fetch para obtener los datos de Compra y Compra Producto
+      const [responseCompra, responseCompraProducto] = await Promise.all([
+        fetch(urlCompra),
+        fetch(urlCompraProducto),
+      ]);
+
+      if (!responseCompra.ok || !responseCompraProducto.ok) {
+        throw new Error("Error al obtener los datos.");
+      }
+
+      const [datosCompra, datosCompraProducto] = await Promise.all([
+        responseCompra.json(),
+        responseCompraProducto.json(),
+      ]);
+
+      // Obtener la dirección del proveedor
+      const urlProveedor = `http://localhost/Alvaplast-project/Controller/Mantenimiento/ProveedorController.php?idProveedor=${datosCompra.id_proveedor}`;
+      const responseProveedor = await fetch(urlProveedor);
+
+      if (!responseProveedor.ok) {
+        throw new Error("Error al obtener los datos del proveedor.");
+      }
+
+      const [datosProveedor] = await responseProveedor.json();
+
+      // Hacer algo con los datos obtenidos
+      rellenarFormularioCompra(
+        datosCompra,
+        datosCompraProducto,
+        datosProveedor
+      );
+      console.log("Datos Compra:", datosCompra);
+      console.log("Datos Compra Producto:", datosCompraProducto);
+      console.log("Dirección del proveedor:", datosProveedor.direccion);
+
+      // Ejemplo: asignar la dirección del proveedor a un campo del formulario
+      // document.getElementById('campoDireccionProveedor').value = datosProveedor.direccion;
+
+      // ... resto del código para manipular los datos según sea necesario
+    } catch (error) {
+      console.error(error);
+    }
+
+    // Cerrar el modal
+    var modalBackground = document.querySelector(".modal__background");
+    modalBackground.classList.add("modal__inactive");
+
+    // Cambiar estado de botones
+    const botónNuevaOrder = document.getElementById("neworder");
+    const botonesInactivos = document.querySelectorAll(".order__btn--inactive");
+    botónNuevaOrder.innerHTML = "Nueva Orden de Compra X";
+    botónNuevaOrder.classList.add("order__btn--red");
+
+    document
+      .getElementById("openModalButton")
+      .classList.add("order__btn--inactive");
+    buscarActivo = false;
+
+    botonesInactivos.forEach(function (boton) {
+      boton.classList.remove("order__btn--inactive");
+    });
+    document.getElementById("fecha").value = establecerFechaHora();
+    elementosActivados = true;
+  });
+
+// Función para pasar los datos obtenidos de la lista de compras al formulario de compras
+function rellenarFormularioCompra(datosCompra, datosProductos, datosProveedor) {
+  const proveedorInput = document.getElementById("proveedor");
+  const direccionInput = document.getElementById("direccion");
+  const sucursalSelect = document.getElementById("sucursal");
+  const monedaSelect = document.getElementById("moneda");
+  const almacenSelect = document.getElementById("almacen");
+  const tipoPagoSelect = document.getElementById("tipoPago");
+  const fechaInput = document.getElementById("fecha");
+  const igvCheckbox = document.getElementById("igv");
+  const descripcionTextarea = document.getElementById("descripcion");
+
+  //Rellenar Formulario
+  proveedorInput.value = datosProveedor.razon_social;
+  direccionInput.value = datosProveedor.direccion;
+  sucursalSelect.value = "1";
+  monedaSelect.value = datosCompra.id_moneda;
+  almacenSelect.value = datosCompra.id_almacen;
+  tipoPagoSelect.value = datosCompra.tipo_pago;
+  fechaInput.value = datosCompra.fecha_compra;
+  igvCheckbox.checked = true;
+  descripcionTextarea.value =
+    datosCompra.descripcion !== undefined ? datosCompra.descripcion : "";
+
+  // Rellenar Productos
+  const tablaProductos = document.getElementById("ordertable");
+  tablaProductos.querySelector("tbody").innerHTML = "";
+
+  // Iterar sobre los datos de productos y añadir filas a la tabla
+  datosProductos.forEach((producto) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
+      <td style="display: none;">${producto.id_producto}</td>
+      <td>${producto.nombre_producto}</td>
+      <td>${producto.cantidad}</td>
+      <td>${producto.abreviatura}</td>
+      <td>${producto.precio_compra}</td>
+      <td>${producto.descuento}</td>
+      <td>${producto.Sub_Total}</td>
+      <td style="text-align: center;"><span style="color: red; font-weight: 700; cursor: pointer;" class="productspan productspan--inactive">X</span></td>
+    `;
+    tablaProductos.querySelector("tbody").appendChild(row);
+  });
+
+  // Obtener las celdas de la tabla por su ID
+  const productSubtotalCell = document.getElementById("productsubtotal");
+  const productIgvCell = document.getElementById("productigv");
+  const productTotalCell = document.getElementById("productTotal");
+
+  // Asignar valores a las celdas de la tabla con los datos de la compra
+  productSubtotalCell.textContent = datosCompra.subtotal;
+  productIgvCell.textContent = datosCompra.igv;
+  productTotalCell.textContent = datosCompra.total;
+}
+

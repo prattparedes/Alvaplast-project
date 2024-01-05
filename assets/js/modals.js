@@ -17,7 +17,10 @@ document
       }
     }
 
-    if (event.target.id === "closeModalButton") {
+    if (
+      event.target.id === "closeModalButton" ||
+      event.target.classList.contains("closeModalButton")
+    ) {
       modalBackground.classList.add("modal__inactive");
     }
   });

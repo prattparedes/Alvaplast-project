@@ -1,6 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Operaciones/Compras/Compra.php");
-require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Movimiento.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Operaciones/Movimientos/Movimiento.php");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $idCompra = intval($_POST["idCompra"]);
@@ -44,10 +44,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     $idCompra = $_GET["idCompra"];
-    $datos = Movimiento::BuscarMovimientoCompra($idCompra);
-    if ($datos) {
-        echo $datos->id_operacion . " compra registrada en el kardex <br>";
-    }
     $data = Compra::ListarCompraXid($idCompra);
     echo json_encode($data);
 }
