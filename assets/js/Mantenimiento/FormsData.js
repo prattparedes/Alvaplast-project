@@ -66,7 +66,6 @@ document.querySelector(".main__content").addEventListener("click", function (eve
             metodo = cadena[0];
         }
 
-
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
         const url = "/Alvaplast-project/Controller/Operaciones/Compras/CompraController.php"; // Ruta del controlador PHP
@@ -90,6 +89,9 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
                     //Envio de los datos de CompraProducto
+                    if (metodo == "Eliminar") {
+                        loadContent("views/buyorder.php");
+                    }
                     RegistrarDatosTabla(idCompra, metodo);
                 } else {
                     // Hubo un error en la solicitud
@@ -132,11 +134,8 @@ function RegistrarDatosTabla(idCompra, metodo) {
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     console.log(http.responseText);
-                    if (metodo == "eliminar") {
+                    loadContent("views/buyorder.php");
 
-                    } else {
-                        loadContent("views/buyorder.php");
-                    }
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la insercion de los datos');
