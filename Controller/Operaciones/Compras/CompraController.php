@@ -2,6 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Operaciones/Compras/Compra.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Operaciones/Compras/CompraProducto.php");
 require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Operaciones/Movimientos/Movimiento.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Mantenimiento/TipoCambio.php");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $idCompra = intval($_POST["idCompra"]);
@@ -20,7 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     //mensaje de respuesta para la 
     $message = "";
     if ($_POST["metodo"] == "Grabar") {
-        $result = Compra::RegistrarCompra($idCompra, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $idProveedor, $idAlmacen, $tipoPago, $idPersonal);
+        if ($idMoneda == 2) {
+            $tipoCambio = TipoCambio::obtenerTipoCambio("c"); //tenemos que pasar el tipo de orden que es ("v" venta , "c" compra)
+            $result = Compra::RegistrarCompraConCambio($idCompra, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $idProveedor, $idAlmacen, $tipoCambio, $tipoPago, $idPersonal);
+        } else {
+            $result = Compra::RegistrarCompra($idCompra, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $idProveedor, $idAlmacen, $tipoPago, $idPersonal);
+        }
         $message = "Compra grabada";
     } else if ($_POST["metodo"] == "modificar") {
         $data = Movimiento::BuscarMovimientoCompra($idCompra);
