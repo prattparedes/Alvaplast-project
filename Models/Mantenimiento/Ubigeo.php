@@ -13,24 +13,33 @@ class Ubigeo
 
     public static function getProvincias($codigoDepartamento)
     {
-        $con = Connection::Conectar();
-        $query = "EXEC sp_ListarProvicia @Depatamento = :codigoDepartamento";
-        $stmt = $con->prepare($query);
-        $stmt->bindParam(':codigoDepartamento', $codigoDepartamento, PDO::PARAM_STR);
-        $stmt->execute();
-        $provincias = $stmt->fetchAll(PDO::FETCH_OBJ);
+        try {
+            $con = Connection::Conectar();
+            $query = "EXEC sp_ListarProvicia @Depatamento = :codigoDepartamento";
+            $stmt = $con->prepare($query);
+            $stmt->bindParam(':codigoDepartamento', $codigoDepartamento, PDO::PARAM_STR);
+            $stmt->execute();
+            $provincias = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-        return json_encode($provincias);
+            return json_encode($provincias);
+        } catch (Exception $err) {
+            echo $err->getMessage();
+        }
     }
 
-    public static function getDistritos($codigoProvincia) {
-        $con = Connection::Conectar();
-        $query = "EXEC sp_ListarDistritro @Provicia = :codigoProvincia";
-        $stmt = $con->prepare($query);
-        $stmt->bindParam(':codigoProvincia', $codigoProvincia, PDO::PARAM_STR);
-        $stmt->execute();
-        $distritos = $stmt->fetchAll(PDO::FETCH_OBJ);
-    
-        return json_encode($distritos);
+    public static function getDistritos($codigoProvincia)
+    {
+        try {
+            $con = Connection::Conectar();
+            $query = "EXEC sp_ListarDistritro @Provicia = :codigoProvincia";
+            $stmt = $con->prepare($query);
+            $stmt->bindParam(':codigoProvincia', $codigoProvincia, PDO::PARAM_STR);
+            $stmt->execute();
+            $distritos = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+            return json_encode($distritos);
+        } catch (Exception $err) {
+            echo $err->getMessage();
+        }
     }
 }

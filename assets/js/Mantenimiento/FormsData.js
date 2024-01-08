@@ -29,7 +29,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadModalContent("currencieslist");
+                    loadMaintenanceContent('currencieslist');
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');
@@ -43,15 +43,18 @@ document.querySelector(".main__content").addEventListener("click", function (eve
 
 function listarProvincia(ubigeo) {
     // Crear una solicitud XMLHttpRequest
+    if (ubigeo.value == "0") {
+        return;
+    }
     const xhr = new XMLHttpRequest();
-    const url = "/Alvaplast-project/Controller/ubigeoController.php"; // Ruta del controlador PHP
+    const url = "/Alvaplast-project/Controller/Mantenimiento/ubigeoController.php"; // Ruta del controlador PHP
 
     // Configurar la solicitud
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     // Enviar los datos del formulario incluyendo id_almacen y id_producto
-    xhr.send("id_ubigeo=" + ubigeo);
+    xhr.send("id_ubigeo=" + ubigeo.value);
 
     // Manejar la respuesta del servidor
     xhr.onreadystatechange = function () {
@@ -62,7 +65,6 @@ function listarProvincia(ubigeo) {
                     // Convertir la respuesta JSON en un objeto JavaScript
                     const provincias = JSON.parse(xhr.responseText);
                     const parsedProvincias = JSON.parse(provincias);
-
                     // Obtener el select de provincias
                     const selectProvincia = document.getElementById("provincia");
 
@@ -86,16 +88,19 @@ function listarProvincia(ubigeo) {
 }
 
 function listarDistrito(idprovincia) {
+    if (idprovincia.value == "0") {
+        return;
+    }
     // Crear una solicitud XMLHttpRequest
     const xhr = new XMLHttpRequest();
-    const url = "/Alvaplast-project/Controller/ubigeoController.php"; // Ruta del controlador PHP
+    const url = "/Alvaplast-project/Controller/Mantenimiento/ubigeoController.php"; // Ruta del controlador PHP
 
     // Configurar la solicitud
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
     // Enviar los datos del formulario incluyendo id_almacen y id_producto
-    xhr.send("id_provincia=" + idprovincia);
+    xhr.send("id_provincia=" + idprovincia.value);
 
     // Manejar la respuesta del servidor
     xhr.onreadystatechange = function () {
@@ -106,7 +111,6 @@ function listarDistrito(idprovincia) {
                     // Convertir la respuesta JSON en un objeto JavaScript
                     const distritos = JSON.parse(xhr.responseText);
                     const parsedDistritos = JSON.parse(distritos);
-
                     // Obtener el select de provincias
                     const selectDistrito = document.getElementById("distrito");
 

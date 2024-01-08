@@ -18,9 +18,9 @@
             <input type="hidden" id="metodo" name="metodo" value="nuevo">
         </div>
         <div style="margin-top: 16px; display:flex; justify-content: space-around; max-width:360px;">
-            <button class="btn btn-primary" style="width: 92px;" type="submit">Grabar</button>
-            <button class="btn btn-primary" style="width: 92px;" type="button">Modificar</button>
-            <button class="btn btn-primary" style="width: 92px;" type="button">Eliminar</button>
+            <button class="btn btn-primary money_submit" style="width: 92px;" type="submit">Grabar</button>
+            <button class="btn btn-primary money_submit" style="width: 92px;" type="button">Modificar</button>
+            <button class="btn btn-primary money_submit" style="width: 92px;" type="button">Eliminar</button>
         </div>
     </div>
     <div style="flex: 60%; width:500px; border-left:1.25px solid lightgray; padding-left: 16px;">

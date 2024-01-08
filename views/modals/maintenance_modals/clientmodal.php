@@ -35,7 +35,8 @@
         </div>
         <div style="display: flex; flex-direction: column;">
             <label for="departamento">Departamento:</label>
-            <select style="height:32px; width: 50%;" id="departamento" name="departamento">
+            <select style="height:32px; width: 50%;" id="departamento" name="departamento" onchange="listarProvincia(this)">
+                <option value="0">Seleccionar un departamento</option>
                 <?php
                 require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Mantenimiento/Ubigeo.php");
                 $data = Ubigeo::getDepartamentos();
@@ -47,9 +48,7 @@
         </div>
         <div style="display: flex; flex-direction: column;">
             <label for="provincia">Provincia:</label>
-            <select style="height:32px; width: 50%;" id="provincia" name="provincia">
-                <option value="huaral">Huaral</option>
-                <option value="canete">Cañete</option>
+            <select style="height:32px; width: 50%;" id="provincia" name="provincia" onchange="listarDistrito(this)">
             </select>
         </div>
         <div style="display: flex; flex-direction: column;">
