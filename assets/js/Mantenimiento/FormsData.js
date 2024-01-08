@@ -89,6 +89,55 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         };
     }
 });
+//Funcion para mandar datos al ProveedorController
+document.querySelector(".main__content").addEventListener("click", function (event) {
+
+    if (event.target.classList.contains("provider_submit")) {
+        event.preventDefault();
+        // Obtener los datos del formulario
+        const idProveedor = document.getElementById("codigoPro").innerText;
+        const idUbigeo = document.getElementById("distrito").value;
+        const razonSocial = document.getElementById("razonSocial").value;
+        const ruc = document.getElementById("ruc").value;
+        const direccion = document.getElementById("direccion").value;
+        const telefono = document.getElementById("telefono").value;
+        const fax = document.getElementById("fax").value;
+        const contacto = document.getElementById("contacto").value;
+        const email = document.getElementById("email").value;
+        const descripcion = document.getElementById("descripcion").value;
+        const estado = document.getElementById("estado").value;
+        const metodo = event.target.innerHTML;
+        // Crear una solicitud XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+        const url = "/Alvaplast-project/Controller/Mantenimiento/ProveedorController.php"; // Ruta del controlador PHP
+
+        // Configurar la solicitud
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        console.log()
+        if (descripcion && razonSocial) {
+            // Enviar los datos del formulario incluyendo descripcion y abreviatura
+            xhr.send("idProveedor=" + idProveedor + "&idUbigeo=" + idUbigeo + "&razonSocial=" + razonSocial + "&ruc=" + ruc + "&direccion=" + direccion + "&telefono=" + telefono + "&fax=" + fax + "&contacto=" + contacto + "&email=" + email + "&descripcion=" + descripcion + "&estado=" + estado + "&metodo=" + metodo);
+        } else {
+            alert("faltan datos")
+        }
+        // Manejar la respuesta del servidor
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // La solicitud se completó correctamente
+                    // Puedes manejar la respuesta del servidor aquí
+                    alert(xhr.responseText);
+                    loadMaintenanceContent('providermodal');
+                } else {
+                    // Hubo un error en la solicitud
+                    console.error('Error en la solicitud.');
+                }
+            }
+        };
+    }
+});
+
 
 function listarProvincia(ubigeo) {
     // Crear una solicitud XMLHttpRequest

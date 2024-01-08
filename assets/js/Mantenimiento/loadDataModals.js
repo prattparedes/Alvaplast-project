@@ -324,7 +324,7 @@ document
                 const segundoNumero = cuatroDigitos + "00"; // 4 primeros dígitos s + 2 ceros
                 const tercerNumero = proveedorUbicacion; // Los 6 dígitos originales
 
-                document.getElementById("codigo").innerHTML = proveedorCódigo;
+                document.getElementById("codigoPro").innerHTML = proveedorCódigo;
                 document.getElementById("razonSocial").value = proveedorNombre;
                 document.getElementById("ruc").value = proveedorRuc;
                 document.getElementById("direccion").value = proveedorDireccion;
