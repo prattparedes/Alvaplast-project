@@ -4,8 +4,8 @@
     <div style="flex: 40%; display: flex; flex-direction: column; gap: 10px; width:300px">
         <div style="display: flex; flex-direction: row; gap: 20px;">
             <div style="display: flex; flex-direction: column;">
-                <label for="codigo">Código:</label>
-                <span id="codigo">-</span>
+                <label for="codigoCli">Código:</label>
+                <span id="codigoCli">-</span>
             </div>
             <div style="display: flex; flex-direction: column; flex-grow: 1;">
                 <label for="razonSocial">Razón Social:</label>
@@ -35,7 +35,7 @@
         </div>
         <div style="display: flex; flex-direction: column;">
             <label for="departamento">Departamento:</label>
-            <select style="height:32px; width: 50%;" id="departamento" name="departamento" onchange="listarProvincia(this)">
+            <select style="height:32px; width: 50%;" id="departamento" name="departamento" onchange="listarProvincia(this.value)">
                 <option value="0">Seleccionar un departamento</option>
                 <?php
                 require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Mantenimiento/Ubigeo.php");
@@ -48,14 +48,12 @@
         </div>
         <div style="display: flex; flex-direction: column;">
             <label for="provincia">Provincia:</label>
-            <select style="height:32px; width: 50%;" id="provincia" name="provincia" onchange="listarDistrito(this)">
+            <select style="height:32px; width: 50%;" id="provincia" name="provincia" onchange="listarDistrito(this.value)">
             </select>
         </div>
         <div style="display: flex; flex-direction: column;">
             <label for="distrito">Distrito:</label>
             <select style="height:32px; width: 50%;" id="distrito" name="distrito">
-                <option value="cercadoLima">Cercado de Lima</option>
-                <option value="magdalenaMar">Magdalena del Mar</option>
             </select>
         </div>
         <div style="display: flex; flex-direction: row; gap: 20px;">
@@ -76,9 +74,9 @@
             </select>
         </div>
         <div style="margin-top: 16px; display:flex; justify-content: space-around; max-width:360px;">
-            <button class="btn btn-primary" style="width: 92px;" type="submit">Grabar</button>
-            <button class="btn btn-primary" style="width: 92px;" type="button">Modificar</button>
-            <button class="btn btn-primary" style="width: 92px;" type="button">Eliminar</button>
+            <button class="btn btn-primary client_submit" style="width: 92px;" type="submit">Grabar</button>
+            <button class="btn btn-primary client_submit" style="width: 92px;" type="button">Modificar</button>
+            <button class="btn btn-primary client_submit" style="width: 92px;" type="button">Eliminar</button>
         </div>
     </div>
     <div style="flex: 60%; border-left:1.25px solid lightgray; padding-left: 16px;">

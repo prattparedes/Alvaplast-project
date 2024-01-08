@@ -408,7 +408,7 @@ document
                 const segundoNumero = cuatroDigitos + "00"; // 4 primeros dígitos s + 2 ceros
                 const tercerNumero = clienteUbicacion; // Los 6 dígitos originales
 
-                document.getElementById("codigo").innerHTML = clienteCódigo;
+                document.getElementById("codigoCli").innerHTML = clienteCódigo;
                 document.getElementById("razonSocial").value = clienteNombre;
                 document.getElementById("ruc").value = clienteRuc;
                 document.getElementById("direccion").value = clienteDireccion;
@@ -422,6 +422,7 @@ document
                 listarProvincia(primerNumero);
                 document.getElementById("provincia").value = segundoNumero;
                 listarDistrito(segundoNumero);
+                console.log(tercerNumero);
                 document.getElementById("distrito").value = tercerNumero;
             }
         }
