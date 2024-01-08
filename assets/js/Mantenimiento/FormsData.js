@@ -137,7 +137,124 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         };
     }
 });
+//Funcion para mandar datos al lineaController
+document.querySelector(".main__content").addEventListener("click", function (event) {
 
+    if (event.target.classList.contains("line_submit")) {
+        event.preventDefault();
+        // Obtener los datos del formulario
+        const idLinea = document.getElementById("codigoLinea").innerText;
+        const descripcion = document.getElementById("descripcion").value; // Obtener la descripción del formulario // Obtener la abreviatura del formulario
+        const metodo = event.target.innerHTML;
+        // Crear una solicitud XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+        const url = "/Alvaplast-project/Controller/Mantenimiento/LineaController.php"; // Ruta del controlador PHP
+
+        // Configurar la solicitud
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        console.log()
+        if (descripcion) {
+            // Enviar los datos del formulario incluyendo descripcion y abreviatura
+            xhr.send("idLinea=" + idLinea + "&descripcion=" + descripcion + "&metodo=" + metodo);
+        } else {
+            alert("faltan datos")
+        }
+        // Manejar la respuesta del servidor
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // La solicitud se completó correctamente
+                    // Puedes manejar la respuesta del servidor aquí
+                    alert(xhr.responseText);
+                    loadMaintenanceContent('productlines');
+                } else {
+                    // Hubo un error en la solicitud
+                    console.error('Error en la solicitud.');
+                }
+            }
+        };
+    }
+});
+//Formulario de envio de datos para la marcaController
+document.querySelector(".main__content").addEventListener("click", function (event) {
+
+    if (event.target.classList.contains("brand_submit")) {
+        event.preventDefault();
+        // Obtener los datos del formulario
+        const idMarca = document.getElementById("codigo").innerText;
+        const descripcion = document.getElementById("descripcion").value;
+        const metodo = event.target.innerHTML;
+        // Crear una solicitud XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+        const url = "/Alvaplast-project/Controller/Mantenimiento/MarcaController.php"; // Ruta del controlador PHP
+
+        // Configurar la solicitud
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        console.log()
+        if (descripcion) {
+            // Enviar los datos del formulario incluyendo descripcion y abreviatura
+            xhr.send("idMarca=" + idMarca + "&descripcion=" + descripcion + "&metodo=" + metodo);
+        } else {
+            alert("faltan datos")
+        }
+        // Manejar la respuesta del servidor
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // La solicitud se completó correctamente
+                    // Puedes manejar la respuesta del servidor aquí
+                    alert(xhr.responseText);
+                    loadMaintenanceContent('productbrands');
+                } else {
+                    // Hubo un error en la solicitud
+                    console.error('Error en la solicitud.');
+                }
+            }
+        };
+    }
+});
+//Formulario de envio de datos para la unidadontroller
+document.querySelector(".main__content").addEventListener("click", function (event) {
+
+    if (event.target.classList.contains("unit_submit")) {
+        event.preventDefault();
+        // Obtener los datos del formulario
+        const idMarca = document.getElementById("codigo").innerText;
+        const abreviatura = document.getElementById("abreviatura").value;
+        const descripcion = document.getElementById("descripcion").value;
+        const metodo = event.target.innerHTML;
+        // Crear una solicitud XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+        const url = "/Alvaplast-project/Controller/Mantenimiento/UnidadController.php"; // Ruta del controlador PHP
+
+        // Configurar la solicitud
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        console.log()
+        if (descripcion && descripcion) {
+            // Enviar los datos del formulario incluyendo descripcion y abreviatura
+            xhr.send("idUnidad=" + idMarca + "&abreviatura=" + abreviatura + "&descripcion=" + descripcion + "&metodo=" + metodo);
+        } else {
+            alert("faltan datos")
+        }
+        // Manejar la respuesta del servidor
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // La solicitud se completó correctamente
+                    // Puedes manejar la respuesta del servidor aquí
+                    alert(xhr.responseText);
+                    loadMaintenanceContent('productunits');
+                } else {
+                    // Hubo un error en la solicitud
+                    console.error('Error en la solicitud.');
+                }
+            }
+        };
+    }
+});
 
 function listarProvincia(ubigeo) {
     // Crear una solicitud XMLHttpRequest

@@ -4,8 +4,8 @@
     <div style="flex: 40%; display: flex; flex-direction: column; gap: 10px; width:300px">
         <div style="display: flex; flex-direction: row; gap: 20px;">
             <div style="display: flex; flex-direction: column;">
-                <label for="codigo">Código:</label>
-                <span id="codigo">-</span>
+                <label for="codigoLinea">Código:</label>
+                <span id="codigoLinea">-</span>
             </div>
         </div>
         <div style="display: flex; flex-direction: column;">
@@ -13,9 +13,9 @@
             <input style="height:32px; width: 100%;" type="text" id="descripcion" name="descripcion">
         </div>
         <div style="margin-top: 16px; display:flex; justify-content: space-around; max-width:360px;">
-            <button class="btn btn-primary" style="width: 92px;" type="submit">Grabar</button>
-            <button class="btn btn-primary" style="width: 92px;" type="button">Modificar</button>
-            <button class="btn btn-primary" style="width: 92px;" type="button">Eliminar</button>
+            <button class="btn btn-primary line_submit" style="width: 92px;" type="submit">Grabar</button>
+            <button class="btn btn-primary line_submit" style="width: 92px;" type="button">Modificar</button>
+            <button class="btn btn-primary line_submit" style="width: 92px;" type="button">Eliminar</button>
         </div>
     </div>
     <div style="flex: 60%; width:500px; border-left:1.25px solid lightgray; padding-left: 16px;">

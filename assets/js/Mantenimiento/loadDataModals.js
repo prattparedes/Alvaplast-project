@@ -280,7 +280,7 @@ document
                 const lineaCódigo = contenidoFila[0];
                 const lineaDescripcion = contenidoFila[1];
 
-                document.getElementById("codigo").innerHTML = lineaCódigo;
+                document.getElementById("codigoLinea").innerHTML = lineaCódigo;
                 document.getElementById("descripcion").value = lineaDescripcion;
             }
         }

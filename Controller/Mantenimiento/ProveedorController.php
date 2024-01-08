@@ -1,7 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/Models/Mantenimiento/Proveedor.php");
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $idProveedor = isset($_POST["idProveedor"]) && $_POST["idProveedor"] !== "-" ? $_POST["idProveedor"] : 1;;
+    $idProveedor = isset($_POST["idProveedor"]) && $_POST["idProveedor"] !== "-" ? $_POST["idProveedor"] : 1;
     $idUbigeo = $_POST["idUbigeo"];
     $razonSocial = $_POST["razonSocial"];
     $ruc = $_POST["ruc"];

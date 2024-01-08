@@ -13,9 +13,9 @@
             <input style="height:32px; width: 100%;" type="text" id="descripcion" name="descripcion">
         </div>
         <div style="margin-top: 16px; display:flex; justify-content: space-around; max-width:360px;">
-            <button class="btn btn-primary" style="width: 92px;" type="submit">Grabar</button>
-            <button class="btn btn-primary" style="width: 92px;" type="button">Modificar</button>
-            <button class="btn btn-primary" style="width: 92px;" type="button">Eliminar</button>
+            <button class="btn btn-primary brand_submit" style="width: 92px;" type="submit">Grabar</button>
+            <button class="btn btn-primary brand_submit" style="width: 92px;" type="button">Modificar</button>
+            <button class="btn btn-primary brand_submit" style="width: 92px;" type="button">Eliminar</button>
 
         </div>
     </div>
