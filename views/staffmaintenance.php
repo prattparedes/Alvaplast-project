@@ -30,7 +30,7 @@
                 </div>
                 <div style="display: flex; flex-direction: column;">
                     <label for="materno">Cargo:</label>
-                    <select name="" id="">
+                    <select name="" id="cargo">
                         <option value="" default>Elija una opcion</option>
                         <option value="A">Administrador</option>
                         <option value="V">Vendedor</option>
@@ -55,18 +55,18 @@
                 <div style="display: flex; flex-direction: column;">
                     <label for="estado">Estado:</label>
                     <select style="height:32px; width: 100%;" id="estado" name="estado">
-                        <option value="1">Activo</option>
-                        <option value="0">Cesante</option>
-                        <option value="2">Vacaciones</option>
+                        <option value="A">Activo</option>
+                        <option value="C">Cesante</option>
+                        <option value="V">Vacaciones</option>
                     </select>
                 </div>
                 <div style="display: flex; flex-direction: column;">
-                    <button style="height:100%; display: flex; flex-direction:column; align-items:center; margin-left: 40px;"><i class="bi bi-person-vcard"></i><span>Permisos de Almacén</span></button>
-                </div>
+                    <button style="height:100%; display: flex; flex-direction:column; align-items:center; margin-left: 40px;" onclick="cargarPermisosPersonal()"><i class="bi bi-person-vcard"></i><span>Permisos de Almacén</span></button>
+                </div>  
             </div>
             <div style="display: flex; flex-direction: column;">
                 <label for="usuario">Usuario:</label>
-                <input style="height:32px; width: 100%;" type="text" id="usuario" name="usuario">
+                <input style="height:32px; width: 50%;" type="text" id="usuario" name="usuario">
             </div>
             <div style="display: flex; flex-direction: row; gap: 20px;">
                 <div style="display: flex; flex-direction: column;">
@@ -87,7 +87,7 @@
         <div style="flex: 60%; border-left:1.25px solid lightgray; padding-left: 16px;">
             <h4 style="text-align:center;">Listado de Personal</h4>
             <div class="table--container" style="max-height:720px;">
-                <table border="1" style="width:100%;" id="providersTable" class="table table__maintenance--big">
+                <table border="1" style="width:100%;" id="staffTable" class="table table__maintenance--big">
                     <thead>
                         <tr>
                             <th>Código</th>
@@ -106,7 +106,7 @@
                         $data = Personal::getPersonal();
                         foreach ($data as $pers) {
                         ?>
-                            <tr>
+                            <tr ondblclick="llenarFormularioStaff(this)">
                                 <td><?= $pers->id_personal ?></td>
                                 <td><?= $pers->nombres ?></td>
                                 <td><?= $pers->ap_paterno ?></td>
@@ -117,6 +117,8 @@
                                 <td><?= $pers->cargo ?></td>
                                 <td style="display:none;"><?= $pers->estado ?></td>
                                 <td style="display:none;"><?= $pers->usuario ?></td>
+                                <td style="display:none;"><?= $pers->clave ?></td>
+                                <td style="display:none;"><?= $pers->celular ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -125,3 +127,5 @@
         </div>
     </div>
 </div>
+
+<?php include 'modals/generalModal.php'; ?>

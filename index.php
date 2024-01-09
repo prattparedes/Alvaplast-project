@@ -102,7 +102,7 @@
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="reportsDropdown">
                     <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/staffmaintenance.php')">Mantenimiento de Personal</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/staffpermissions.php')">Asignar Permisos</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/staffmaintenance.php')">Asignar Permisos</a></li>
                   </ul>
                 </div>
               </li>
@@ -139,6 +139,7 @@
   <script src="assets/js/maintenance/filtrosTablas.js"></script>
   <script src="assets/js/maintenance/maintenance_modals.js"></script>
   <script src="assets/js/alerts/alertmodal.js"></script>
+  <script src="assets/js/staff/staff.js"></script>
 </body>
 
 </html>

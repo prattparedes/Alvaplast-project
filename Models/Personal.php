@@ -9,6 +9,12 @@ class Personal
         $data = $con->query('exec sp_ListarPersonal');
         return $data->fetchAll(PDO::FETCH_OBJ);   
     }
+
+    public static function getPermisos(){
+        $con = Connection::Conectar();
+        $data = $con->query('exec sp_ListarPersonal');
+        return $data->fetchAll(PDO::FETCH_OBJ);   
+    }
 }
 
 
