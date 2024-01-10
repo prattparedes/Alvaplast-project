@@ -11,6 +11,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 </head>
 
 <body>
@@ -36,6 +38,18 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/exchangerate.php')">
+                  <i class="bi bi-grid"></i>
+                  TIPO DE CAMBIO
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/buyorder.php')">
+                  <i class="bi bi-grid"></i>
+                  COMPRA
+                </a>
+              </li>
+              <li class="nav-item">
                 <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-table"></i>
@@ -48,12 +62,6 @@
                     <li class="nav-item"><a href="#" class="nav-link">Estado de Cuenta</a></li>
                   </ul>
                 </div>
-              <li class="nav-item">
-                <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/buyorder.php')">
-                  <i class="bi bi-grid"></i>
-                  COMPRA
-                </a>
-              </li>
               <li class="nav-item">
                 <div class="dropdown">
                   <button class="btn btn-secondary dropdown-toggle" type="button" id="reportsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -87,17 +95,30 @@
                 </a>
               </li>
               <li class="nav-item">
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="reportsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-table"></i>
+                    PERSONAL
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="reportsDropdown">
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/staffmaintenance.php')">Mantenimiento de Personal</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/staffmaintenance.php')">Asignar Permisos</a></li>
+                  </ul>
+                </div>
+              </li>
+              <!-- <li class="nav-item">
                 <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/users.php')">
                   <i class="bi bi-people"></i>
                   USUARIOS
                 </a>
-              </li>
+              </li> -->
             </ul>
           </div>
         </div>
       </nav>
       <div class="main__content">
         <?php include 'views/home.php'; ?>
+        <?php include 'views/modals/alerts/alertModal.php'; ?>
       </div>
     </div>
   </main>
@@ -110,15 +131,15 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
-
-  <script>
-    var triggerEl = document.querySelector('#navId a')
-    bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
-  </script>
   <script src="assets/js/loadcontent.js"></script>
   <script src="assets/js/modals.js"></script>
   <script src="assets/js/orders.js"></script>
   <script src="assets/js/formController.js"></script>
+  <script src="assets/js/kardexController.js"></script>
+  <script src="assets/js/maintenance/filtrosTablas.js"></script>
+  <script src="assets/js/maintenance/maintenance_modals.js"></script>
+  <script src="assets/js/alerts/alertmodal.js"></script>
+  <script src="assets/js/staff/staff.js"></script>
 </body>
 
 </html>

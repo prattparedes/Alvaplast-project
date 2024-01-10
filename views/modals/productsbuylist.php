@@ -17,22 +17,24 @@
             </tr>
         </thead>
         <tbody>
-        <?php
-                require_once('../../Models/Producto.php');
-                $producto = Producto::getProductos();
-                foreach($producto as $produc){
-            ?>
-                <tr>
-                    <td><?='COD/'.$produc->id_producto?></td>
-                    <td><?=$produc->nombre_producto?></td>
-                    <td><?=$produc->modelo_producto?></td>
-                    <td><?=$produc->modelo_producto?></td>
-                    <td><?=$produc->procedencia?></td>
-                    <td><?=$produc->precio_venta?></td>
-                    <td><?=$produc->precio_compra?></td>
-                    <td><?=$produc->stock_min?></td> 
-                </tr>
-            <?php }?>
+            <tr>
+                <td>Código 001</td>
+                <td>Nombre A</td>
+                <td>Código Producto 123</td>
+                <td>Modelo 1</td>
+                <td>Nacional</td>
+                <td>150.00</td>
+                <td>200.00</td>
+            </tr>
+            <tr>
+                <td>Código 002</td>
+                <td>Nombre B</td>
+                <td>Código Producto 456</td>
+                <td>Modelo 2</td>
+                <td>Importado</td>
+                <td>200.00</td>
+                <td>250.00</td>
+            </tr>
         </tbody>
     </table>
 </div>

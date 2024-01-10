@@ -114,7 +114,7 @@ td a {
   color: red !important;
   font-weight: 700;
   text-align: center;
-  cursor:pointer;
+  cursor: pointer;
 }
 /*
 Navbar
@@ -152,7 +152,7 @@ main {
 }
 
 .navbar-nav .nav-item .nav-link:hover {
-  background-color:  var(--bs-btn-hover-bg);
+  background-color: var(--bs-btn-hover-bg);
 }
 
 .dropdown-toggle {
@@ -199,6 +199,8 @@ main {
   */
 
 .maintenance__btns {
+  margin: 0 auto;
+  max-width: 1360px;
   display: grid;
   gap: 12px;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -257,13 +259,18 @@ main {
   transition: all 0ms !important;
 }
 
-.order__left, .order__right {
+.order__left,
+.order__right {
   padding: 20px;
   width: 50%;
 }
 
 .order__right {
   border-left: 1px lightgray solid;
+}
+
+.productspan--inactive {
+  color: lightgray !important;
 }
 
 /*
@@ -326,7 +333,7 @@ main {
   color: white;
   padding: 4px 12px;
   border: none;
-  border-radius: 20px;
+  border-radius: 10px;
   transition: background-color 120ms ease;
   margin-bottom: 8px;
 }
@@ -356,6 +363,23 @@ main {
   text-align: left;
 }
 
+.table__maintenance {
+  max-width: 600px;
+}
+
+.table__maintenance tbody tr td, .table__maintenance thead th{
+  text-align: center;
+}
+
+.table__maintenance td, .table__maintenance th{
+  padding: 0;
+  border: none;
+}
+
+.table__maintenance--big  {
+  font-size: 12px;
+}
+
 /* Fijar encabezados */
 .table thead {
   position: sticky;
@@ -378,4 +402,90 @@ main {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+}
+
+/*
+
+Kardex Movement
+
+*/
+
+.kardex__movement {
+  display: flex;
+  height: 100%;
+}
+
+.kardex__left {
+  min-width: 400px;
+  padding: 8px 16px;
+  background-color: lightgray;
+  width: 22%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: black 1.25px solid;
+}
+
+.kardex__right {
+  min-width: 900px;
+  padding: 8px 16px;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: black 1.25px solid;
+}
+
+
+/**
+
+Alert
+
+**/
+
+/* Estilos para la superposición */
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* Color de fondo semitransparente */
+  z-index: 1; /* Sitúa la superposición sobre todo */
+}
+
+/* Estilos para el alertModal */
+#alertModal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  text-align: center;
+  z-index: 2; /* Sitúa el alertModal encima de la superposición */
+}
+
+#alertModal button {
+  width: 20%;
+  margin: 10px 20px;
+  padding: 6px;
+  font-size: 16px;
+}
+
+#alertModal #btnSi:hover {
+  background-color: rgb(0, 110, 255);
+  color: white;
+}
+
+#alertModal #btnNo:hover {
+  background-color: rgb(248, 100, 100);
+  color: white;
 }

@@ -2,7 +2,7 @@
 <span style="font-weight: 600; width:fit-content;">Filtrar por proveedor: <input type="text" style="width: 240px;"></span><button class="modal__btn--search">Buscar</button>
 <hr>
 <div class="modal__table--container">
-    <table class="table modal__table">
+    <table class="table modal__table" id="buyorderslist">
         <thead>
             <tr>
                 <th>Proveedor</th>
