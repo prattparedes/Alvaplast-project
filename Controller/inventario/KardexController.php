@@ -1,5 +1,7 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'].'/proyectogenesis/Models/Kardex.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+
+use Models\inventario\KardexModel;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtener los datos enviados desde el frontend
@@ -12,4 +14,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Enviar la respuesta al frontend
     echo json_encode($movimientos);
 }
-?>

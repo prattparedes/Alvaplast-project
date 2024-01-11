@@ -14,11 +14,16 @@
 
 <body>
     <header>
+        <?php
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+
+        use Models\maintenance_models\Vehiculo;
+        ?>
         <div class="container">
             <h1>Mantenimiento de Vehiculos</h1>
             <form>
                 <b><span class="d-block p-2 col-12 bg-info text-white">Datos de los Vehiculos</span></b>
-<br>
+                <br>
                 <div class="row g-3">
                     <div class="col-md-2">
                         <label for="inputPassword6" class="col-form-label">Codigo</label>
@@ -76,7 +81,7 @@
                     </div>
                     <div class="col-md-9">
                         <div class="table-responsive">
-                        <table class="table border=1">
+                            <table class="table border=1">
                                 <thead>
                                     <tr>
                                         <th scope="col-md-1">ID</th>
@@ -87,20 +92,19 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="">
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                    </tr>
+                                    <?php
+
+                                    $vehiculos = Vehiculo::getVehiculos();
+                                    foreach ($vehiculos as $vehiculo) {
+                                    ?>
+                                        <tr>
+                                            <td><?= $vehiculo->id_vehiculo ?></td>
+                                            <td><?= $vehiculo->placa ?></td>
+                                            <td><?= $vehiculo->modelo ?></td>
+                                            <td><?= $vehiculo->tipo_vehiculo ?></td>
+                                            <td><?= $vehiculo->marca_vehiculo ?></td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

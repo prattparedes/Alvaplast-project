@@ -12,6 +12,12 @@
 
 <body>
     <header>
+        <?php
+        require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
+
+        use Models\maintenance_models\Linea;
+
+        ?>
         <div class="container">
             <h1>Mantenimiento de Linea</h1>
             <form class="row g-3">
@@ -47,11 +53,11 @@
                         <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
                 </div>
-<br>
+                <br>
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
-                        <table class="table border=1">
+                            <table class="table border=1">
                                 <thead>
                                     <tr>
                                         <th style="width: 180px;" scope="col-md-1">Codigo</th>
@@ -60,14 +66,15 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
-                                    </tr>
+                                    <?php
+                                    $data = Linea::ListarLineas();
+                                    foreach ($data as $linea) {
+                                    ?>
+                                        <tr>
+                                            <td><?= $linea->id_linea ?></td>
+                                            <td><?= $linea->descripcion ?></td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

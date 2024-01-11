@@ -12,6 +12,11 @@
 
 <body>
     <header>
+        <?php
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/autoload.php");
+
+        use Models\maintenance_models\Unidad;
+        ?>
         <div class="container">
             <h1>Mantenimiento de Unidad</h1>
             <form>
@@ -50,7 +55,7 @@
                 <div class="row">
                     <div class="col-md-9">
                         <div class="table-responsive">
-                        <table class="table border=1">
+                            <table class="table border=1">
                                 <thead>
                                     <tr>
                                         <th scope="col-md-1">ID</th>
@@ -60,16 +65,17 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr class="">
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                    </tr>
+                                    <?php
+
+                                    $data = Unidad::getUnidades();
+                                    foreach ($data as $unit) {
+                                    ?>
+                                        <tr>
+                                            <td><?= $unit->id_unidad ?></td>
+                                            <td><?= $unit->abreviatura ?></td>
+                                            <td><?= $unit->descripcion ?></td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

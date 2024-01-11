@@ -1,5 +1,10 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/config/connection.php");
+
+namespace Models\maintenance_models;
+
+use config\Connection;
+use PDO;
+use Exception;
 
 class Ubigeo
 {
@@ -23,14 +28,15 @@ class Ubigeo
         return json_encode($provincias);
     }
 
-    public static function getDistritos($codigoProvincia) {
+    public static function getDistritos($codigoProvincia)
+    {
         $con = Connection::Conectar();
         $query = "EXEC sp_ListarDistritro @Provicia = :codigoProvincia";
         $stmt = $con->prepare($query);
         $stmt->bindParam(':codigoProvincia', $codigoProvincia, PDO::PARAM_STR);
         $stmt->execute();
         $distritos = $stmt->fetchAll(PDO::FETCH_OBJ);
-    
+
         return json_encode($distritos);
     }
 }

@@ -12,6 +12,11 @@
 
 <body>
     <header>
+        <?php
+
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/autoload.php");
+
+        use Models\maintenance_models\Marca; ?>
         <div class="container">
             <h1>Mantenimiento de Marcas</h1>
             <form class="row g-3">
@@ -51,7 +56,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
-                        <table class="table border=1">
+                            <table class="table border=1">
                                 <thead>
                                     <tr>
                                         <th scope="col-md-1">Codigo</th>
@@ -60,13 +65,15 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr>
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
+                                    <?php
+                                    $data = Marca::getMarcas();
+                                    foreach ($data as $marca) {
+                                    ?>
+                                        <tr>
+                                            <td><?= $marca->id_marca ?></td>
+                                            <td><?= $marca->descripcion ?></td>
+                                        </tr>
+                                    <?php } ?>
                                     </tr>
                                 </tbody>
                             </table>

@@ -11,6 +11,11 @@
 </head>
 
 <body>
+    <?php
+    require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
+
+    use Models\maintenance_models\Ubigeo;
+    use Models\maintenance_models\Cliente; ?>
     <header>
         <div class="container">
             <h1>Mantenimiento de Clientes </h1>
@@ -24,11 +29,11 @@
                         </fieldset>
                     </div>
                     <div class="col-md-2">
-                        
+
                     </div>
 
                     <div class="col-md-6">
-                    <br>
+                        <br>
                         <button type="button" class="btn btn-secondary">Nuevo</button>
                         <button type="button" class="btn btn-primary">Grabar</button>
                         <button type="button" class="btn btn-success">Modificar</button>
@@ -43,60 +48,65 @@
                         <label for="inputRazonSocial" class="col-form-label">Razon Social</label>
                         <input type="text" id="inputRazonSocial" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
-                    </div>
-                    <div class="col-md-2">
-                        <label for="selectTipoCliente" class="form-label">Tipo de Cliente</label>
-                        <select id="selectTipoCliente" class="form-select">
-                            <option>Elejir una opción</option>
-                            <option>Ica</option>
-                        </select>
-                    </div>
-                
+                </div>
+                <div class="col-md-2">
+                    <label for="selectTipoCliente" class="form-label">Tipo de Cliente</label>
+                    <select id="selectTipoCliente" class="form-select">
+                        <option>Elejir una opción</option>
+                        <option>Ica</option>
+                    </select>
+                </div>
+
 
                 <div class="row">
                     <div class="col-md-2">
                         <label for="inputRuc" class="col-form-label">RUC</label>
                         <input type="text" id="inputRuc" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
-                
-
-                <div class="col-md-2">
-                    <label for="inputDni" class="col-form-label">DNI</label>
-                    <input type="text" id="inputDni" class="form-control" aria-describedby="passwordHelpInline">
-                </div>
 
 
-                <!-- <div class="row"> -->
-                <div class="col-md-4">
-                    <label for="inputDireccion" class="col-form-label">Direccion</label>
-                    <input type="text" id="inputDireccion" class="form-control" aria-describedby="passwordHelpInline">
-                </div>
+                    <div class="col-md-2">
+                        <label for="inputDni" class="col-form-label">DNI</label>
+                        <input type="text" id="inputDni" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
+
+
+                    <!-- <div class="row"> -->
+                    <div class="col-md-4">
+                        <label for="inputDireccion" class="col-form-label">Direccion</label>
+                        <input type="text" id="inputDireccion" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
                 </div>
 
                 <div class="row">
-                <div class="col-md-2">
-                    <label for="selectDepartamento" class="form-label">Departamento</label>
-                    <select id="selectDepartamento" class="form-select">
-                        <option>Elejir una opción</option>
-                        <option>Ica</option>
-                    </select>
-                </div>
+                    <div class="col-md-2">
+                        <label for="selectDepartamento" class="form-label">Departamento</label>
+                        <select id="selectDepartamento" class="form-select">
+                            <option value="0">Seleccionar un departamento</option>
+                            <?php
+                            $data = Ubigeo::getDepartamentos();
+                            foreach ($data as $ubi) {
+                            ?>
+                                <option value="<?= $ubi->id_ubigeo ?>"><?= $ubi->descripcion ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
 
-                <div class="col-md-2">
-                    <label for="selectProvincia" class="form-label">Provincia</label>
-                    <select id="selectProvincia" class="form-select">
-                        <option>Elejir una opción</option>
-                        <option>Ica</option>
-                    </select>
-                </div>
+                    <div class="col-md-2">
+                        <label for="selectProvincia" class="form-label">Provincia</label>
+                        <select id="selectProvincia" class="form-select">
+                            <option>Elejir una opción</option>
+                            <option>Ica</option>
+                        </select>
+                    </div>
 
-                <div class="col-md-4">
-                    <label for="selectDistrito" class="form-label">Distrito</label>
-                    <select id="selectDistrito" class="form-select">
-                        <option>Elejir una opción</option>
-                        <option>Ica</option>
-                    </select>
-                </div>
+                    <div class="col-md-4">
+                        <label for="selectDistrito" class="form-label">Distrito</label>
+                        <select id="selectDistrito" class="form-select">
+                            <option>Elejir una opción</option>
+                            <option>Ica</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="row">
@@ -121,7 +131,7 @@
                     </div>
                 </div>
 
-               
+
                 <!-- <button type="button" class="btn btn-secondary">Nuevo</button>
                 <button type="button" class="btn btn-primary">Grabar</button>
                 <button type="button" class="btn btn-success">Modificar</button>
@@ -151,27 +161,24 @@
                             </thead>
 
                             <tbody>
-                                <tr>
-                                    <td scope="row">R1C1</td>
-                                    <td>AlvaPlastic</td>
-                                    <td>2030405060</td>
-                                    <td>16775473</td>
-                                    <td>Los Olivos 250</td>
-                                    <td>960113254</td>
-                                    <td>98554545</td>
-                                    <td>alva@seguimos.com</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">R1C2</td>
-                                    <td>OtroCliente</td>
-                                    <td>1234567890</td>
-                                    <td>98765432</td>
-                                    <td>Avenida Principal 123</td>
-                                    <td>987654321</td>
-                                    <td>correo@otrocliente.com</td>
-                                    <td>Ciudad</td>
-                                </tr>
-                                <!-- Puedes agregar más filas según sea necesario -->
+                                <?php
+                                $data = Cliente::getClientes();
+                                foreach ($data as $client) {
+                                ?>
+                                    <tr>
+                                        <td><?= $client->id_cliente ?></td>
+                                        <td><?= $client->razon_social ?></td>
+                                        <td><?= $client->ruc ?></td>
+                                        <td><?= $client->dni ?></td>
+                                        <td><?= $client->direccion ?></td>
+                                        <td><?= $client->telefono ?></td>
+                                        <td><?= $client->celular ?></td>
+                                        <td><?= $client->distrito ?></td>
+                                        <td style="display:none;"><?= $client->id_ubigeo ?></td>
+                                        <td style="display:none;"><?= $client->tipo_cliente ?></td>
+                                        <td style="display:none;"><?= $client->estado ?></td>
+                                    </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>

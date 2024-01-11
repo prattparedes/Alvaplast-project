@@ -13,30 +13,36 @@
 
 <body>
     <header>
+        <?php
+        require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
+
+        use Models\maintenance_models\Ubigeo;
+        use Models\maintenance_models\Proveedor;
+        ?>
         <div class="container">
             <h1>Mantenimiento de Proveedores</h1>
             <form class="row g-3">
                 <b><span class="d-block p-2 col-12 bg-info text-white">Datos de los Proveedores</span></b>
                 <div class="row">
-                <div class="col-md-2">
-                    <label for="inputPassword6" class="col-form-label">Codigo</label>
-                    <fieldset disabled>
-                        <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
-                    </fieldset>
-                </div>
+                    <div class="col-md-2">
+                        <label for="inputPassword6" class="col-form-label">Codigo</label>
+                        <fieldset disabled>
+                            <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
+                        </fieldset>
+                    </div>
                 </div>
                 <div class="row">
-                <div class=""style="width: 500px;">
-                    <label for="inputPassword6" class="col-form-label">Razon Social</label>
-                    <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                </div>
+                    <div class="" style="width: 500px;">
+                        <label for="inputPassword6" class="col-form-label">Razon Social</label>
+                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
                 </div>
                 <div class="" style="width: 180px;">
                     <label for="inputPassword6" class="col-form-label">RUC</label>
                     <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
                 </div>
 
-                <div class=""style="width: 310px;">
+                <div class="" style="width: 310px;">
                     <label for="inputPassword6" class="col-form-label">Direccion</label>
                     <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
                 </div>
@@ -52,12 +58,12 @@
                         <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
                 </div>
-<div class="row">
-                <div class="" style="width: 357px;">
-                    <label for="inputPassword6" class="col-form-label">Contacto</label>
-                    <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                <div class="row">
+                    <div class="" style="width: 357px;">
+                        <label for="inputPassword6" class="col-form-label">Contacto</label>
+                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
                 </div>
-</div>
                 <div class="col-md-4">
                     <label for="inputPassword6" class="col-form-label">Email</label>
                     <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
@@ -75,8 +81,12 @@
                     <div class="col-md-2">
                         <label for="disabledSelect" class="form-label">Departamento</label>
                         <select id="disabledSelect" class="form-select">
-                            <option>Lima</option>
-                            <option>Ica</option>
+                            <?php
+                            $data = Ubigeo::getDepartamentos();
+                            foreach ($data as $ubi) {
+                            ?>
+                                <option value="<?= $ubi->id_ubigeo ?>"><?= $ubi->descripcion ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>
@@ -123,7 +133,7 @@
                             <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
                         </div>
                     </div>
-<br>
+                    <br>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
@@ -141,24 +151,23 @@
                                     </thead>
 
                                     <tbody>
-                                        <tr>
-                                            <td scope="row">R1C1</td>
-                                            <td>AlvaPlastic</td>
-                                            <td>2030405060</td>
-                                            <td>Los Olivos 250</td>
-                                            <td>960113254</td>
-                                            <td>98554545</td>
-                                            <td>alva@seguimos.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td scope="row">R1C1</td>
-                                            <td>AlvaPlastic</td>
-                                            <td>2030405060</td>
-                                            <td>Los Olivos 250</td>
-                                            <td>960113254</td>
-                                            <td>98554545</td>
-                                            <td>alva@seguimos.com</td>
-                                        </tr>
+                                        <?php
+                                        $data = Proveedor::listarProveedores();
+                                        foreach ($data as $prov) {
+                                        ?>
+                                            <tr>
+                                                <td><?= $prov->id_proveedor ?></td>
+                                                <td><?= $prov->razon_social ?></td>
+                                                <td><?= $prov->ruc ?></td>
+                                                <td><?= $prov->direccion ?></td>
+                                                <td><?= $prov->telefono ?></td>
+                                                <td><?= $prov->fax ?></td>
+                                                <td><?= $prov->email ?></td>
+                                                <td style="display:none;"><?= $prov->contacto ?></td>
+                                                <td style="display:none;"><?= $prov->estado ?></td>
+                                                <td style="display:none;"><?= $prov->id_ubigeo ?></td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
                             </div>

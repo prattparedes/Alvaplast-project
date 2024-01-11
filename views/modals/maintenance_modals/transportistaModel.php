@@ -14,6 +14,11 @@
 
 <body>
     <header>
+        <?php
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+
+        use Models\maintenance_models\Transportistas;
+        ?>
         <div class="container">
             <h1>Mantenimiento de Transportista</h1>
             <form>
@@ -103,7 +108,7 @@
 
                     <div class="col-md-9">
                         <div class="table-responsive">
-                        <table class="table border=1">
+                            <table class="table border=1">
                                 <thead>
                                     <tr>
                                         <th scope="col-md-1">Codigo</th>
@@ -119,30 +124,21 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="">
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                    </tr>
+                                    <?php
+
+                                    $transportista = Transportistas::getTransportistas();
+                                    foreach ($transportista as $trans) {
+                                    ?>
+                                        <tr>
+                                            <td><?= $trans->id_transportista ?></td>
+                                            <td><?= $trans->nombres ?></td>
+                                            <td><?= $trans->ap_paterno ?></td>
+                                            <td><?= $trans->ap_materno ?></td>
+                                            <td><?= $trans->dni ?></td>
+                                            <td><?= $trans->ruc ?></td>
+                                            <td style="display:none;"><?= $trans->licencia ?></td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

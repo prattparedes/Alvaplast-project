@@ -1,5 +1,7 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . "/proyectogenesis/Models/maintenance_models/Ubigeo.php");
+require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+
+use Models\maintenance_models\Ubigeo;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtener los datos enviados desde el frontend
@@ -14,5 +16,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode($distritos);
     }
 }
-
-?>

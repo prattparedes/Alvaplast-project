@@ -13,6 +13,11 @@
 
 <body>
     <header>
+        <?php
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+
+        use Models\maintenance_models\Sucursal;
+        ?>
         <div class="container">
             <h1>Mantenimiento de Sucursal</h1>
             <form>
@@ -56,7 +61,7 @@
                 <div class="row">
                     <div class="col-md-9">
                         <div class="table-responsive">
-                        <table class="table border=1">
+                            <table class="table border=1">
                                 <thead>
                                     <tr>
                                         <th scope="col-md-1">Codigo</th>
@@ -67,17 +72,15 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr class="">
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
+                                    <?php
+
+                                    $sucursal = Sucursal::getSucursales();
+                                    ?>
+                                    <tr>
+                                        <td><?= $sucursal->id_sucursal ?></td>
+                                        <td><?= $sucursal->descripcion ?></td>
+                                        <td><?= $sucursal->direccion ?></td>
+                                        <td><?= $sucursal->telefono ?></td>
                                     </tr>
                                 </tbody>
                             </table>
