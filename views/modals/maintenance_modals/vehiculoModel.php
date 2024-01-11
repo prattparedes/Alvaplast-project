@@ -28,34 +28,37 @@
                     <div class="col-md-2">
                         <label for="inputPassword6" class="col-form-label">Codigo</label>
                         <fieldset disabled>
-                            <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline">
                         </fieldset>
                     </div>
 
                     <div class="col-md-4">
-                        <label for="inputPassword6" class="col-form-label">Placa</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <label for="placa" class="col-form-label">Placa</label>
+                        <input type="text" id="placa" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
 
                     <div class="col-md-4">
-                        <label for="disabledSelect" class="form-label">Combustible</label>
-                        <select id="disabledSelect" class="form-select">
-                            <option>Elejir una opción</option>
-                            <option>Ica</option>
+                        <label for="tipo" class="form-label">Combustible</label>
+                        <select id="tipo" class="form-select">
+                            <option value="Gasolina">Gasolina</option>
+                            <option value="Petroleo">Petroleo</option>
                         </select>
                     </div>
 
                     <div class="col-md-4">
-                        <label for="disabledSelect" class="form-label">Marca</label>
-                        <select id="disabledSelect" class="form-select">
-                            <option>Elejir una opción</option>
-                            <option>Ica</option>
+                        <label for="marca" class="form-label">Marca</label>
+                        <select id="marca" class="form-select">
+                            <option value="Lamborghini">Lamborghini</option>
+                            <option value="Dodge">Dodge</option>
+                            <option value="Hyundai">Hyundai</option>
+                            <option value="KIA">KIA</option>
+                            <option value="Ford">Ford</option>
                         </select>
                     </div>
 
                     <div class="col-md-4">
-                        <label for="inputPassword6" class="col-form-label">Modelo</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <label for="modelo" class="col-form-label">Modelo</label>
+                        <input type="text" id="modelo" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
 
                     <div class="col-md-12">
@@ -75,13 +78,13 @@
 
                     <h5 class="col-12 col-md-2">Buscar por</h5>
                     <div class="col-12 col-md-4">
-                        <label for="disabledSelect" class="form-label">Descripción</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <label for="disabledSelect" class="form-label">Placa</label>
+                        <input type="text" id="filtroVehiculos" class="form-control" aria-describedby="passwordHelpInline" onkeyup="FiltrarVehiculosMantenimiento()">
                         <br>
                     </div>
                     <div class="col-md-9">
                         <div class="table-responsive">
-                            <table class="table border=1">
+                            <table class="table border=1" id="vehicletable">
                                 <thead>
                                     <tr>
                                         <th scope="col-md-1">ID</th>
