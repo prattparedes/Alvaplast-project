@@ -14,6 +14,10 @@
 
 <body>
     <header>
+        <?php
+        require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
+
+        use Models\maintenance_models\TipoCambio; ?>
         <div class="container">
             <h1>MANTENIMIENTO TIPO DE CAMBIO </h1>
             <form>
@@ -22,17 +26,29 @@
                 <div class="row g-3">
                     <div class="col-md-2">
                         <label for="inputPassword6" class="col-form-label">Fecha de Inicio:</label>
-                        <input type="date" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
+                        <?php
+                        date_default_timezone_set('America/Lima'); // Establecer la zona horaria de Perú
+                        $currentDateTime = date('Y-m-d H:i');
+                        ?>
+                        <input type="datetime-local" id="fechaInicio" class="form-control" aria-describedby="passwordHelpInline" value="<?php echo $currentDateTime; ?>" disabled>
                     </div>
+
+                    <?php
+                    $url = 'https://api.apis.net.pe/v1/tipo-cambio-sunat';
+                    $response = file_get_contents($url);
+                    $data = json_decode($response);
+                    $compra = $data->compra;
+                    $venta = $data->venta;
+                    ?>
 
                     <div class="col-md-2">
                         <label for="inputPassword6" class="col-form-label">T. Compra:</label>
-                        <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="number" id="tCompra" class="form-control" aria-describedby="passwordHelpInline" value="<?php echo $compra ?>">
                     </div>
 
                     <div class="col-md-2">
                         <label for="inputPassword6" class="col-form-label">T. Venta:</label>
-                        <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="number" id="tVenta" class="form-control" aria-describedby="passwordHelpInline" value="<?php echo $venta ?>">
                     </div>
 
                     <div class="col-md-6">
@@ -46,22 +62,12 @@
             <br><br>
 
             <div class="container">
-                <h1>Listado de Documentos</h1>
+                <h1>Listado Tipo de Cambio</h1>
 
                 <div class="row">
-                    <div class="col-md-6">
-                        <h5>Buscar por </h5>
-                        <div class="row">
-                            <div class="col-12">
-                                <label for="disabledSelect" class="form-label">Descripción</label>
-                                <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                                <br>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-md-9">
                         <div class="table-responsive">
-                        <table class="table border=1">
+                            <table class="table border=1">
                                 <thead>
                                     <tr>
                                         <th scope="col-md-1">Inicio</th>
@@ -71,18 +77,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="">
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                    </tr>
-                                    <tr class="">
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>AlvaPlastic</td>
-                                    </tr>
+                                    <?php
+                                    $data = TipoCambio::getTipoCambio();
+                                    foreach ($data as $exchange) {
+                                    ?>
+                                        <tr>
+                                            <td><?= $exchange->fecha_inicio ?></td>
+                                            <td><?= $exchange->fecha_fin === '1900-01-01 00:00:00' ? '' : $exchange->fecha_fin ?></td>
+                                            <td><?= $exchange->cambio_compra ?></td>
+                                            <td><?= $exchange->cambio_venta ?></td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>
