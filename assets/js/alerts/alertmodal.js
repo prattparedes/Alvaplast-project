@@ -12,3 +12,12 @@ function openAlertModal() {
       // Lógica para "No"
     }
   }
+
+function contentAlertModal(contenido) {
+  const texto = document.getElementById("alertText");
+  texto.innerHTML = contenido;
+}
+
+function valorAlertModal(valor) {
+  return valor
+}

@@ -9,18 +9,19 @@
             </div>
         </div>
         <div style="display: flex; flex-direction: column;">
-                <span>Descripción:</span>
-                <input style="height:32px; width: 100%;" type="text" id="descripcion" name="descripcion">
-            </div>
-            <div style="display: flex; flex-direction: column;">
-                <span style="width: 100px;">Símbolo:</span>
-                <input style="height:32px; width: 50%;" type="text" id="abreviatura" name="abreviatura">
-                <input type="hidden" id="metodo" name="metodo" value="nuevo">
-            </div>
-        <div style="margin-top: 16px; display:flex; justify-content: space-around; max-width:360px;">
-            <button class="btn btn-primary" style="width: 92px;" type="submit">Grabar</button>
-            <button class="btn btn-primary" style="width: 92px;" type="button">Modificar</button>
-            <button class="btn btn-primary" style="width: 92px;" type="button">Eliminar</button>
+            <span>Descripción:</span>
+            <input style="height:32px; width: 100%;" type="text" id="descripcion" name="descripcion">
+        </div>
+        <div style="display: flex; flex-direction: column;">
+            <span style="width: 100px;">Símbolo:</span>
+            <input style="height:32px; width: 50%;" type="text" id="abreviatura" name="abreviatura">
+            <input type="hidden" id="metodo" name="metodo" value="nuevo">
+        </div>
+        <div style="margin-top: 16px; display:flex; justify-content: space-around; max-width:440px;">
+            <button class="btn btn-primary maintenanceform__btn" style="width: 90px;" type="submit" onclick="botonNuevo()">Nuevo</button>
+            <button class="btn btn-primary maintenanceform__btn" style="width: 90px;" type="submit" onclick="botonesMantenimiento('Grabar')">Grabar</button>
+            <button class="btn btn-primary maintenanceform__btn maintenanceform__btn--inactive" style="width: 100px;" type="button" onclick="botonModificar()">Modificar</button>
+            <button class="btn btn-primary maintenanceform__btn maintenanceform__btn--inactive" style="width: 90px;" type="button" onclick="botonEliminar()">Eliminar</button>
         </div>
     </div>
     <div style="flex: 60%; width:500px; border-left:1.25px solid lightgray; padding-left: 16px;">

@@ -20,10 +20,11 @@
             <label for="telefono">Teléfono:</label>
             <input style="height:32px; width: 50%;" type="number" id="telefono" name="telefono">
         </div>
-        <div style="margin-top: 16px; display:flex; justify-content: space-around; max-width:360px;">
-            <button class="btn btn-primary" style="width: 92px;" type="submit">Grabar</button>
-            <button class="btn btn-primary" style="width: 92px;" type="button">Modificar</button>
-            <button class="btn btn-primary" style="width: 92px;" type="button">Eliminar</button>
+        <div style="margin-top: 16px; display:flex; justify-content: space-around; max-width:440px;">
+            <button class="btn btn-primary maintenanceform__btn" style="width: 90px;" type="submit">Nuevo</button>
+<button class="btn btn-primary maintenanceform__btn" style="width: 90px;" type="submit">Grabar</button>
+            <button class="btn btn-primary maintenanceform__btn" style="width: 100px;" type="button">Modificar</button>
+            <button class="btn btn-primary maintenanceform__btn" style="width: 90px;" type="button">Eliminar</button>
         </div>
     </div>
     <div style="flex: 60%; width:500px; border-left:1.25px solid lightgray; padding-left: 16px;">

@@ -118,13 +118,11 @@
       </nav>
       <div class="main__content">
         <?php include 'views/home.php'; ?>
-        <?php include 'views/modals/alerts/alertModal.php'; ?>
       </div>
+      <?php include 'views/modals/alerts/alertModal.php'; ?>
     </div>
   </main>
-  <footer>
-    <!-- place footer here -->
-  </footer>
+ 
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
   </script>
@@ -140,6 +138,7 @@
   <script src="assets/js/maintenance/maintenance_modals.js"></script>
   <script src="assets/js/alerts/alertmodal.js"></script>
   <script src="assets/js/staff/staff.js"></script>
+  <script src="assets/js/maintenance/botonesMantenimiento.js"></script>
 </body>
 
 </html>

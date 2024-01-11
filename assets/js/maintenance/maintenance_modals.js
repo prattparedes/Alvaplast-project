@@ -69,6 +69,25 @@ document
         document.getElementById("codigo").value = monedaCodigo;
         document.getElementById("descripcion").value = monedaDescripcion;
         document.getElementById("abreviatura").value = monedaSimbolo;
+
+        //Activar botones Modificar-Eliminar
+        const botonesModificarEliminar = document.querySelectorAll(
+          ".maintenanceform__btn--inactive"
+        );
+        botonesModificarEliminar.forEach((boton) => boton.classList.remove("maintenanceform__btn--inactive"))
+
+        // Desactivar Grabar
+        const botonGrabar = document.querySelectorAll(
+          ".maintenanceform__btn"
+        )[1];
+        botonGrabar.classList.add("maintenanceform__btn--inactive")
+
+        // Desactivar inputs-selects-textareas del documento
+        const elementos = document.querySelectorAll('input, select, textarea');
+  
+        elementos.forEach(elemento => {
+          elemento.disabled = true;
+        });
       }
     }
   });

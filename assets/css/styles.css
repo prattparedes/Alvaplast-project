@@ -216,12 +216,17 @@ main {
   justify-content: center;
 }
 
-.maintenance__btn--inactive {
-  cursor: not-allowed !important;
-  background-color: #c0c0c0;
+.maintenanceform__btn {
+  font-weight: 600;
 }
 
-.maintenance__btn--inactive:hover {
+.maintenanceform__btn--inactive {
+  cursor: not-allowed !important;
+  background-color: #c0c0c0;
+  border: none;
+}
+
+.maintenanceform__btn--inactive:hover {
   background-color: #c0c0c0 !important;
 }
 
