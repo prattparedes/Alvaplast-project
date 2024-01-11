@@ -81,7 +81,7 @@
                 <div class="row">
                     <div class="col-md-2">
                         <label for="selectDepartamento" class="form-label">Departamento</label>
-                        <select id="selectDepartamento" class="form-select">
+                        <select id="selectDepartamento" class="form-select" onchange="listarProvincia(this.value)">
                             <option value="0">Seleccionar un departamento</option>
                             <?php
                             $data = Ubigeo::getDepartamentos();
@@ -94,7 +94,7 @@
 
                     <div class="col-md-2">
                         <label for="selectProvincia" class="form-label">Provincia</label>
-                        <select id="selectProvincia" class="form-select">
+                        <select id="selectProvincia" class="form-select" onchange="listarDistrito(this.value)">
                             <option>Elejir una opción</option>
                             <option>Ica</option>
                         </select>

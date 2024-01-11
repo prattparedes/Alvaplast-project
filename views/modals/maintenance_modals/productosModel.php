@@ -15,6 +15,14 @@
 
 <body>
     <header>
+        <?php require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
+
+        use Models\maintenance_models\Producto;
+        use Models\maintenance_models\Linea;
+        use Models\maintenance_models\Moneda;
+        use Models\maintenance_models\Marca;
+        use Models\maintenance_models\Unidad; ?>
+
         <div class="container">
             <h3>Mantenimiento de Productos-P</h3>
             <form>
@@ -45,16 +53,16 @@
                             </label>
                         </div>
                     </div>
-                
 
-                <div class="row">
-                    <div class="col-sm-12 col-md-5">
-                        <label for="inputNombre" class="col-form-label">Nombre</label>
-                        <input type="text" id="inputNombre" class="form-control" aria-describedby="passwordHelpInline">
+
+                    <div class="row">
+                        <div class="col-sm-12 col-md-5">
+                            <label for="inputNombre" class="col-form-label">Nombre</label>
+                            <input type="text" id="inputNombre" class="form-control" aria-describedby="passwordHelpInline">
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-md-5">
+                    <div class="col-md-5">
                         <label for="inputPassword6" class="col-form-label">Descripción</label>
                         <textarea style="height:50px;" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
                     </div>
@@ -64,16 +72,22 @@
                     <div class="col-sm-12 col-md-2">
                         <label for="selectMarca" class="form-label">Marca</label>
                         <select id="selectMarca" class="form-select">
-                            <option>Realcito</option>
-                            <option>Cañete</option>
+                            <?php
+                            $marcas = Marca::getMarcas();
+                            foreach ($marcas as $marca) { ?>
+                                <option value="<?= $marca->id_marca ?>"><?= $marca->descripcion ?></option>
+                            <?php } ?>
                         </select>
                     </div>
 
                     <div class="col-sm-12 col-md-2">
                         <label for="selectUnidad" class="form-label">Unidad</label>
                         <select id="selectUnidad" class="form-select">
-                            <option>CJ</option>
-                            <option>San Juan de Lurigancho</option>
+                            <?php
+                            $unidades = Unidad::getUnidades();
+                            foreach ($unidades as $unidad) { ?>
+                                <option value="<?= $unidad->id_unidad ?>"><?= $unidad->descripcion ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>
@@ -82,8 +96,11 @@
                     <div class="col-sm-12 col-md-2">
                         <label for="selectLinea" class="form-label">Linea</label>
                         <select id="selectLinea" class="form-select">
-                            <option>Royos</option>
-                            <option>San Juan de Lurigancho</option>
+                            <?php
+                            $lineas = Linea::ListarLineas();
+                            foreach ($lineas as $lin) { ?>
+                                <option value="<?= $lin->id_linea ?>"><?= $lin->descripcion ?></option>
+                            <?php } ?>
                         </select>
                     </div>
 
@@ -102,32 +119,33 @@
                     <div class="" style="width: 150px;">
                         <label for="selectMoneda" class="form-label">Moneda</label>
                         <select id="selectMoneda" class="form-select">
-                            <option>Soles</option>
-                            <option>Dolares</option>
+                            <?php
+                            $monedas = Moneda::getMonedas();
+                            foreach ($monedas as $moneda) { ?>
+                                <option value="<?= $moneda->id_moneda ?>"><?= $moneda->descripcion ?></option>
+                            <?php } ?>
                         </select>
                     </div>
 
-                    <div class=""style="width: 145px;">
+                    <div class="" style="width: 145px;">
                         <label for="inputStockMin" class="col-form-label">Stock Min</label>
                         <input type="password" id="inputStockMin" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class=""style="width: 145px;">
+                    <div class="" style="width: 145px;">
                         <label for="inputVenta" class="col-form-label">P. Venta</label>
-                        <input type="password" id="inputVenta" class="form-control" aria-describedby="passwordHelpInline"
-                            placeholder="980.50">
+                        <input type="password" id="inputVenta" class="form-control" aria-describedby="passwordHelpInline" placeholder="980.50">
                     </div>
 
-                    <div class=""style="width: 153px;">
+                    <div class="" style="width: 153px;">
                         <div></div>
                     </div>
 
-                    <div class=""style="width: 145px;">
+                    <div class="" style="width: 145px;">
                         <label for="inputStockMax" class="col-form-label">Stock Max</label>
-                        <input type="password" id="inputStockMax" class="form-control" aria-describedby="passwordHelpInline"
-                            placeholder="25">
+                        <input type="password" id="inputStockMax" class="form-control" aria-describedby="passwordHelpInline" placeholder="25">
                     </div>
                 </div>
 
@@ -158,47 +176,59 @@
                 <h5>Datos registrados</h5>
                 <br><br>
 
-                
-                    <div class="table-responsive">
-                        <table class="table border=1">
-                            <thead>
+
+                <div class="table-responsive">
+                    <table class="table border=1">
+                        <thead>
+                            <tr>
+                                <th width="120">Codigo</th>
+                                <th class="textcenter" width="350">Producto</th>
+                                <th class="textcenter" width="130">P. Venta</th>
+                                <th class="textcenter" width="130">P. Compra</th>
+                                <th class="textcenter" width="50">Moneda</th>
+                                <th class="textcenter" width="120">Marca</th>
+                                <th class="textcenter" width="70">Unidad</th>
+                                <th class="textcenter" width="120">Volumen</th>
+
+                                <th class="textcenter" width="120">Stock Min</th>
+                                <th class="textcenter" width="120">Stock Max</th>
+                                <th class="textcenter" width="120">Stock</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <?php
+                            $data = Producto::getProductos();
+                            foreach ($data as $product) {
+                            ?>
                                 <tr>
-                                    <th width="120">Codigo</th>
-                                    <th class="textcenter" width="350">Producto</th>
-                                    <th class="textcenter" width="130">P. Venta</th>
-                                    <th class="textcenter" width="130">P. Compra</th>
-                                    <th class="textcenter" width="50">Moneda</th>
-                                    <th class="textcenter" width="120">Marca</th>
-                                    <th class="textcenter" width="70">Unidad</th>
-                                    <th class="textcenter" width="120">Volumen</th>
-
-                                    <th class="textcenter" width="120">Stock Min</th>
-                                    <th class="textcenter" width="120">Stock Max</th>
-                                    <th class="textcenter" width="120">Stock</th>
+                                    <td><?= $product->id_producto ?></td>
+                                    <td><?= $product->nombre_producto ?></td>
+                                    <td><?= $product->precio_venta ?></td>
+                                    <td><?= $product->precio_compra ?></td>
+                                    <td><?= $product->moneda ?></td>
+                                    <td><?= $product->marca ?></td>
+                                    <td><?= $product->unidad ?></td>
+                                    <td><?= $product->volumen ?></td>
+                                    <td><?= $product->stock_min ?></td>
+                                    <td><?= $product->stock_max ?></td>
+                                    <td><?= $product->stock ?></td>
+                                    <td style="display:none;"><?= $product->id_moneda ?></td>
+                                    <td style="display:none;"><?= $product->procedencia ?></td>
+                                    <td style="display:none;"><?= $product->id_marca ?></td>
+                                    <td style="display:none;"><?= $product->id_linea ?></td>
+                                    <td style="display:none;"><?= $product->imagen ?></td>
+                                    <td style="display:none;"><?= $product->descripcion ?></td>
+                                    <td style="display:none;"><?= $product->id_unidad ?></td>
+                                    <td style="display:none;"><?= $product->estado ?></td>
                                 </tr>
-                            </thead>
+                            <?php } ?>
 
-                            <tbody>
-                                <tr>
-                                    <td>R1C1</td>
-                                    <td class="textcenter">Charola redonda Nº30 San Gabriel</td>
-                                    <td class="textcenter">500.00</td>
-                                    <td class="textcenter">1500.00</td>
-                                    <td class="textcenter">S/.</td>
-                                    <td class="textcenter">Alfa</td>
-                                    <td class="textcenter">F</td>
-                                    <td class="textcenter">10.00</td>
-
-                                    <td class="textcenter">10.00</td>
-                                    <td class="textcenter">5.00</td>
-                                    <td class="textcenter">12.00</td>
-                                </tr>
-                               
-                            </tbody>
-                        </table>
-                    </div>
+                        </tbody>
+                    </table>
                 </div>
             </div>
+        </div>
         </div>
     </header>
 

@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://creditos.epicscode.com/public/plugins/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://creditos.epicscode.com/public/dist/css/theme.min.css">
-    
+
 </head>
 
 <body>
@@ -27,7 +27,7 @@
                             <div class="logo-center">
                                 <center><img src="assets/img/alvaplast_logo.png" width="250" height=""></center>
                             </div>
-                            
+
                             <h3 class="text-center">Sistema de Administración y Control de Almacen</h3>
                             <p>Ingrese su Usuario y Contraseña.</p>
                             <form method="POST" action="log.php">
@@ -52,7 +52,7 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.2.0/jquery.bootstrap-touchspin.min.js" integrity="sha512-VzUh7hLMvCqgvfBmkd2OINf5/pHDbWGqxS+RFaL/fsgA+rT94LxTFnjlFkm0oKM5BXWbc9EjBQAuARqzGKLbcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.2.0/jquery.bootstrap-touchspin.css" integrity="sha512-M+RT/z+GO2INvbXyfkn7l5qN+g09mr0+JQ++nxLUfqAufrp/v5GIQ1k4IMn0BIHgxZK2Ss+YA+kHK4wJUKJK0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+        <script src="assets/js/maintenance/Forms_maintenance.js"></script>
 </body>
 
 </html>
