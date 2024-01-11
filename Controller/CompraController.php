@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Compra.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/proyectogenesis/Models/Compra.php");
 // require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/Movimiento.php");
 
 if($_SERVER["REQUEST_METHOD"] === "POST"){

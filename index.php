@@ -1,144 +1,58 @@
 <!doctype html>
-<html lang="en">
+<html class="no-js" lang="en">
 
 <head>
-  <title>Title</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
 
-  <!-- Bootstrap CSS v5.2.1 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+    <title>Sistema | Control de Acceso </title>
+    <meta name="description" content="Sistema Administrac��n y Control de Almacen">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://creditos.epicscode.com/public/plugins/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://creditos.epicscode.com/public/dist/css/theme.min.css">
+    
 </head>
 
 <body>
-  <main>
-    <div class="main__container">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#" onclick="loadContent('views/home.php')">
-            <svg class="bi pe-none me-2" width="40" height="32">
-              <use xlink:href="#bootstrap" />
-            </svg>
-            ALVAPLASTIC
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav" style="justify-content:center; align-items:center;">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link text-white btn btn-secondary" aria-current="page" href="#" onclick="loadContent('views/home.php')">
-                  <i class="bi bi-house-door"></i>
-                  INICIO
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/exchangerate.php')">
-                  <i class="bi bi-grid"></i>
-                  TIPO DE CAMBIO
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/buyorder.php')">
-                  <i class="bi bi-grid"></i>
-                  COMPRA
-                </a>
-              </li>
-              <li class="nav-item">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-table"></i>
-                    VENTAS
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/sellorder.php')">Orden de Venta</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/billing.php')">Facturación</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Regula Documento</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Estado de Cuenta</a></li>
-                  </ul>
-                </div>
-              <li class="nav-item">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="reportsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-table"></i>
-                    REPORTES
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="reportsDropdown">
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/sellrecords.php')">Registro de Ventas</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/buyrecords.php')">Registro de Compras</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/billingrecords.php')">Registro de Facturación</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="inventoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-table"></i>
-                    INVENTARIOS
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="inventoryDropdown">
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/stockentry.php')">Ingreso al Kardex</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/stockmovement.php')">Movimiento de Kardex</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/stockproducts.php')">Stock de Productos</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/maintenance.php')">
-                  <i class="bi bi-clipboard-plus"></i>
-                  MANTENIMIENTO
-                </a>
-              </li>
-              <li class="nav-item">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="reportsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-table"></i>
-                    PERSONAL
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="reportsDropdown">
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/staffmaintenance.php')">Mantenimiento de Personal</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/staffmaintenance.php')">Asignar Permisos</a></li>
-                  </ul>
-                </div>
-              </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/users.php')">
-                  <i class="bi bi-people"></i>
-                  USUARIOS
-                </a>
-              </li> -->
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <div class="main__content">
-        <?php include 'views/home.php'; ?>
-      </div>
-      <?php include 'views/modals/alerts/alertModal.php'; ?>
-    </div>
-  </main>
- 
-  <!-- Bootstrap JavaScript Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-  </script>
+    <div class="wrapper">
+        <div class="auth-wrapper">
+            <div class="container-fluid h-100">
+                <div class="row flex-row h-100 bg-white">
+                    <div class="col-xl-8 col-lg-6 col-md-5 p-0 d-md-block d-lg-block d-sm-none d-none">
+                        <div class="lavalite-bg" style="background-image: url(./assets/img/01.jpg)">
+                            <div class="lavalite-overlay"></div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-6 col-md-7 my-auto p-0">
+                        <div class="authentication-form mx-auto">
+                            <div class="logo-center">
+                                <center><img src="assets/img/alvaplast_logo.png" width="250" height=""></center>
+                            </div>
+                            
+                            <h3 class="text-center">Sistema de Administración y Control de Almacen</h3>
+                            <p>Ingrese su Usuario y Contraseña.</p>
+                            <form method="POST" action="log.php">
+                                <div class="form-group">
+                                    <input type="email" name="email" class="form-control" placeholder="Escriba su correo." value="alvaplast@iadvancetech.com" required>
+                                    <i class="ik ik-user"></i>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" name="password" class="form-control" placeholder="Escriba su contraseña." value="admin" required>
+                                    <i class="ik ik-lock"></i>
+                                </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-  </script>
-  <script src="assets/js/loadcontent.js"></script>
-  <script src="assets/js/modals.js"></script>
-  <script src="assets/js/orders.js"></script>
-  <script src="assets/js/formController.js"></script>
-  <script src="assets/js/kardexController.js"></script>
-  <script src="assets/js/maintenance/filtrosTablas.js"></script>
-  <script src="assets/js/maintenance/maintenance_modals.js"></script>
-  <script src="assets/js/alerts/alertmodal.js"></script>
-  <script src="assets/js/staff/staff.js"></script>
-  <script src="assets/js/maintenance/botonesMantenimiento.js"></script>
+                                <div class="sign-btn text-center">
+                                    <button class="btn btn-theme btn-block"><i class="ik ik-arrow-right-circle"></i> Entrar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.2.0/jquery.bootstrap-touchspin.min.js" integrity="sha512-VzUh7hLMvCqgvfBmkd2OINf5/pHDbWGqxS+RFaL/fsgA+rT94LxTFnjlFkm0oKM5BXWbc9EjBQAuARqzGKLbcA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-touchspin/4.2.0/jquery.bootstrap-touchspin.css" integrity="sha512-M+RT/z+GO2INvbXyfkn7l5qN+g09mr0+JQ++nxLUfqAufrp/v5GIQ1k4IMn0BIHgxZK2Ss+YA+kHK4wJUKJK0A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
 </body>
 
 </html>

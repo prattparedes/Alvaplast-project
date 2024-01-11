@@ -69,25 +69,6 @@ document
         document.getElementById("codigo").value = monedaCodigo;
         document.getElementById("descripcion").value = monedaDescripcion;
         document.getElementById("abreviatura").value = monedaSimbolo;
-
-        //Activar botones Modificar-Eliminar
-        const botonesModificarEliminar = document.querySelectorAll(
-          ".maintenanceform__btn--inactive"
-        );
-        botonesModificarEliminar.forEach((boton) => boton.classList.remove("maintenanceform__btn--inactive"))
-
-        // Desactivar Grabar
-        const botonGrabar = document.querySelectorAll(
-          ".maintenanceform__btn"
-        )[1];
-        botonGrabar.classList.add("maintenanceform__btn--inactive")
-
-        // Desactivar inputs-selects-textareas del documento
-        const elementos = document.querySelectorAll('input, select, textarea');
-  
-        elementos.forEach(elemento => {
-          elemento.disabled = true;
-        });
       }
     }
   });
@@ -501,7 +482,7 @@ document
     }
   });
 
-//// Añadir Producto del listado a los datos editables
+//// Añadir Cliente del listado a los datos editables
 document
   .querySelector(".main__content")
   .addEventListener("dblclick", function (event) {
@@ -567,44 +548,3 @@ document
       }
     }
   });
-
-function listarProductosMantenimiento() {
-  // Mostrar la fila de carga antes de hacer la solicitud AJAX
-  mostrarFilaDeCargaProductos();
-
-  const xhr = new XMLHttpRequest();
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        // Inserta la tabla en el contenedor
-        document.getElementById("productsTableBody").innerHTML =
-          xhr.responseText;
-      } else {
-        console.error("Error al cargar la tabla.");
-      }
-    }
-  };
-  xhr.open(
-    "GET",
-    "/Alvaplast-project/views/modals/maintenance_modals/products_table.php",
-    true
-  );
-  xhr.send();
-}
-
-function mostrarFilaDeCargaProductos() {
-  const productsTableBody = document.getElementById("productsTableBody");
-  productsTableBody.innerHTML = ""; // Limpiar el contenido existente
-
-  const filaCarga = document.createElement("tr");
-
-  // Agregar once celdas con los tres puntos suspensivos en cada una
-  for (let i = 0; i < 11; i++) {
-    const celdaCarga = document.createElement("td");
-    celdaCarga.textContent = "...";
-    filaCarga.appendChild(celdaCarga);
-  }
-
-  // Agregar la fila de carga al tbody
-  productsTableBody.appendChild(filaCarga);
-}

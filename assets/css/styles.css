@@ -36,7 +36,7 @@ Home
   overflow-x: hidden;
 }
 
-.home__btn {
+/* .home__btn {
   font-size: 24px;
   margin: 8px;
   max-width: 100%;
@@ -58,7 +58,7 @@ Home
 Botones
 */
 
-.btn__add {
+/* .btn__add {
   background-color: #2fc02f;
   color: #fff;
   border: none;
@@ -68,11 +68,11 @@ Botones
   cursor: pointer;
   text-decoration: none;
   transition: background-color 120ms ease;
-}
+} */
 
-.btn__add:hover {
+/* .btn__add:hover {
   background-color: rgb(55, 206, 87);
-}
+} */ */
 
 .form__btn {
   background-color: #f5f5f5;
@@ -95,10 +95,18 @@ Tablas
   display: none;
 }
 
-th {
-  background-color: #f5f5f5 !important;
-  color: #555 !important;
+
+thead {
+  background-color: #034481 !important;
+  color: #ffffff !important;
+  
 }
+
+tfoot{
+  background-color: #034481 !important;
+  
+}
+
 
 td {
   background-color: #f9f9f9 !important;
@@ -119,6 +127,21 @@ td a {
 /*
 Navbar
 */
+tr:nth-child(even){
+  ba
+}
+
+tr:hover td{
+	background-color: rgb(7, 78, 136);
+	color:#dee2e6;
+}
+
+
+
+
+
+
+
 
 body {
   min-height: 100vh;
@@ -216,17 +239,12 @@ main {
   justify-content: center;
 }
 
-.maintenanceform__btn {
-  font-weight: 600;
-}
-
-.maintenanceform__btn--inactive {
+.maintenance__btn--inactive {
   cursor: not-allowed !important;
   background-color: #c0c0c0;
-  border: none;
 }
 
-.maintenanceform__btn--inactive:hover {
+.maintenance__btn--inactive:hover {
   background-color: #c0c0c0 !important;
 }
 
@@ -304,7 +322,7 @@ main {
   min-height: 400px;
   /* max-height: 90%;
     overflow: scroll; */
-  border: #2b0fc9 1.5px solid;
+  border: #082160 1.5px solid;
   background-color: white;
   border-radius: 20px;
   display: flex;
@@ -439,58 +457,4 @@ Kardex Movement
   display: flex;
   flex-direction: column;
   border: black 1.25px solid;
-}
-
-
-/**
-
-Alert
-
-**/
-
-/* Estilos para la superposición */
-#overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.3); /* Color de fondo semitransparente */
-  z-index: 1; /* Sitúa la superposición sobre todo */
-}
-
-/* Estilos para el alertModal */
-#alertModal {
-  display: none;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border-radius: 5px;
-  width: 300px;
-  max-width: 90%;
-  max-height: 90%;
-  overflow-y: auto;
-  text-align: center;
-  z-index: 2; /* Sitúa el alertModal encima de la superposición */
-}
-
-#alertModal button {
-  width: 20%;
-  margin: 10px 20px;
-  padding: 6px;
-  font-size: 16px;
-}
-
-#alertModal #btnSi:hover {
-  background-color: rgb(0, 110, 255);
-  color: white;
-}
-
-#alertModal #btnNo:hover {
-  background-color: rgb(248, 100, 100);
-  color: white;
 }

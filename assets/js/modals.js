@@ -27,22 +27,16 @@ document
 
 // Carga Dinámica de los modals
 function loadModalContent(modalName) {
-  return new Promise((resolve, reject) => {
-    document.querySelector(
-      ".modal__content--dynamic"
-    ).innerHTML = `<img src="assets/img/tube-spinner.svg" alt="Cargando..." class="modal__loading" style="width: 30%;">`;
+  document.querySelector(
+    ".modal__content--dynamic"
+  ).innerHTML = `<img src="assets/img/tube-spinner.svg" alt="Cargando..." class="modal__loading" style="width: 30%;">`;
 
-    fetch(`views/modals/${modalName}.php`)
-      .then((response) => response.text())
-      .then((data) => {
-        document.querySelector(".modal__content--dynamic").innerHTML = data;
-        resolve(); // Resolvemos la promesa cuando el contenido del modal se carga exitosamente
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-        reject(error); // Rechazamos la promesa si hay un error al cargar el contenido
-      });
-  });
+  fetch(`views/modals/${modalName}.php`)
+    .then((response) => response.text())
+    .then((data) => {
+      document.querySelector(".modal__content--dynamic").innerHTML = data;
+    })
+    .catch((error) => console.error("Error:", error));
 }
 
 // Foto subida al modal de productos

@@ -3,7 +3,7 @@
   <div class="maintenance__btns">
     <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('productmodal')">Productos <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('productmodal')"></i></button>
     <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('clientmodal')">Clientes <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('clientmodal')"></i></button>
-    <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('providermodal')">Proveedores <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('providermodal')"></i></button>
+    <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('providermodal')">Proveedores <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('proveedormodel')"></i></button>
     <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('productlines')">Línea <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('productlines')"></i></button>
     <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('productbrands')">Marca <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('productbrands')"></i></button>
     <button type="button" class="maintenance__btn btn btn-primary btn-lg" onclick="loadMaintenanceContent('productunits')">Unidad <i class="bi bi-plus-circle" onclick="loadMaintenanceContent('productunits')"></i></button>

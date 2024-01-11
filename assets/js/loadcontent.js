@@ -10,7 +10,7 @@ function loadContent(page) {
   productosAgregados = [];
 }
 
-url_maintenance = 'views/modals/maintenance_modals/'
+url_maintenance = '../views/modals/maintenance_modals/'
 function loadMaintenanceContent(page) {
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {

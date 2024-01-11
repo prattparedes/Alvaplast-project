@@ -1,5 +1,5 @@
 <?php 
-require_once($_SERVER['DOCUMENT_ROOT']."/Alvaplast-project/Models/CompraProducto.php");
+require_once($_SERVER['DOCUMENT_ROOT']."/proyectogenesis/Models/CompraProducto.php");
 
 if($_SERVER["REQUEST_METHOD"] === "POST"){
     $idCompra =(int) $_POST["idCompra"] ;

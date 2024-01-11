@@ -55,7 +55,7 @@ function FiltrarProductosMantenimiento(filtro) {
 
 function CumpleFiltroLinea(fila, filtro) {
     const idLinea = fila
-      .querySelector("td:nth-child(15)")
+      .querySelector("td:nth-child(12)")
       .textContent.toLowerCase()
       .trim();
     return parseFloat(idLinea) === parseFloat(filtro);
