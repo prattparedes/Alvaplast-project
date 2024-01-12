@@ -61,10 +61,10 @@
                     <label style="margin-top: 5px;" for="disabledSelect" class="form-label">Cliente</label>
                     <div class="col-md-5">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Ingrese nombre de cliente" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <input type="text" class="form-control" placeholder="Ingrese nombre de cliente" aria-label="Recipient's username" aria-describedby="">
 
 
-                            <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoclientes.php')" type="button" id="button-addon2">....</button>
+                            <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoclientes.php')" type="button" id="">....</button>
                         </div>
 
                         <label for="disabledSelect" class="form-label">Dirección</label>
@@ -188,9 +188,9 @@
 
                     <div class="col-md-4">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <!-- <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoproductosventa.php')" type="button" id="button-addon2">....</button> -->
-                            <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoproductosventa.php')" type="button" id="button-addon2">....</button>
+                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="">
+                            <!-- <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoproductosventa.php')" type="button" id="">....</button> -->
+                            <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoproductosventa.php')" type="button" id="">....</button>
                         </div>
                     </div>
 

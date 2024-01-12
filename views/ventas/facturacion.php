@@ -68,14 +68,14 @@
                     <div class="col-md-3">
                         <label for="inputPassword6" class="form-label">Orden de Venta</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="loadContent('views/modals/listaordenventa.php')">....</button>
+                            <input type="text" class="form-control" aria-describedby="">
+                            <button class="btn btn-outline-secondary" type="button" id="" onclick="loadContent('views/modals/listaordenventa.php')">....</button>
                         </div>
                     </div>
 
                     <div class="col-md-2">
                         <label for="inputPassword6" class="form-label">Emisión</label>
-                        <input type="date" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <input type="date" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="">
                     </div>
 
                     <div class="col-md-2">

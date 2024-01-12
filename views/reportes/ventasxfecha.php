@@ -42,8 +42,8 @@
                     <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Producto:</label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoclientes.php')" type="button" id="button-addon2">....</button>
+                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="">
+                            <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoclientes.php')" type="button" id="">....</button>
                         </div>
                     </div>
 <br>

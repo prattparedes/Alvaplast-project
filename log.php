@@ -198,6 +198,7 @@
   <script src="assets/js/kardexController.js"></script>
   <script src="assets/js/maintenance/filtrosTablas.js"></script>
   <script src="assets/js/maintenance/maintenance_modals.js"></script>
+  <script src="assets/js/compra/ordenCompra.js"></script>
 </body>
 
 </html>
