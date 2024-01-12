@@ -12,6 +12,12 @@
 </head>
 
 <body>
+    <?php
+    require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+
+    use Models\maintenance_models\Producto;
+    use Models\maintenance_models\Almacen;
+    ?>
     <header>
         <!-- place navbar here -->
 
@@ -26,15 +32,21 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label for="inputPassword6" class="col-form-label">Almacen:</label>
-                        <select id="disabledSelect" class="form-select">
-                            <option>Royos</option>
-                            <option>San Juan de Lurigancho</option>
+                        <select id="almacenSelect" class="form-select">
+                            <?php
+                            $almacenes = Almacen::getAlmacenes();
+                            foreach ($almacenes as $almac) {
+                            ?>
+                                <option value="<?= $almac->id_almacen ?>"><?= $almac->descripcion ?></option>
+                            <?php
+                            }
+                            ?>
                         </select>
                     </div>
 
                     <div class="col-md-2">
                         <label for="inputPassword6" class="col-form-label">Filtro:</label>
-                        <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="filtroProductos" class="form-control" aria-describedby="passwordHelpInline" onkeyup="FiltrarListaProductosKardex()">
                     </div>
 
                     <!-- <div class="col-md-2">
@@ -90,7 +102,7 @@
 
                 <div class="col-md-4">
                     <div class="table-responsive">
-                        <table class="table table-primary">
+                        <table class="table table-primary" id="productosKardex">
                             <thead>
                                 <tr>
                                     <th scope="col-1">Producto</th>
@@ -99,16 +111,16 @@
 
                             </thead>
                             <tbody>
-                                <tr class="">
-                                    <td scope="row">A01</td>
-                                    <td scope="row">A01</td>
-
-                                </tr>
-
-                                <tr class="">
-                                    <td scope="row">A02</td>
-                                    <td>AlvaPlastic02</td>
-                                </tr>
+                                <?php
+                                $producto = Producto::getProductos();
+                                foreach ($producto as $produc) {
+                                ?>
+                                    <tr>
+                                        <td style="display:none;"><?= $produc->id_producto ?></td>
+                                        <td><?= $produc->nombre_producto ?></td>
+                                        <td><?= $produc->unidad ?></td>
+                                    </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>
@@ -123,84 +135,84 @@
 
                 <b> <span class="d-block p-1 col-7 bg-info text-white">Detalles de busquedad de Producto</span></b>
                 <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label"> Producto </label>
-                        <fieldset disabled>
-                            <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" placeholder="Bolsa 10x15">
-                        </fieldset>
-                    </div>
-
-                    <div class="col-md-1">
-                        <div></div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label">Fecha Desde:</label>
-                        <input type="date" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                    </div>
+                    <label for="inputPassword6" class="col-form-label"> Producto </label>
+                    <fieldset disabled>
+                        <input type="text" id="productoSeleccionadoKardex" class="form-control" aria-describedby="passwordHelpInline" placeholder="-">
+                    </fieldset>
                 </div>
 
-                <div class="row">
-                   
-                    <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label">Stock Fisico Final:</label>
-                        <fieldset disabled>
-                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                        </fieldset>
-                    </div>
-
-                    <div class="col-md-1">
-                        <div></div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label">Fecha Hasta:</label>
-                        <input type="date" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                    </div>
-
-                    <div class="col-md-3">
-                    <br>
-                        <a name="" id="" class="btn btn-primary" href="#" role="button">Consultar</a>
-                        <a name="" id="" class="btn btn-success" href="#" role="button">Exportar</a>
-                        <a name="" id="" class="btn btn-danger" href="#" onclick="loadContent('views/home.php')" role="button">Cancelar</a>
-                    </div>
-                    
+                <div class="col-md-1">
+                    <div></div>
                 </div>
-                <br>
-                <b> <span class="d-block p-1 col-8 bg-info text-white">Detalles de Proveedores y productos</span></b>
-                <br>
-                <!-- Tabla 02 -->
-                <div class="col-md-8">
-                    <div class="table-responsive">
-                        <table class="table table-primary">
-                            <thead>
-                                <tr>
-                                    <th scope="col-1">Fecha</th>
-                                    <th scope="col-1">Proveedor / Cliente</th>
-                                    <th scope="col-1">Motivo</th>
-                                    <th scope="col-1">Documento</th>
-                                    <th scope="col-1">Monto</th>
-                                    <th scope="col-1">Inicio</th>
-                                    <th scope="col-1">Ingreso</th>
-                                    <th scope="col-1">Salida</th>
-                                    <th scope="col-1">Saldo</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr class="">
-                                    <!-- <td scope="row"></td> -->
 
-
-                                </tr>
-
-                                <tr class="">
-                                    <!-- <td scope="row"></td> -->
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="col-md-2">
+                    <label for="inputPassword6" class="col-form-label">Fecha Desde:</label>
+                    <input type="date" id="fecha1" class="form-control" aria-describedby="passwordHelpInline">
                 </div>
             </div>
+
+            <div class="row">
+
+                <div class="col-md-2">
+                    <label for="inputPassword6" class="col-form-label">Stock Fisico Final:</label>
+                    <fieldset disabled>
+                        <input type="text" id="stockfinal" class="form-control" aria-describedby="passwordHelpInline">
+                    </fieldset>
+                </div>
+
+                <div class="col-md-1">
+                    <div></div>
+                </div>
+
+                <div class="col-md-2">
+                    <label for="inputPassword6" class="col-form-label">Fecha Hasta:</label>
+                    <input type="date" id="fecha2" class="form-control" aria-describedby="passwordHelpInline">
+                </div>
+
+                <div class="col-md-3">
+                    <br>
+                    <a name="" id="" class="btn btn-primary" href="#" role="button" onclick="filtrarKardexPorFechas()">Consultar</a>
+                    <a name="" id="" class="btn btn-success" href="#" role="button" onclick="exportarPDF()">Exportar</a>
+                    <a name="" id="" class="btn btn-danger" href="#" onclick="loadContent('views/home.php')" role="button">Cancelar</a>
+                </div>
+
+            </div>
+            <br>
+            <b> <span class="d-block p-1 col-8 bg-info text-white">Detalles de Proveedores y productos</span></b>
+            <br>
+            <!-- Tabla 02 -->
+            <div class="col-md-8">
+                <div class="table-responsive">
+                    <table class="table table-primary" id="movimientosKardex">
+                        <thead>
+                            <tr>
+                                <th scope="col-1">Fecha</th>
+                                <th scope="col-1">Proveedor / Cliente</th>
+                                <th scope="col-1">Motivo</th>
+                                <th scope="col-1">Documento</th>
+                                <th scope="col-1">Monto</th>
+                                <th scope="col-1">Inicio</th>
+                                <th scope="col-1">Ingreso</th>
+                                <th scope="col-1">Salida</th>
+                                <th scope="col-1">Saldo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="">
+                                <!-- <td scope="row"></td> -->
+
+
+                            </tr>
+
+                            <tr class="">
+                                <!-- <td scope="row"></td> -->
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
         </div>
     </header>
 

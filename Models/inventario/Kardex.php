@@ -6,7 +6,7 @@ use config\Connection;
 use PDO;
 use Exception;
 
-class KardexModel
+class Kardex
 {
 
     public static function listarMovimientosAlmacenProducto($id_almacen, $id_producto)
