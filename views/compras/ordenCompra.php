@@ -15,6 +15,14 @@
 
 <body>
     <header>
+        <?php
+        require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
+
+        use Models\compras\Compra;
+        use Models\maintenance_models\Sucursal;
+        use Models\maintenance_models\Moneda;
+        use Models\maintenance_models\Almacen;
+        ?>
         <!-- place navbar here -->
         <div class="container">
             <h2>ORDEN DE COMPRA</h2>
@@ -23,16 +31,16 @@
                 <b><span class="d-block p-1 col-md-9 bg-info text-white">Orden de Compra</span></b>
                 <div class="row">
                     <div class="col-md-1">
-                        <label for="inputPassword6" class="col-form-label"></label>
+                        <label for="serieDoc" class="col-form-label"></label>
                         <fieldset disabled>
-                            <input type="password" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="serieDoc" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" value="001">
                         </fieldset>
                     </div>
 
                     <div class="col-md-1">
-                        <label for="inputPassword6" class="col-form-label"></label>
+                        <label for="idCompra" class="col-form-label"></label>
                         <fieldset disabled>
-                            <input type="password" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="text" id="idCompra" class="form-control" aria-describedby="passwordHelpInline">
                         </fieldset>
                     </div>
 
@@ -66,18 +74,26 @@
 
                 <div class="row">
                     <div class="col-md-2">
-                        <label for="disabledSelect" class="form-label">Sucursal</label>
-                        <select id="disabledSelect" class="form-select">
-                            <option>Principal</option>
-                            <option>Cañete</option>
+                        <label for="sucursal" class="form-label">Sucursal</label>
+                        <select id="sucursal" class="form-select">
+                            <option value="">Seleccionar </option>
+                            <?php
+                            $data = Sucursal::getSucursales(); ?>
+                            <option value="<?= $data->id_sucursal ?>"><?= $data->descripcion ?></option>
+                        </select>
+
                         </select>
                     </div>
 
                     <div class="col-md-2">
-                        <label for="disabledSelect" class="form-label">Almacen</label>
-                        <select id="disabledSelect" class="form-select">
-                            <option>Almacen</option>
-                            <option>San Juan de Lurigancho</option>
+                        <label for="almacen" class="form-label">Almacen</label>
+                        <select id="almacen" class="form-select">
+                            <option value="">Seleccionar almacen</option>
+                            <?php
+                            $almacenes = Almacen::getAlmacenes();
+                            foreach ($almacenes as $almacen) { ?>
+                                <option value="<?= $almacen->id_almacen ?>"><?= $almacen->descripcion ?></option>
+                            <?php } ?>
                         </select>
                     </div>
 
@@ -93,16 +109,20 @@
 
                 <div class="row">
                     <div class="col-md-2">
-                        <label for="disabledSelect" class="form-label">Moneda</label>
-                        <select id="disabledSelect" class="form-select">
-                            <option>Soles</option>
-                            <option>Extranjera</option>
+                        <label for="moneda" class="form-label">Moneda</label>
+                        <select id="moneda" class="form-select">
+                            <option value="">Seleccionar una moneda</option>
+                            <?php $monedas = Moneda::getMonedas();
+                            foreach ($monedas as $moneda) { ?>
+                                <option value="<?= $moneda->id_moneda ?>"><?= $moneda->descripcion ?></option>
+                            <?php } ?>
+
                         </select>
                     </div>
 
                     <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label">Fecha</label>
-                        <input type="date" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <label for="fecha" class="col-form-label">Fecha</label>
+                        <input type="datetime-local" id="fecha" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
 
 
@@ -117,10 +137,10 @@
 
                 <div class="row">
                     <div class="col-md-2">
-                        <label for="disabledSelect" class="form-label">Tipo de Pago</label>
-                        <select id="disabledSelect" class="form-select">
-                            <option>Nacional</option>
-                            <option>Extranjera</option>
+                        <label for="tipoPago" class="form-label">Tipo de Pago</label>
+                        <select id="tipoPago" class="form-select">
+                            <option value="E">Efectivo</option>
+                            <option value="C">Credito</option>
                         </select>
                     </div>
 
@@ -144,7 +164,7 @@
                     <div class="col-md-4">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoproductosventa.php')" type="button" id="button-addon2">....</button>
+                            <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoproductoscompras.php')" type="button" id="button-addon2">....</button>
                         </div>
                     </div>
 
@@ -185,79 +205,79 @@
                         </div>
                     </div>
 
-                     <!-- <div class="container"> -->
-                        <br>
+                    <!-- <div class="container"> -->
+                    <br>
 
-                        <div class="row">
-                            <div class="col-auto">
-                                <div class="table-responsive"> 
-                                    <table class="tbl_venta">
-                                        <thead>
-                                            <tr>
-                                               <th width="150">Codigo</th>
-                                                <th width="200">Producto</th>
-                                                <th>Cantidad</th>
-                                                <th class="textcenter" width="120">Unidad</th>
-                                                <th class="textcenter" width="120">PreCompra</th>
-                                                <th class="textcenter" width="120">Descuento</th>
-                                                <th class="textcenter" width="120">Total</th> 
-                                                
+                    <div class="row">
+                        <div class="col-auto">
+                            <div class="table-responsive">
+                                <table class="tbl_venta">
+                                    <thead>
+                                        <tr>
+                                            <th width="150">Codigo</th>
+                                            <th width="200">Producto</th>
+                                            <th>Cantidad</th>
+                                            <th class="textcenter" width="120">Unidad</th>
+                                            <th class="textcenter" width="120">PreCompra</th>
+                                            <th class="textcenter" width="120">Descuento</th>
+                                            <th class="textcenter" width="120">Total</th>
 
-                                            </tr>
-                                        </thead>
 
-                                        <!-- <tr> -->
-                                           
-                                     <tbody id="detalle_venta">
-                                            <tr>
-                                                <td>R1C1</td>
-                                                <td colspan="1">AlvaPlastic</td>
-                                                <td class="textcenter">10</td>
-                                                <td class="textright">150.00</td>
-                                                <td class="textright">150.00</td>
-                                                <td class="textright">50.00</td>
-                                                <td class="textright">1250.00</td>
+                                        </tr>
+                                    </thead>
 
-                                           
-                                            </tr>
-                                     </tbody>
-                                       <tfoot> 
-                                          <tr>
-                                          
+                                    <!-- <tr> -->
+
+                                    <tbody id="detalle_venta">
+                                        <tr>
+                                            <td>R1C1</td>
+                                            <td colspan="1">AlvaPlastic</td>
+                                            <td class="textcenter">10</td>
+                                            <td class="textright">150.00</td>
+                                            <td class="textright">150.00</td>
+                                            <td class="textright">50.00</td>
+                                            <td class="textright">1250.00</td>
+
+
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+
                                             <td colspan="6" class="textright">Precio Bruto</td>
                                             <td class="textright">100.00</td>
-                                           </tr> 
+                                        </tr>
 
-                                           <tr>
+                                        <tr>
                                             <td colspan="6" class="textright">Descuento</td>
                                             <td class="textright">100.00</td>
-                                           </tr> 
+                                        </tr>
 
-                                           <tr>
+                                        <tr>
                                             <td colspan="6" class="textright">Precio Neto</td>
                                             <td class="textright">100.00</td>
-                                           </tr> 
+                                        </tr>
 
-                                           <tr>
+                                        <tr>
                                             <td colspan="6" class="textright">IGV S/.</td>
                                             <td class="textright">100.00</td>
-                                           </tr> 
+                                        </tr>
 
-                                           <tr>
+                                        <tr>
                                             <td colspan="6" class="textright">Total S/.</td>
                                             <td class="textright">100.00</td>
-                                           </tr> 
-                                       </tfoot>
-                                    
-                                    </table>
-                                </div>
-                                </div> 
+                                        </tr>
+                                    </tfoot>
+
+                                </table>
                             </div>
                         </div>
-
                     </div>
                 </div>
-            </form>
+
+        </div>
+        </div>
+        </form>
         </div>
     </header>
 

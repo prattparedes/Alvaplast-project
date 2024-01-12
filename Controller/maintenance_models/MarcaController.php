@@ -4,7 +4,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
 use Models\maintenance_models\Marca;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $idMarca = isset($_POST["idMarca"]) && $_POST["idMarca"] !== "-" ? $_POST["idMarca"] : 1;
+    $idMarca = isset($_POST["idMarca"]) && $_POST["idMarca"] !== "" ? $_POST["idMarca"] : 1;
     $descripcion = $_POST["descripcion"];
     $message;
     if ($_POST["metodo"] == "Grabar") {

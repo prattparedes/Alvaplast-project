@@ -14,95 +14,92 @@
 
 <body>
     <header>
+        <?php
+        require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
+
+        use Models\maintenance_models\Proveedor;
+        ?>
         <!-- place navbar here -->
 
         <div class="container">
-        <h3>LISTADO DE PROVEEDORES </h3>
-        <form>
-        <b> <span class="d-block p-2 col-9 bg-info text-white">Datos de Proveedor</span></b>  
-        <br>
-            <div class="row">
-          
-            <b> <span class="">Buscar por:</span></b>  
-            <div class="col-4">
-                <label for="inputPassword6" class="col-form-label">Proveedor</label>
-                
-                    <input type="password" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
-            </div>
+            <h3>LISTADO DE PROVEEDORES </h3>
+            <form>
+                <b> <span class="d-block p-2 col-9 bg-info text-white">Datos de Proveedor</span></b>
+                <br>
+                <div class="row">
 
-            <div class="" style="width: 280px;">
-                <label for="inputPassword6" class="col-form-label">RUC</label>
-                <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-            </div>
+                    <b> <span class="">Buscar por:</span></b>
+                    <div class="col-4">
+                        <label for="inputPassword6" class="col-form-label">Proveedor</label>
 
-          
-            </div>   
-            <br>
-          
-        </form>
-
-        <br>
-        <a style="width: 150px;" high="50" name="" id="" class="btn btn-success" href="#" role="button">Consultar</a>
-        <button style="width: 150px;" class="btn btn-danger" href=""  onclick="loadContent('views/compras/ordencompra.php')" type="button" id="button-addon2">Cancelar</button> 
-
-        <div class="container">
-            <h1>Proveedores</h1>
-            <b> <span class="d-block p-2 col-9 bg-info text-white">Detalles de Proveedores</span></b>  
-            
-            <br>
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="table-responsive">
-                    <table class="table border=1">
-                            <thead>
-                                <tr>
-                                    <th scope="col-md-1">Codigo</th>
-                                    <th scope="col-md-1">Proveedor</th>
-                                    <th scope="col-1">Ruc</th>
-                                    <th scope="col-1">Direccion</th>
-                                    <th scope="col-1">Teléfono</th>
-                                    <th scope="col-1">Fax</th>
-                                    <th scope="col-1">Email</th>
-                                   
-                                    
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr class="">
-                                    <td scope="row">R1C1</td>
-                                    <td>AlvaPlastic</td>
-                                    <td>10167754798</td>
-                                    <td>16775473</td>
-                                    <td>Jr. Los Olivos 166</td>
-                                    <td>919186954</td>
-                                    <td>919186954</td>
-                                   
-
-                                </tr>
-                                <tr class="">
-                                    <td scope="row">R1C1</td>
-                                    <td>AlvaPlastic</td>
-                                    <td>10167754798</td>
-                                    <td>16775473</td>
-                                    <td>Jr. Los Olivos 166</td>
-                                    <td>919186954</td>
-                                    <td>919186954</td>
-                                   
-                                </tr>
-                            </tbody>
-                        </table>
-                        
+                        <input type="password" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
-                    
+
+                    <div class="" style="width: 280px;">
+                        <label for="inputPassword6" class="col-form-label">RUC</label>
+                        <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
+
+
+                </div>
+                <br>
+
+            </form>
+
+            <br>
+            <a style="width: 150px;" high="50" name="" id="" class="btn btn-success" href="#" role="button">Consultar</a>
+            <button style="width: 150px;" class="btn btn-danger" href="" onclick="loadContent('views/compras/ordencompra.php')" type="button" id="button-addon2">Cancelar</button>
+
+            <div class="container">
+                <h1>Proveedores</h1>
+                <b> <span class="d-block p-2 col-9 bg-info text-white">Detalles de Proveedores</span></b>
+
+                <br>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="table-responsive">
+                            <table class="table border=1">
+                                <thead>
+                                    <tr>
+                                        <th scope="col-md-1">Codigo</th>
+                                        <th scope="col-md-1">Proveedor</th>
+                                        <th scope="col-1">Ruc</th>
+                                        <th scope="col-1">Direccion</th>
+                                        <th scope="col-1">Teléfono</th>
+                                        <th scope="col-1">Fax</th>
+                                        <th scope="col-1">Email</th>
+
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <?php
+                                    $providers = Proveedor::listarProveedores();
+                                    foreach ($providers as $provider) { ?>
+                                        <tr>
+                                            <td><?= $provider->id_proveedor ?></td>
+                                            <td><?= $provider->razon_social ?></td>
+                                            <td><?= $provider->ruc ?></td>
+                                            <td><?= $provider->direccion ?></td>
+                                            <td><?= $provider->telefono ?></td>
+                                            <td><?= $provider->fax ?></td>
+                                            <td><?= $provider->email ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+
+
+
                 </div>
 
-
-
-              
             </div>
-            
-        </div>
 
 
 

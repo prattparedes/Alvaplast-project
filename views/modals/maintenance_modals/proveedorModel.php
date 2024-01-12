@@ -106,9 +106,9 @@
                 </div>
 
                 <div class="col-md-12">
-                    <button type="button" class="btn btn-primary me-2">Grabar</button>
-                    <a name="" id="" class="btn btn-success me-2" href="#" role="button">Modificar</a>
-                    <a name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
+                    <button type="button" class="btn btn-primary me-2 provider_submit">Grabar</button>
+                    <a name="" id="" class="btn btn-success me-2 provider_submit" href="#" role="button">Modificar</a>
+                    <a name="" id="" class="btn btn-danger provider_submits" href="#" role="button">Eliminar</a>
                 </div>
             </form>
         </div>

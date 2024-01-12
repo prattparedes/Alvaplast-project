@@ -17,98 +17,98 @@
         <!-- place navbar here -->
 
         <div class="container">
-        <h3>LISTADO DE PRODUCTOS </h3>
-        <form>
-        <b> <span class="d-block p-2 col-9 bg-info text-white">Datos de Productos</span></b>  
-        <br>
-            <div class="row">
-          
-            <b> <span class="">Buscar por:</span></b>  
-            <div class="" style="width: 280px;">
-                <label for="inputPassword6" class="col-form-label">Nombre</label>
-                
-                    <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
-            </div>
+            <h3>LISTADO DE PRODUCTOS </h3>
+            <form>
+                <b> <span class="d-block p-2 col-9 bg-info text-white">Datos de Productos</span></b>
+                <br>
+                <div class="row">
 
-            <div class="" style="width: 280px;">
-                <label for="inputPassword6" class="col-form-label">Codigo del Producto</label>
-                <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-            </div>
+                    <b> <span class="">Buscar por:</span></b>
+                    <div class="" style="width: 280px;">
+                        <label for="inputPassword6" class="col-form-label">Nombre</label>
 
-            <div class="" style="width: 280px;">
-                <label for="inputPassword6" class="col-form-label">Procedencia</label>
-                <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-            </div>
-          
-            </div>   
-            <br>
-          
-        </form>
-
-        <br>
-        <a style="width: 150px;" high="50" name="" id="" class="btn btn-success" href="#" role="button">Consultar</a>
-        <a style="width: 150px;" high="50" name="" id="" class="btn btn-danger" href="#" onclick="loadContent('views/ventas/ordenventa.php')" role="button">Cancelar</a>
-        <div class="container">
-            <h1>Productos</h1>
-            <b> <span class="d-block p-2 col-9 bg-info text-white">Detalles de Productos</span></b>  
-            
-            <br>
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="table-responsive">
-                    <table class="table border=1">
-                            <thead>
-                                <tr>
-                                    <th scope="col-md-1">Codigo</th>
-                                    <th scope="col-md-1">Nombre</th>
-                                    <th scope="col-1">Codigo Producto</th>
-                                    <th scope="col-1">Modelo</th>
-                                    <th scope="col-1">Procedencia</th>
-                                    <th scope="col-1">Precio Real</th>
-                                    <th scope="col-1">Precio venta</th>
-                                     <th scope="col-1">Stock</th> 
-                                   
-                                    
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr class="">
-                                    <td scope="row">R1C1</td>
-                                    <td>AlvaPlastic</td>
-                                    <td>10167754798</td>
-                                    <td>16775473</td>
-                                    <td>Jr. Los Olivos 166</td>
-                                    <td>919186954</td>
-                                    <td>919186954</td>
-                                   
-                                   
-
-                                </tr>
-                                <tr class="">
-                                    <td scope="row">R1C1</td>
-                                    <td>AlvaPlastic</td>
-                                    <td>10167754798</td>
-                                    <td>16775473</td>
-                                    <td>Jr. Los Olivos 166</td>
-                                    <td>919186954</td>
-                                    <td>919186954</td>
-                                   
-                                   
-                                </tr>
-                            </tbody>
-                        </table>
-                        
+                        <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
-                    
+
+                    <div class="" style="width: 280px;">
+                        <label for="inputPassword6" class="col-form-label">Codigo del Producto</label>
+                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
+
+                    <div class="" style="width: 280px;">
+                        <label for="inputPassword6" class="col-form-label">Procedencia</label>
+                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    </div>
+
+                </div>
+                <br>
+
+            </form>
+
+            <br>
+            <a style="width: 150px;" high="50" name="" id="" class="btn btn-success" href="#" role="button">Consultar</a>
+            <a style="width: 150px;" high="50" name="" id="" class="btn btn-danger" href="#" onclick="loadContent('views/ventas/ordenventa.php')" role="button">Cancelar</a>
+            <div class="container">
+                <h1>Productos</h1>
+                <b> <span class="d-block p-2 col-9 bg-info text-white">Detalles de Productos</span></b>
+
+                <br>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="table-responsive">
+                            <table class="table border=1">
+                                <thead>
+                                    <tr>
+                                        <th scope="col-md-1">Codigo</th>
+                                        <th scope="col-md-1">Nombre</th>
+                                        <th scope="col-1">Codigo Producto</th>
+                                        <th scope="col-1">Modelo</th>
+                                        <th scope="col-1">Procedencia</th>
+                                        <th scope="col-1">Precio Real</th>
+                                        <th scope="col-1">Precio venta</th>
+                                        <th scope="col-1">Stock</th>
+
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr class="">
+                                        <td scope="row">R1C1</td>
+                                        <td>AlvaPlastic</td>
+                                        <td>10167754798</td>
+                                        <td>16775473</td>
+                                        <td>Jr. Los Olivos 166</td>
+                                        <td>919186954</td>
+                                        <td>919186954</td>
+
+
+
+                                    </tr>
+                                    <tr class="">
+                                        <td scope="row">R1C1</td>
+                                        <td>AlvaPlastic</td>
+                                        <td>10167754798</td>
+                                        <td>16775473</td>
+                                        <td>Jr. Los Olivos 166</td>
+                                        <td>919186954</td>
+                                        <td>919186954</td>
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+
+
+
+
                 </div>
 
-
-
-              
             </div>
-            
-        </div>
 
 
 
