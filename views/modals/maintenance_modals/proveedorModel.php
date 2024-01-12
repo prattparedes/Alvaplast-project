@@ -27,60 +27,60 @@
                     <div class="col-md-2">
                         <label for="inputPassword6" class="col-form-label">Codigo</label>
                         <fieldset disabled>
-                            <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline">
                         </fieldset>
                     </div>
                 </div>
                 <div class="row">
                     <div class="" style="width: 500px;">
                         <label for="inputPassword6" class="col-form-label">Razon Social</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="razonSocial" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
                 </div>
                 <div class="" style="width: 180px;">
                     <label for="inputPassword6" class="col-form-label">RUC</label>
-                    <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    <input type="text" id="ruc" class="form-control" aria-describedby="passwordHelpInline">
                 </div>
 
                 <div class="" style="width: 310px;">
                     <label for="inputPassword6" class="col-form-label">Direccion</label>
-                    <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    <input type="text" id="direccion" class="form-control" aria-describedby="passwordHelpInline">
                 </div>
 
                 <div class="row">
                     <div class="" style="width: 180px;">
                         <label for="inputPassword6" class="col-form-label">Telefono</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="telefono" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
 
                     <div class="" style="width: 180px;">
                         <label for="inputPassword6" class="col-form-label">Fax</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="fax" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
                 </div>
                 <div class="row">
                     <div class="" style="width: 357px;">
                         <label for="inputPassword6" class="col-form-label">Contacto</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="contacto" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <label for="inputPassword6" class="col-form-label">Email</label>
-                    <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    <input type="text" id="email" class="form-control" aria-describedby="passwordHelpInline">
                 </div>
 
                 <div class="row">
                     <div class="col-md-2">
                         <label for="inputPassword6" class="col-form-label">Estado</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label" for="flexCheckDefault">Habilitado</label>
+                            <input class="form-check-input" type="checkbox" value="" id="estado">
+                            <label class="form-check-label" for="estado">Habilitado</label>
                         </div>
                     </div>
 
                     <div class="col-md-2">
                         <label for="disabledSelect" class="form-label">Departamento</label>
-                        <select id="disabledSelect" class="form-select">
+                        <select id="departamento" class="form-select" onchange="listarProvincia(this.value)">
                             <?php
                             $data = Ubigeo::getDepartamentos();
                             foreach ($data as $ubi) {
@@ -94,17 +94,13 @@
                 <div class="row">
                     <div class="col-md-2">
                         <label for="disabledSelect" class="form-label">Provincia</label>
-                        <select id="disabledSelect" class="form-select">
-                            <option>Lima</option>
-                            <option>Cañete</option>
+                        <select id="provincia" class="form-select" onchange="listarDistrito(this.value)">
                         </select>
                     </div>
 
                     <div class="col-md-2">
                         <label for="disabledSelect" class="form-label">Distrito</label>
-                        <select id="disabledSelect" class="form-select">
-                            <option>Los Olivos</option>
-                            <option>San Juan de Lurigancho</option>
+                        <select id="distrito" class="form-select">
                         </select>
                     </div>
                 </div>
@@ -125,19 +121,19 @@
                     <div class="row">
                         <div class="col-md-3">
                             <label for="disabledSelect" class="form-label">Proveedor</label>
-                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="text" id="filtroProveedorNombre" class="form-control" aria-describedby="passwordHelpInline" onkeyup="FiltrarProveedoresNombre()">
                         </div>
 
                         <div class="col-md-3">
                             <label for="disabledSelect" class="form-label">RUC</label>
-                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="text" id="filtroProveedorRuc" class="form-control" aria-describedby="passwordHelpInline" onkeyup="FiltrarProveedoresNombre()">
                         </div>
                     </div>
                     <br>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="table-responsive">
-                                <table class="table border=1">
+                                <table class="table border=1" id="providersTable">
                                     <thead>
                                         <tr>
                                             <th scope="col-md-1">Codigo</th>

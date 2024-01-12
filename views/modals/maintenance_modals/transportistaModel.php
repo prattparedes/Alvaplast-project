@@ -28,38 +28,38 @@
                     <div class="col-md-2">
                         <label for="inputPassword6" class="col-form-label">Codigo</label>
                         <fieldset disabled>
-                            <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline">
                         </fieldset>
                     </div>
 
                     <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label">RUC</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <label for="ruc" class="col-form-label">RUC</label>
+                        <input type="text" id="ruc" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
 
                     <div class="col-md-4">
-                        <label for="inputPassword6" class="col-form-label">Nombre</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <label for="nombres" class="col-form-label">Nombre</label>
+                        <input type="text" id="nombres" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
 
                     <div class="col-md-4">
-                        <label for="inputPassword6" class="col-form-label">Apellido Paterno</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <label for="paterno" class="col-form-label">Apellido Paterno</label>
+                        <input type="text" id="paterno" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
 
                     <div class="col-md-4">
-                        <label for="inputPassword6" class="col-form-label">Apellido Materno</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <label for="materno" class="col-form-label">Apellido Materno</label>
+                        <input type="text" id="materno" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
 
                     <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label">DNI</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <label for="dni" class="col-form-label">DNI</label>
+                        <input type="text" id="dni" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
 
                     <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label">Licencia Nro.</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <label for="licencia" class="col-form-label">Licencia Nro.</label>
+                        <input type="text" id="licencia" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
 
                     <div class="col-md-4">
@@ -108,15 +108,15 @@
 
                     <div class="col-md-9">
                         <div class="table-responsive">
-                            <table class="table border=1">
+                            <table class="table border=1" id="carrierstable">
                                 <thead>
                                     <tr>
-                                        <th scope="col-md-1">Codigo</th>
-                                        <th scope="col-1">RUC</th>
-                                        <th scope="col-1">Nombre</th>
+                                        <th scope="col-md-1">ID</th>
+                                        <th scope="col-1">Nombres</th>
                                         <th scope="col-1">Apellido paterno</th>
                                         <th scope="col-1">Apellido materno</th>
                                         <th scope="col-1">DNI</th>
+                                        <th scope="col-1">RUC</th>
                                         <th scope="col-1">Nro. Licencia</th>
                                         <th scope="col-1">Dirección</th>
                                         <th scope="col-1">Telefono</th>
@@ -125,7 +125,6 @@
                                 </thead>
                                 <tbody>
                                     <?php
-
                                     $transportista = Transportistas::getTransportistas();
                                     foreach ($transportista as $trans) {
                                     ?>
@@ -136,7 +135,7 @@
                                             <td><?= $trans->ap_materno ?></td>
                                             <td><?= $trans->dni ?></td>
                                             <td><?= $trans->ruc ?></td>
-                                            <td style="display:none;"><?= $trans->licencia ?></td>
+                                            <td><?= $trans->licencia ?></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

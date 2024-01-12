@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Mantenimiento de Sucursal</title>
+    <title>Mantenimiento de Almacen</title>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -14,14 +14,14 @@
 <body>
     <header>
         <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/autoload.php");
 
-        use Models\maintenance_models\Sucursal;
+        use Models\maintenance_models\Almacen;
         ?>
         <div class="container">
-            <h1>Mantenimiento de Sucursal</h1>
+            <h1>Mantenimiento de almacen</h1>
             <form>
-                <b><span class="d-block p-2 col-12 bg-info text-white">Datos de las Sucursales</span></b>
+                <b><span class="d-block p-2 col-12 bg-info text-white">Datos de Monedas</span></b>
                 <div class="row g-3">
                     <div class="col-md-2">
                         <label for="inputPassword6" class="col-form-label">Codigo</label>
@@ -31,18 +31,20 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label for="inputPassword6" class="col-form-label">Descripción</label>
+                        <label for="inputPassword6" class="col-form-label">Sucursal</label>
+                        <select id="sucursal" class="form-select">
+                            <option value="PRINCIPAL">PRINCIPAL</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="inputPassword6" class="col-form-label">Descripcion</label>
                         <input type="text" id="descripcion" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
 
                     <div class="col-md-4">
-                        <label for="inputPassword6" class="col-form-label">Direccion</label>
-                        <input type="text" id="direccion" class="form-control" aria-describedby="passwordHelpInline">
-                    </div>
-
-                    <div class="col-md-4">
-                        <label for="inputPassword6" class="col-form-label">Telefono</label>
-                        <input type="text" id="telefono" class="form-control" aria-describedby="passwordHelpInline">
+                        <label for="inputPassword6" class="col-form-label">Código de Facturación</label>
+                        <input type="number" id="facturacion" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
 
                     <div class="col-md-12">
@@ -57,31 +59,31 @@
             <br><br>
 
             <div class="container">
-                <h1>Listado de Sucursales</h1>
+                <h1>Listado de Monedas</h1>
                 <div class="row">
                     <div class="col-md-9">
                         <div class="table-responsive">
-                            <table class="table border=1" id="branchstable">
+                            <table class="table border=1" id="currenciesTable">
                                 <thead>
                                     <tr>
-                                        <th scope="col-md-1">Codigo</th>
-                                        <th scope="col-md-1">Descripción</th>
-                                        <th scope="col-1">Direccion</th>
-                                        <th scope="col-1">Telefono</th>
+                                        <th>Código</th>
+                                        <th>Sucursal</th>
+                                        <th>Almacén</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     <?php
 
-                                    $sucursal = Sucursal::getSucursales();
+                                    $almacen = Almacen::getAlmacenes();
+                                    foreach ($almacen as $alm) {
                                     ?>
-                                    <tr>
-                                        <td><?= $sucursal->id_sucursal ?></td>
-                                        <td><?= $sucursal->descripcion ?></td>
-                                        <td><?= $sucursal->direccion ?></td>
-                                        <td><?= $sucursal->telefono ?></td>
-                                    </tr>
+                                        <tr>
+                                            <td><?= $alm->id_almacen ?></td>
+                                            <td><?= $alm->sucursal ?></td>
+                                            <td><?= $alm->descripcion ?></td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

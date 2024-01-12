@@ -25,13 +25,13 @@
                 <div class="col-md-2">
                     <label for="inputPassword6" class="col-form-label">Codigo</label>
                     <fieldset disabled>
-                        <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline">
                     </fieldset>
                 </div>
 
                 <div class="col-md-4">
                     <label for="inputPassword6" class="col-form-label">Descripción</label>
-                    <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    <input type="text" id="descripcion" class="form-control" aria-describedby="passwordHelpInline">
                 </div>
 
                 <div class="col-md-12">
@@ -50,14 +50,14 @@
                 <div class="row">
                     <div class="col-12">
                         <label for="inputPassword6" class="form-label">Buscar por Descripción</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="filtroLineas" class="form-control" aria-describedby="passwordHelpInline" onkeyup="FiltrarLineasMantenimiento()">
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-12">
                         <div class="table-responsive">
-                            <table class="table border=1">
+                            <table class="table border=1" id="productlinesTable">
                                 <thead>
                                     <tr>
                                         <th style="width: 180px;" scope="col-md-1">Codigo</th>

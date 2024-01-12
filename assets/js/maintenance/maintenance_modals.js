@@ -25,7 +25,7 @@ document
         const vehiculoMarca = contenidoFila[4];
 
         // Cambiar el HTML de los spans por los datos
-        document.getElementById("codigo").innerText = vehiculoCodigo;
+        document.getElementById("codigo").value = vehiculoCodigo;
         document.getElementById("placa").value = vehiculoPlaca;
         document.getElementById("modelo").value = vehiculoModelo;
 
@@ -39,7 +39,7 @@ document
             break;
           }
         }
-
+        console.log(vehiculoMarca)
         marcaInput.value = vehiculoMarca;
       }
     }
@@ -69,6 +69,25 @@ document
         document.getElementById("codigo").value = monedaCodigo;
         document.getElementById("descripcion").value = monedaDescripcion;
         document.getElementById("abreviatura").value = monedaSimbolo;
+
+        // //Activar botones Modificar-Eliminar
+        // const botonesModificarEliminar = document.querySelectorAll(
+        //   ".maintenanceform__btn--inactive"
+        // );
+        // botonesModificarEliminar.forEach((boton) => boton.classList.remove("maintenanceform__btn--inactive"))
+
+        // // Desactivar Grabar
+        // const botonGrabar = document.querySelectorAll(
+        //   ".maintenanceform__btn"
+        // )[1];
+        // botonGrabar.classList.add("maintenanceform__btn--inactive")
+
+        // // Desactivar inputs-selects-textareas del documento
+        // const elementos = document.querySelectorAll('input, select, textarea');
+  
+        // elementos.forEach(elemento => {
+        //   elemento.disabled = true;
+        // });
       }
     }
   });
@@ -94,11 +113,11 @@ document
         const transportistaNombres = contenidoFila[1];
         const transportistaApPaterno = contenidoFila[2];
         const transportistaApMaterno = contenidoFila[3];
-        const transportistaRuc = contenidoFila[4];
-        const transportistaDNI = contenidoFila[5];
+        const transportistaRuc = contenidoFila[5];
+        const transportistaDNI = contenidoFila[4];
         const transportistaLicencia = contenidoFila[6];
 
-        document.getElementById("codigo").innerHTML = transportistaCodigo;
+        document.getElementById("codigo").value = transportistaCodigo;
         document.getElementById("nombres").value = transportistaNombres;
         document.getElementById("paterno").value = transportistaApPaterno;
         document.getElementById("materno").value = transportistaApMaterno;
@@ -130,12 +149,13 @@ document
         const documentoAbreviatura = contenidoFila[1];
         const documentoDescripcion = contenidoFila[2];
 
-        document.getElementById("codigo").innerHTML = documentoCodigo;
+        document.getElementById("codigo").value = documentoCodigo;
         document.getElementById("abreviatura").value = documentoAbreviatura;
         document.getElementById("descripcion").value = documentoDescripcion;
       }
     }
   });
+
 // Añadir Almacen del listado a los datos editables
 document
   .querySelector(".main__content")
@@ -189,7 +209,7 @@ document
         const sucursalDireccion = contenidoFila[2];
         const sucursalTelefono = contenidoFila[3];
 
-        document.getElementById("codigo").innerHTML = sucursalCodigo;
+        document.getElementById("codigo").value = sucursalCodigo;
         document.getElementById("descripcion").value = sucursalDescripcion;
         document.getElementById("direccion").value = sucursalDireccion;
         document.getElementById("telefono").value = sucursalTelefono;
@@ -219,7 +239,7 @@ document
         const unidadCodigoUnidad = contenidoFila[1];
         const unidadDescripcion = contenidoFila[2];
 
-        document.getElementById("codigo").innerHTML = unidadID;
+        document.getElementById("codigo").value = unidadID;
         document.getElementById("abreviatura").value = unidadCodigoUnidad;
         document.getElementById("descripcion").value = unidadDescripcion;
       }
@@ -247,7 +267,7 @@ document
         const marcaID = contenidoFila[0];
         const marcaDescripcion = contenidoFila[1];
 
-        document.getElementById("codigo").innerHTML = marcaID;
+        document.getElementById("codigo").value = marcaID;
         document.getElementById("descripcion").value = marcaDescripcion;
       }
     }
@@ -274,7 +294,7 @@ document
         const lineaCódigo = contenidoFila[0];
         const lineaDescripcion = contenidoFila[1];
 
-        document.getElementById("codigo").innerHTML = lineaCódigo;
+        document.getElementById("codigo").value = lineaCódigo;
         document.getElementById("descripcion").value = lineaDescripcion;
       }
     }
@@ -306,11 +326,11 @@ document
         const proveedorTelefono = contenidoFila[4];
         const proveedorDescripcion = contenidoFila[7];
         const proveedorFax = contenidoFila[5];
-        const proveedorContacto = contenidoFila[8];
-        const proveedorEstado = contenidoFila[9];
+        const proveedorContacto = contenidoFila[7];
+        const proveedorEstado = contenidoFila[8];
 
         // ubigeo
-        const proveedorUbicacion = contenidoFila[10];
+        const proveedorUbicacion = contenidoFila[9];
         const dosPrimeros = proveedorUbicacion.substring(0, 2);
         const cuatroDigitos = proveedorUbicacion.substring(0, 4);
 
@@ -318,16 +338,17 @@ document
         const segundoNumero = cuatroDigitos + "00"; // 4 primeros dígitos s + 2 ceros
         const tercerNumero = proveedorUbicacion; // Los 6 dígitos originales
 
-        document.getElementById("codigo").innerHTML = proveedorCódigo;
+        document.getElementById("codigo").value = proveedorCódigo;
         document.getElementById("razonSocial").value = proveedorNombre;
         document.getElementById("ruc").value = proveedorRuc;
         document.getElementById("direccion").value = proveedorDireccion;
         document.getElementById("email").value = proveedorEmail;
         document.getElementById("telefono").value = proveedorTelefono;
-        document.getElementById("descripcion").value = proveedorDescripcion;
+        // document.getElementById("descripcion").value = proveedorDescripcion;
         document.getElementById("fax").value = proveedorFax;
         document.getElementById("contacto").value = proveedorContacto;
-        document.getElementById("estado").value = proveedorEstado;
+        document.getElementById("estado").checked = proveedorEstado === '1';
+        console.log(proveedorEstado)
 
         document.getElementById("departamento").value = primerNumero;
         listarProvincia(primerNumero);
@@ -341,7 +362,7 @@ document
 function listarProvincia(ubigeo) {
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/ubigeoController.php"; // Ruta del controlador PHP
+  const url = "/Alvaplast-project/Controller/maintenance_models/ubigeoController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);
@@ -373,6 +394,9 @@ function listarProvincia(ubigeo) {
             option.textContent = provincia.descripcion;
             selectProvincia.appendChild(option);
           });
+
+          // Listar distrito predeterminado
+          listarDistrito(parsedProvincias[0].id_ubigeo)
         }
       } else {
         // Hubo un error en la solicitud
@@ -385,7 +409,7 @@ function listarProvincia(ubigeo) {
 function listarDistrito(idprovincia) {
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/ubigeoController.php"; // Ruta del controlador PHP
+  const url = "/Alvaplast-project/Controller/maintenance_models/ubigeoController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);
@@ -463,7 +487,7 @@ document
         const segundoNumero = cuatroDigitos + "00"; // 4 primeros dígitos s + 2 ceros
         const tercerNumero = clienteUbicacion; // Los 6 dígitos originales
 
-        document.getElementById("codigo").innerHTML = clienteCódigo;
+        document.getElementById("codigo").value = clienteCódigo;
         document.getElementById("razonSocial").value = clienteNombre;
         document.getElementById("ruc").value = clienteRuc;
         document.getElementById("direccion").value = clienteDireccion;
@@ -482,7 +506,7 @@ document
     }
   });
 
-//// Añadir Cliente del listado a los datos editables
+//// Añadir Producto del listado a los datos editables
 document
   .querySelector(".main__content")
   .addEventListener("dblclick", function (event) {
@@ -515,7 +539,7 @@ document
         const productoStockMaximo = contenidoFila[9];
         const productoEstado = contenidoFila[18];
 
-        document.getElementById("codigo").innerHTML = productoCódigo;
+        document.getElementById("codigo").value = productoCódigo;
         document.getElementById("procedencia").value = productoProcedencia;
         document.getElementById("nombre").value = productoNombre;
         document.getElementById("linea").value = productoLinea;
@@ -548,3 +572,45 @@ document
       }
     }
   });
+
+function listarProductosMantenimiento() {
+  // Mostrar la fila de carga antes de hacer la solicitud AJAX
+  mostrarFilaDeCargaProductos();
+
+  const xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      if (xhr.status === 200) {
+        // Inserta la tabla en el contenedor
+        document.getElementById("productsTableBody").innerHTML =
+          xhr.responseText;
+      } else {
+        console.error("Error al cargar la tabla.");
+      }
+    }
+  };
+  xhr.open(
+    "GET",
+    "/Alvaplast-project/views/modals/maintenance_modals/products_table.php",
+    true
+  );
+  xhr.send();
+}
+
+function mostrarFilaDeCargaProductos() {
+  const productsTableBody = document.getElementById("productsTableBody");
+  productsTableBody.innerHTML = ""; // Limpiar el contenido existente
+
+  const filaCarga = document.createElement("tr");
+
+  // Agregar once celdas con los tres puntos suspensivos en cada una
+  for (let i = 0; i < 11; i++) {
+    const celdaCarga = document.createElement("td");
+    celdaCarga.textContent = "...";
+    filaCarga.appendChild(celdaCarga);
+  }
+
+  // Agregar la fila de carga al tbody
+  productsTableBody.appendChild(filaCarga);
+}
+
