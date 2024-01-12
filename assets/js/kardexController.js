@@ -5,7 +5,6 @@ document
   .addEventListener("dblclick", function (event) {
     const isKardexTable = event.target.closest("#productosKardex");
 
-
     if (isKardexTable) {
       const almacenSelect = document.getElementById("almacenSelect");
       const productoSeleccionado = document.getElementById(
@@ -23,14 +22,15 @@ document
 
       const id_producto = fila.cells[0].textContent.trim();
       const nombreProducto = fila.cells[1].textContent.trim();
-      productoSeleccionado.innerHTML = nombreProducto;
+      productoSeleccionado.value = nombreProducto;
 
       // Mostrar la fila de carga antes de enviar la solicitud
       mostrarFilaDeCarga();
 
       // Crear una solicitud XMLHttpRequest
       const xhr = new XMLHttpRequest();
-      const url = "/Alvaplast-project/Controller/KardexController.php"; // Ruta del controlador PHP
+      const url =
+        "/Alvaplast-project/Controller/inventario/KardexController.php"; // Ruta del controlador PHP
 
       // Configurar la solicitud
       xhr.open("POST", url, true);
@@ -78,7 +78,7 @@ function actualizarTablaMovimientosKardex(datos) {
     } else {
       saldoFisicoFinal = movimientos[0].stock + movimientos[0].cantidad;
     }
-    spanStock.innerHTML = saldoFisicoFinal;
+    spanStock.value = saldoFisicoFinal;
   }
 
   // Iterar sobre los datos y agregar filas a la tabla
@@ -249,7 +249,10 @@ function filtrarKardexPorFechas() {
 function exportarPDF() {
   const productoSeleccionado = document.getElementById(
     "productoSeleccionadoKardex"
-  ).innerHTML;
+  ).value;
+  const AlmacenSeleccionado = document.getElementById(
+    "almacenSelect"
+  ).value;
   const fecha1 = new Date(document.getElementById("fecha1").value);
   const fecha2 = new Date(document.getElementById("fecha2").value);
 
@@ -274,8 +277,7 @@ function exportarPDF() {
   const doc = new jsPDF();
 
   // Título del documento
-  doc.text("Movimientos de " + productoSeleccionado, 14, 10); // Texto y posición
-  console.log(fechaFormateada1, fechaFormateada2);
+  doc.text("Movimientos de " + productoSeleccionado + " (Almacén " + AlmacenSeleccionado +")", 14, 10); // Texto y posición
   if (
     !(
       fechaFormateada1 === "Invalid Date" || fechaFormateada2 === "Invalid Date"
@@ -288,6 +290,19 @@ function exportarPDF() {
     ); // Texto y posición
   }
 
+  // Encabezados de la tabla
+  const headers = [
+    "Fecha",
+    "Proveedor / Cliente",
+    "Motivo",
+    "Documento",
+    "Monto",
+    "Inicio",
+    "Ingreso",
+    "Salida",
+    "Saldo",
+  ];
+
   // Obtener todas las filas de la tabla
   const filas = document.querySelectorAll("#movimientosKardex tbody tr");
 
@@ -296,10 +311,11 @@ function exportarPDF() {
   filas.forEach((fila) => {
     if (window.getComputedStyle(fila).display !== "none") {
       const contenido = fila.innerText || fila.textContent;
-      datosFilas.push(contenido.split("\n"));
+      datosFilas.push(contenido.split("\t")); // Usar solo split("\t")
     }
   });
 
+  console.log(datosFilas)
   // Configurar tamaño de fuente para las filas
   const fontSize = 10; // Tamaño de fuente para las filas
   doc.setFontSize(fontSize);
@@ -311,7 +327,7 @@ function exportarPDF() {
   ) {
     // Agregar las filas al PDF usando autoTable
     doc.autoTable({
-      head: [], // No hay encabezados en este caso
+      head: [headers], // Encabezados de la tabla
       body: datosFilas, // Datos de las filas visibles
       margin: { top: 25 }, // Margen superior para dejar espacio para el título
       styles: {
@@ -322,12 +338,17 @@ function exportarPDF() {
   } else {
     // Agregar las filas al PDF usando autoTable
     doc.autoTable({
-      head: [], // No hay encabezados en este caso
+      head: [headers], // Encabezados de la tabla
       body: datosFilas, // Datos de las filas visibles
-      margin: { top: 18 }, // Margen superior para dejar espacio para el título
+      margin: { top: 15 }, // Margen superior para dejar espacio para el título
       styles: {
         fontSize: 7, // Tamaño de fuente para las filas
         overflow: "ellipsize", // Controlar el desbordamiento de texto
+      },
+      columnStyles: {
+        // Establecer estilos específicos para ciertas columnas si es necesario
+        0: { fontStyle: "bold" },
+        // ... otras columnas si es necesario
       },
     });
   }

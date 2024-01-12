@@ -127,7 +127,7 @@
                     <a class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/clientemodel.php')">Clientes</a>
                     <a class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/proveedormodel.php')">Proveedores</a>
                     <a class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/personalmodel.php')">Personal</a>
-                    <a class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/permisosmodel.php')">Permisos</a>
+                    <a class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/personalmodel.php')">Permisos</a>
                     <hr class="dropdown-divider">
                     <a class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/productolineamodel.php')">Lineas</a>
               </li>
