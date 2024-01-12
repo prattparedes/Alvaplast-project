@@ -32,16 +32,16 @@
                 <b><span class="d-block p-1 col-md-9 bg-info text-white">Orden de Compra</span></b>
                 <div class="row">
                     <div class="col-md-1">
-                        <label for="inputPassword6" class="col-form-label"></label>
+                        <label for="serieDoc" class="col-form-label"></label>
                         <fieldset disabled>
                             <input type="number" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" placeholder="001-">
                         </fieldset>
                     </div>
 
                     <div class="col-md-1">
-                        <label for="inputPassword6" class="col-form-label"></label>
+                        <label for="idCompra" class="col-form-label"></label>
                         <fieldset disabled>
-                            <input type="number" style="width:112px;" id="numerocompra" class="form-control" aria-describedby="passwordHelpInline" value=<?=Compra::getIdCompra();?>>
+                            <input type="number" style="width:112px;" id="idCompra" class="form-control" aria-describedby="passwordHelpInline" value=<?=Compra::getIdCompra();?>>
                         </fieldset>
                     </div>
 
@@ -76,12 +76,14 @@
 
                 <div class="row">
                     <div class="col-md-2">
-                        <label for="disabledSelect" class="form-label">Sucursal</label>
+                        <label for="sucursal" class="form-label">Sucursal</label>
                         <select id="sucursal" class="form-select" disabled>
-                            <option value="">Principal</option>
+                            <option value="">Seleccionar </option>
                             <?php
                             $data = Sucursal::getSucursales(); ?>
                             <option value="<?= $data->id_sucursal ?>"><?= $data->descripcion ?></option>
+                        </select>
+
                         </select>
                     </div>
 
@@ -109,7 +111,7 @@
 
                 <div class="row">
                     <div class="col-md-2">
-                        <label for="disabledSelect" class="form-label">Moneda</label>
+                        <label for="moneda" class="form-label">Moneda</label>
                         <select id="moneda" class="form-select" disabled>
                             <option value="">Seleccione moneda</option>
                             <?php
@@ -121,7 +123,7 @@
                     </div>
 
                     <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label">Fecha</label>
+                        <label for="fecha" class="col-form-label">Fecha</label>
                         <input type="datetime-local" id="fecha" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
@@ -166,7 +168,7 @@
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" id="productname" placeholder="Seleccione Producto" aria-label="Recipient's username" aria-describedby="" disabled>
                             <input type="hidden" type="text" id="productid">
-                            <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoproductosventa.php')" type="button" id="">....</button>
+                            <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoproductoscompras.php')" type="button" id="">....</button>
                         </div>
                     </div>
 
@@ -210,6 +212,8 @@
                         </div>
                     </div>
 
+                    <!-- <div class="container"> -->
+                    <br>
                     <!-- <div class="container"> -->
                     <br>
 
@@ -273,6 +277,9 @@
                     </div>
                 </div>
 
+        </div>
+        </div>
+        </form>
         </div>
         </div>
         </form>

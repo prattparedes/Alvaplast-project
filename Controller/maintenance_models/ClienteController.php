@@ -4,7 +4,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
 use Models\maintenance_models\Cliente;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $idCliente = isset($_POST["idCliente"]) && $_POST["idCliente"] !== "-" ? $_POST["idCliente"] : 1;
+    $idCliente = isset($_POST["idCliente"]) && $_POST["idCliente"] !== "" ? $_POST["idCliente"] : 1;
     $razonSocial = $_POST["razonSocial"];
     $ruc = $_POST["ruc"];
     $dni = $_POST["dni"];

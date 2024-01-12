@@ -5,6 +5,7 @@ namespace Models\maintenance_models;
 use config\Connection;
 use PDO;
 use Exception;
+use PDOException;
 
 
 class Cliente
@@ -42,7 +43,7 @@ class Cliente
             $stmt->bindParam("idUbigeo", $idUbigeo, PDO::PARAM_STR);
             $result = $stmt->execute();
             return $result;
-        } catch (Exception $err) {
+        } catch (PDOException $err) {
             echo $err->getMessage();
             return false;
         }

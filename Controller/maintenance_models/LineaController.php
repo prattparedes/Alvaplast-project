@@ -4,7 +4,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
 use Models\maintenance_models\Linea;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $idLinea = isset($_POST["idLinea"]) && $_POST["idLinea"] !== "-" ? $_POST["idLinea"] : 1;
+    $idLinea = isset($_POST["idLinea"]) && $_POST["idLinea"] !== "" ? $_POST["idLinea"] : 1;
     $descripcion = $_POST["descripcion"];
     $message;
     if ($_POST["metodo"] == "Grabar") {

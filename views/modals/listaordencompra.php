@@ -14,87 +14,88 @@
 
 <body>
     <header>
+        <?php
+        require_once($_SERVER["DOCUMENT_ROOT"] . '/Alvaplast-project/autoload.php');
+
+        use Models\compras\Compra;
+        ?>
         <!-- place navbar here -->
 
         <div class="container">
-        <h3>LISTADO DE ORDENES DE COMPRA </h3>
-        <form>
-        <b> <span class="d-block p-2 col-9 bg-info text-white">Ordenes de compra</span></b>  
-        <br>
-            
-        
-            <b> <span class="">Buscar por:</span></b>  
-            <div class="col-4">
-                <label for="inputPassword6" class="col-form-label">Proveedor</label>
-                
+            <h3>LISTADO DE ORDENES DE COMPRA </h3>
+            <form>
+                <b> <span class="d-block p-2 col-9 bg-info text-white">Ordenes de compra</span></b>
+                <br>
+
+
+                <b> <span class="">Buscar por:</span></b>
+                <div class="col-4">
+                    <label for="inputPassword6" class="col-form-label">Proveedor</label>
+
                     <input type="password" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
-            </div>
-          
-          
-            
-            <br>
-          
-        </form>
+                </div>
+
+
+
+                <br>
+
+            </form>
 
         <br>
          <button style="width: 100px;" class="btn btn-secondary" href="" onclick="loadContent('views/modals/listaordencompra.php')">Buscar</button>
         <button style="width: 150px;" class="btn btn-danger" href=""  onclick="loadContent('views/compras/ordencompra.php')" type="button" id="">Cancelar</button> 
 
-        <div class="container">
-            <h1>Proveedores</h1>
-            <b> <span class="d-block p-2 col-9 bg-info text-white">Listado de ordenes de compra</span></b>  
-            
-            <br>
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="table-responsive">
-                    <table class="table border=1">
-                            <thead>
-                                <tr>
-                                    <th scope="col-md-1">Proveedor</th>
-                                    <th scope="col-md-1">Orden</th>
-                                    <th scope="col-1">Fecha Emisión</th>
-                                    <th scope="col-1">Moneda</th>
-                                    <th scope="col-1">Importe</th>
-                                    <th scope="col-1">Personal</th>
-                                   
-                                    
-                                </tr>
-                            </thead>
+            <div class="container">
+                <h1>Proveedores</h1>
+                <b> <span class="d-block p-2 col-9 bg-info text-white">Listado de ordenes de compra</span></b>
 
-                            <tbody>
-                                <tr class="">
-                                    <td scope="row">R1C1</td>
-                                    <td>AlvaPlastic</td>
-                                    <td>10167754798</td>
-                                    <td>16775473</td>
-                                    <td>Jr. Los Olivos 166</td>
-                                    <td>919186954</td>
-                                   
+                <br>
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="table-responsive">
+                            <table class="table border=1">
+                                <thead>
+                                    <tr>
+                                        <th scope="col-md-1">Proveedor</th>
+                                        <th scope="col-md-1">Orden</th>
+                                        <th scope="col-1">Fecha Emisión</th>
+                                        <th scope="col-1">Moneda</th>
+                                        <th scope="col-1">Importe</th>
+                                        <th scope="col-1">Personal</th>
 
-                                </tr>
-                                <tr class="">
-                                    <td scope="row">R1C1</td>
-                                    <td>AlvaPlastic</td>
-                                    <td>10167754798</td>
-                                    <td>16775473</td>
-                                    <td>Jr. Los Olivos 166</td>
-                                    <td>919186954</td>
-                                   
-                                </tr>
-                            </tbody>
-                        </table>
-                        
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <?php
+
+                                    $compras = Compra::getCompras();
+                                    foreach ($compras as $compra) {
+                                    ?>
+                                        <tr>
+                                            <td><?= $compra->razon_social ?></td>
+                                            <td><?= $compra->numero_documento . $compra->serie_documento ?></td>
+                                            <td><?= explode(' ', $compra->fecha_compra)[0] ?></td>
+                                            <td><?= $compra->Moneda ?></td>
+                                            <td><?= $compra->total ?></td>
+                                            <td><?= $compra->Personal ?></td>
+                                        </tr>
+                                    <?php } ?>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
                     </div>
-                    
+
+
+
+
                 </div>
 
-
-
-              
             </div>
-            
-        </div>
 
 
 

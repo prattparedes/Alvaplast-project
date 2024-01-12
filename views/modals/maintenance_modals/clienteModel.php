@@ -34,10 +34,10 @@
 
                     <div class="col-md-6">
                         <br>
-                        <button type="button" class="btn btn-secondary">Nuevo</button>
-                        <button type="button" class="btn btn-primary">Grabar</button>
-                        <button type="button" class="btn btn-success">Modificar</button>
-                        <button type="button" class="btn btn-danger">Eliminar</button>
+                        <button type="button" class="btn btn-secondary client_submit">Nuevo</button>
+                        <button type="button" class="btn btn-primary client_submit">Grabar</button>
+                        <button type="button" class="btn btn-success client_submit">Modificar</button>
+                        <button type="button" class="btn btn-danger client_submit">Eliminar</button>
                     </div>
 
 
