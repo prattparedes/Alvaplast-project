@@ -34,14 +34,14 @@
                     <div class="col-md-1">
                         <label for="serieDoc" class="col-form-label"></label>
                         <fieldset disabled>
-                            <input type="number" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" placeholder="001-">
+                            <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" placeholder="001-">
                         </fieldset>
                     </div>
 
                     <div class="col-md-1">
                         <label for="idCompra" class="col-form-label"></label>
                         <fieldset disabled>
-                            <input type="number" style="width:112px;" id="idCompra" class="form-control" aria-describedby="passwordHelpInline" value=<?=Compra::getIdCompra();?>>
+                            <input type="text" style="width:112px;" id="idCompra" class="form-control" aria-describedby="passwordHelpInline" value=<?=Compra::getIdCompra();?>>
                         </fieldset>
                     </div>
 
@@ -67,7 +67,7 @@
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" id="proveedor" placeholder="Seleccione proveedor" aria-label="Recipient's username" aria-describedby="" disabled>
                             <input type="hidden" id="idproveedor" value="0">
-                            <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoproveedores.php')" type="button">....</button>
+                            <button class="btn btn-outline-secondary" href="" onclick="abrirListadoProveedor()" type="button">....</button>
                         </div>
                     </div>
 
@@ -101,7 +101,7 @@
 
                     <div class="col-md-4">
                         <label for="inputPassword6" class="col-form-label">Dirección</label>
-                        <input type="password" id="direccion" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                        <input type="text" id="direccion" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
                     <div class="col-md-1"></div>
@@ -130,7 +130,7 @@
 
                     <div class="col-md-4">
                         <label for="inputPassword6" class="col-form-label">Descripción</label>
-                        <textarea style="height: 5px;" class="form-control" placeholder="Leave a comment here" id="descripcion" disabled></textarea disabled>
+                        <textarea style="height: 5px;" class="form-control" placeholder="" id="descripcion" disabled></textarea disabled>
                     </div>
 
                     <div class="col-md-2"></div>
@@ -168,7 +168,7 @@
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" id="productname" placeholder="Seleccione Producto" aria-label="Recipient's username" aria-describedby="" disabled>
                             <input type="hidden" type="text" id="productid">
-                            <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoproductoscompras.php')" type="button" id="">....</button>
+                            <button class="btn btn-outline-secondary" href="" onclick="abrirListadoProductos()" type="button" id="">....</button>
                         </div>
                     </div>
 
@@ -206,7 +206,7 @@
                         <div class="col-md-3">
                             <div class="mb-3"></div>
                             <div class="mb-3"><br>
-                                <a name="" id="addproduct" class="btn btn-primary" href="#" role="button">Agregar</a>
+                                <a name="" id="addproduct" class="btn btn-primary" href="#" role="button" onclick="añadirProductoOrden()">Agregar</a>
                                 <a name="" id="" class="btn btn-warning" href="#" role="button">Cancelar</a>
                             </div>
                         </div>
@@ -235,39 +235,32 @@
                                     <!-- <tr> -->
 
                                     <tbody id="detalle_venta">
-                                        <tr>
-                                            <td colspan="1">AlvaPlastic</td>
-                                            <td class="textcenter">10</td>
-                                            <td class="textright">150.00</td>
-                                            <td class="textright">150.00</td>
-                                            <td class="textright">50.00</td>
-                                            <td class="textright">1250.00</td>
-                                        </tr>
+                                        
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <td colspan="5" class="textright">Precio Bruto</td>
-                                            <td class="textright" id="productsubtotal1">100.00</td>
+                                            <td class="textright" id="productsubtotal1">0</td>
                                         </tr>
 
                                         <tr>
                                             <td colspan="5" class="textright">Descuento</td>
-                                            <td class="textright" id="productDescuento">100.00</td>
+                                            <td class="textright" id="productDescuento">0</td>
                                         </tr>
 
                                         <tr>
                                             <td colspan="5" class="textright">Precio Neto</td>
-                                            <td class="textright" id="productsubtotal2">100.00</td>
+                                            <td class="textright" id="productsubtotal2">0</td>
                                         </tr>
 
                                         <tr>
                                             <td colspan="5" class="textright">IGV S/.</td>
-                                            <td class="textright" id="productigv">100.00</td>
+                                            <td class="textright" id="productigv">0</td>
                                         </tr>
 
                                         <tr>
                                             <td colspan="5" class="textright">Total S/.</td>
-                                            <td class="textright" id="productTotal">100.00</td>
+                                            <td class="textright" id="productTotal">0</td>
                                         </tr>
                                     </tfoot>
 

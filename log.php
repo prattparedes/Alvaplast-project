@@ -167,12 +167,12 @@
             </div>
           </li>
 
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/users.php')">
               <i class="bi bi-people"></i>
               USUARIOS
             </a>
-          </li>
+          </li> -->
           </ul>
         </div>
     </div>

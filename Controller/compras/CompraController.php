@@ -35,7 +35,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
-    $idCompra = $_GET["idCompra"];
-    $data = Compra::ListarCompraXid($idCompra);
-    echo json_encode($data);
+    if (isset($_GET["idCompra"]) && $_GET["idCompra"] !== 999999999) {
+        $idCompra = $_GET["idCompra"];
+        $data = Compra::ListarCompraXid($idCompra);
+        echo json_encode($data);
+    } else {
+        $data = Compra::getIdCompra();
+        echo json_encode($data);
+    }
 }

@@ -32,12 +32,12 @@
                     <div class="col-4">
                         <label for="inputPassword6" class="col-form-label">Proveedor</label>
 
-                        <input type="password" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" onkeyup="filtrarProveedorCompra(this.value)">
                     </div>
 
                     <div class="" style="width: 280px;">
                         <label for="inputPassword6" class="col-form-label">RUC</label>
-                        <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
 
 
@@ -46,7 +46,6 @@
 
             </form>
 
-        <br>
         <a style="width: 150px;" high="50" name="" id="" class="btn btn-success" href="#" role="button">Consultar</a>
         <button style="width: 150px;" class="btn btn-danger" href=""  onclick="loadContent('views/compras/ordencompra.php')" type="button" id="">Cancelar</button> 
 
@@ -58,7 +57,7 @@
                 <div class="row">
                     <div class="col-md-9">
                         <div class="table-responsive">
-                            <table class="table border=1">
+                            <table class="table border=1" id="providertable">
                                 <thead>
                                     <tr>
                                         <th scope="col-md-1">Codigo</th>
@@ -77,7 +76,7 @@
                                     <?php
                                     $providers = Proveedor::listarProveedores();
                                     foreach ($providers as $provider) { ?>
-                                        <tr>
+                                        <tr ondblclick="seleccionarProveedor(this)">
                                             <td><?= $provider->id_proveedor ?></td>
                                             <td><?= $provider->razon_social ?></td>
                                             <td><?= $provider->ruc ?></td>

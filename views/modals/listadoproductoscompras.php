@@ -32,7 +32,7 @@
                     <div class="col-4">
                         <label for="inputPassword6" class="col-form-label">Nombre</label>
 
-                        <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" onkeyup="filtrarProductosCompra(this.value)">
                     </div>
 
                     <div class="" style="width: 280px;">
@@ -61,14 +61,14 @@
                 <div class="row">
                     <div class="col-md-9">
                         <div class="table-responsive">
-                            <table class="table border=1">
+                            <table class="table border=1" id="listaProductosCompra">
                                 <thead>
                                     <tr>
                                         <th scope="col-md-1">Codigo</th>
                                         <th scope="col-md-1">Nombre</th>
-                                        <th scope="col-1">Codigo Producto</th>
-                                        <th scope="col-1">Modelo</th>
-                                        <th scope="col-1">Procedencia</th>
+                                        <th scope="col-1">Linea</th>
+                                        <th scope="col-1">Unidad</th>
+                                        <th scope="col-1">Descripcion</th>
                                         <th scope="col-1">Precio compra</th>
                                         <th scope="col-1">Precio venta</th>
                                         <!-- <th scope="col-1">Stock</th> -->
@@ -81,7 +81,7 @@
                                     <?php
                                     $productos = Producto::getProductos();
                                     foreach ($productos as $producto) { ?>
-                                        <tr>
+                                        <tr ondblclick="seleccionarProducto(this)">
                                             <td><?= $producto->id_producto ?></td>
                                             <td><?= $producto->nombre_producto ?></td>
                                             <td><?= $producto->linea ?></td>
@@ -89,6 +89,7 @@
                                             <td><?= $producto->descripcion ?></td>
                                             <td><?= number_format($producto->precio_compra, 2) ?></td>
                                             <td><?= number_format($producto->precio_venta, 2) ?></td>
+                                            <td style="display:none;"><?= $producto->id_unidad ?></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

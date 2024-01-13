@@ -32,7 +32,7 @@
                 <div class="col-4">
                     <label for="inputPassword6" class="col-form-label">Proveedor</label>
 
-                    <input type="password" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
+                    <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" onkeyup="filtrarOrdenCompra(this.value)">
                 </div>
 
 
@@ -41,8 +41,8 @@
 
             </form>
 
-        <br>
-         <button style="width: 100px;" class="btn btn-secondary" href="" onclick="loadContent('views/modals/listaordencompra.php')">Buscar</button>
+
+        <button style="width: 100px;" class="btn btn-secondary" href="" onclick="loadContent('views/modals/listaordencompra.php')">Buscar</button>
         <button style="width: 150px;" class="btn btn-danger" href=""  onclick="loadContent('views/compras/ordencompra.php')" type="button" id="">Cancelar</button> 
 
             <div class="container">
@@ -53,7 +53,7 @@
                 <div class="row">
                     <div class="col-md-9">
                         <div class="table-responsive">
-                            <table class="table border=1">
+                            <table class="table border=1" id="buyorderlist">
                                 <thead>
                                     <tr>
                                         <th scope="col-md-1">Proveedor</th>
@@ -73,7 +73,7 @@
                                     $compras = Compra::getCompras();
                                     foreach ($compras as $compra) {
                                     ?>
-                                        <tr>
+                                        <tr ondblclick="seleccionarOrdenCompra(this)">
                                             <td><?= $compra->razon_social ?></td>
                                             <td><?= $compra->numero_documento . $compra->serie_documento ?></td>
                                             <td><?= explode(' ', $compra->fecha_compra)[0] ?></td>

@@ -4,6 +4,7 @@ function loadContent(page) {
     xhttp.onreadystatechange = function () {
       if (this.readyState == 4) {
         if (this.status == 200) {
+          document.getElementById("navbarNav").classList.remove("show")
           document.querySelector(".main__content").innerHTML = this.responseText;
           resolve(); // Resuelve la promesa si la carga es exitosa
         } else {
