@@ -5,6 +5,7 @@ namespace Models\maintenance_models;
 use config\Connection;
 use PDO;
 use Exception;
+use PDOException;
 
 class Producto
 {
@@ -49,5 +50,91 @@ class Producto
 
         // Se retornan los resultados en formato de objeto.
         return $tsmt->fetchAll(PDO::FETCH_OBJ);
+    }
+    //Metodo para el registro de producto 
+    public static function registrarProducto(int $idProducto, int  $idLinea, int  $idMarca, int  $idUnidad, string $nombre, string $codigo, string $modelo, string $procedencia, string $serie, bool $estado, float $precioVenta, float $precioCompra, string $descripcion, float $stockMin, float $stockMax, float $volumen, int $idMoneda)
+    {
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare("exec sp_RegistrarProducto :idProducto,:idLinea,:idMarca,:idUnidad,:nombre,:codigo,:modelo,:procedencia,:serie,:estado,:precioVenta,:precioCompra,:descripcion,:stockMin,:stockMax,:volumen,:idMoneda");
+            $stmt->bindParam(":idProducto", $idProducto, PDO::PARAM_INT);
+            $stmt->bindParam(":idLinea", $idLinea, PDO::PARAM_INT);
+            $stmt->bindParam(":idMarca", $idMarca, PDO::PARAM_INT);
+            $stmt->bindParam(":idUnidad", $idUnidad, PDO::PARAM_INT);
+            $stmt->bindParam(":nombre", $nombre, PDO::PARAM_STR);
+            $stmt->bindParam(":codigo", $codigo, PDO::PARAM_STR);
+            $stmt->bindParam(":modelo", $modelo, PDO::PARAM_STR);
+            $stmt->bindParam(":procedencia", $procedencia, PDO::PARAM_STR);
+            $stmt->bindParam(":serie", $serie, PDO::PARAM_STR);
+            $stmt->bindParam(":estado", $estado, PDO::PARAM_BOOL);
+            $stmt->bindParam(":precioVenta", $precioVenta, PDO::PARAM_STR);
+            $stmt->bindParam(":precioCompra", $precioCompra, PDO::PARAM_STR);
+            $stmt->bindParam(":descripcion", $descripcion, PDO::PARAM_STR);
+            $stmt->bindParam(":stockMin", $stockMin, PDO::PARAM_STR);
+            $stmt->bindParam(":stockMax", $stockMax, PDO::PARAM_STR);
+            $stmt->bindParam(":volumen", $volumen, PDO::PARAM_STR);
+            $stmt->bindParam(":idMoneda", $idMoneda, PDO::PARAM_INT);
+            $result = $stmt->execute();
+            return $result;
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+            return false;
+        } finally {
+            if ($con) {
+                $con = null;
+            }
+        }
+    }
+
+    public static function  modificarProducto(int $idProducto, int  $idLinea, int  $idMarca, int  $idUnidad, string $nombre, string $codigo, string $modelo, string $procedencia, string $serie, bool $estado, float $precioVenta, float $precioCompra, string $descripcion, float $stockMin, float $stockMax, float $volumen, int $idMoneda)
+    {
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare("exec sp_ModificarProducto :idProducto,:idLinea,:idMarca,:idUnidad,:nombre,:codigo,:modelo,:procedencia,:serie,:estado,:precioVenta,:precioCompra,:descripcion,:stockMin,:stockMax,:volumen,:idMoneda");
+            $stmt->bindParam(":idProducto", $idProducto, PDO::PARAM_INT);
+            $stmt->bindParam(":idLinea", $idLinea, PDO::PARAM_INT);
+            $stmt->bindParam(":idMarca", $idMarca, PDO::PARAM_INT);
+            $stmt->bindParam(":idUnidad", $idUnidad, PDO::PARAM_INT);
+            $stmt->bindParam(":nombre", $nombre, PDO::PARAM_STR);
+            $stmt->bindParam(":codigo", $codigo, PDO::PARAM_STR);
+            $stmt->bindParam(":modelo", $modelo, PDO::PARAM_STR);
+            $stmt->bindParam(":procedencia", $procedencia, PDO::PARAM_STR);
+            $stmt->bindParam(":serie", $serie, PDO::PARAM_STR);
+            $stmt->bindParam(":estado", $estado, PDO::PARAM_BOOL);
+            $stmt->bindParam(":precioVenta", $precioVenta, PDO::PARAM_STR);
+            $stmt->bindParam(":precioCompra", $precioCompra, PDO::PARAM_STR);
+            $stmt->bindParam(":descripcion", $descripcion, PDO::PARAM_STR);
+            $stmt->bindParam(":stockMin", $stockMin, PDO::PARAM_STR);
+            $stmt->bindParam(":stockMax", $stockMax, PDO::PARAM_STR);
+            $stmt->bindParam(":volumen", $volumen, PDO::PARAM_STR);
+            $stmt->bindParam(":idMoneda", $idMoneda, PDO::PARAM_INT);
+            $result = $stmt->execute();
+            return $result;
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+            return false;
+        } finally {
+            if ($con) {
+                $con = null;
+            }
+        }
+    }
+
+    public static function eliminarProducto(int $idProducto)
+    {
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare("exec sp_EliminarProducto :idProducto ");
+            $stmt->bindParam(":idProducto", $idProducto, PDO::PARAM_INT);
+            $result = $stmt->execute();
+            return $result;
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+            return false;
+        } finally {
+            if ($con) {
+                $con = null;
+            }
+        }
     }
 }

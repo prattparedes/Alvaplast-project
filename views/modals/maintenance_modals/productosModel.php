@@ -48,7 +48,7 @@
                     <div class="col-sm-12 col-md-3">
                         <label for="inputEstado" class="col-form-label">Estado</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="estado">
+                            <input class="form-check-input" type="checkbox" value="1" id="estado">
                             <label class="form-check-label" for="estado">
                                 Habilitado
                             </label>
@@ -71,7 +71,7 @@
 
                 <div class="row">
                     <div class="col-sm-12 col-md-2">
-                        <label for="selectMarca" class="form-label">Marca</label>
+                        <label for="marca" class="form-label">Marca</label>
                         <select id="marca" class="form-select">
                             <?php
                             $marcas = Marca::getMarcas();
@@ -82,7 +82,7 @@
                     </div>
 
                     <div class="col-sm-12 col-md-2">
-                        <label for="selectUnidad" class="form-label">Unidad</label>
+                        <label for="unidad" class="form-label">Unidad</label>
                         <select id="unidad" class="form-select">
                             <?php
                             $unidades = Unidad::getUnidades();
@@ -95,7 +95,7 @@
 
                 <div class="row">
                     <div class="col-sm-12 col-md-2">
-                        <label for="selectLinea" class="form-label">Linea</label>
+                        <label for="linea" class="form-label">Linea</label>
                         <select id="linea" class="form-select">
                             <?php
                             $lineas = Linea::ListarLineas();
@@ -162,9 +162,9 @@
                 <br>
 
                 <a name="" id="" class="btn btn-secondary" href="#" role="button">Nuevo</a>
-                <button type="button" class="btn btn-primary">Grabar</button>
-                <a name="" id="" class="btn btn-success" href="#" role="button">Modificar</a>
-                <a name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
+                <button type="button" class="btn btn-primary product_submit">Grabar</button>
+                <a name="" id="" class="btn btn-success product_submit" href="#" role="button">Modificar</a>
+                <a name="" id="" class="btn btn-danger product_submit" href="#" role="button">Eliminar</a>
 
             </form>
 

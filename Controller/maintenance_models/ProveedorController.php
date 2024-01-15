@@ -4,9 +4,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
 use Models\maintenance_models\Proveedor;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    print_r($_POST);
-    return;
-    $idProveedor = isset($_POST["idProveedor"]) && $_POST["idProveedor"] !== "-" ? $_POST["idProveedor"] : 1;
+    $idProveedor = isset($_POST["idProveedor"]) && $_POST["idProveedor"] !== "" ? $_POST["idProveedor"] : 1;
     $idUbigeo = $_POST["idUbigeo"];
     $razonSocial = $_POST["razonSocial"];
     $ruc = $_POST["ruc"];

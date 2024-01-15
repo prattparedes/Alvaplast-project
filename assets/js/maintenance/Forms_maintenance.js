@@ -93,6 +93,65 @@ function listarDistrito(idprovincia) {
 //Formulario de envio de datos para el ClienteController
 document.querySelector(".main__content").addEventListener("click", function (event) {
 
+    if (event.target.classList.contains("product_submit")) {
+        event.preventDefault();
+        // Obtener los datos del formulario
+        const idProducto = document.getElementById("codigo").value;
+        const idLinea = document.getElementById("linea").value;
+        const idMarca = document.getElementById("marca").value;
+        const idUnidad = document.getElementById("unidad").value;
+        const nombre = document.getElementById("nombre").value;
+        const procedencia = document.getElementById("procedencia").value;
+        const checkbox = document.getElementById("estado");
+        var estado;
+        if (checkbox.checked) {
+            estado = checkbox.value;
+        } else {
+            estado = "0";
+        }
+        const precio_venta = document.getElementById("precioVenta").value;
+        const precio_compra = document.getElementById("precioCompra").value
+        const descripcion = document.getElementById("descripcion").value;
+        const stockmin = document.getElementById("stockMinimo").value
+        const stockmax = document.getElementById("stockMaximo").value
+        const volumen = document.getElementById("volumen").value
+        const idMoneda = document.getElementById("moneda").value
+        const metodo = event.target.innerHTML;
+        console.log(estado)
+        // Crear una solicitud XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+        const url = "/Alvaplast-project/Controller/maintenance_models/ProductoController.php"; // Ruta del controlador PHP
+
+        // Configurar la solicitud
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        console.log()
+        if (idLinea) {
+            // Enviar los datos del formulario incluyendo descripcion y abreviatura
+            xhr.send("idProducto=" + idProducto + "&idLinea=" + idLinea + "&idMarca=" + idMarca + "&idUnidad=" + idUnidad + "&nombre=" + nombre + "&procedencia=" + procedencia + "&estado=" + estado + "&precio_venta=" + precio_venta + "&precio_compra=" + precio_compra + "&descripcion=" + descripcion + "&stockmin=" + stockmin + "&stockmax=" + stockmax + "&metodo=" + metodo + "&volumen=" + volumen + "&idMoneda=" + idMoneda);
+        } else {
+            alert("faltan datos")
+        }
+        // Manejar la respuesta del servidor
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // La solicitud se completó correctamente
+                    // Puedes manejar la respuesta del servidor aquí
+                    alert(xhr.responseText);
+                    loadMaintenanceContent('clientmodal');
+
+                } else {
+                    // Hubo un error en la solicitud
+                    console.error('Error en la solicitud.');
+                }
+            }
+        };
+    }
+});
+//Formulario de envio de datos para el ClienteController
+document.querySelector(".main__content").addEventListener("click", function (event) {
+
     if (event.target.classList.contains("client_submit")) {
         event.preventDefault();
         // Obtener los datos del formulario
