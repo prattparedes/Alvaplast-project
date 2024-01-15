@@ -215,8 +215,9 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         const fax = document.getElementById("fax").value;
         const contacto = document.getElementById("contacto").value;
         const email = document.getElementById("email").value;
-        const descripcion = document.getElementById("descripcion").value;
-        const estado = document.getElementById("estado").value;
+        //const descripcion = document.getElementById("descripcion").value;
+        const checkbox = document.getElementById("estado");
+        var estado = (checkbox.checked) ? checkbox.value : "0";
         const metodo = event.target.innerHTML;
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
@@ -226,10 +227,11 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         console.log()
-        if (descripcion && razonSocial) {
+        if (razonSocial) {
             // Enviar los datos del formulario incluyendo descripcion y abreviatura
-            xhr.send("idProveedor=" + idProveedor + "&idUbigeo=" + idUbigeo + "&razonSocial=" + razonSocial + "&ruc=" + ruc + "&direccion=" + direccion + "&telefono=" + telefono + "&fax=" + fax + "&contacto=" + contacto + "&email=" + email + "&descripcion=" + descripcion + "&estado=" + estado + "&metodo=" + metodo);
+            xhr.send("idProveedor=" + idProveedor + "&idUbigeo=" + idUbigeo + "&razonSocial=" + razonSocial + "&ruc=" + ruc + "&direccion=" + direccion + "&telefono=" + telefono + "&fax=" + fax + "&contacto=" + contacto + "&email=" + email + "&estado=" + estado + "&metodo=" + metodo);
         } else {
+            //"&descripcion=" + descripcion
             alert("faltan datos")
         }
         // Manejar la respuesta del servidor

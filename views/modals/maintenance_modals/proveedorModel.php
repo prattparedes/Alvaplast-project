@@ -73,7 +73,7 @@
                     <div class="col-md-2">
                         <label for="inputPassword6" class="col-form-label">Estado</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="estado">
+                            <input class="form-check-input" type="checkbox" value="1" id="estado">
                             <label class="form-check-label" for="estado">Habilitado</label>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                 <div class="col-md-12">
                     <button type="button" class="btn btn-primary me-2 provider_submit">Grabar</button>
                     <a name="" id="" class="btn btn-success me-2 provider_submit" href="#" role="button">Modificar</a>
-                    <a name="" id="" class="btn btn-danger provider_submits" href="#" role="button">Eliminar</a>
+                    <a name="" id="" class="btn btn-danger provider_submit" href="#" role="button">Eliminar</a>
                 </div>
             </form>
         </div>

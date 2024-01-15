@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $fax = $_POST["fax"];
     $contacto = $_POST["contacto"];
     $email = $_POST["email"];
-    $descripcion = $_POST["descripcion"];
+    $descripcion = isset($_POST["descripcion"]) && $_POST["descripcion"] !== "" ? $_POST["descripcion"] : "";
     $estado = (int) $_POST["estado"];
     $estadoReal = (bool) $estado;
     $message;
