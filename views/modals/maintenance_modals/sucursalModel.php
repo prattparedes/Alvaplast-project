@@ -47,9 +47,9 @@
 
                     <div class="col-md-12">
                         <button type="button" class="btn btn-secondary me-2">Nuevo</button>
-                        <a name="" id="" class="btn btn-primary me-2" href="#" role="button">Grabar</a>
-                        <a name="" id="" class="btn btn-success me-2" href="#" role="button">Modificar</a>
-                        <a name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
+                        <a name="" id="" class="btn btn-primary me-2 branch_submit" href="#" role="button">Grabar</a>
+                        <a name="" id="" class="btn btn-success me-2 branch_submit" href="#" role="button">Modificar</a>
+                        <a name="" id="" class="btn btn-danger branch_submit" href="#" role="button">Eliminar</a>
                     </div>
                 </div>
             </form>
@@ -73,15 +73,19 @@
 
                                 <tbody>
                                     <?php
-
                                     $sucursal = Sucursal::getSucursales();
+
+                                    foreach ($sucursal as $suc) {
                                     ?>
-                                    <tr>
-                                        <td><?= $sucursal->id_sucursal ?></td>
-                                        <td><?= $sucursal->descripcion ?></td>
-                                        <td><?= $sucursal->direccion ?></td>
-                                        <td><?= $sucursal->telefono ?></td>
-                                    </tr>
+                                        <tr>
+                                            <td><?= $suc->id_sucursal ?></td>
+                                            <td><?= $suc->descripcion ?></td>
+                                            <td><?= $suc->direccion ?></td>
+                                            <td><?= $suc->telefono ?></td>
+                                        </tr>
+
+                                    <?php  }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>

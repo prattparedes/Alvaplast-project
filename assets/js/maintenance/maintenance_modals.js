@@ -84,7 +84,7 @@ document
 
         // // Desactivar inputs-selects-textareas del documento
         // const elementos = document.querySelectorAll('input, select, textarea');
-  
+
         // elementos.forEach(elemento => {
         //   elemento.disabled = true;
         // });
@@ -175,11 +175,11 @@ document
         );
 
         const almacenCodigo = contenidoFila[0];
-        const almacenSucursal = contenidoFila[1];
+        const almacenSucursal = contenidoFila[3];
         console.log(almacenSucursal);
         const almacenDescripcion = contenidoFila[2];
 
-        document.getElementById("codigo").innerHTML = almacenCodigo;
+        document.getElementById("codigo").value = almacenCodigo;
         document.getElementById("sucursal").value = almacenSucursal;
         document.getElementById("descripcion").value = almacenDescripcion;
       }

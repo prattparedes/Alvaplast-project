@@ -139,8 +139,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadMaintenanceContent('clientmodal');
-
+                    loadContent('views/modals/maintenance_modals/productosModel.php');
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');
@@ -189,7 +188,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadMaintenanceContent('clientmodal');
+                    loadContent('views/modals/maintenance_modals/clienteModel.php');
 
                 } else {
                     // Hubo un error en la solicitud
@@ -241,7 +240,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadMaintenanceContent('providermodal');
+                    loadContent('views/modals/maintenance_modals/proveedorModel.php');
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');
@@ -281,7 +280,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadMaintenanceContent('productlines');
+                    loadContent('views/modals/maintenance_modals/productolineaModel.php');
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');
@@ -321,7 +320,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadMaintenanceContent('productbrands');
+                    loadContent('views/modals/maintenance_modals/productomarcaModel.php');
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');
@@ -361,7 +360,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadMaintenanceContent('productunits');
+                    loadContent('views/modals/maintenance_modals/productomarcaModel.php');
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');
@@ -402,7 +401,92 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadMaintenanceContent('currencieslist');
+                    loadContent('views/modals/maintenance_modals/monedaModel.php');
+                } else {
+                    // Hubo un error en la solicitud
+                    console.error('Error en la solicitud.');
+                }
+            }
+        };
+    }
+});
+//Formulario de envio de datos para el sucursal Controller
+document.querySelector(".main__content").addEventListener("click", function (event) {
+
+    if (event.target.classList.contains("branch_submit")) {
+        event.preventDefault();
+        // Obtener los datos del formulario
+        const idSucursal = document.getElementById("codigo").value;
+        const descripcion = document.getElementById("descripcion").value; // Obtener la descripción del formulario
+        const direccion = document.getElementById("direccion").value;   // Obtener la abreviatura del formulario
+        const telefono = document.getElementById("telefono").value;
+
+        const metodo = event.target.innerHTML;
+        // Crear una solicitud XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+        const url = "/Alvaplast-project/Controller/maintenance_models/SucursalController.php"; // Ruta del controlador PHP
+
+        // Configurar la solicitud
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        console.log()
+        if (descripcion && direccion && telefono) {
+            // Enviar los datos del formulario incluyendo descripcion y abreviatura
+            xhr.send("idSucursal=" + idSucursal + "&descripcion=" + descripcion + "&direccion=" + direccion + "&telefono=" + telefono + "&metodo=" + metodo);
+        } else {
+            alert("faltan datos")
+        }
+        // Manejar la respuesta del servidor
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // La solicitud se completó correctamente
+                    // Puedes manejar la respuesta del servidor aquí
+                    alert(xhr.responseText);
+                    loadContent('views/modals/maintenance_modals/sucursalModel.php');
+                } else {
+                    // Hubo un error en la solicitud
+                    console.error('Error en la solicitud.');
+                }
+            }
+        };
+    }
+});
+//Formulario de envio de datos para el almacen Controller
+document.querySelector(".main__content").addEventListener("click", function (event) {
+
+    if (event.target.classList.contains("store_submit")) {
+        event.preventDefault();
+        // Obtener los datos del formulario
+        const id_almacen = document.getElementById("codigo").value;   // Obtener la abreviatura del formulario
+        const idSucursal = document.getElementById("sucursal").value;
+        const descripcion = document.getElementById("descripcion").value; // Obtener la descripción del formulario
+        const codFAct = document.getElementById("facturacion").value;
+
+        const metodo = event.target.innerHTML;
+        // Crear una solicitud XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+        const url = "/Alvaplast-project/Controller/maintenance_models/AlmacenController.php"; // Ruta del controlador PHP
+
+        // Configurar la solicitud
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        console.log()
+        if (descripcion) {
+            // Enviar los datos del formulario incluyendo descripcion y abreviatura
+            xhr.send("idAlmacen=" + id_almacen + "&idSucursal=" + idSucursal + "&descripcion=" + descripcion + "&metodo=" + metodo + "&cod_facturacion=" + codFAct);
+        } else {
+            alert("faltan datos")
+        }
+        // Manejar la respuesta del servidor
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // La solicitud se completó correctamente
+                    // Puedes manejar la respuesta del servidor aquí
+                    alert(xhr.responseText);
+                    console.log(xhr.responseText);
+                    loadContent('views/modals/maintenance_modals/almacenModel.php');
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');

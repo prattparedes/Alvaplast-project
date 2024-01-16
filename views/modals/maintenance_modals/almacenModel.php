@@ -17,6 +17,7 @@
         require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/autoload.php");
 
         use Models\maintenance_models\Almacen;
+        use Models\maintenance_models\Sucursal;
         ?>
         <div class="container">
             <h1>Mantenimiento de almacen</h1>
@@ -33,7 +34,10 @@
                     <div class="col-md-4">
                         <label for="inputPassword6" class="col-form-label">Sucursal</label>
                         <select id="sucursal" class="form-select">
-                            <option value="PRINCIPAL">PRINCIPAL</option>
+                            <?php $sucursales = Sucursal::getSucursales();
+                            foreach ($sucursales as $sucursal) { ?>
+                                <option value="<?= $sucursal->id_sucursal ?>"><?= $sucursal->descripcion ?></opt ion>
+                                <?php } ?>
                         </select>
                     </div>
 
@@ -49,9 +53,9 @@
 
                     <div class="col-md-12">
                         <button type="button" class="btn btn-secondary me-2">Nuevo</button>
-                        <a name="" id="" class="btn btn-primary me-2" href="#" role="button">Grabar</a>
-                        <a name="" id="" class="btn btn-success me-2" href="#" role="button">Modificar</a>
-                        <a name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
+                        <a name="" id="" class="btn btn-primary me-2 store_submit" href="#" role="button">Grabar</a>
+                        <a name="" id="" class="btn btn-success me-2 store_submit" href="#" role="button">Modificar</a>
+                        <a name="" id="" class="btn btn-danger store_submit" href="#" role="button">Eliminar</a>
                     </div>
                 </div>
             </form>
@@ -63,7 +67,7 @@
                 <div class="row">
                     <div class="col-md-9">
                         <div class="table-responsive">
-                            <table class="table border=1" id="currenciesTable">
+                            <table class="table border=1" id="storestable">
                                 <thead>
                                     <tr>
                                         <th>Código</th>
@@ -82,6 +86,7 @@
                                             <td><?= $alm->id_almacen ?></td>
                                             <td><?= $alm->sucursal ?></td>
                                             <td><?= $alm->descripcion ?></td>
+                                            <td style="display: none;"><?= $alm->id_sucursal ?></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
