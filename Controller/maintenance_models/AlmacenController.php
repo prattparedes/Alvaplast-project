@@ -25,4 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $message = ($response) ? "almacen eliminado completamente" : "no se pudo eliminar , este almacen ya está registrado en otra operación";
     }
     echo $message;
+} else if ($_SERVER['REQUEST_METHOD'] === "GET") {
+    if (isset($_GET["idSucursal"])) {
+        $data = Almacen::listarAlmacen($_GET["idSucursal"]);
+        echo json_encode($data);
+    }
 }

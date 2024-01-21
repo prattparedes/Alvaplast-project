@@ -34,14 +34,14 @@
                     <div class="col-md-1">
                         <label for="serieDoc" class="col-form-label"></label>
                         <fieldset disabled>
-                            <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" placeholder="001-">
+                            <input type="text" id="numeroDocumento" class="form-control" aria-describedby="passwordHelpInline" value="001">
                         </fieldset>
                     </div>
 
                     <div class="col-md-1">
                         <label for="idCompra" class="col-form-label"></label>
                         <fieldset disabled>
-                            <input type="text" style="width:112px;" id="idCompra" class="form-control" aria-describedby="passwordHelpInline" value=<?=Compra::getIdCompra();?>>
+                            <input type="text" style="width:112px;" id="idCompra" class="form-control" aria-describedby="passwordHelpInline" value=<?= Compra::getIdCompra(); ?>>
                         </fieldset>
                     </div>
 
@@ -50,9 +50,9 @@
                     <div class="col-md-6">
                         <br>
                         <a style="width: 100px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="nuevaOrdenCompra()">Nuevo</a>
-                        <a style="width: 100px;" name="" id="" class="btn btn-success" href="#" role="button">Grabar</a>
-                        <a style="width: 100px;" name="" id="" class="btn btn-warning" href="#" role="button">Modificar</a>
-                        <a style="width: 100px;" name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
+                        <a style="width: 100px;" name="" id="" class="btn btn-success buy_submit" href="#" role="button">Grabar</a>
+                        <a style="width: 100px;" name="" id="" class="btn btn-warning buy_submit" href="#" role="button">Modificar</a>
+                        <a style="width: 100px;" name="" id="" class="btn btn-danger buy_submit" href="#" role="button">Eliminar</a>
 
                         <button style="width: 100px;" class="btn btn-secondary" href="" onclick="loadContent('views/modals/listaordencompra.php')">Buscar</button>
                         <!-- <button style="width: 100px;" class="btn btn-danger" href="" onclick="loadContent('views/home.php')">Salir</button> -->
@@ -77,11 +77,15 @@
                 <div class="row">
                     <div class="col-md-2">
                         <label for="sucursal" class="form-label">Sucursal</label>
-                        <select id="sucursal" class="form-select" disabled>
+                        <select id="sucursal" class="form-select" onchange="listarAlmacenes(this.value)" disabled>
                             <option value="">Seleccionar </option>
                             <?php
-                            $data = Sucursal::getSucursales(); ?>
-                            <option value="<?= $data->id_sucursal ?>"><?= $data->descripcion ?></option>
+                            $data = Sucursal::getSucursales();
+                            foreach ($data as $dat) {
+                            ?>
+                                <option value="<?= $dat->id_sucursal ?>"><?= $dat->descripcion ?></option>
+                            <?php
+                            } ?>
                         </select>
 
                         </select>
@@ -91,11 +95,6 @@
                         <label for="disabledSelect" class="form-label">Almacen</label>
                         <select id="almacen" class="form-select" disabled>
                             <option value="">Seleccione almacen</option>
-                            <?php
-                            $almacenes = Almacen::getAlmacenes();
-                            foreach ($almacenes as $almacen) { ?>
-                                <option value="<?= $almacen->id_almacen ?>"><?= $almacen->descripcion ?></option>
-                            <?php } ?>
                         </select>
                     </div>
 

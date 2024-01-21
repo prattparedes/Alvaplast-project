@@ -5,6 +5,8 @@ use Models\compras\Compra;
 use Models\compras\CompraProducto;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    print_r($_POST);
+    return;
     $idCompra = intval($_POST["idCompra"]);
     $fecha = date("Y-m-d H:i:s", strtotime($_POST["fecha"]));
     $fechaFormateada = str_replace(' ', 'T', $fecha);

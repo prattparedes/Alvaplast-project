@@ -15,6 +15,23 @@ class Almacen
         $data = $con->query("exec sp_ListarAlmacen");
         return $data->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public static function listarAlmacen(int $idSucursal)
+    {
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare("exec sp_ListarAlmacenXSucursal :id");
+            $stmt->bindParam(":id", $idSucursal, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+        } finally {
+            if ($con) {
+                $con = null;
+            }
+        }
+    }
     //Metodo para el registro de almacen 
 
     public static function registrarAlmacen(int $idAlmacen, int $idSucursal, string $descripcion)
