@@ -41,11 +41,23 @@ class Cliente
             $stmt->bindParam(":tipoCliente", $tipoCliente, PDO::PARAM_STR);
             $stmt->bindParam(":distrito", $distrito, PDO::PARAM_STR);
             $stmt->bindParam("idUbigeo", $idUbigeo, PDO::PARAM_STR);
-            $result = $stmt->execute();
+            $stmt->execute();
+            $result = ($stmt->rowCount() > 0) ? true : false;
             return $result;
-        } catch (PDOException $err) {
-            echo $err->getMessage();
+        } catch (PDOException $e) {
+            // Extraer solo el mensaje descriptivo
+            $errorMessage = $e->getMessage();
+
+            while (($sqlServerPos = strpos($errorMessage, 'SQL Server')) !== false) {
+                $errorMessage = trim(substr($errorMessage, $sqlServerPos + strlen('SQL Server') + 1));
+            }
+
+            echo "Error: " . $errorMessage;
             return false;
+        } finally {
+            if ($con) {
+                $con = null;
+            }
         }
     }
 
@@ -66,11 +78,23 @@ class Cliente
             $stmt->bindParam(":tipoCliente", $tipoCliente, PDO::PARAM_STR);
             $stmt->bindParam(":distrito", $distrito, PDO::PARAM_STR);
             $stmt->bindParam("idUbigeo", $idUbigeo, PDO::PARAM_STR);
-            $result = $stmt->execute();
+            $stmt->execute();
+            $result = ($stmt->rowCount() > 0) ? true : false;
             return $result;
-        } catch (Exception $err) {
-            echo $err->getMessage();
+        } catch (PDOException $e) {
+            // Extraer solo el mensaje descriptivo
+            $errorMessage = $e->getMessage();
+
+            while (($sqlServerPos = strpos($errorMessage, 'SQL Server')) !== false) {
+                $errorMessage = trim(substr($errorMessage, $sqlServerPos + strlen('SQL Server') + 1));
+            }
+
+            echo "Error: " . $errorMessage;
             return false;
+        } finally {
+            if ($con) {
+                $con = null;
+            }
         }
     }
 
@@ -81,11 +105,42 @@ class Cliente
             $con = Connection::Conectar();
             $stmt = $con->prepare("exec sp_EliminarCliente :idCliente");
             $stmt->bindParam(":idCliente", $idCliente, PDO::PARAM_INT);
-            $result = $stmt->execute();
+            $stmt->execute();
+            $result = ($stmt->rowCount() > 0) ? true : false;
             return $result;
-        } catch (Exception $err) {
-            echo $err->getMessage();
+        } catch (PDOException $e) {
+            // Extraer solo el mensaje descriptivo
+            $errorMessage = $e->getMessage();
+
+            while (($sqlServerPos = strpos($errorMessage, 'SQL Server')) !== false) {
+                $errorMessage = trim(substr($errorMessage, $sqlServerPos + strlen('SQL Server') + 1));
+            }
+
+            echo "Error: " . $errorMessage;
             return false;
+        } finally {
+            if ($con) {
+                $con = null;
+            }
+        }
+    }
+
+    public static function verificarCliente(int $idCliente)
+    {
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare("select razon_social from Cliente where id_cliente = :id");
+            $stmt->bindParam(":id", $idCliente, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = ($stmt->rowCount() > 0) ?  true : false;
+            return $result;
+        } catch (PDOException $err) {
+            echo $err;
+            return false;
+        } finally {
+            if ($con) {
+                $con = null;
+            }
         }
     }
 }

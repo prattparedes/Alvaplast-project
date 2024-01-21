@@ -27,7 +27,7 @@
                     <div class="col-12 col-md-2">
                         <label for="inputPassword6" class="col-form-label">Codigo</label>
                         <fieldset disabled>
-                            <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="text" id="codigo" class="form-control" aria-describedby="passwordHelpInline" value="<?= TipoDocumento::getIdDocumento(); ?>">
                         </fieldset>
                     </div>
 
@@ -51,21 +51,21 @@
                     <div class="col-12 col-md-2">
                         <label for="inputPassword6" class="col-form-label"></label>
                         <div class="d-grid gap-2">
-                            <a name="" id="" class="btn btn-primary" href="#" role="button">Grabar</a>
+                            <a name="" id="" class="btn btn-primary document_submit" href="#" role="button">Grabar</a>
                         </div>
                     </div>
 
                     <div class="col-12 col-md-2">
                         <label for="inputPassword6" class="col-form-label"></label>
                         <div class="d-grid gap-2">
-                            <a name="" id="" class="btn btn-success" href="#" role="button">Modificar</a>
+                            <a name="" id="" class="btn btn-success document_submit" href="#" role="button">Modificar</a>
                         </div>
                     </div>
 
                     <div class="col-12 col-md-2">
                         <label for="inputPassword6" class="col-form-label"></label>
                         <div class="d-grid gap-2">
-                            <a name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
+                            <a name="" id="" class="btn btn-danger document_submit" href="#" role="button">Eliminar</a>
                         </div>
                     </div>
                 </div>

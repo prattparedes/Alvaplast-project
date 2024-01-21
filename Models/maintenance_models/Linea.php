@@ -52,7 +52,8 @@ class Linea
             $con = Connection::Conectar();
             $stmt = $con->prepare("exec sp_EliminarLinea :idLinea ");
             $stmt->bindParam(":idLinea", $idLinea, PDO::PARAM_INT);
-            $result = $stmt->execute();
+            $stmt->execute();
+            $result = ($stmt->rowCount() > 0) ? true : false;
             return $result;
         } catch (Exception $err) {
             echo $err->getMessage();

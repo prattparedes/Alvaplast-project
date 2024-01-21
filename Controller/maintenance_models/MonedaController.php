@@ -17,9 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $message = "moneda modificada";
       } else if ($_POST['metodo'] == "Eliminar") {
             $result = Moneda::EliminarMoneda($id);
-            $message = "moneda eliminada";
+            $message = ($result) ? "moneda eliminada" : "no se pudo eliminar la moneda, ya esta usada en una operacion";
       }
-      if ($result) {
-            echo $message;
-      }
+      echo $message;
 }

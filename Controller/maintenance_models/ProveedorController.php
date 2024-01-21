@@ -25,9 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $message = "proveedor modificado";
     } else if ($_POST["metodo"] == "Eliminar") {
         $result = Proveedor::eliminarProveedor($idProveedor);
-        $message = "proveedor eliminado";
+        $message = ($result) ? "proveedor eliminado" : "error al eliminar el proveedor";
     }
-    if ($result) {
+    if (isset($message)) {
         echo $message;
     }
 } else if ($_SERVER["REQUEST_METHOD"] === "GET") {

@@ -74,10 +74,18 @@ class Producto
             $stmt->bindParam(":stockMax", $stockMax, PDO::PARAM_STR);
             $stmt->bindParam(":volumen", $volumen, PDO::PARAM_STR);
             $stmt->bindParam(":idMoneda", $idMoneda, PDO::PARAM_INT);
-            $result = $stmt->execute();
+            $stmt->execute();
+            $result = ($stmt->rowCount() > 0) ? true : false;
             return $result;
-        } catch (PDOException $err) {
-            echo $err->getMessage();
+        } catch (PDOException $e) {
+            // Extraer solo el mensaje descriptivo
+            $errorMessage = $e->getMessage();
+
+            while (($sqlServerPos = strpos($errorMessage, 'SQL Server')) !== false) {
+                $errorMessage = trim(substr($errorMessage, $sqlServerPos + strlen('SQL Server') + 1));
+            }
+
+            echo "Error: " . $errorMessage;
             return false;
         } finally {
             if ($con) {
@@ -108,10 +116,28 @@ class Producto
             $stmt->bindParam(":stockMax", $stockMax, PDO::PARAM_STR);
             $stmt->bindParam(":volumen", $volumen, PDO::PARAM_STR);
             $stmt->bindParam(":idMoneda", $idMoneda, PDO::PARAM_INT);
-            $result = $stmt->execute();
+            $stmt->execute();
+            $result = ($stmt->rowCount() > 0) ? true : false;
             return $result;
-        } catch (PDOException $err) {
-            echo $err->getMessage();
+        } catch (PDOException $e) {
+            // Extraer solo el mensaje descriptivo
+            $errorMessage = $e->getMessage();
+
+            while (($sqlServerPos = strpos($errorMessage, 'SQL Server')) !== false) {
+                $errorMessage = trim(substr($errorMessage, $sqlServerPos + strlen('SQL Server') + 1));
+            }
+
+            echo "Error: " . $errorMessage;
+            return false;
+        } catch (PDOException $e) {
+            // Extraer solo el mensaje descriptivo
+            $errorMessage = $e->getMessage();
+
+            while (($sqlServerPos = strpos($errorMessage, 'SQL Server')) !== false) {
+                $errorMessage = trim(substr($errorMessage, $sqlServerPos + strlen('SQL Server') + 1));
+            }
+
+            echo "Error: " . $errorMessage;
             return false;
         } finally {
             if ($con) {
@@ -120,16 +146,24 @@ class Producto
         }
     }
 
-    public static function eliminarProducto(int $idProducto)
+    public static function eliminarProducto(int $idProducto): bool
     {
         try {
             $con = Connection::Conectar();
             $stmt = $con->prepare("exec sp_EliminarProducto :idProducto ");
             $stmt->bindParam(":idProducto", $idProducto, PDO::PARAM_INT);
-            $result = $stmt->execute();
+            $stmt->execute();
+            $result = ($stmt->rowCount() > 0) ? true : false;
             return $result;
-        } catch (PDOException $err) {
-            echo $err->getMessage();
+        } catch (PDOException $e) {
+            // Extraer solo el mensaje descriptivo
+            $errorMessage = $e->getMessage();
+
+            while (($sqlServerPos = strpos($errorMessage, 'SQL Server')) !== false) {
+                $errorMessage = trim(substr($errorMessage, $sqlServerPos + strlen('SQL Server') + 1));
+            }
+
+            echo "Error: " . $errorMessage;
             return false;
         } finally {
             if ($con) {

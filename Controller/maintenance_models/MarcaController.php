@@ -15,9 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $message = "marca modificada";
     } else if ($_POST["metodo"] == "Eliminar") {
         $result = Marca::eliminarMarca($idMarca);
-        $message = "marca eliminada";
+        $message = ($result) ? "marca eliminada" : "no se pudo eliminar la marca, esta registrada en otras operaciones";
     }
-    if ($result) {
-        echo $message;
-    }
+    echo $message;
 }

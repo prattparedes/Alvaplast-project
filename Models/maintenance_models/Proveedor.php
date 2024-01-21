@@ -5,6 +5,7 @@ namespace Models\maintenance_models;
 use config\Connection;
 use PDO;
 use Exception;
+use PDOException;
 
 class Proveedor
 {
@@ -42,11 +43,23 @@ class Proveedor
             $stmt->bindParam(":email", $email, PDO::PARAM_STR);
             $stmt->bindParam("descripcion", $descripcion, PDO::PARAM_STR);
             $stmt->bindParam(":estado", $estado, PDO::PARAM_BOOL);
-            $result = $stmt->execute();
+            $stmt->execute();
+            $result = ($stmt->rowCount() > 0) ? true : false;
             return $result;
-        } catch (Exception $err) {
-            echo $err->getMessage();
+        } catch (PDOException $e) {
+            // Extraer solo el mensaje descriptivo
+            $errorMessage = $e->getMessage();
+
+            while (($sqlServerPos = strpos($errorMessage, 'SQL Server')) !== false) {
+                $errorMessage = trim(substr($errorMessage, $sqlServerPos + strlen('SQL Server') + 1));
+            }
+
+            echo "Error: " . $errorMessage;
             return false;
+        } finally {
+            if ($con) {
+                $con = null;
+            }
         }
     }
     //Metodo para modificar proveedor 
@@ -66,11 +79,23 @@ class Proveedor
             $stmt->bindParam(":email", $email, PDO::PARAM_STR);
             $stmt->bindParam("descripcion", $descripcion, PDO::PARAM_STR);
             $stmt->bindParam(":estado", $estado, PDO::PARAM_BOOL);
-            $result = $stmt->execute();
+            $stmt->execute();
+            $result = ($stmt->rowCount() > 0) ? true : false;
             return $result;
-        } catch (Exception $err) {
-            echo $err->getMessage();
+        } catch (PDOException $e) {
+            // Extraer solo el mensaje descriptivo
+            $errorMessage = $e->getMessage();
+
+            while (($sqlServerPos = strpos($errorMessage, 'SQL Server')) !== false) {
+                $errorMessage = trim(substr($errorMessage, $sqlServerPos + strlen('SQL Server') + 1));
+            }
+
+            echo "Error: " . $errorMessage;
             return false;
+        } finally {
+            if ($con) {
+                $con = null;
+            }
         }
     }
     public static function eliminarProveedor(int $idProveedor): bool
@@ -79,11 +104,23 @@ class Proveedor
             $con = Connection::Conectar();
             $stmt = $con->prepare("exec sp_EliminarProveedor :idProveedor");
             $stmt->bindParam(":idProveedor", $idProveedor, PDO::PARAM_INT);
-            $result = $stmt->execute();
+            $stmt->execute();
+            $result = ($stmt->rowCount() > 0) ? true : false;
             return $result;
-        } catch (Exception $err) {
-            echo $err->getMessage();
+        } catch (PDOException $e) {
+            // Extraer solo el mensaje descriptivo
+            $errorMessage = $e->getMessage();
+
+            while (($sqlServerPos = strpos($errorMessage, 'SQL Server')) !== false) {
+                $errorMessage = trim(substr($errorMessage, $sqlServerPos + strlen('SQL Server') + 1));
+            }
+
+            echo "Error: " . $errorMessage;
             return false;
+        } finally {
+            if ($con) {
+                $con = null;
+            }
         }
     }
 }

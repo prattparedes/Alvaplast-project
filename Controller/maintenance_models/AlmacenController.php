@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else if ($_POST["metodo"] === "Eliminar") {
         //$result = Almacen::eliminarCodFacturacion($cod_facturacion);
         $response = Almacen::eliminarAlmacen($idAlmacen);
-        $message = ($response) ? "almacen eliminado completamente" : "no se pudo eliminar , veirificar el id";
+        $message = ($response) ? "almacen eliminado completamente" : "no se pudo eliminar , este almacen ya está registrado en otra operación";
     }
     echo $message;
 }

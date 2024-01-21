@@ -52,7 +52,8 @@ class Marca
             $con = Connection::Conectar();
             $stmt = $con->prepare("exec sp_EliminarMarca :idMarca");
             $stmt->bindParam(":idMarca", $idMarca, PDO::PARAM_INT);
-            $result = $stmt->execute();
+            $stmt->execute();
+            $result = ($stmt->rowCount() > 0) ? true : false;
             return $result;
         } catch (Exception $err) {
             echo $err->getMessage();

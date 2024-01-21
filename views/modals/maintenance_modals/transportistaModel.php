@@ -64,18 +64,18 @@
 
                     <div class="col-md-4">
                         <label for="inputPassword6" class="col-form-label">Dirección</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="direccion" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
 
                     <div class="row">
                         <div class="col-md-2">
                             <label for="inputPassword6" class="col-form-label">Telefono</label>
-                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="text" id="telefono" class="form-control" aria-describedby="passwordHelpInline">
                         </div>
 
                         <div class="col-md-2">
                             <label for="inputPassword6" class="col-form-label">Celular</label>
-                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="text" id="celular" class="form-control" aria-describedby="passwordHelpInline">
                         </div>
                     </div>
 
@@ -83,9 +83,9 @@
                     <br>
                     <div class="col-md-12">
                         <button type="button" class="btn btn-secondary">Nuevo</button>
-                        <a name="" id="" class="btn btn-primary" href="#" role="button">Grabar</a>
-                        <a name="" id="" class="btn btn-success" href="#" role="button">Modificar</a>
-                        <a name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
+                        <a name="" id="" class="btn btn-primary carrier_submit" href="#" role="button">Grabar</a>
+                        <a name="" id="" class="btn btn-success carrier_submit" href="#" role="button">Modificar</a>
+                        <a name="" id="" class="btn btn-danger carrier_submit" href="#" role="button">Eliminar</a>
                     </div>
                 </div>
             </form>
