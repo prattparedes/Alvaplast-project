@@ -5,8 +5,6 @@ use Models\compras\Compra;
 use Models\compras\CompraProducto;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    print_r($_POST);
-    return;
     $idCompra = intval($_POST["idCompra"]);
     $fecha = date("Y-m-d H:i:s", strtotime($_POST["fecha"]));
     $fechaFormateada = str_replace(' ', 'T', $fecha);
@@ -23,10 +21,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $idPersonal = (int) $_POST["idPersonal"];
     //mensaje de respuesta para la 
     $message = "";
-    if ($_POST["metodo"] == "Grabar") {
+    if ($_POST["metodo"] === "Grabar") {
         $result = Compra::RegistrarCompra($idCompra, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $idProveedor, $idAlmacen, $tipoPago, $idPersonal);
         $message = "Compra grabada";
-    } else if ($_POST["metodo"] == "Modificar") {
+    } else if ($_POST["metodo"] === "Modificar") {
         $result = Compra::ModificarCompra($idCompra, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $idProveedor, $idAlmacen, $tipoPago, $idPersonal);
         $message = "Compra editada";
     } else if ($_POST["metodo"] == "Eliminar") {

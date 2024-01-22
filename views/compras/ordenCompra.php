@@ -51,7 +51,7 @@
                         <br>
                         <a style="width: 100px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="nuevaOrdenCompra()">Nuevo</a>
                         <a style="width: 100px;" name="" id="" class="btn btn-success buy_submit" href="#" role="button">Grabar</a>
-                        <a style="width: 100px;" name="" id="" class="btn btn-warning buy_submit" href="#" role="button">Modificar</a>
+                        <a style="width: 100px;" name="" id="" class="btn btn-warning " href="#" role="button">Modificar</a>
                         <a style="width: 100px;" name="" id="" class="btn btn-danger buy_submit" href="#" role="button">Eliminar</a>
 
                         <button style="width: 100px;" class="btn btn-secondary" href="" onclick="loadContent('views/modals/listaordencompra.php')">Buscar</button>

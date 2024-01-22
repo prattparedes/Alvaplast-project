@@ -98,12 +98,15 @@ class Compra
             $stmt->bindParam(":idAlmacen", $idAlmacen, PDO::PARAM_INT);
             $stmt->bindParam(":tipoPago", $tipoPago, PDO::PARAM_STR);
             $stmt->bindParam(":idPersonal", $idPersonal, PDO::PARAM_INT);
-            $result = $stmt->execute();
+            $stmt->execute();
+            $result = ($stmt) ? true : false;
             //$result=$stmt->execute([$idCompra,$fecha,$total,$subtotal,$igv,$idMoneda,$numeroDocumento,$serieDocumento,$idProveedor,$idAlmacen,$tipoPago,$idPersonal]);
             return $result;
         } catch (Exception $er) {
             echo $er->getMessage();
             return false;
+        } finally {
+            ($con) ? null : null;
         }
     }
 }

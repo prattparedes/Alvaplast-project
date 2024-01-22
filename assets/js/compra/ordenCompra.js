@@ -606,7 +606,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     // Configurar la solicitud
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    console.log(metodo, fecha);
+    console.log(metodo, fecha, tipoPago);
     if (idCompra && idAlmacen) {
       // Enviar los datos del formulario incluyendo descripcion y abreviatura
       xhr.send("idCompra=" + idCompra + "&fecha=" + fecha + "&total=" + total + "&subtotal=" + subtotal + "&igv=" + igv + "&idMoneda=" + idMoneda + "&numeroDocumento=" + numeroDocumento + "&serieDocumento=" + serieDocumento + "&idProveedor=" + idProveedor + "&idAlmacen=" + idAlmacen + "&tipoPago=" + tipoPago + "&idPersonal=" + idPersonal + "&metodo=" + metodo);
@@ -625,7 +625,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
           if (metodo == "Eliminar") {
             loadContent("views/buyorder.php");
           }
-          //RegistrarDatosTabla(idCompra, metodo);
+          RegistrarDatosTabla(idCompra, metodo);
         } else {
           // Hubo un error en la solicitud
           console.error('Error en la solicitud.');
@@ -635,7 +635,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
   }
 });
 
-function obtenerDatosTabla(idCompra, metodo) {
+function RegistrarDatosTabla(idCompra, metodo) {
   const tabla = document.getElementById("ordertable");
   const filas = tabla.querySelectorAll("tbody tr");
 
@@ -649,7 +649,7 @@ function obtenerDatosTabla(idCompra, metodo) {
     const subTotal = columnas[6].textContent.trim();
     // comenzamos con el protocolo http
     const http = new XMLHttpRequest();
-    const url = "/proyectogenesis/Controller/CompraProductoController.php";
+    const url = "/Alvaplast-project/Controller/compras/CompraProductoController.php";
     //configuración de la solicitud
     http.open("POST", url, true);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
