@@ -45,7 +45,8 @@ class Compra
             $tsmt->bindParam(":idAlmacen", $idAlmacen, PDO::PARAM_INT);                                         //parametro del codigo de almacen
             $tsmt->bindParam(":tipoPago", $tipoPago, PDO::PARAM_STR);                                           //parametro del tipo de pago
             $tsmt->bindParam(":idPersonal", $idPersonal, PDO::PARAM_INT);                                       //parametro del codigo del personal
-            $result = $tsmt->execute();                                 //ejecución del procedimiento almacenado
+            $tsmt->execute();                                 //ejecución del procedimiento almacenado
+            $result = ($tsmt) ? true : false;
             return $result;
         } catch (Exception $e) {
             echo $e->getMessage();

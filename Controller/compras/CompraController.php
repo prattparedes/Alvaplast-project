@@ -5,10 +5,11 @@ use Models\compras\Compra;
 use Models\compras\CompraProducto;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    print_r($_POST);
     $idCompra = intval($_POST["idCompra"]);
-    $fecha = date("Y-m-d H:i:s", strtotime($_POST["fecha"]));
+    $fecha = date("Y-m-d H:i:s", strtotime(str_replace('/', '-', $_POST["fecha"])));
     $fechaFormateada = str_replace(' ', 'T', $fecha);
-    echo $fechaFormateada;
+    echo $fechaFormateada . "////";
     $total = (float) $_POST["total"];
     $subtotal = (float) $_POST["subtotal"];
     $igv = (float) $_POST["igv"];
@@ -26,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $message = "Compra grabada";
     } else if ($_POST["metodo"] === "Modificar") {
         $result = Compra::ModificarCompra($idCompra, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $idProveedor, $idAlmacen, $tipoPago, $idPersonal);
-        $message = "Compra editada";
+        $message = ($result) ? "Compra editada" : "error en la compra chaval";
     } else if ($_POST["metodo"] == "Eliminar") {
         $message = "Compra eliminada";
     }

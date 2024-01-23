@@ -39,47 +39,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
 });
 
 //Función para recuperar datos de la tabla órdenes compra/venta y mandarlos al backend
-function obtenerDatosTabla(idCompra, metodo) {
-    const tabla = document.getElementById("ordertable");
-    const filas = tabla.querySelectorAll("tbody tr");
 
-    filas.forEach((fila) => {
-        const columnas = fila.querySelectorAll("td");
-        //Asignar los datos para mandar a la casa 
-        const idProducto = columnas[0].textContent.trim();
-        const cantidad = columnas[2].textContent.trim();
-        const precioCompra = columnas[4].textContent.trim();
-        const descuento = columnas[5].textContent.trim();
-        const subTotal = columnas[6].textContent.trim();
-        // comenzamos con el protocolo http
-        const http = new XMLHttpRequest();
-        const url = "/proyectogenesis/Controller/CompraProductoController.php";
-        //configuración de la solicitud
-        http.open("POST", url, true);
-        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        if (precioCompra && subTotal) {
-            //Enviamos los datos al controlador
-            http.send("idCompra=" + idCompra + "&idProducto=" + idProducto + "&cantidad=" + cantidad + "&precioCompra=" + precioCompra + "&descuento=" + descuento + "&subtotal=" + subTotal + "&metodo=" + metodo);
-        } else {
-            alert("faltan datos")
-        }
-
-        http.onreadystatechange = function () {
-            if (http.readyState === XMLHttpRequest.DONE) {
-                if (http.status === 200) {
-                    // La solicitud se completó correctamente
-                    // Puedes manejar la respuesta del servidor aquí
-                    console.log(http.responseText);
-                    loadContent("views/ordencompra.php");
-                } else {
-                    // Hubo un error en la solicitud
-                    console.error('Error en la insercion de los datos');
-                }
-            }
-        }
-    });
-
-}
 
 function RegistrarDatosTabla() {
     const tabla = document.getElementById("ordertable");

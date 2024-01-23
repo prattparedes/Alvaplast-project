@@ -74,7 +74,8 @@ class TipoDocumento
             $con = Connection::Conectar();
             $stmt = $con->prepare("exec sp_EliminarTipoDocumento :idDocumento");
             $stmt->bindParam(":idDocumento", $idDocumento, PDO::PARAM_STR);
-            $result = $stmt->execute();
+            $stmt->execute();
+            $result = ($stmt) ? true : false;
             return $result;
         } catch (PDOException $er) {
             echo $er->getMessage();
