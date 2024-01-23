@@ -14,6 +14,10 @@
 
 <body>
     <header>
+        <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/autoload.php");
+
+
+        use Models\maintenance_models\Producto; ?>
         <!-- place navbar here -->
 
         <div class="container">
@@ -73,29 +77,28 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr class="">
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>10167754798</td>
-                                        <td>16775473</td>
-                                        <td>Jr. Los Olivos 166</td>
-                                        <td>919186954</td>
-                                        <td>919186954</td>
+                                    <?php if (isset($_GET["idAlmacen"]) && isset($_GET["idCliente"])) {
+                                        $almacen = $_GET["idAlmacen"];
+                                        $cliente = $_GET["idCliente"];
 
+                                        $productos = Producto::mostrarStockProducto($almacen, $cliente);
+                                        foreach ($productos as $produc) { ?>
 
+                                            <tr>
+                                                <td><?= 'COD/' . $produc->id_producto ?></td>
+                                                <td><?= $produc->nombre_producto ?></td>
+                                                <td><?= $produc->modelo_producto ?></td>
+                                                <td><?= $produc->modelo_producto ?></td>
+                                                <td><?= $produc->procedencia ?></td>
+                                                <td><?= $produc->precio_venta ?></td>
+                                                <td><?= $produc->precio_compra ?></td>
+                                                <td><?= $produc->stock ?></td>
+                                            </tr>
 
-                                    </tr>
-                                    <tr class="">
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>10167754798</td>
-                                        <td>16775473</td>
-                                        <td>Jr. Los Olivos 166</td>
-                                        <td>919186954</td>
-                                        <td>919186954</td>
+                                    <?php
+                                        }
+                                    } ?>
 
-
-                                    </tr>
                                 </tbody>
                             </table>
 

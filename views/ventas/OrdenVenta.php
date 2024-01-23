@@ -13,6 +13,9 @@
 
 <body>
     <header>
+        <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/autoload.php");
+
+        use Models\maintenance_models\Sucursal; ?>
         <div class="container">
             <h3>ORDEN DE VENTA</h3>
 
@@ -48,7 +51,7 @@
 
 
 
-                      
+
                         <button style="width: 100px;" class="btn btn-secondary" href="" onclick="loadContent('views/modals/listaordenventa.php')">Buscar</button>
 
                         <!-- <button style="width: 90px;" class="btn btn-danger" onclick="loadContent('views/home.php')">Salir</button> -->
@@ -92,17 +95,22 @@
 
                     <div class="col-md-2">
                         <label for="disabledSelect" class="form-label">Sucursal</label>
-                        <select id="disabledSelect" class="form-select">
-                            <option>Principal</option>
-                            <option>Extranjera</option>
+                        <select id="disabledSelect" class="form-select" onchange="listarAlmacenes(this.value)">
+                            <option value="">Seleccionar </option>
+                            <?php
+                            $data = Sucursal::getSucursales();
+                            foreach ($data as $dat) {
+                            ?>
+                                <option value="<?= $dat->id_sucursal ?>"><?= $dat->descripcion ?></option>
+                            <?php
+                            } ?>
                         </select>
                     </div>
 
                     <div class="col-md-2">
-                        <label for="disabledSelect" class="form-label">Almacen </label>
-                        <select id="disabledSelect" class="form-select">
-                            <option>Principal</option>
-                            <option>Extranjera</option>
+                        <label for="almacen" class="form-label">Almacen </label>
+                        <select id="almacen" class="form-select">
+                            <option value="0">seleccione un almacen</option>
                         </select>
                     </div>
                 </div>
@@ -139,7 +147,7 @@
                 </div>
 
                 <div class="row">
-                <div class="col-md-2">
+                    <div class="col-md-2">
                         <label for="inputPassword6" class="col-form-label">Inicial</label>
                         <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
@@ -190,7 +198,7 @@
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="">
                             <!-- <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoproductosventa.php')" type="button" id="">....</button> -->
-                            <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoproductosventa.php')" type="button" id="">....</button>
+                            <button class="btn btn-outline-secondary" href="" onclick="loadContent3()" type="button" id="">....</button>
                         </div>
                     </div>
 
@@ -242,12 +250,12 @@
                                             <tr>
                                                 <!-- <th>Codigo</th> -->
                                                 <th width="200">Producto</th>
-                                                <th  class="textcenter" width="120">Cantidad</th>
+                                                <th class="textcenter" width="120">Cantidad</th>
                                                 <th class="textcenter" width="120">Unidad</th>
                                                 <th class="textcenter" width="120">PreVenta</th>
                                                 <th class="textcenter" width="120">PreReal</th>
                                                 <th class="textcenter" width="120">Total</th>
-                                               
+
 
 
                                             </tr>
@@ -264,7 +272,7 @@
                                                 <td class="textcenter">99.00</td>
                                                 <td class="textcenter">126.00</td>
                                                 <td class="textcenter">198.00</td>
-                                               
+
 
 
                                             </tr>
@@ -302,9 +310,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+        </div>
         </form>
-    </div>
+        </div>
     </header>
     <main></main>
     <footer>

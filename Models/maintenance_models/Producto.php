@@ -171,4 +171,22 @@ class Producto
             }
         }
     }
+
+    public static function mostrarStockProducto(int $idAlmacen, int $idCliente)
+    {
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare("exec sp_ListaProductoStock :idAlmacen, :idCliente");
+            $stmt->bindParam(":idAlmacen", $idAlmacen, PDO::PARAM_INT);
+            $stmt->bindParam(":idCliente", $idCliente, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+        } finally {
+            if ($con) {
+                $con = null;
+            }
+        }
+    }
 }
