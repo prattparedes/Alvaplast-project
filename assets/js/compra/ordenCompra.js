@@ -326,6 +326,7 @@ function guardarCopiaSeguridadCompra() {
   // Guardar las claves y valores principales
   copiaSeguridadFormulario = {
     proveedor: document.getElementById("proveedor").value,
+    id_proveedor: document.getElementById("idproveedor").value,
     direccion: document.getElementById("direccion").value,
     sucursal: document.getElementById("sucursal").value,
     moneda: document.getElementById("moneda").value,
@@ -423,6 +424,8 @@ function restaurarCopiaSeguridadCompra() {
   // Restaurar los valores principales del formulario
   document.getElementById("proveedor").value =
     copiaSeguridadFormulario.proveedor;
+  document.getElementById("idproveedor").value =
+    copiaSeguridadFormulario.id_proveedor;
   document.getElementById("direccion").value =
     copiaSeguridadFormulario.direccion;
   document.getElementById("sucursal").value = copiaSeguridadFormulario.sucursal;
