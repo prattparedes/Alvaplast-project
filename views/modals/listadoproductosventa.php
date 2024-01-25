@@ -14,7 +14,11 @@
 
 <body>
     <header>
-        <!-- place navbar here -->
+        <?php
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+
+        use Models\maintenance_models\Producto;
+        ?>
 
         <div class="container">
             <h3>LISTADO DE PRODUCTOS </h3>
@@ -61,8 +65,6 @@
                                     <tr>
                                         <th scope="col-md-1">Codigo</th>
                                         <th scope="col-md-1">Nombre</th>
-                                        <th scope="col-1">Codigo Producto</th>
-                                        <th scope="col-1">Modelo</th>
                                         <th scope="col-1">Procedencia</th>
                                         <th scope="col-1">Precio Real</th>
                                         <th scope="col-1">Precio venta</th>
@@ -73,29 +75,23 @@
                                 </thead>
 
                                 <tbody>
-                                    <tr class="">
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>10167754798</td>
-                                        <td>16775473</td>
-                                        <td>Jr. Los Olivos 166</td>
-                                        <td>919186954</td>
-                                        <td>919186954</td>
-
-
-
-                                    </tr>
-                                    <tr class="">
-                                        <td scope="row">R1C1</td>
-                                        <td>AlvaPlastic</td>
-                                        <td>10167754798</td>
-                                        <td>16775473</td>
-                                        <td>Jr. Los Olivos 166</td>
-                                        <td>919186954</td>
-                                        <td>919186954</td>
-
-
-                                    </tr>
+                                    <?php
+                                    $productos = Producto::getProductos();
+                                    foreach ($productos as $producto) {
+                                        // Verifica si el stock es mayor que 0
+                                        if ($producto->stock > 0) { ?>
+                                            <tr ondblclick="seleccionarProductoVenta(this)">
+                                                <td><?= $producto->id_producto ?></td>
+                                                <td><?= $producto->nombre_producto ?></td>
+                                                <td><?= $producto->procedencia ?></td>
+                                                <td><?= number_format($producto->precio_compra, 2) ?></td>
+                                                <td><?= number_format($producto->precio_venta, 2) ?></td>
+                                                <td style="display:none;"><?= $producto->id_unidad ?></td>
+                                                <td><?= $producto->stock ?></td>
+                                            </tr>
+                                    <?php }
+                                    }
+                                    ?>
                                 </tbody>
                             </table>
 

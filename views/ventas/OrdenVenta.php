@@ -13,6 +13,15 @@
 
 <body>
     <header>
+        <?php
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+
+        use Models\maintenance_models\Sucursal;
+        use Models\maintenance_models\Almacen;
+        use Models\maintenance_models\Moneda;
+        use Models\maintenance_models\Unidad;
+        use Models\ventas\Venta;
+        ?>
         <div class="container">
             <h3>ORDEN DE VENTA</h3>
 
@@ -21,16 +30,16 @@
 
                 <div class="row">
                     <div class="col-md-1">
-                        <label for="inputPassword6" class="col-form-label"></label>
+                        <label class="col-form-label"></label>
                         <fieldset disabled>
-                            <input type="password" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" placeholder="001">
+                            <input type="text" class="form-control" aria-describedby="passwordHelpInline" placeholder="001">
                         </fieldset>
                     </div>
 
                     <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label"></label>
+                        <label class="col-form-label"></label>
                         <fieldset disabled>
-                            <input type="password" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" placeholder="0015838">
+                            <input type="text" class="form-control" id="idVenta" aria-describedby="passwordHelpInline" value=<?=Venta::getIdVenta();?>>
                         </fieldset>
                     </div>
 
@@ -41,15 +50,15 @@
 
 
 
-                        <a style="width: 100px;" name="" id="" class="btn btn-primary" href="#" role="button">Nuevo</a>
+                        <a style="width: 100px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="nuevaOrdenVenta()">Nuevo</a>
                         <a style="width: 100px;" name="" id="" class="btn btn-success" href="#" role="button">Grabar</a>
                         <a style="width: 100px;" name="" id="" class="btn btn-warning" href="#" role="button">Modificar</a>
                         <a style="width: 100px;" name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
 
 
 
-                      
-                        <button style="width: 100px;" class="btn btn-secondary" href="" onclick="loadContent('views/modals/listaordenventa.php')">Buscar</button>
+
+                        <button style="width: 100px;" class="btn btn-secondary" onclick="loadContent('views/modals/listaordenventa.php')">Buscar</button>
 
                         <!-- <button style="width: 90px;" class="btn btn-danger" onclick="loadContent('views/home.php')">Salir</button> -->
                     </div>
@@ -58,24 +67,23 @@
                 <br>
                 <span class="d-block p-1 col-md-5 bg-info text-white">Detalles de Cliente</span>
                 <div class="row">
-                    <label style="margin-top: 5px;" for="disabledSelect" class="form-label">Cliente</label>
+                    <label style="margin-top: 5px;" class="form-label">Cliente</label>
                     <div class="col-md-5">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Ingrese nombre de cliente" aria-label="Recipient's username" aria-describedby="">
-
-
-                            <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoclientes.php')" type="button" id="">....</button>
+                            <input type="text" class="form-control" placeholder="Ingrese nombre de cliente" aria-label="Recipient's username" aria-describedby="" id="cliente" disabled>
+                            <input type="hidden" id="idcliente" value="0">
+                            <button class="btn btn-outline-secondary" onclick="abrirListadoClientes()" type="button" >....</button>
                         </div>
 
-                        <label for="disabledSelect" class="form-label">Dirección</label>
-                        <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <label for="inputPassword6" class="col-form-label">Dirección</label>
+                        <input type="text" id="direccion" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
                     <div class="col-md-1"></div>
                     <div class="col-md-4">
                         <span class="d-block p-1 col-md-12 bg-info text-white">Detalles de Producto</span>
-                        <label for="inputPassword6" class="col-md-12 col-form-label">Vendedor</label>
-                        <select id="disabledSelect" class="form-select">
+                        <label class="col-md-12 col-form-label">Vendedor</label>
+                        <select id="vendedor" class="form-select" disabled>
                             <option>Susan Paredes Villanueva</option>
                             <option>Extranjera</option>
                         </select>
@@ -84,47 +92,58 @@
 
                 <div class="row">
                     <div class="col-md-5">
-                        <label for="disabledSelect" class="form-label">RUC - DNI</label>
-                        <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <label class="form-label">RUC - DNI</label>
+                        <input type="text" id="rucDni" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
-                    <div class="col-md-1"></div>
+                    <div class="col-md-1">
+                        <div></div>
+                    </div>
 
                     <div class="col-md-2">
-                        <label for="disabledSelect" class="form-label">Sucursal</label>
-                        <select id="disabledSelect" class="form-select">
-                            <option>Principal</option>
-                            <option>Extranjera</option>
+                        <label for="sucursal" class="form-label">Sucursal</label>
+                        <select id="sucursal" class="form-select" disabled>
+                            <option value="">Seleccionar </option>
+                            <?php
+                            $data = Sucursal::getSucursales(); ?>
+                            <option value="<?= $data->id_sucursal ?>"><?= $data->descripcion ?></option>
+                        </select>
+
                         </select>
                     </div>
 
                     <div class="col-md-2">
-                        <label for="disabledSelect" class="form-label">Almacen </label>
-                        <select id="disabledSelect" class="form-select">
-                            <option>Principal</option>
-                            <option>Extranjera</option>
+                        <label for="disabledSelect" class="form-label">Almacen</label>
+                        <select id="almacen" class="form-select" disabled>
+                            <option value="">Seleccione almacen</option>
+                            <?php
+                            $almacenes = Almacen::getAlmacenes();
+                            foreach ($almacenes as $almacen) { ?>
+                                <option value="<?= $almacen->id_almacen ?>"><?= $almacen->descripcion ?></option>
+                            <?php } ?>
                         </select>
                     </div>
-                </div>
-
-                <div class="col-md-1">
-                    <div></div>
                 </div>
 
                 <div class="row">
                     <div class="col-2">
-                        <label for="disabledSelect" class="form-label">Moneda</label>
-                        <select id="disabledSelect" class="form-select">
-                            <option>Soles</option>
-                            <option>Extranjera</option>
+                        <label for="moneda" class="form-label">Moneda</label>
+                        <select id="moneda" class="form-select" disabled>
+                            <option value="">Seleccione moneda</option>
+                            <?php
+                            $monedas = Moneda::getMonedas();
+                            foreach ($monedas as $moneda) { ?>
+                                <option value="<?= $moneda->id_moneda ?>"><?= $moneda->descripcion ?></option>
+                            <?php } ?>
                         </select>
                     </div>
 
                     <div class="col-md-2">
-                        <label for="disabledSelect" class="form-label">Tipo Pago</label>
-                        <select id="disabledSelect" class="form-select">
-                            <option>Efectivo</option>
-                            <option>Credito</option>
+                        <label for="disabledSelect" class="form-label">Tipo de Pago</label>
+                        <select id="tipoPago" class="form-select" disabled>
+                            <option value="">Elija una opción</option>
+                            <option value="E">EFECTIVO</option>
+                            <option value="C">CREDITO</option>
                         </select>
                     </div>
 
@@ -133,20 +152,31 @@
                     </div>
 
                     <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label">Fechassss</label>
-                        <input type="date" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <label for="fecha" class="col-form-label">Fecha</label>
+                        <input type="datetime-local" id="fecha" class="form-control" disabled>
+                    </div>
+
+                    <div class="col-md-2">
+                        <label class="col-form-label">Tipo de Documento</label>
+                        <select name="" id="tipoDocumento" class="form-select" disabled>
+                            <option value="A">NOTA DE COBRANZA - A</option>
+                            <option value="B">NOTA DE COBRANZA - B</option>
+                            <option value="C">NOTA DE COBRANZA - C</option>
+                            <option value="D">NOTA DE COBRANZA - D</option>
+                            <option value="E">NOTA DE COBRANZA - E</option>
+                        </select>
                     </div>
                 </div>
 
                 <div class="row">
-                <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label">Inicial</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                    <div class="col-md-2">
+                        <label class="col-form-label">Inicial</label>
+                        <input type="number" id="inicial" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
                     <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label">Monto Financiado</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <label class="col-form-label">Monto Financiado</label>
+                        <input type="number" id="montofin" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
                     <div class="col-md-2">
@@ -154,20 +184,20 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label for="inputPassword6" class="col-form-label">Notas</label>
-                        <textarea style="height: 5px;" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+                        <label class="col-form-label">Notas</label>
+                        <textarea style="height: 5px;" class="form-control" placeholder="Leave a comment here" id="notas" disabled></textarea>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label">Cuotas</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <label class="col-form-label">Cuotas</label>
+                        <input type="number" id="cuotas" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
                     <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label">Monto Cuotas</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <label class="col-form-label">Monto Cuotas</label>
+                        <input type="number" id="montocuo" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
                     <div class="col-md-2">
@@ -183,14 +213,13 @@
                 <br>
                 <div class="row">
                     <span class="d-block p-1 col-md-10 bg-info text-white">Detalles de Producto</span>
-
-                    <label for="inputPassword6" class="col-md-12 col-form-label">Producto</label>
+                    <label class="col-md-12 col-form-label">Producto</label>
 
                     <div class="col-md-4">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="">
-                            <!-- <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoproductosventa.php')" type="button" id="">....</button> -->
-                            <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoproductosventa.php')" type="button" id="">....</button>
+                            <input type="text" class="form-control" id="productname" placeholder="Seleccione Producto" aria-label="Recipient's username" aria-describedby="" disabled>
+                            <input type="hidden" type="text" id="productid">
+                            <button class="btn btn-outline-secondary" href="" onclick="abrirListadoProductosVenta()" type="button">....</button>
                         </div>
                     </div>
 
@@ -201,31 +230,39 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label for="disabledSelect" class="form-label">Unidad</label>
-                            <select id="disabledSelect" class="form-select">
-                                <option>Royos</option>
-                                <option>San Juan de Lurigancho</option>
+                            <select id="productunit" class="form-select" disabled>
+                                <?php
+                                $unidades = Unidad::getUnidades();
+                                foreach ($unidades as $unidad) { ?>
+                                    <option value="<?= $unidad->id_unidad ?>"><?= $unidad->abreviatura ?></option>
+                                <?php } ?>
                             </select>
                         </div>
 
                         <div class="col-md-1">
-                            <label for="inputPassword6" class="col-form-label">Cantidad</label>
-                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                            <label class="col-form-label">Cantidad</label>
+                            <input type="text" id="productquantity" class="form-control" aria-describedby="passwordHelpInline" disabled>
                         </div>
 
                         <div class="col-md-1">
-                            <label for="inputPassword6" class="col-form-label">P_Unitario</label>
-                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                            <label class="col-form-label">P_Unitario</label>
+                            <input type="text" id="productprice" class="form-control" aria-describedby="passwordHelpInline" disabled>
                         </div>
 
                         <div class="col-md-1">
-                            <label for="inputPassword6" class="col-form-label">Descuento</label>
-                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                            <label class="col-form-label">Descuento</label>
+                            <input type="text" id="productdiscount" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                        </div>
+
+                        <div class="col-md-1">
+                            <label class="col-form-label">Stock</label>
+                            <input type="number" id="productstock" class="form-control" aria-describedby="passwordHelpInline" disabled>
                         </div>
 
                         <div class="col-md-3">
                             <div class="mb-3"></div>
                             <div class="mb-3"><br>
-                                <a name="" id="" class="btn btn-primary" href="#" role="button">Agregar</a>
+                                <a name="" id="" class="btn btn-primary" href="#" role="button" onclick="añadirProductoOrdenVenta()">Agregar</a>
                                 <a name="" id="" class="btn btn-warning" href="#" role="button">Cancelar</a>
                             </div>
                         </div>
@@ -237,17 +274,17 @@
                         <div class="row">
                             <div class="col-auto">
                                 <div class="table-responsive">
-                                    <table class="tbl_venta">
+                                    <table class="tbl_venta" id="ordertable">
                                         <thead>
                                             <tr>
                                                 <!-- <th>Codigo</th> -->
                                                 <th width="200">Producto</th>
-                                                <th  class="textcenter" width="120">Cantidad</th>
+                                                <th class="textcenter" width="120">Cantidad</th>
                                                 <th class="textcenter" width="120">Unidad</th>
                                                 <th class="textcenter" width="120">PreVenta</th>
                                                 <th class="textcenter" width="120">PreReal</th>
                                                 <th class="textcenter" width="120">Total</th>
-                                               
+
 
 
                                             </tr>
@@ -256,43 +293,32 @@
                                         <!-- <tr> -->
 
                                         <tbody id="detalle_venta">
-                                            <tr>
-                                                <!-- <td>R1C1</td> -->
-                                                <td colspan="1">AlvaPlastic</td>
-                                                <td class="textcenter">2</td>
-                                                <td class="textcenter">F</td>
-                                                <td class="textcenter">99.00</td>
-                                                <td class="textcenter">126.00</td>
-                                                <td class="textcenter">198.00</td>
-                                               
 
-
-                                            </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>
                                                 <td colspan="5" class="textright">Precio Bruto</td>
-                                                <td class="textright">167.80</td>
+                                                <td class="textright" id="productsubtotal1">0</td>
                                             </tr>
 
                                             <tr>
                                                 <td colspan="5" class="textright">Descuento</td>
-                                                <td class="textright">00.00</td>
+                                                <td class="textright" id="productDescuento">0</td>
                                             </tr>
 
                                             <tr>
                                                 <td colspan="5" class="textright">Precio Neto</td>
-                                                <td class="textright">167.80</td>
+                                                <td class="textright" id="productsubtotal2">0</td>
                                             </tr>
 
                                             <tr>
                                                 <td colspan="5" class="textright">IGV S/.</td>
-                                                <td class="textright">30.20</td>
+                                                <td class="textright" id="productigv">0</td>
                                             </tr>
 
                                             <tr>
                                                 <td colspan="5" class="textright">Total S/.</td>
-                                                <td class="textright">198.00</td>
+                                                <td class="textright" id="productTotal">0</td>
                                             </tr>
                                         </tfoot>
 
@@ -302,9 +328,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+        </div>
         </form>
-    </div>
+        </div>
     </header>
     <main></main>
     <footer>

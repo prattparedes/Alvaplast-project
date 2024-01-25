@@ -28,15 +28,7 @@ function nuevaOrdenCompra() {
   };
 }
 
-// Función para activar todos los inputs, selects, etc.
-function activarInputs() {
-  elementosFormulario = document.querySelectorAll("input, select, textarea");
-  elementosFormulario.forEach(function (elemento) {
-    elemento.removeAttribute("disabled");
-  });
-}
-
-// Función para ir al listado de productos
+// Función para ir al listado de proveedores
 function abrirListadoProveedor() {
   if (!document.getElementById("proveedor").disabled) {
     guardarCopiaSeguridadCompra();
@@ -70,14 +62,15 @@ function seleccionarProveedor(fila) {
 }
 
 // Función para ir al listado de productos
-function abrirListadoProductos() {
+function abrirListadoProductosCompra() {
   if (!document.getElementById("productname").disabled) {
     guardarCopiaSeguridadCompra();
     loadContent("views/modals/listadoproductoscompras.php");
   }
 }
+
 // Función para seleccionar Producto y pasarlo al formulario
-function seleccionarProducto(fila) {
+function seleccionarProductoCompra(fila) {
   const columnas = fila.querySelectorAll("td");
 
   // Crear un array con el contenido de las celdas de la fila clickeada
@@ -198,49 +191,6 @@ function limpiarFormularioCompra() {
   orderTableBody.innerHTML = "";
 }
 
-function actualizarTablaPrecios() {
-  const ordertable = document.getElementById("ordertable");
-
-  // Obtener las filas de la tabla de productos
-  const filasProductos = Array.from(ordertable.querySelectorAll("tbody tr"));
-
-  let totalPrecioCompra = 0;
-  let totalDescuento = 0;
-  let total = 0;
-
-  // Calcular totales recorriendo las filas de la tabla de productos
-  filasProductos.forEach((fila) => {
-    const cells = fila.querySelectorAll("td");
-
-    const cantidad = parseInt(cells[2].innerText);
-    const precio = parseFloat(cells[4].innerText);
-    const totalFila = parseFloat(cells[6].innerText); // Total de la fila
-
-    totalPrecioCompra += cantidad * precio;
-    total += totalFila; // Sumar el total de la fila directamente
-  });
-
-  // Calcular total de descuento
-  totalDescuento = totalPrecioCompra - total;
-
-  // Resto del cálculo
-  const igv = total * 0.18; // Suponiendo un IGV del 18%
-
-  // Actualizar la fila de la tabla de precios
-  const productSubtotal1 = document.getElementById("productsubtotal1");
-  const productSubtotal2 = document.getElementById("productsubtotal2");
-  const productDescuento = document.getElementById("productDescuento");
-  const productIgv = document.getElementById("productigv");
-  const productTotal = document.getElementById("productTotal");
-
-  productSubtotal1.innerText = (total - igv).toFixed(2);
-  productDescuento.innerText = totalDescuento.toFixed(2);
-  productSubtotal2.innerText = (total - igv).toFixed(2);
-  productIgv.innerText = igv.toFixed(2);
-  productTotal.innerText = total.toFixed(2);
-}
-
-
 //////////// CAMBIAR ESTO DE ABAJO ////////////
 
 // Botón Modificar Habilitar y Deshabilitar inputs
@@ -303,7 +253,6 @@ document.addEventListener("click", function (event) {
 });
 
 // Guardar Copia Seguridad de un Formulario si se cancela modificaciones
-let copiaSeguridadFormulario = {};
 function guardarCopiaSeguridadCompra() {
   // Obtener filas de la tabla productos
   const tablaProductos = document.getElementById("ordertable");
@@ -320,8 +269,6 @@ function guardarCopiaSeguridadCompra() {
       datosPrecios.push(celda.innerText);
     }
   });
-
-  console.log(datosPrecios);
 
   // Guardar las claves y valores principales
   copiaSeguridadFormulario = {
@@ -422,19 +369,16 @@ function restaurarCopiaSeguridadCompra() {
   });
 
   // Restaurar los valores principales del formulario
-  document.getElementById("proveedor").value =
-    copiaSeguridadFormulario.proveedor;
-  document.getElementById("idproveedor").value =
-    copiaSeguridadFormulario.id_proveedor;
-  document.getElementById("direccion").value =
-    copiaSeguridadFormulario.direccion;
-  document.getElementById("sucursal").value = copiaSeguridadFormulario.sucursal;
-  document.getElementById("moneda").value = copiaSeguridadFormulario.moneda;
-  document.getElementById("almacen").value = copiaSeguridadFormulario.almacen;
-  document.getElementById("tipoPago").value = copiaSeguridadFormulario.tipoPago;
-  document.getElementById("fecha").value = copiaSeguridadFormulario.fecha;
-  document.getElementById("descripcion").value =
-    copiaSeguridadFormulario.descripcion;
+  let copy = copiaSeguridadFormulario;
+  document.getElementById("proveedor").value = copy.proveedor;
+  document.getElementById("idproveedor").value = copy.id_proveedor;
+  document.getElementById("direccion").value = copy.direccion;
+  document.getElementById("sucursal").value = copy.sucursal;
+  document.getElementById("moneda").value = copy.moneda;
+  document.getElementById("almacen").value = copy.almacen;
+  document.getElementById("tipoPago").value = copy.tipoPago;
+  document.getElementById("fecha").value = copy.fecha;
+  document.getElementById("descripcion").value = copy.descripcion;
 }
 
 // Función para pasar los datos obtenidos de la lista de compras al formulario de compras
@@ -544,4 +488,121 @@ function filtrarProductosCompra(filtro) {
       fila.style.display = "none";
     }
   });
+}
+
+// Añadir nueva fila en la tabla de órdenes de venta/compra
+function añadirProductoOrdenCompra() {
+  const cantidad = parseFloat(document.getElementById("productquantity").value);
+  const precioUnitario = parseFloat(
+    document.getElementById("productprice").value
+  );
+  let descuento = parseFloat(document.getElementById("productdiscount").value);
+  const unidad = document.getElementById("productunit").selectedOptions[0].text;
+
+  descuento = isNaN(descuento) ? 0 : descuento;
+  const descuentoAplicado =
+    isNaN(descuento) || descuento < 0 || descuento > 100 ? 0 : descuento;
+  const rowData = window.clickedRowData;
+
+  if (cantidad && unidad) {
+    if (rowData) {
+      const idPro = rowData[0];
+      const nombreProducto = rowData[1];
+      const precioReal = parseFloat(rowData[3]);
+
+      let productosAgregadosEl = document.querySelectorAll(
+        "#ordertable tbody tr td:nth-child(2)"
+      );
+      let productosAgregados = [];
+
+      productosAgregadosEl.forEach((td) => {
+        productosAgregados.push(td.innerText);
+      });
+
+      console.log(productosAgregados);
+
+      if (productosAgregados.includes(nombreProducto)) {
+        alert("El producto ya ha sido agregado.");
+        return; // Sale de la función si el producto ya existe
+      }
+
+      let datosProducto = [];
+      let addToProducts = true; // Variable para controlar la adición a productosAgregados
+
+      if (document.getElementById("productstock")) {
+        const stock = parseFloat(
+          document.getElementById("productstock").value
+        );
+        if (cantidad > stock) {
+          alert("No hay stock suficiente");
+          addToProducts = false; // No agrega el producto si no hay suficiente stock
+        }
+      }
+
+      if (addToProducts) {
+        productosAgregados.push(nombreProducto);
+        datosProducto = [
+          idPro,
+          nombreProducto,
+          cantidad,
+          unidad,
+          precioUnitario,
+          descuento,
+          (cantidad * precioUnitario * (1 - descuentoAplicado / 100)).toFixed(
+            2
+          ),
+        ];
+
+        const tablaExterna = document
+          .getElementById("ordertable")
+          .getElementsByTagName("tbody")[0];
+        const nuevaFila = tablaExterna.insertRow();
+          console.log(datosProducto);
+        datosProducto.forEach((contenido, index) => {
+          const celda = nuevaFila.insertCell();
+
+          // Aplicar estilos y atributos según el índice
+          switch (index) {
+            case 0:
+              celda.style.display = "none";
+              celda.textContent = contenido;
+              break;
+            case 1:
+              // Aquí puedes agregar estilos adicionales si es necesario
+              celda.colSpan = "1";
+              celda.textContent = contenido;
+              break;
+            case 2:
+              celda.classList.add("textcenter");
+              celda.textContent = contenido;
+              break;
+            default:
+              celda.textContent = contenido;
+              celda.classList.add("textright");
+              break;
+          }
+        });
+
+        // Limpiar datos del formulario
+        window.clickedRowData = null;
+        document.getElementById("productname").value = "Seleccione Producto";
+        document.getElementById("productprice").value = null;
+        document.getElementById("productdiscount").value = null;
+        document.getElementById("productquantity").value = null;
+        document.getElementById("productunit").value = null;
+
+        if (document.getElementById("productstock")) {
+          document.getElementById("productstock").value = null;
+        }
+
+        // Actualiza tabla de precios
+        actualizarTablaPrecios();
+      }
+    }
+  } else {
+    const añadirProductoBoton = document.getElementById("addproduct");
+    if (!añadirProductoBoton.classList.contains("order__btn--inactive")) {
+      alert("La cantidad y la unidad no deben estar vacías.");
+    }
+  }
 }

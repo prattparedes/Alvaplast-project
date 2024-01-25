@@ -103,8 +103,6 @@
                         <label for="inputPassword6" class="col-form-label">Dirección</label>
                         <input type="text" id="direccion" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
-
-                    <div class="col-md-1"></div>
                 </div>
 
                 <br>
@@ -168,7 +166,7 @@
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" id="productname" placeholder="Seleccione Producto" aria-label="Recipient's username" aria-describedby="" disabled>
                             <input type="hidden" type="text" id="productid">
-                            <button class="btn btn-outline-secondary" href="" onclick="abrirListadoProductos()" type="button" id="">....</button>
+                            <button class="btn btn-outline-secondary" href="" onclick="abrirListadoProductosCompra()" type="button" id="">....</button>
                         </div>
                     </div>
 
@@ -189,24 +187,24 @@
                         </div>
 
                         <div class="col-md-1">
-                            <label for="inputPassword6" class="col-form-label">Cantidad</label>
+                            <label class="col-form-label">Cantidad</label>
                             <input type="text" id="productquantity" class="form-control" aria-describedby="passwordHelpInline" disabled>
                         </div>
 
                         <div class="col-md-1">
-                            <label for="inputPassword6" class="col-form-label">P_Unitario</label>
+                            <label class="col-form-label">P_Unitario</label>
                             <input type="text" id="productprice" class="form-control" aria-describedby="passwordHelpInline" disabled>
                         </div>
 
                         <div class="col-md-1">
-                            <label for="inputPassword6" class="col-form-label">Descuento</label>
+                            <label class="col-form-label">Descuento</label>
                             <input type="text" id="productdiscount" class="form-control" aria-describedby="passwordHelpInline" disabled>
                         </div>
 
                         <div class="col-md-3">
                             <div class="mb-3"></div>
                             <div class="mb-3"><br>
-                                <a name="" id="addproduct" class="btn btn-primary" href="#" role="button" onclick="añadirProductoOrden()">Agregar</a>
+                                <a name="" id="addproduct" class="btn btn-primary" href="#" role="button" onclick="añadirProductoOrdenCompra()">Agregar</a>
                                 <a name="" id="" class="btn btn-warning" href="#" role="button">Cancelar</a>
                             </div>
                         </div>
@@ -227,7 +225,7 @@
                                             <th>Cantidad</th>
                                             <th class="textcenter" width="120">Unidad</th>
                                             <th class="textcenter" width="120">PreCompra</th>
-                                            <th class="textcenter" width="120">Descuento</th>
+                                            <th class="textcenter" width="120">Descuento (%)</th>
                                             <th class="textcenter" width="120">Total</th>
                                         </tr>
                                     </thead>
