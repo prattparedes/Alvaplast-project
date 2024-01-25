@@ -15,7 +15,10 @@
     <header>
         <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/autoload.php");
 
-        use Models\maintenance_models\Sucursal; ?>
+        use Models\maintenance_models\Sucursal;
+        use Models\ventas\Venta;
+
+        ?>
         <div class="container">
             <h3>ORDEN DE VENTA</h3>
 
@@ -26,14 +29,14 @@
                     <div class="col-md-1">
                         <label for="inputPassword6" class="col-form-label"></label>
                         <fieldset disabled>
-                            <input type="password" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" placeholder="001">
+                            <input type="text" id="serieDocumento" class="form-control" aria-describedby="passwordHelpInline" value="001">
                         </fieldset>
                     </div>
 
                     <div class="col-md-2">
                         <label for="inputPassword6" class="col-form-label"></label>
                         <fieldset disabled>
-                            <input type="password" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" placeholder="0015838">
+                            <input type="text" id="numDocumento" class="form-control" aria-describedby="passwordHelpInline" value="<?= Venta::obtenerVentaId(); ?>">
                         </fieldset>
                     </div>
 

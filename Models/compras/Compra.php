@@ -5,6 +5,7 @@ namespace Models\compras;
 use config\Connection;
 use PDO;
 use Exception;
+use PDOException;
 
 class Compra
 {
@@ -46,10 +47,37 @@ class Compra
             $tsmt->bindParam(":tipoPago", $tipoPago, PDO::PARAM_STR);                                           //parametro del tipo de pago
             $tsmt->bindParam(":idPersonal", $idPersonal, PDO::PARAM_INT);                                       //parametro del codigo del personal
             $tsmt->execute();                                 //ejecución del procedimiento almacenado
-            $result = ($tsmt) ? true : false;
+            $result = ($tsmt->rowCount() > 0) ? true : false;
             return $result;
         } catch (Exception $e) {
             echo $e->getMessage();
+            return false;
+        }
+    }
+    //Registrar compra con tipo cambio
+    public static function RegistrarCompraConCambio(int $idCompra, string $fecha, float $total, float $subtotal, float $igv, int $idMoneda, string $numeroDocumento, string $serieDocumento, int $idProveedor, int $idAlmacen, float $tipoCambio, string $tipoPago, int $idPersonal): bool
+    {
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare('exec sp_RegistrarCompraConCambion :idCompra, :fecha, :total, :subtotal, :igv, :idMoneda, :numeroDocumento, :serieDocumento, :idProveedor, :idAlmacen, :tipoCambio, :tipoPago, :idPersonal');
+            $stmt->bindParam(':idCompra', $idCompra, PDO::PARAM_INT);
+            $stmt->bindParam(':fecha', $fecha, PDO::PARAM_STR);
+            $stmt->bindParam(':total', $total, PDO::PARAM_INT);
+            $stmt->bindParam(":subtotal", $subtotal, PDO::PARAM_STR);
+            $stmt->bindParam(":igv", $igv, PDO::PARAM_STR);
+            $stmt->bindParam(":idMoneda", $idMoneda, PDO::PARAM_INT);
+            $stmt->bindParam(":numeroDocumento", $numeroDocumento, PDO::PARAM_STR);
+            $stmt->bindParam(":serieDocumento", $serieDocumento, PDO::PARAM_STR);
+            $stmt->bindParam(":idProveedor", $idProveedor, PDO::PARAM_INT);
+            $stmt->bindParam(":idAlmacen", $idAlmacen, PDO::PARAM_INT);
+            $stmt->bindParam(":tipoCambio", $tipoCambio, PDO::PARAM_STR);
+            $stmt->bindParam(":tipoPago", $tipoPago, PDO::PARAM_STR);
+            $stmt->bindParam(":idPersonal", $idPersonal, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = ($stmt->rowCount() > 0) ? true : false;
+            return $result;
+        } catch (PDOException $err) {
+            echo $err->getMessage();
             return false;
         }
     }
@@ -61,7 +89,8 @@ class Compra
             $tsmt = $con->prepare('sp_EliminarCompra :idCompra, :idPersonal');
             $tsmt->bindParam(":idCompra", $idCompra, PDO::PARAM_INT);
             $tsmt->bindParam(":idPersonal", $idPersonal, PDO::PARAM_INT);
-            $result = $tsmt->execute();
+            $tsmt->execute();
+            $result = ($tsmt->rowCount() > 0) ? true : false;
             return $result;
         } catch (Exception $er) {
             echo $er->getMessage();
@@ -100,7 +129,7 @@ class Compra
             $stmt->bindParam(":tipoPago", $tipoPago, PDO::PARAM_STR);
             $stmt->bindParam(":idPersonal", $idPersonal, PDO::PARAM_INT);
             $stmt->execute();
-            $result = ($stmt) ? true : false;
+            $result = ($stmt->rowCount() > 0) ? true : false;
             //$result=$stmt->execute([$idCompra,$fecha,$total,$subtotal,$igv,$idMoneda,$numeroDocumento,$serieDocumento,$idProveedor,$idAlmacen,$tipoPago,$idPersonal]);
             return $result;
         } catch (Exception $er) {

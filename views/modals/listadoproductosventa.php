@@ -85,7 +85,7 @@
                                         foreach ($productos as $produc) { ?>
 
                                             <tr>
-                                                <td><?= 'COD/' . $produc->id_producto ?></td>
+                                                <td><?= $produc->id_producto ?></td>
                                                 <td><?= $produc->nombre_producto ?></td>
                                                 <td><?= $produc->modelo_producto ?></td>
                                                 <td><?= $produc->modelo_producto ?></td>

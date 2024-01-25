@@ -3,6 +3,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
 
 use Models\compras\Compra;
 use Models\compras\CompraProducto;
+use Models\maintenance_models\TipoCambio;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     print_r($_POST);
@@ -23,8 +24,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     //mensaje de respuesta para la 
     $message = "";
     if ($_POST["metodo"] === "Grabar") {
-        $result = Compra::RegistrarCompra($idCompra, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $idProveedor, $idAlmacen, $tipoPago, $idPersonal);
-        $message = "Compra grabada";
+        if ($idMoneda == 2) {
+            $tipoCambio = TipoCambio::obtenerTipoCambio("c"); //tenemos que pasar el tipo de orden que es ("v" venta , "c" compra)
+            $result = Compra::RegistrarCompraConCambio($idCompra, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $idProveedor, $idAlmacen, $tipoCambio, $tipoPago, $idPersonal);
+            $message = ($result) ? "registrado correctamente" : "error en la insercion";
+        } else {
+            $result = Compra::RegistrarCompra($idCompra, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $idProveedor, $idAlmacen, $tipoPago, $idPersonal);
+            $message = ($result) ? "registrado correctamente" : "error en la insercion";
+        }
     } else if ($_POST["metodo"] === "Modificar") {
         $result = Compra::ModificarCompra($idCompra, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $idProveedor, $idAlmacen, $tipoPago, $idPersonal);
         $message = ($result) ? "Compra editada" : "error en la compra chaval";
