@@ -81,7 +81,7 @@
                                     <?php
                                     $productos = Producto::getProductos();
                                     foreach ($productos as $producto) { ?>
-                                        <tr ondblclick="seleccionarProducto(this)">
+                                        <tr ondblclick="seleccionarProductoCompra(this)">
                                             <td><?= $producto->id_producto ?></td>
                                             <td><?= $producto->nombre_producto ?></td>
                                             <td><?= $producto->linea ?></td>

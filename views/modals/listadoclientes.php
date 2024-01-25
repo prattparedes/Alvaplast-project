@@ -12,6 +12,11 @@
 
 <body>
     <header>
+    <?php
+        require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
+
+        use Models\maintenance_models\Cliente;
+        ?>
         <div class="container">
             <h1>LISTADO DE CLIENTES </h1>
             <form>
@@ -35,7 +40,7 @@
                 <br>
 
                 <button type="button" class="btn btn-success" style="width: 150px;">Consultar</button>
-              
+
                 <a style="width: 150px;" high="50" name="" id="" class="btn btn-danger" href="#" onclick="loadContent('views/ventas/ordenventa.php')" role="button">Cancelar..</a>
             </form>
         </div>
@@ -47,7 +52,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="table-responsive">
-                    <table class="table border=1">
+                        <table class="table border=1">
                             <thead>
                                 <tr>
                                     <th scope="col-md-1">Codigo</th>
@@ -59,22 +64,18 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td scope="row">R1C1</td>
-                                    <td>AlvaPlastic</td>
-                                    <td>10167754798</td>
-                                    <td>16775473</td>
-                                    <td>Jr. Los Olivos 166</td>
-                                    <td>919186954</td>
-                                </tr>
-                                <tr>
-                                    <td scope="row">R1C2</td>
-                                    <td>OtroCliente</td>
-                                    <td>12345678901</td>
-                                    <td>98765432</td>
-                                    <td>Avenida Principal 123</td>
-                                    <td>987654321</td>
-                                </tr>
+                                <?php
+                                $clients = Cliente::getClientes();
+                                foreach ($clients as $client) { ?>
+                                    <tr ondblclick="seleccionarCliente(this)">
+                                        <td><?= $client->id_cliente ?></td>
+                                        <td><?= $client->razon_social ?></td>
+                                        <td><?= $client->ruc ?></td>
+                                        <td><?= $client->dni ?></td>
+                                        <td><?= $client->direccion ?></td>
+                                        <td><?= $client->telefono ?></td>
+                                    </tr>
+                                <?php } ?>
                             </tbody>
                         </table>
                     </div>

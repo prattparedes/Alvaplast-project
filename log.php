@@ -200,8 +200,9 @@
   <script src="assets/js/maintenance/filtrosTablas.js"></script>
   <script src="assets/js/maintenance/maintenance_modals.js"></script>
   <script src="assets/js/maintenance/Forms_maintenance.js"></script>
-  </body>
   <script src="assets/js/compra/ordenCompra.js"></script>
+  <script src="assets/js/ventas/ordenVenta.js"></script>
+  </body>
 </body>
 
 </html>
