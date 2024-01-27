@@ -14,11 +14,11 @@
 
 <body>
     <header>
-        <?php require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/autoload.php");
+        <?php
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
 
-
-        use Models\maintenance_models\Producto; ?>
-        <!-- place navbar here -->
+        use Models\maintenance_models\Producto;
+        ?>
 
         <div class="container">
             <h3>LISTADO DE PRODUCTOS </h3>
@@ -65,8 +65,6 @@
                                     <tr>
                                         <th scope="col-md-1">Codigo</th>
                                         <th scope="col-md-1">Nombre</th>
-                                        <th scope="col-1">Codigo Producto</th>
-                                        <th scope="col-1">Modelo</th>
                                         <th scope="col-1">Procedencia</th>
                                         <th scope="col-1">Precio Real</th>
                                         <th scope="col-1">Precio venta</th>
