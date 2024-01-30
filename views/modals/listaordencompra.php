@@ -42,10 +42,9 @@
             </form>
 
 
-        <button style="width: 100px;" class="btn btn-secondary" href="" onclick="loadContent('views/modals/listaordencompra.php')">Buscar</button>
-        <button style="width: 150px;" class="btn btn-danger" href=""  onclick="loadContent('views/compras/ordencompra.php')" type="button" id="">Cancelar</button> 
+        <button style="width: 150px;" class="btn btn-danger" onclick="CancelarYRestaurarCompra()" type="button" id="">Cancelar</button> 
 
-            <div class="container">
+
                 <h1>Proveedores</h1>
                 <b> <span class="d-block p-2 col-9 bg-info text-white">Listado de ordenes de compra</span></b>
 
@@ -95,7 +94,7 @@
 
                 </div>
 
-            </div>
+
 
 
 

@@ -27,6 +27,13 @@ function activarInputs() {
   });
 }
 
+function desactivarInputs() {
+  elementosFormulario = document.querySelectorAll("input, select, textarea");
+  elementosFormulario.forEach(function (elemento) {
+    elemento.setAttribute("disabled", "disabled");
+  });
+}
+
 // Función para actualizar la tabla de precios en las ordenes de compra y venta
 function actualizarTablaPrecios() {
   const ordertable = document.getElementById("ordertable");

@@ -51,60 +51,54 @@
             </form>
 
             <br>
-            <a style="width: 150px;" high="50" name="" id="" class="btn btn-success" href="#" role="button">Consultar</a>
-            <a style="width: 150px;" high="50" name="" id="" class="btn btn-danger" href="#" onclick="loadContent('views/compras/ordencompra.php')" role="button">Cancelar</a>
-            <div class="container">
-                <h1>Productos</h1>
-                <b> <span class="d-block p-2 col-9 bg-info text-white">Detalles de Productos</span></b>
+            <a style="width: 150px;" high="50" name="" id="" class="btn btn-danger" href="#" onclick="CancelarYRestaurarCompra()" role="button">Cancelar</a>
 
-                <br>
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="table-responsive">
-                            <table class="table border=1" id="listaProductosCompra">
-                                <thead>
-                                    <tr>
-                                        <th scope="col-md-1">Codigo</th>
-                                        <th scope="col-md-1">Nombre</th>
-                                        <th scope="col-1">Linea</th>
-                                        <th scope="col-1">Unidad</th>
-                                        <th scope="col-1">Descripcion</th>
-                                        <th scope="col-1">Precio compra</th>
-                                        <th scope="col-1">Precio venta</th>
-                                        <!-- <th scope="col-1">Stock</th> -->
+            <h1>Productos</h1>
+            <b> <span class="d-block p-2 col-9 bg-info text-white">Detalles de Productos</span></b>
+
+            <br>
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="table-responsive">
+                        <table class="table border=1" id="listaProductosCompra">
+                            <thead>
+                                <tr>
+                                    <th scope="col-md-1">Codigo</th>
+                                    <th scope="col-md-1">Nombre</th>
+                                    <th scope="col-1">Linea</th>
+                                    <th scope="col-1">Unidad</th>
+                                    <th scope="col-1">Descripcion</th>
+                                    <th scope="col-1">Precio compra</th>
+                                    <th scope="col-1">Precio venta</th>
+                                    <!-- <th scope="col-1">Stock</th> -->
 
 
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <?php
+                                $productos = Producto::getProductos();
+                                foreach ($productos as $producto) { ?>
+                                    <tr ondblclick="seleccionarProductoCompra(this)">
+                                        <td><?= $producto->id_producto ?></td>
+                                        <td><?= $producto->nombre_producto ?></td>
+                                        <td><?= $producto->linea ?></td>
+                                        <td><?= $producto->unidad ?></td>
+                                        <td><?= $producto->descripcion ?></td>
+                                        <td><?= number_format($producto->precio_compra, 2) ?></td>
+                                        <td><?= number_format($producto->precio_venta, 2) ?></td>
+                                        <td style="display:none;"><?= $producto->id_unidad ?></td>
                                     </tr>
-                                </thead>
-
-                                <tbody>
-                                    <?php
-                                    $productos = Producto::getProductos();
-                                    foreach ($productos as $producto) { ?>
-                                        <tr ondblclick="seleccionarProductoCompra(this)">
-                                            <td><?= $producto->id_producto ?></td>
-                                            <td><?= $producto->nombre_producto ?></td>
-                                            <td><?= $producto->linea ?></td>
-                                            <td><?= $producto->unidad ?></td>
-                                            <td><?= $producto->descripcion ?></td>
-                                            <td><?= number_format($producto->precio_compra, 2) ?></td>
-                                            <td><?= number_format($producto->precio_venta, 2) ?></td>
-                                            <td style="display:none;"><?= $producto->id_unidad ?></td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-
-                        </div>
+                                <?php } ?>
+                            </tbody>
+                        </table>
 
                     </div>
 
-
-
-
                 </div>
 
-            </div>
+        </div>
 
 
 

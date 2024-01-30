@@ -124,24 +124,19 @@ td a {
   text-align: center;
   cursor: pointer;
 }
+
 /*
 Navbar
 */
-tr:nth-child(even){
+
+/* tr:nth-child(even){
   ba
-}
+} */
 
 tr:hover td{
 	background-color: rgb(7, 78, 136);
-	color:#dee2e6;
+	color: #dee2e6;
 }
-
-
-
-
-
-
-
 
 body {
   min-height: 100vh;
@@ -270,8 +265,10 @@ main {
 }
 
 .order__btn--inactive {
+  color: black !important;
   cursor: not-allowed !important;
   background-color: #c0c0c0 !important;
+  border-color: #c0c0c0 !important;
 }
 
 .order__btn--red {
