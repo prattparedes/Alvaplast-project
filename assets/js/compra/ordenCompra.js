@@ -4,6 +4,9 @@ function nuevaOrdenCompra() {
   document.getElementById("fecha").value = establecerFechaHora();
 
   activarInputs();
+  document.getElementById("btnRegister").classList.remove("order__btn--inactive");
+  document.getElementById("btnModify").classList.add("order__btn--inactive");
+  document.getElementById("btnDelete").classList.add("order__btn--inactive");
 
   // Conseguir id de compra nuevo
   const xhr = new XMLHttpRequest();
@@ -149,6 +152,8 @@ async function seleccionarOrdenCompra(fila) {
         datosCompraProducto,
         datosProveedor
       );
+      document.getElementById("btnModify").classList.remove("order__btn--inactive");
+      document.getElementById("btnDelete").classList.remove("order__btn--inactive");
       console.log("Datos Compra:", datosCompra);
       console.log("Datos Compra Producto:", datosCompraProducto);
       console.log("Dirección del proveedor:", datosProveedor.direccion);
@@ -191,66 +196,34 @@ function limpiarFormularioCompra() {
   orderTableBody.innerHTML = "";
 }
 
-//////////// CAMBIAR ESTO DE ABAJO ////////////
-
-// Botón Modificar Habilitar y Deshabilitar inputs
-let modificarActivo = false;
-document.addEventListener("click", function (event) {
-  if (
-    event.target.id === "modificarFormulario" &&
-    !event.target.classList.contains("order__btn--inactive")
-  ) {
-    //Referenciar elementos
-    const botónModificar = document.getElementById("modificarFormulario");
-    const botonSeleccionarProducto = document.getElementById("selectproduct");
-    const botonAñadirProducto = document.getElementById("addproduct");
-    const botonTresPuntos = document.getElementById("threeDotsButton");
-    const iconoTresPuntos = document.getElementById("threeDotsIco");
-    const formularios = document.querySelectorAll("input, select, textarea");
-    const spanProductos = document.querySelectorAll(".productspan");
-
-    if (!modificarActivo) {
-      guardarCopiaSeguridadCompra();
-      modificarActivo = true;
-      //Quitar el disabled a los inputs y botones del formulario
-      elementosActivados = true;
-      botónModificar.innerHTML = `Cancelar <i class="bi bi-x-circle"></i>`;
-      formularios.forEach(function (formulario) {
-        formulario.removeAttribute("disabled");
-      });
-      botonSeleccionarProducto.classList.remove("order__btn--inactive");
-      botonAñadirProducto.classList.remove("order__btn--inactive");
-      botonTresPuntos.classList.remove("order__btn--inactive");
-      iconoTresPuntos.classList.remove("order__btn--inactive");
-
-      // Quitar la clase inactiva al span de la tabla de productos
-
-      spanProductos.forEach((span) => {
-        span.classList.remove("productspan--inactive");
-      });
-    } else {
-      restaurarCopiaSeguridadCompra();
-      //Quitar el disabled a los inputs y botones del formulario
-      modificarActivo = false;
-      elementosActivados = false;
-      botónModificar.innerHTML = `Modificar <i class="bi bi-pencil-square"></i>`;
-
-      formularios.forEach(function (formulario) {
-        formulario.setAttribute("disabled", "disabled");
-      });
-
-      botonSeleccionarProducto.classList.add("order__btn--inactive");
-      botonAñadirProducto.classList.add("order__btn--inactive");
-      botonTresPuntos.classList.add("order__btn--inactive");
-      iconoTresPuntos.classList.add("order__btn--inactive");
-
-      // Quitar la clase inactiva al span de la tabla de productos
-      spanProductos.forEach((span) => {
-        span.classList.add("productspan--inactive");
-      });
-    }
+// Función para Modificar la Compra
+function modificarCompra() {
+  let botonModificar = document.getElementById("btnModify");
+  document.getElementById("metodo").value = "modificar";
+  if (botonModificar.classList.contains("order__btn--inactive")) {
+    return
   }
-});
+
+  if (botonModificar.innerHTML === "Modificar") {
+    guardarCopiaSeguridadCompra();
+    activarInputs();
+
+    botonModificar.innerHTML = "Cancelar";
+    botonModificar.style.backgroundColor = "gray";
+    botonModificar.style.borderColor = "gray";
+    document.getElementById("btnDelete").classList.add("order__btn--inactive");
+    document.getElementById("btnRegister").classList.remove("order__btn--inactive");
+  } else if (botonModificar.innerHTML === "Cancelar") {
+    restaurarCopiaSeguridadCompra();
+    desactivarInputs();
+
+    botonModificar.innerHTML = "Modificar";
+    botonModificar.style.backgroundColor = "#ffc107";
+    botonModificar.style.borderColor = "#ffc107";
+    document.getElementById("btnDelete").classList.remove("order__btn--inactive");
+    document.getElementById("btnRegister").classList.add("order__btn--inactive");
+  }
+}
 
 // Guardar Copia Seguridad de un Formulario si se cancela modificaciones
 function guardarCopiaSeguridadCompra() {
@@ -397,7 +370,7 @@ function rellenarFormularioCompra(datosCompra, datosProductos, datosProveedor) {
   //Rellenar Formulario
   proveedorInput.value = datosProveedor.razon_social;
   direccionInput.value = datosProveedor.direccion;
-  sucursalSelect.value = "1";
+  sucursalSelect.value = 1;
   monedaSelect.value = datosCompra.id_moneda;
   almacenSelect.value = datosCompra.id_almacen;
   tipoPagoSelect.value = datosCompra.tipo_pago;
@@ -530,9 +503,7 @@ function añadirProductoOrdenCompra() {
       let addToProducts = true; // Variable para controlar la adición a productosAgregados
 
       if (document.getElementById("productstock")) {
-        const stock = parseFloat(
-          document.getElementById("productstock").value
-        );
+        const stock = parseFloat(document.getElementById("productstock").value);
         if (cantidad > stock) {
           alert("No hay stock suficiente");
           addToProducts = false; // No agrega el producto si no hay suficiente stock
@@ -608,11 +579,14 @@ function añadirProductoOrdenCompra() {
 }
 
 function listarAlmacenes(data) {
-  if (!data) {
+  if (!data || data == "0") {
     const selectAlmacen = document.getElementById("almacen");
-    selectAlmacen.innerHTML = ""
+    Array.from(selectAlmacen.options).forEach(function (option) {
+      option.style.display = "none";
+    });
     return
   }
+
   const url = `/Alvaplast-project/Controller/maintenance_models/AlmacenController.php?idSucursal=${data}`;
 
   fetch(url)
@@ -627,13 +601,29 @@ function listarAlmacenes(data) {
       console.log(data);
 
       const selectAlmacen = document.getElementById("almacen");
-      selectAlmacen.innerHTML = ""
+
+      if (selectAlmacen.selectedIndex !== -1) {
+        // Encuentra la opción seleccionada actualmente
+        var opcionSeleccionada = selectAlmacen.options[selectAlmacen.selectedIndex];
+
+        // Deselecciona la opción
+        opcionSeleccionada.selected = false;
+      }
+
+      Array.from(selectAlmacen.options).forEach(function (option) {
+        option.style.display = "none";
+      });
+      // Habilitar todas las opciones existentes
       data.forEach((almacen) => {
-        const option = document.createElement("option")
-        option.value = almacen.id_almacen
-        option.textContent = almacen.descripcion
-        selectAlmacen.appendChild(option)
-      })
+        for (let i = 0; i < selectAlmacen.options.length; i++) {
+          let found = false;  // Indica si se encontró una coincidencia
+          if (almacen.id_almacen == selectAlmacen.options[i].value) {
+            found = true;  // No necesitas seguir buscando si ya encontraste una coincidencia
+            selectAlmacen.options[i].style.display = "block";
+            break;
+          }
+        }
+      });
     })
     .catch(error => {
       // Manejar errores aquí
@@ -660,7 +650,12 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     const idAlmacen = document.getElementById("almacen").value;
     const tipoPago = document.getElementById("tipoPago").value;
     const idPersonal = 2;
-    const metodo = event.target.innerHTML
+    const mod = document.getElementById("metodo").value;
+    if (mod !== "0") {
+      var metodo = event.target.innerHTML
+    } else {
+      var metodo = mod;
+    }
 
     // Crear una solicitud XMLHttpRequest
     const xhr = new XMLHttpRequest();
@@ -739,3 +734,12 @@ function RegistrarDatosTabla(idCompra, metodo) {
   });
 
 }
+
+// Función Cancelar en el listado/productos/proveedores
+function CancelarYRestaurarCompra() {
+  loadContent("views/compras/ordencompra.php").then(() => {
+    restaurarCopiaSeguridadCompra();
+    activarInputs();
+  })
+}
+

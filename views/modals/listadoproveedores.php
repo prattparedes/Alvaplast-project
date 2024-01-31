@@ -46,10 +46,9 @@
 
             </form>
 
-        <a style="width: 150px;" high="50" name="" id="" class="btn btn-success" href="#" role="button">Consultar</a>
-        <button style="width: 150px;" class="btn btn-danger" href=""  onclick="loadContent('views/compras/ordencompra.php')" type="button" id="">Cancelar</button> 
+        <button style="width: 150px;" class="btn btn-danger" onclick="CancelarYRestaurarCompra()" type="button" id="">Cancelar</button> 
 
-            <div class="container">
+
                 <h1>Proveedores</h1>
                 <b> <span class="d-block p-2 col-9 bg-info text-white">Detalles de Proveedores</span></b>
 
@@ -98,7 +97,7 @@
 
                 </div>
 
-            </div>
+
 
 
 

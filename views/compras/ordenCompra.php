@@ -49,12 +49,12 @@
 
                     <div class="col-md-6">
                         <br>
-                        <a style="width: 100px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="nuevaOrdenCompra()">Nuevo</a>
-                        <a style="width: 100px;" name="" id="" class="btn btn-success buy_submit" href="#" role="button">Grabar</a>
-                        <a style="width: 100px;" name="" id="" class="btn btn-warning " href="#" role="button">Modificar</a>
-                        <a style="width: 100px;" name="" id="" class="btn btn-danger buy_submit" href="#" role="button">Eliminar</a>
+                        <a style="width: 100px;" name="" id="" class="btn btn-primary" role="button" onclick="nuevaOrdenCompra()">Nuevo</a>
+                        <a style="width: 100px;" name="" id="btnRegister" class="btn btn-success order__btn--inactive" role="button">Grabar</a>
+                        <a style="width: 100px;" name="" id="btnModify" class="btn btn-warning order__btn--inactive" role="button" onclick="modificarCompra()">Modificar</a>
+                        <a style="width: 100px;" name="" id="btnDelete" class="btn btn-danger order__btn--inactive" role="button">Eliminar</a>
 
-                        <button style="width: 100px;" class="btn btn-secondary" href="" onclick="loadContent('views/modals/listaordencompra.php')">Buscar</button>
+                        <button style="width: 100px;" class="btn btn-secondary" onclick="abrirListadoCompras()">Buscar</button>
                         <!-- <button style="width: 100px;" class="btn btn-danger" href="" onclick="loadContent('views/home.php')">Salir</button> -->
                     </div>
                 </div>
@@ -67,6 +67,7 @@
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" id="proveedor" placeholder="Seleccione proveedor" aria-label="Recipient's username" aria-describedby="" disabled>
                             <input type="hidden" id="idproveedor" value="0">
+                            <input type="hidden" id="metodo" value="0">
                             <button class="btn btn-outline-secondary" href="" onclick="abrirListadoProveedor()" type="button">....</button>
                         </div>
                     </div>
@@ -94,7 +95,11 @@
                     <div class="col-md-2">
                         <label for="disabledSelect" class="form-label">Almacen</label>
                         <select id="almacen" class="form-select" disabled>
-                            <option value="">Seleccione almacen</option>
+                            <?php
+                            $almacenes = Almacen::getAlmacenes();
+                            foreach ($almacenes as $almacen) { ?>
+                                <option value="<?= $almacen->id_almacen ?>" style="display:none"><?= $almacen->descripcion ?></option>
+                            <?php } ?>
                         </select>
                     </div>
 

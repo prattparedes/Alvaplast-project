@@ -68,7 +68,7 @@
                                 foreach ($clientes as $cliente) {
                                 ?>
 
-                                    <tr>
+                                    <tr ondblclick="seleccionarCliente(this)">
                                         <td><?= $cliente->id_cliente ?></td>
                                         <td><?= $cliente->razon_social ?></td>
                                         <td><?= $cliente->ruc ?></td>

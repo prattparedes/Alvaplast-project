@@ -114,6 +114,10 @@ function seleccionarProductoVenta(fila) {
   });
 }
 
+function abrirListadoCompras() {
+  guardarCopiaSeguridadCompra();
+  loadContent("views/modals/listaordencompra.php");
+}
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 // FALTA ARREGLAR ESTA FUNCIÓN HASTA TENER LOS DATOS
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
