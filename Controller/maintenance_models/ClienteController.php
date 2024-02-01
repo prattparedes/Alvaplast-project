@@ -23,10 +23,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $result = Cliente::ModificarCliente($idCliente, $razonSocial, $ruc, $dni, $direccion, $telefono, $celular, $estado, $tipoCliente, $distrito, $idUbigeo);
         $message = "cliente modificado";
     } elseif ($_POST["metodo"] == "Eliminar") {
-        $result = Cliente::EliminarCliente($idCliente);
-        $message = "cliente eliminado";
+        Cliente::EliminarCliente($idCliente);
+        $result = Cliente::verificarCliente($idCliente);
+        $message = ($result) ? "cliente eliminado" : "no se pudo eliminar al cliente. tiene registrada ventas ";
     }
-    if ($result) {
-        echo $message;
-    }
+
+    echo $message;
 }

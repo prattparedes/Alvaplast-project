@@ -1,0 +1,99 @@
+:root{
+    --azul:#ffffff;
+    --azuloscuro:#ffffff;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+.contenedor{
+
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 95%;
+    padding: 10px;
+    background-position: right;
+}
+
+
+.imagen-formulario{
+    background-image: url('../img/alvaplast_logo.png');
+   background-position: center center;
+   background-size: cover;
+     height: 200px; 
+   flex: 0 0 calc(60%);
+}
+ @media(min-width:768px){
+    .imagen-formulario{
+    height: auto;
+    background-position: right;
+    }  
+} 
+@media(min-width:1200px){
+    .imagen-formulario{
+        background-position: center;
+    }
+} 
+
+
+@media(min-width:768px){
+    .contenedor-formulario{
+        display: flex;
+    }
+}
+
+
+.formulario{
+    padding: 50px;
+    background-color: var(--azul);
+}
+
+.texto-formulario{
+    color: rgb(44, 3, 3);
+}
+
+.texto-formulario h2{
+    font-size: 22px;
+    text-align: center;
+}
+.texto-formulario p{
+    font-size: 18px;
+    text-align: center;
+}
+.input label{
+    display: block;
+    font-size:18px;
+    margin:10px 0;
+}
+
+.input input{
+    width: 100%;
+    padding: 5px 16px;
+    border-radius: 5px;
+    outline: none;
+    border-color: rgb(221, 221, 221);
+}
+
+body{
+    background-color:rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+.input input[type="submit"]{
+background-color: #b64848;
+color:#fcfdff;
+font-size: 22px;
+border: none;
+margin-top: 20px;
+/* transition: background-color .3s ease-in-out; */
+}
+
+/* 
+.input input[type="submit"]:hover{
+   
+    cursor: pointer;
+    background-color: #610404;
+} */

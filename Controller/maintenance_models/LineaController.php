@@ -15,9 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $message = "Linea modificada";
     } elseif ($_POST["metodo"] == "Eliminar") {
         $result = Linea::eliminarLinea($idLinea);
-        $message = "Linea eliminada";
+        $message = ($result) ? "Linea eliminada" : "error al eliminar la linea, ya tiene usos en compras o ventas";
     }
-    if ($result) {
-        echo $message;
-    }
+    echo $message;
 }

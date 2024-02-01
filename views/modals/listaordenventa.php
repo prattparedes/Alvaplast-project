@@ -1,69 +1,73 @@
-<!-- <!DOCTYPE html>
-<html lang="en"> -->
-
-<head>
-    <title>Listado de Orden de Venta</title>
-<!-- 
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> -->
-    <link rel="stylesheet" type="text/css" href="assets/css/estilo.css">
-<!--    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" /> -->
 </head>
 
 <body>
     <header>
-        <!-- Navbar -->
-        <!-- Si tienes un navbar, colócalo aquí -->
+        <?php
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
 
-        <div class="container mt-4">
-            <h3 class="text-center">LISTADO DE ORDEN DE VENTA</h3>
+       
+        use Models\maintenance_models\Cliente;
+        ?>
 
-            <form>
-                <b><span class="d-block p-2 col-12 bg-info text-white">Orden de Venta </span></b>
+        <div class="kardex__movement">
+            <div class="kardex__left">
 
-                <div class="row mt-3">
-                    <div class="col-md-1"></div>
+                <div class="row">
+                <h5 style="background: black; color: white; text-align:center;">LISTADO ORDEN DE VENTA</h5>
+             
+                  
 
-                    <div class="col-md-3">
-                        <input type="radio" id="facturable" name="tipoOrden" value="facturable" checked />
+                    <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-5">
+                    <input type="radio" style="width: 18px; height:18px" name="tipoOrden" value="facturable" onclick="mostrarFacturacion(this)" checked />
                         <label for="facturable">Facturable</label>
                     </div>
 
-                    <div class="col-md-3">
-                        <input type="radio" id="noFacturable" name="tipoOrden" value="noFacturable" />
+                    <div class="col-md-5">
+                    <input type="radio" style="width: 18px; height:18px" name="tipoOrden" value="noFacturable" onclick="mostrarFacturacion(this)" />
                         <label for="noFacturable">No Facturable</label>
                     </div>
-                </div>
 
-                <div class="row mt-3">
-                    <div class="col-md-1"></div>
-
-                    <div class="col-md-3">
-                        <label for="inputPassword6" class="col-form-label">Cliente:</label>
+                    <b style="margin-top: 30px;"> <p>BUSCAR POR:</p></b>
+                    <hr style="margin-top: -10px;">
+                        <div class="col-md-4" style="width: 400px;">
+                        
+                        <label for="inputDni" class="col-form-label">Cliente</label>
                         <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        </div>
+          
                     </div>
 
-                    <div class="col-md-6 mt-2">
-                        <a class="btn btn-primary" href="#" role="button">Consultar</a>
+                  
+               
+                   <div class="col-md-12">
+                            <br>
 
-                        
-                        
-                         <button style="width: 100px;" class="btn btn-secondary" href="" onclick="loadContent('views/ventas/OrdenVenta.php')">Cancelar</button>
-                         
-                    </div>
+                    <button type="button" class="btn btn-success" style="width: 100px;">Consultar</button>
+
+                    <!-- <button style="width: 150px;" class="btn btn-danger" onclick="CancelarYRestaurarVenta()" type="button" id="">Cancelar</button> -->
+                    <button style="width: 100px;" class="btn btn-danger" href="" onclick="loadContent('views/ventas/facturacion.php')">Cancelar</button>
+                                                   
+                            <br><br>
+                       </div>
                 </div>
 
-                <!-- Lista orden Venta -->
-                <div class="container mt-4">
-                    <b><span class="d-block p-2 col-12 bg-info text-white">Lista orden Venta</span></b>
-<br>
-                    <!-- <div class="row mt-3"> -->
-                    <div class="row">
-                <div class="col-md-9">
-                    <div class="table-responsive">
-                    <table class="table border=1">
+                <div class="" id=""></div>
+            </div>
+            <div class="kardex__right">
+                <div style="display:flex; align-items:center;">
+                    <div style="display:flex; flex-direction:column; margin-top:5px">
+
+                        <h6 style="margin-top: -5ox;">LISTA ORDEN DE VENTA</h6>
+                        <hr style="margin-top: -7px;">
+
+                  
+
+
+                        <br>
+                        <div class="table--container" style="margin-top: -15px;">
+                        <div class="table-responsive">
+                        <table class="table border=1">
                                     <thead>
                                         <tr>
                                             <th>Cliente</th>
@@ -75,23 +79,43 @@
                                             <th>Vendedor</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>A01</td>
-                                            <td>Bolsa de Plastico Rey</td>
-                                            <td>F</td>
-                                            <td>Bolsas</td>
-                                            <td>Alfa</td>
-                                            <td>0.0</td>
-                                            <td>0.0</td>
-                                        </tr>
+                                    <tbody id="facturable">
+                                        <?php
+
+                                        use Models\ventas\Venta;
+
+                                        $ventas = Venta::getVentas();
+                                        foreach ($ventas as $ven) {
+                                        ?>
+                                            <tr>
+                                                <td><?= $ven->razon_social ?></td>
+                                                <td><?= 'OV/' . $ven->numero_documento . '-' . $ven->serie_documento ?></td>
+                                                <td><?= explode(' ', $ven->fecha_emision)[0] ?></td>
+                                                <td><?= ($ven->tipo_pago == "E") ? "Efectivo" : "Credito" ?></td>
+                                                <td><?= $ven->total ?></td>
+                                                <td><?= $ven->Moneda ?></td>
+                                                <td><?= $ven->nombres . ' ' . $ven->ap_paterno . ' ' . $ven->ap_materno ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                    <tbody id="noFacturable" style="display:none">
+                                        <?php
+
+                                        $ventas = Venta::getVentasNoFacturables();
+                                        foreach ($ventas as $ven) {
+                                        ?>
+                                            <tr>
+                                                <td><?= $ven->razon_social ?></td>
+                                                <td><?= 'OV/' . $ven->numero_documento . '-' . $ven->serie_documento ?></td>
+                                                <td><?= explode(' ', $ven->fecha_emision)[0] ?></td>
+                                                <td><?= ($ven->tipo_pago == "E") ? "Efectivo" : "Credito" ?></td>
+                                                <td><?= $ven->total ?></td>
+                                                <td><?= $ven->Moneda ?></td>
+                                                <td><?= $ven->nombres . ' ' . $ven->ap_paterno . ' ' . $ven->ap_materno ?></td>
+                                            </tr>
+                                        <?php } ?>
                                     </tbody>
                                 </table>
-                            </div>
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
-    </header>
-</body>

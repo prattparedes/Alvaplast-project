@@ -54,7 +54,8 @@ class Unidad
             $con = Connection::Conectar();
             $stmt = $con->prepare("exec sp_EliminarUnidad :idUnidad");
             $stmt->bindParam("idUnidad", $idUnidad, PDO::PARAM_INT);
-            $result = $stmt->execute();
+            $stmt->execute();
+            $result = ($stmt->rowCount() > 0) ? true : false;
             return $result;
         } catch (Exception $err) {
             echo $err->getMessage();

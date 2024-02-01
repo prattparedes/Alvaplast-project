@@ -1,231 +1,153 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="stylesheet" type="text/css" href="assets/css/estilo.css">
-    <!-- Bootstrap CSS v5.3.2 -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" /> -->
-</head>
-
 <body>
-    <?php
-    require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
-
-    use Models\maintenance_models\Producto;
-    use Models\maintenance_models\Almacen;
-    ?>
     <header>
-        <!-- place navbar here -->
+        <?php
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
 
-        <div class="container">
-            <h3>MOVIMIENTO DE KARDEX</h3>
+        use Models\maintenance_models\Producto;
+        use Models\maintenance_models\Almacen;
+        ?>
 
-            <form>
 
-                <b> <span class="d-block p-1 col-12 bg-info text-white">Lista de Productos</span></b><br>
-                <b> <span class="d-block p-1 col-6 bg-info text-white">Lista de Productos</span></b>
-
-                <div class="row">
-                    <div class="col-md-4">
-                        <label for="inputPassword6" class="col-form-label">Almacen:</label>
-                        <select id="almacenSelect" class="form-select">
-                            <?php
-                            $almacenes = Almacen::getAlmacenes();
-                            foreach ($almacenes as $almac) {
-                            ?>
-                                <option value="<?= $almac->id_almacen ?>"><?= $almac->descripcion ?></option>
-                            <?php
-                            }
-                            ?>
-                        </select>
-                    </div>
-
-                    <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label">Filtro:</label>
-                        <input type="text" id="filtroProductos" class="form-control" aria-describedby="passwordHelpInline" onkeyup="FiltrarListaProductosKardex()">
-                    </div>
-
-                    <!-- <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label"> Producto </label>
-                        <fieldset disabled>
-                            <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" placeholder="Bolsa 10x15">
-                        </fieldset>
-                    </div>
-
-                    <div class="col-md-1">
-                        <div></div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label">Fecha Desde:</label>
-                        <input type="date" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                    </div>
+        <div class="kardex__movement">
+            <div class="kardex__leftx">
+                
+                <h5 style="background: gray; color: white; text-align:center; margin-top:5px">MOVIMIENTO KARDEX</h5>
+                <div class="col-md-8">
+                    <span style="display:inline-block; width:40px; margin-bottom:8px;">Codigo</span>
+                    <select name="almacen" id="almacenSelect" class="form-select">
+                        <?php
+                        $almacenes = Almacen::getAlmacenes();
+                        foreach ($almacenes as $almac) {
+                        ?>
+                            <option value="<?= $almac->id_almacen ?>"><?= $almac->descripcion ?></option>
+                        <?php
+                        }
+                        ?>
+                    </select>
                 </div>
+                <div>
+                    <span style="display:inline-block; width:80px;">Filtro:</span>
+                    <input type="text" id="filtroProductos" class="form-control" onkeyup="FiltrarListaProductosKardex()">
 
-                <div class="row">
-                    <div class="col-md-4"></div>
-                    <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label">Stock Fisico Final:</label>
-                        <fieldset disabled>
-                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                        </fieldset>
-                    </div>
-
-                    <div class="col-md-1">
-                        <div></div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <label for="inputPassword6" class="col-form-label">Fecha Hasta:</label>
-                        <input type="date" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                    </div>
-
-                    <div class="col-md-3">
-                        <a name="" id="" class="btn btn-primary" href="#" role="button">Consultar</a>
-                        <a name="" id="" class="btn btn-success" href="#" role="button">Exportar</a>
-                        <a name="" id="" class="btn btn-danger" href="#" onclick="loadContent('views/home.php')" role="button">Cancelar</a>
-                    </div> -->
-                </div>
-            </form>
-        </div>
-        <br>
-        <!-- Tabla 01 -->
-        <div class="container">
-            <b> <span class="d-block p-1 col-6 bg-info text-white">Detalles de Producto</span></b>
-            <br>
-
-            <div class="row">
-
-                <div class="col-md-4">
-                    <div class="table-responsive">
-                        <table class="table table-primary" id="productosKardex">
-                            <thead>
-                                <tr>
-                                    <th scope="col-1">Producto</th>
-                                    <th style="width:50px" scope="col-1">Unidad</th>
-                                </tr>
-
-                            </thead>
-                            <tbody>
-                                <?php
-                                $producto = Producto::getProductos();
-                                foreach ($producto as $produc) {
-                                ?>
-                                    <tr>
-                                        <td style="display:none;"><?= $produc->id_producto ?></td>
-                                        <td><?= $produc->nombre_producto ?></td>
-                                        <td><?= $produc->unidad ?></td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
-                    </div>
 
                 </div>
-
-
-
-
-
-
-
-                <b> <span class="d-block p-1 col-7 bg-info text-white">Detalles de busquedad de Producto</span></b>
-                <div class="col-md-2">
-                    <label for="inputPassword6" class="col-form-label"> Producto </label>
-                    <fieldset disabled>
-                        <input type="text" id="productoSeleccionadoKardex" class="form-control" aria-describedby="passwordHelpInline" placeholder="-">
-                    </fieldset>
-                </div>
-
-                <div class="col-md-1">
-                    <div></div>
-                </div>
-
-                <div class="col-md-2">
-                    <label for="inputPassword6" class="col-form-label">Fecha Desde:</label>
-                    <input type="date" id="fecha1" class="form-control" aria-describedby="passwordHelpInline">
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-md-2">
-                    <label for="inputPassword6" class="col-form-label">Stock Fisico Final:</label>
-                    <fieldset disabled>
-                        <input type="text" id="stockfinal" class="form-control" aria-describedby="passwordHelpInline">
-                    </fieldset>
-                </div>
-
-                <div class="col-md-1">
-                    <div></div>
-                </div>
-
-                <div class="col-md-2">
-                    <label for="inputPassword6" class="col-form-label">Fecha Hasta:</label>
-                    <input type="date" id="fecha2" class="form-control" aria-describedby="passwordHelpInline">
-                </div>
-
-                <div class="col-md-3">
-                    <br>
-                    <a name="" id="" class="btn btn-primary" href="#" role="button" onclick="filtrarKardexPorFechas()">Consultar</a>
-                    <a name="" id="" class="btn btn-success" href="#" role="button" onclick="exportarPDF()">Exportar</a>
-                    <a name="" id="" class="btn btn-danger" href="#" onclick="loadContent('views/home.php')" role="button">Cancelar</a>
-                </div>
-
-            </div>
-            <br>
-            <b> <span class="d-block p-1 col-8 bg-info text-white">Detalles de Proveedores y productos</span></b>
-            <br>
-            <!-- Tabla 02 -->
-            <div class="col-md-8">
-                <div class="table-responsive">
-                    <table class="table table-primary" id="movimientosKardex">
+                <hr>
+                <div class="table--container" id="productosKardex">
+                    <table style="width:100%;" class="tbl_venta" id="productosKardex">
                         <thead>
                             <tr>
-                                <th scope="col-1">Fecha</th>
-                                <th scope="col-1">Proveedor / Cliente</th>
-                                <th scope="col-1">Motivo</th>
-                                <th scope="col-1">Documento</th>
-                                <th scope="col-1">Monto</th>
-                                <th scope="col-1">Inicio</th>
-                                <th scope="col-1">Ingreso</th>
-                                <th scope="col-1">Salida</th>
-                                <th scope="col-1">Saldo</th>
+                                <th>Producto</th>
+                                <th style="width:60px;">Unidad</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr class="">
-                                <!-- <td scope="row"></td> -->
+                        <tbody id="detalle_venta">
+                            <?php
+                            $producto = Producto::getProductos();
+                            foreach ($producto as $produc) {
+                            ?>
+                                <tr onclick="seleccionarProductos(this)">
+                                    <td style="display:none;"><?= $produc->id_producto ?></td>
+                                    <td class="textleft" width="320"><?= $produc->nombre_producto ?></td>
+                                    <td><?= $produc->unidad ?></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+            <div class="kardex__right">
+            <!-- <b><p>SISTEMA DE VENTAS</p></b> -->
+                <div style="display:flex; align-items:center;">
+                    <div style="display:flex; flex-direction:column; margin-top:-40px">
+                    
+                        <p id="productoSeleccionadoKardex" style="font-weight:700;">BANDEJA DON LUCHO</p>
+
+                        <div class="col-md-8">
+                            Stock Físico Final: <span id="stockfinal" style="font-weight:700;">-</span>
+                            <fieldset disabled>
+                            <input type="text" id="stockfinal" style="margin-top: 10px;" class="form-control" aria-describedby="passwordHelpInline">
+                        </div>
+                    </div>
+                    <div style="margin-left: 10px;">
+
+                        <!-- <p>Desde:
+                            <input type="date" id="fecha1" name="fecha1">
+                        </p> -->
+                        <div class="row">
+                            <div class="" style="width:180px;">
+                                <label for="fecha1" class="col-form-label">Desde</label>
+                                <input type="date" id="fecha1" class="form-control" aria-describedby="passwordHelpInline">
+                            </div>
+                            <div style="margin-left: 1px;">
+                            </div>
+
+                        </div>
 
 
+
+
+
+
+
+                        <div class="" style="width:160px;">
+                            <label for="fecha1" class="col-form-label">Hasta</label>
+                            <input type="date" id="fecha2" class="form-control" aria-describedby="passwordHelpInline">
+                        </div>
+
+
+
+                        <!-- <p style="margin-bottom:0;">Hasta:
+                            <input type="date" id="fecha2" name="fecha2">
+                        </p> -->
+                    </div>
+                    <div style="margin-left: 20px;">
+                        <button style="width: 120px;" type="button" class="btn btn-primary form-control" onclick="filtrarKardexPorFechas()">Consultar <i class="bi bi-search"></i></i></button>
+                        <button style="width: 120px;" type="button" class="btn btn-danger form-control" onclick="exportarPDF()">Exportar <i class="bi bi-file-earmark-arrow-down"></i></button>
+
+                    </div>
+                </div>
+                <hr>
+                <div class="table--container">
+                    <table style="width:100%;" class="tbl_venta" id="movimientosKardex">
+                        <thead>
+                            <tr>
+                                <th style="min-width: 116px;">Fecha</th>
+                                <th style="min-width: 230px;">Proveedor/Cliente</th>
+                                <th style="min-width: 71.5px;">Motivo</th>
+                                <th style="min-width: 117.3px;">Documento</th>
+                                <th style="min-width: 77.8px;">Monto</th>
+                                <th style="min-width: 58.3px;">Inicio</th>
+                                <th style="min-width: 73.44px;">Ingreso</th>
+                                <th style="min-width: 62.19px;">Salida</th>
+                                <th style="min-width: 58.84px;">Saldo</th>
                             </tr>
-
-                            <tr class="">
-                                <!-- <td scope="row"></td> -->
-
-                            </tr>
+                        </thead>
+                        <tbody id="detalle_venta">
+                            <!-- <tr>
+                        <td>07/12/2023 19:24:00</td>
+                        <td>Proveedor 1</td>
+                        <td>Compra</td>
+                        <td>NC-A/001-000001</td>
+                        <td>10.00</td>
+                        <td>5.00</td>
+                        <td>2.00</td>
+                        <td>0</td>
+                        <td>3.00</td>
+                    </tr>
+                    <tr>
+                        <td>06/11/2023 14:49:00</td>
+                        <td>Cliente A</td>
+                        <td>Venta</td>
+                        <td>NC-A/001-000001</td>
+                        <td>10.00</td>
+                        <td>5.00</td>
+                        <td>2.00</td>
+                        <td>0</td>
+                        <td>3.00</td>
+                    </tr> -->
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-        </div>
-    </header>
-
-    <main></main>
-
-    <footer>
-        <!-- place footer here -->
-    </footer>
-
-    <!-- Bootstrap JavaScript Libraries -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script> -->
-</body>
-
-</html>

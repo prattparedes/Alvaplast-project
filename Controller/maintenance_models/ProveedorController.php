@@ -4,9 +4,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
 use Models\maintenance_models\Proveedor;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    print_r($_POST);
-    return;
-    $idProveedor = isset($_POST["idProveedor"]) && $_POST["idProveedor"] !== "-" ? $_POST["idProveedor"] : 1;
+    $idProveedor = isset($_POST["idProveedor"]) && $_POST["idProveedor"] !== "" ? $_POST["idProveedor"] : 1;
     $idUbigeo = $_POST["idUbigeo"];
     $razonSocial = $_POST["razonSocial"];
     $ruc = $_POST["ruc"];
@@ -15,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $fax = $_POST["fax"];
     $contacto = $_POST["contacto"];
     $email = $_POST["email"];
-    $descripcion = $_POST["descripcion"];
+    $descripcion = isset($_POST["descripcion"]) && $_POST["descripcion"] !== "" ? $_POST["descripcion"] : "";
     $estado = (int) $_POST["estado"];
     $estadoReal = (bool) $estado;
     $message;
@@ -27,9 +25,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $message = "proveedor modificado";
     } else if ($_POST["metodo"] == "Eliminar") {
         $result = Proveedor::eliminarProveedor($idProveedor);
-        $message = "proveedor eliminado";
+        $message = ($result) ? "proveedor eliminado" : "error al eliminar el proveedor";
     }
-    if ($result) {
+    if (isset($message)) {
         echo $message;
     }
 } else if ($_SERVER["REQUEST_METHOD"] === "GET") {

@@ -16,9 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $message = "unidad modificada";
     } else if ($_POST["metodo"] == "Eliminar") {
         $result = Unidad::eliminarUnidad($idUnidad);
-        $message = "unidad eliminada";
+        $message = ($result) ? "unidad eliminada" : "no se pudo eliminar la unidad, tiene usos en operaciones";
     }
-    if ($result) {
-        echo $message;
-    }
+    echo $message;
 }

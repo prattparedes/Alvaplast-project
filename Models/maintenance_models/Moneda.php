@@ -69,8 +69,8 @@ class Moneda
             $con = Connection::Conectar();
             $tsmt = $con->prepare("sp_EliminarMoneda :id");
             $tsmt->bindParam(":id", $idMoneda, PDO::PARAM_INT);
-            $result = $tsmt->execute();
-            //$result = $tsmt->execute([$id]);
+            $tsmt->execute();
+            $result = ($tsmt->rowCount() > 0) ? true : false;
             return $result;
         } catch (Exception $e) {
             echo $e->getMessage();

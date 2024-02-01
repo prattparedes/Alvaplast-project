@@ -7,7 +7,6 @@ function nuevaOrdenVenta() {
   document.getElementById("btnRegister").classList.remove("order__btn--inactive");
   document.getElementById("btnModify").classList.add("order__btn--inactive");
   document.getElementById("btnDelete").classList.add("order__btn--inactive");
-
   // Conseguir id de venta nuevo
   const xhr = new XMLHttpRequest();
   const url = "/Alvaplast-project/Controller/ventas/VentaController.php"; // Ruta del controlador PHP
@@ -57,6 +56,7 @@ function seleccionarCliente(fila) {
 
   // Cambiar al formulario y luego cambiar el html
   loadContent("views/ventas/ordenVenta.php").then(() => {
+    document.getElementById("btnRegister").classList.remove("order__btn--inactive");//--------------------------------------
     // Cambiar el HTML de los spans por los datos
     restaurarCopiaSeguridadVenta();
     document.getElementById("idcliente").value = clientID;
@@ -72,7 +72,6 @@ function seleccionarCliente(fila) {
       rucDniInput.value = clientDNI;
     }
     activarInputs();
-    document.getElementById("btnRegister").classList.remove("order__btn--inactive");
   });
 }
 
@@ -104,6 +103,7 @@ function seleccionarProductoVenta(fila) {
 
   // Cambiar al formulario y luego cambiar el html
   loadContent("views/ventas/OrdenVenta.php").then(() => {
+    document.getElementById("btnRegister").classList.remove("order__btn--inactive");//-----------------------------------
     // Cambiar el HTML de los spans por los datos
     document.getElementById("productstock").value = productStock;
     document.getElementById("productunit").value = productUnit;
@@ -115,15 +115,13 @@ function seleccionarProductoVenta(fila) {
       .getElementById("productstock")
       .setAttribute("disabled", "disabled");
     restaurarCopiaSeguridadVenta();
-    document.getElementById("btnRegister").classList.remove("order__btn--inactive");
   });
 }
 
-function abrirListadoVentas() {
-  guardarCopiaSeguridadVenta();
-  loadContent("views/modals/listaordenventa.php");
+function abrirListadoCompras() {
+  guardarCopiaSeguridadCompra();
+  loadContent("views/modals/listaordencompra.php");
 }
-
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 // FALTA ARREGLAR ESTA FUNCIÓN HASTA TENER LOS DATOS
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -206,35 +204,6 @@ function limpiarFormularioVenta() {
   const orderTable = document.getElementById("ordertable");
   const orderTableBody = orderTable.querySelector("tbody");
   orderTableBody.innerHTML = "";
-}
-
-// Función para Modificar la Compra
-function modificarVenta() {
-  let botonModificar = document.getElementById("btnModify");
-
-  if (botonModificar.classList.contains("order__btn--inactive")) {
-    return
-  }
-
-  if (botonModificar.innerHTML === "Modificar") {
-    guardarCopiaSeguridadVenta();
-    activarInputs();
-
-    botonModificar.innerHTML = "Cancelar";
-    botonModificar.style.backgroundColor = "gray";
-    botonModificar.style.borderColor = "gray";
-    document.getElementById("btnDelete").classList.add("order__btn--inactive");
-    document.getElementById("btnRegister").classList.remove("order__btn--inactive");
-  } else if (botonModificar.innerHTML === "Cancelar") {
-    restaurarCopiaSeguridadVenta();
-    desactivarInputs();
-
-    botonModificar.innerHTML = "Modificar";
-    botonModificar.style.backgroundColor = "#ffc107";
-    botonModificar.style.borderColor = "#ffc107";
-    document.getElementById("btnDelete").classList.remove("order__btn--inactive");
-    document.getElementById("btnRegister").classList.add("order__btn--inactive");
-  }
 }
 
 // Guardar Copia Seguridad de un Formulario si se cancela modificaciones
@@ -560,4 +529,37 @@ function añadirProductoOrdenVenta() {
       alert("La cantidad y la unidad no deben estar vacías.");
     }
   }
+}
+
+
+
+
+function mostrarFacturacion(tbodyId) {
+  console.log(tbodyId.value);
+  document.getElementById("facturable").style.display = "none";
+  document.getElementById("noFacturable").style.display = "none";
+
+
+  document.getElementById(tbodyId.value).style.display = 'table-row-group';
+
+}
+
+/*     Falta Aqui   */
+
+
+
+
+
+
+
+
+
+
+
+
+function CancelarYRestaurarVenta() {
+  loadContent("views/ventas/ordenventa.php").then(() => {
+    restaurarCopiaSeguridadVenta();
+    activarInputs();
+  })
 }

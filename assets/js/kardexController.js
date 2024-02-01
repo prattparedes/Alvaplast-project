@@ -2,7 +2,7 @@ window.jsPDF = window.jspdf.jsPDF;
 
 document
   .querySelector(".main__content")
-  .addEventListener("dblclick", function (event) {
+  .addEventListener("click", function (event) {
     const isKardexTable = event.target.closest("#productosKardex");
 
     if (isKardexTable) {
