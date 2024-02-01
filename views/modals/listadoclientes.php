@@ -12,11 +12,10 @@
 
 <body>
     <header>
-    <?php
-        require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
+        <?php
+        require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/autoload.php");
 
-        use Models\maintenance_models\Cliente;
-        ?>
+        use Models\maintenance_models\Cliente; ?>
         <div class="container">
             <h1>LISTADO DE CLIENTES </h1>
             <form>
@@ -65,15 +64,17 @@
                             </thead>
                             <tbody>
                                 <?php
-                                $clients = Cliente::getClientes();
-                                foreach ($clients as $client) { ?>
+                                $clientes = Cliente::getClientes();
+                                foreach ($clientes as $cliente) {
+                                ?>
+
                                     <tr ondblclick="seleccionarCliente(this)">
-                                        <td><?= $client->id_cliente ?></td>
-                                        <td><?= $client->razon_social ?></td>
-                                        <td><?= $client->ruc ?></td>
-                                        <td><?= $client->dni ?></td>
-                                        <td><?= $client->direccion ?></td>
-                                        <td><?= $client->telefono ?></td>
+                                        <td><?= $cliente->id_cliente ?></td>
+                                        <td><?= $cliente->razon_social ?></td>
+                                        <td><?= $cliente->ruc ?></td>
+                                        <td><?= $cliente->dni ?></td>
+                                        <td><?= $cliente->direccion ?></td>
+                                        <td><?= $cliente->celular ?></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

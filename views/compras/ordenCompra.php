@@ -34,14 +34,14 @@
                     <div class="col-md-1">
                         <label for="serieDoc" class="col-form-label"></label>
                         <fieldset disabled>
-                            <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" placeholder="001-">
+                            <input type="text" id="numeroDocumento" class="form-control" aria-describedby="passwordHelpInline" value="001">
                         </fieldset>
                     </div>
 
                     <div class="col-md-1">
                         <label for="idCompra" class="col-form-label"></label>
                         <fieldset disabled>
-                            <input type="text" style="width:112px;" id="idCompra" class="form-control" aria-describedby="passwordHelpInline" value=<?=Compra::getIdCompra();?>>
+                            <input type="text" style="width:112px;" id="idCompra" class="form-control" aria-describedby="passwordHelpInline" value=<?= Compra::getIdCompra(); ?>>
                         </fieldset>
                     </div>
 
@@ -67,6 +67,7 @@
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" id="proveedor" placeholder="Seleccione proveedor" aria-label="Recipient's username" aria-describedby="" disabled>
                             <input type="hidden" id="idproveedor" value="0">
+                            <input type="hidden" id="metodo" value="0">
                             <button class="btn btn-outline-secondary" href="" onclick="abrirListadoProveedor()" type="button">....</button>
                         </div>
                     </div>
@@ -77,11 +78,15 @@
                 <div class="row">
                     <div class="col-md-2">
                         <label for="sucursal" class="form-label">Sucursal</label>
-                        <select id="sucursal" class="form-select" disabled>
+                        <select id="sucursal" class="form-select" onchange="listarAlmacenes(this.value)" disabled>
                             <option value="">Seleccionar </option>
                             <?php
-                            $data = Sucursal::getSucursales(); ?>
-                            <option value="<?= $data->id_sucursal ?>"><?= $data->descripcion ?></option>
+                            $data = Sucursal::getSucursales();
+                            foreach ($data as $dat) {
+                            ?>
+                                <option value="<?= $dat->id_sucursal ?>"><?= $dat->descripcion ?></option>
+                            <?php
+                            } ?>
                         </select>
 
                         </select>
@@ -94,7 +99,7 @@
                             <?php
                             $almacenes = Almacen::getAlmacenes();
                             foreach ($almacenes as $almacen) { ?>
-                                <option value="<?= $almacen->id_almacen ?>"><?= $almacen->descripcion ?></option>
+                                <option value="<?= $almacen->id_almacen ?>" style="display:none"><?= $almacen->descripcion ?></option>
                             <?php } ?>
                         </select>
                     </div>

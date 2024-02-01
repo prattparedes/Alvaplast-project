@@ -32,14 +32,15 @@
                     <div class="col-md-1">
                         <label class="col-form-label"></label>
                         <fieldset disabled>
-                            <input type="text" class="form-control" aria-describedby="passwordHelpInline" placeholder="001">
+                            <input type="text" id="numeroDocumento" class="form-control" aria-describedby="passwordHelpInline" value="001">
                         </fieldset>
                     </div>
 
                     <div class="col-md-2">
                         <label class="col-form-label"></label>
                         <fieldset disabled>
-                            <input type="text" class="form-control" id="idVenta" aria-describedby="passwordHelpInline" value=<?=Venta::getIdVenta();?>>
+                            <input type="text" class="form-control" id="serieDocumento" aria-describedby="passwordHelpInline" value=<?= Venta::getIdVenta(); ?>>
+                            <input type="hidden" id="idVenta" value="0">
                         </fieldset>
                     </div>
 
@@ -72,7 +73,7 @@
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="Ingrese nombre de cliente" aria-label="Recipient's username" aria-describedby="" id="cliente" disabled>
                             <input type="hidden" id="idcliente" value="0">
-                            <button class="btn btn-outline-secondary" onclick="abrirListadoClientes()" type="button" >....</button>
+                            <button class="btn btn-outline-secondary" onclick="abrirListadoClientes()" type="button">....</button>
                         </div>
 
                         <label for="inputPassword6" class="col-form-label">Dirección</label>
@@ -102,13 +103,15 @@
 
                     <div class="col-md-2">
                         <label for="sucursal" class="form-label">Sucursal</label>
-                        <select id="sucursal" class="form-select" disabled>
+                        <select id="sucursal" class="form-select" onchange="listarAlmacenes(this.value)">
                             <option value="">Seleccionar </option>
                             <?php
-                            $data = Sucursal::getSucursales(); ?>
-                            <option value="<?= $data->id_sucursal ?>"><?= $data->descripcion ?></option>
-                        </select>
-
+                            $data = Sucursal::getSucursales();
+                            foreach ($data as $dat) {
+                            ?>
+                                <option value="<?= $dat->id_sucursal ?>"><?= $dat->descripcion ?></option>
+                            <?php
+                            } ?>
                         </select>
                     </div>
 
@@ -119,7 +122,7 @@
                             <?php
                             $almacenes = Almacen::getAlmacenes();
                             foreach ($almacenes as $almacen) { ?>
-                                <option value="<?= $almacen->id_almacen ?>"><?= $almacen->descripcion ?></option>
+                                <option value="<?= $almacen->id_almacen ?>" style="display:none"><?= $almacen->descripcion ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -217,9 +220,9 @@
 
                     <div class="col-md-4">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="productname" placeholder="Seleccione Producto" aria-label="Recipient's username" aria-describedby="" disabled>
-                            <input type="hidden" type="text" id="productid">
-                            <button class="btn btn-outline-secondary" href="" onclick="abrirListadoProductosVenta()" type="button">....</button>
+                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="" id="productname">
+                            <!-- <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoproductosventa.php')" type="button" id="">....</button> -->
+                            <button class="btn btn-outline-secondary" href="" onclick="loadContent3()" type="button" id="">....</button>
                         </div>
                     </div>
 
@@ -231,11 +234,7 @@
                         <div class="col-md-2">
                             <label for="disabledSelect" class="form-label">Unidad</label>
                             <select id="productunit" class="form-select" disabled>
-                                <?php
-                                $unidades = Unidad::getUnidades();
-                                foreach ($unidades as $unidad) { ?>
-                                    <option value="<?= $unidad->id_unidad ?>"><?= $unidad->abreviatura ?></option>
-                                <?php } ?>
+                                <option value="F">Fardos</option>
                             </select>
                         </div>
 

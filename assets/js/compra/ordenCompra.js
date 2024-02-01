@@ -61,7 +61,6 @@ function seleccionarProveedor(fila) {
     document.getElementById("proveedor").value = providerName;
     document.getElementById("direccion").value = providerDirection;
     activarInputs();
-    document.getElementById("btnRegister").classList.remove("order__btn--inactive");
   });
 }
 
@@ -99,7 +98,6 @@ function seleccionarProductoCompra(fila) {
     activarInputs();
     document.getElementById("productunit").setAttribute("disabled", "disabled");
     restaurarCopiaSeguridadCompra();
-    document.getElementById("btnRegister").classList.remove("order__btn--inactive");
   });
 
   // Verificar si existe el elemento productstock
@@ -108,11 +106,6 @@ function seleccionarProductoCompra(fila) {
     const productStock = contenidoFila[7];
     productStockElement.innerText = productStock;
   }
-}
-
-function abrirListadoCompras() {
-  guardarCopiaSeguridadCompra();
-  loadContent("views/modals/listaordencompra.php");
 }
 
 // Función para seleccionar una Orden de Compra y llenar el formulario

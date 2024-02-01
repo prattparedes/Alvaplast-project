@@ -75,23 +75,26 @@
                                 </thead>
 
                                 <tbody>
-                                    <?php
-                                    $productos = Producto::getProductos();
-                                    foreach ($productos as $producto) {
-                                        // Verifica si el stock es mayor que 0
-                                        if ($producto->stock > 0) { ?>
+                                    <?php if (isset($_GET["idAlmacen"]) && isset($_GET["idCliente"])) {
+                                        $almacen = $_GET["idAlmacen"];
+                                        $cliente = $_GET["idCliente"];
+
+                                        $productos = Producto::mostrarStockProducto($almacen, $cliente);
+                                        foreach ($productos as $produc) { ?>
+
                                             <tr ondblclick="seleccionarProductoVenta(this)">
-                                                <td><?= $producto->id_producto ?></td>
-                                                <td><?= $producto->nombre_producto ?></td>
-                                                <td><?= $producto->procedencia ?></td>
-                                                <td><?= number_format($producto->precio_compra, 2) ?></td>
-                                                <td><?= number_format($producto->precio_venta, 2) ?></td>
-                                                <td style="display:none;"><?= $producto->id_unidad ?></td>
-                                                <td><?= $producto->stock ?></td>
+                                                <td><?= $produc->id_producto ?></td>
+                                                <td><?= $produc->nombre_producto ?></td>
+                                                <td><?= $produc->procedencia ?></td>
+                                                <td><?= $produc->precio_venta ?></td>
+                                                <td><?= $produc->precio_compra ?></td>
+                                                <td><?= $produc->stock ?></td>
                                             </tr>
-                                    <?php }
-                                    }
-                                    ?>
+
+                                    <?php
+                                        }
+                                    } ?>
+
                                 </tbody>
                             </table>
 

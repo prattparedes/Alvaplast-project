@@ -139,8 +139,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadMaintenanceContent('clientmodal');
-
+                    loadContent('views/modals/maintenance_modals/productosModel.php');
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');
@@ -189,7 +188,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadMaintenanceContent('clientmodal');
+                    loadContent('views/modals/maintenance_modals/clienteModel.php');
 
                 } else {
                     // Hubo un error en la solicitud
@@ -215,8 +214,9 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         const fax = document.getElementById("fax").value;
         const contacto = document.getElementById("contacto").value;
         const email = document.getElementById("email").value;
-        const descripcion = document.getElementById("descripcion").value;
-        const estado = document.getElementById("estado").value;
+        //const descripcion = document.getElementById("descripcion").value;
+        const checkbox = document.getElementById("estado");
+        var estado = (checkbox.checked) ? checkbox.value : "0";
         const metodo = event.target.innerHTML;
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
@@ -226,10 +226,11 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         console.log()
-        if (descripcion && razonSocial) {
+        if (razonSocial) {
             // Enviar los datos del formulario incluyendo descripcion y abreviatura
-            xhr.send("idProveedor=" + idProveedor + "&idUbigeo=" + idUbigeo + "&razonSocial=" + razonSocial + "&ruc=" + ruc + "&direccion=" + direccion + "&telefono=" + telefono + "&fax=" + fax + "&contacto=" + contacto + "&email=" + email + "&descripcion=" + descripcion + "&estado=" + estado + "&metodo=" + metodo);
+            xhr.send("idProveedor=" + idProveedor + "&idUbigeo=" + idUbigeo + "&razonSocial=" + razonSocial + "&ruc=" + ruc + "&direccion=" + direccion + "&telefono=" + telefono + "&fax=" + fax + "&contacto=" + contacto + "&email=" + email + "&estado=" + estado + "&metodo=" + metodo);
         } else {
+            //"&descripcion=" + descripcion
             alert("faltan datos")
         }
         // Manejar la respuesta del servidor
@@ -239,7 +240,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadMaintenanceContent('providermodal');
+                    loadContent('views/modals/maintenance_modals/proveedorModel.php');
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');
@@ -279,7 +280,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadMaintenanceContent('productlines');
+                    loadContent('views/modals/maintenance_modals/productolineaModel.php');
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');
@@ -319,7 +320,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadMaintenanceContent('productbrands');
+                    loadContent('views/modals/maintenance_modals/productomarcaModel.php');
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');
@@ -359,7 +360,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadMaintenanceContent('productunits');
+                    loadContent('views/modals/maintenance_modals/productomarcaModel.php');
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');
@@ -400,7 +401,225 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadMaintenanceContent('currencieslist');
+                    loadContent('views/modals/maintenance_modals/monedaModel.php');
+                } else {
+                    // Hubo un error en la solicitud
+                    console.error('Error en la solicitud.');
+                }
+            }
+        };
+    }
+});
+//Formulario de envio de datos para el sucursal Controller
+document.querySelector(".main__content").addEventListener("click", function (event) {
+
+    if (event.target.classList.contains("branch_submit")) {
+        event.preventDefault();
+        // Obtener los datos del formulario
+        const idSucursal = document.getElementById("codigo").value;
+        const descripcion = document.getElementById("descripcion").value; // Obtener la descripción del formulario
+        const direccion = document.getElementById("direccion").value;   // Obtener la abreviatura del formulario
+        const telefono = document.getElementById("telefono").value;
+
+        const metodo = event.target.innerHTML;
+        // Crear una solicitud XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+        const url = "/Alvaplast-project/Controller/maintenance_models/SucursalController.php"; // Ruta del controlador PHP
+
+        // Configurar la solicitud
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        console.log()
+        if (descripcion && direccion && telefono) {
+            // Enviar los datos del formulario incluyendo descripcion y abreviatura
+            xhr.send("idSucursal=" + idSucursal + "&descripcion=" + descripcion + "&direccion=" + direccion + "&telefono=" + telefono + "&metodo=" + metodo);
+        } else {
+            alert("faltan datos")
+        }
+        // Manejar la respuesta del servidor
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // La solicitud se completó correctamente
+                    // Puedes manejar la respuesta del servidor aquí
+                    alert(xhr.responseText);
+                    loadContent('views/modals/maintenance_modals/sucursalModel.php');
+                } else {
+                    // Hubo un error en la solicitud
+                    console.error('Error en la solicitud.');
+                }
+            }
+        };
+    }
+});
+//Formulario de envio de datos para el almacen Controller
+document.querySelector(".main__content").addEventListener("click", function (event) {
+
+    if (event.target.classList.contains("store_submit")) {
+        event.preventDefault();
+        // Obtener los datos del formulario
+        const id_almacen = document.getElementById("codigo").value;   // Obtener la abreviatura del formulario
+        const idSucursal = document.getElementById("sucursal").value;
+        const descripcion = document.getElementById("descripcion").value; // Obtener la descripción del formulario
+        const codFAct = document.getElementById("facturacion").value;
+
+        const metodo = event.target.innerHTML;
+        // Crear una solicitud XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+        const url = "/Alvaplast-project/Controller/maintenance_models/AlmacenController.php"; // Ruta del controlador PHP
+
+        // Configurar la solicitud
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        console.log()
+        if (descripcion) {
+            // Enviar los datos del formulario incluyendo descripcion y abreviatura
+            xhr.send("idAlmacen=" + id_almacen + "&idSucursal=" + idSucursal + "&descripcion=" + descripcion + "&metodo=" + metodo + "&cod_facturacion=" + codFAct);
+        } else {
+            alert("faltan datos")
+        }
+        // Manejar la respuesta del servidor
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // La solicitud se completó correctamente
+                    // Puedes manejar la respuesta del servidor aquí
+                    alert(xhr.responseText);
+                    console.log(xhr.responseText);
+                    loadContent('views/modals/maintenance_modals/almacenModel.php');
+                } else {
+                    // Hubo un error en la solicitud
+                    console.error('Error en la solicitud.');
+                }
+            }
+        };
+    }
+});
+
+//Formulario de envio de datos para el vehiculo Controller
+document.querySelector(".main__content").addEventListener("click", function (event) {
+
+    if (event.target.classList.contains("vehicle_submit")) {
+        event.preventDefault();
+        // Obtener los datos del formulario
+        const idVehiculo = document.getElementById("codigo").value;   // Obtener la abreviatura del formulario
+        const placa = document.getElementById("placa").value;
+        const tipo_vehiculoSelect = document.getElementById("tipo");
+        const tipo_vehiculo = tipo_vehiculoSelect.options[tipo_vehiculoSelect.selectedIndex].text;
+        const marcaSelect = document.getElementById("marca");
+        const marca = marcaSelect.options[marcaSelect.selectedIndex].text;
+        const modelo = document.getElementById("modelo").value;
+
+        const metodo = event.target.innerHTML;
+        // Crear una solicitud XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+        const url = "/Alvaplast-project/Controller/maintenance_models/VehiculoController.php"; // Ruta del controlador PHP
+
+        // Configurar la solicitud
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        if (placa) {
+            // Enviar los datos del formulario incluyendo descripcion y abreviatura
+            xhr.send("idVehiculo=" + idVehiculo + "&placa=" + placa + "&marca=" + marca + "&modelo=" + modelo + "&tipo=" + tipo_vehiculo + "&metodo=" + metodo);
+        } else {
+            alert("faltan datos")
+        }
+        // Manejar la respuesta del servidor
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // La solicitud se completó correctamente
+                    // Puedes manejar la respuesta del servidor aquí
+                    alert(xhr.responseText);
+                    loadContent('views/modals/maintenance_modals/vehiculoModel.php');
+                } else {
+                    // Hubo un error en la solicitud
+                    console.error('Error en la solicitud.');
+                }
+            }
+        };
+    }
+});
+
+//Formulario de envio de datos para el documento Controller
+document.querySelector(".main__content").addEventListener("click", function (event) {
+
+    if (event.target.classList.contains("document_submit")) {
+        event.preventDefault();
+        // Obtener los datos del formulario
+        const idDocumento = document.getElementById("codigo").value;   // Obtener la abreviatura del formulario
+        const abreviatura = document.getElementById("abreviatura").value;
+        const descripcion = document.getElementById("descripcion").value;
+
+        const metodo = event.target.innerHTML;
+        // Crear una solicitud XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+        const url = "/Alvaplast-project/Controller/maintenance_models/DocumentoController.php"; // Ruta del controlador PHP
+
+        // Configurar la solicitud
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        if (abreviatura) {
+            // Enviar los datos del formulario incluyendo descripcion y abreviatura
+            xhr.send("idDocumento=" + idDocumento + "&abreviatura=" + abreviatura + "&descripcion=" + descripcion + "&metodo=" + metodo);
+        } else {
+            alert("faltan datos")
+        }
+        // Manejar la respuesta del servidor
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // La solicitud se completó correctamente
+                    // Puedes manejar la respuesta del servidor aquí
+                    alert(xhr.responseText);
+                    loadContent('views/modals/maintenance_modals/documentoModel.php');
+                } else {
+                    // Hubo un error en la solicitud
+                    console.error('Error en la solicitud.');
+                }
+            }
+        };
+    }
+});
+//Formulario de envio de datos para el TransportistaController
+document.querySelector(".main__content").addEventListener("click", function (event) {
+
+    if (event.target.classList.contains("carrier_submit")) {
+        event.preventDefault();
+        // Obtener los datos del formulario
+        const idTrans = document.getElementById("codigo").value;
+        const nombre = document.getElementById("nombres").value;
+        const ap_paterno = document.getElementById("paterno").value;
+        const ap_materno = document.getElementById("materno").value;
+        const dni = document.getElementById("dni").value;
+        const ruc = document.getElementById("ruc").value;
+        const licencia = document.getElementById("licencia").value;
+        const direccion = document.getElementById("direccion").value;
+        const telefono = document.getElementById("telefono").value;
+        const celular = document.getElementById("celular").value;
+        const estado = "A";
+        const metodo = event.target.innerHTML;
+        // Crear una solicitud XMLHttpRequest
+        const xhr = new XMLHttpRequest();
+        const url = "/Alvaplast-project/Controller/maintenance_models/TransportistaController.php"; // Ruta del controlador PHP
+
+        // Configurar la solicitud
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        if (nombre) {
+            // Enviar los datos del formulario incluyendo descripcion y abreviatura
+            xhr.send("idTrans=" + idTrans + "&nombre=" + nombre + "&ap_paterno=" + ap_paterno + "&ap_materno=" + ap_materno + "&dni=" + dni + "&ruc=" + ruc + "&licencia=" + licencia + "&direccion=" + direccion + "&telefono=" + telefono + "&celular=" + celular + "&estado=" + estado + "&metodo=" + metodo);
+        } else {
+            alert("faltan datos")
+        }
+        // Manejar la respuesta del servidor
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // La solicitud se completó correctamente
+                    // Puedes manejar la respuesta del servidor aquí
+                    alert(xhr.responseText);
+                    loadContent('views/modals/maintenance_modals/transportistaModel.php');
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');

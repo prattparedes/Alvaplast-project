@@ -35,11 +35,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     } elseif ($_POST["metodo"] == "Eliminar") {
         $result = Producto::eliminarProducto($idProducto);
-        if ($result) {
-            $message = "producto eliminado completamente";
-        } else {
-            $message = "producto no se pudo eliminar";
-        }
+        $message = ($result) ? "Producto eliminado" : "";
     }
-    echo $message;
+    if (isset($message)) {
+        echo $message;
+    }
 }

@@ -219,32 +219,47 @@
 
                                     <tbody id="detalle_venta">
                                         <tr>
-                                        </tr>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <td colspan="5" class="textright">Precio Bruto</td>
-                                            <td class="textright" id="productsubtotal1">0</td>
-                                        </tr>
+                                            <!-- <td>R1C1</td> -->
+                                            <td colspan="1">AlvaPlastic</td>
+                                            <td class="textcenter">2</td>
+                                            <td class="textright">F</td>
+                                            <td class="textright">99.00</td>
+                                            <td class="textright">126.00</td>
+                                            <td class="textright">198.00</td>
 
-                                        <tr>
-                                            <td colspan="5" class="textright">Descuento</td>
-                                            <td class="textright" id="productDescuento">0</td>
-                                        </tr>
 
                                         <tr>
                                             <td colspan="5" class="textright">Precio Neto</td>
                                             <td class="textright" id="productsubtotal2">0</td>
                                         </tr>
 
+
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5" class="textright">Precio Bruto</td>
+                                            <td class="textright">167.80</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="5" class="textright">Descuento</td>
+                                            <td class="textright">00.00</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td colspan="5" class="textright">Precio Neto</td>
+                                            <td class="textright">167.80</td>
+                                        </tr>
+
                                         <tr>
                                             <td colspan="5" class="textright">IGV S/.</td>
-                                            <td class="textright" id="productigv">0</td>
+                                            <td class="textright">30.20</td>
                                         </tr>
 
                                         <tr>
                                             <td colspan="5" class="textright">Total S/.</td>
-                                            <td class="textright" id="productTotal">0</td>
+                                            <td class="textright">198.00</td>
                                         </tr>
                                     </tfoot>
 

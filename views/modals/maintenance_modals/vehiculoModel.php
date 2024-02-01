@@ -63,9 +63,9 @@
 
                     <div class="col-md-12">
                         <button type="button" class="btn btn-secondary me-2">Nuevo</button>
-                        <a name="" id="" class="btn btn-primary me-2" href="#" role="button">Grabar</a>
-                        <a name="" id="" class="btn btn-success me-2" href="#" role="button">Modificar</a>
-                        <a name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
+                        <a name="" id="" class="btn btn-primary me-2 vehicle_submit" href="#" role="button">Grabar</a>
+                        <a name="" id="" class="btn btn-success me-2 vehicle_submit" href="#" role="button">Modificar</a>
+                        <a name="" id="" class="btn btn-danger vehicle_submit" href="#" role="button">Eliminar</a>
                     </div>
                 </div>
             </form>
