@@ -526,3 +526,16 @@ function añadirProductoOrdenVenta() {
     }
   }
 }
+
+
+
+
+function mostrarFacturacion(tbodyId) {
+  console.log(tbodyId.value);
+  document.getElementById("facturable").style.display = "none";
+  document.getElementById("noFacturable").style.display = "none";
+
+
+  document.getElementById(tbodyId.value).style.display = 'table-row-group';
+
+}

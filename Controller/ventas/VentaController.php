@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     echo $message;
 } else if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (isset($_GET["idVenta"]) && $_GET["idVenta"] !== 999999999) {
-        $idVenta = $_GET["idVenta"];
-        // $data = Venta::ListarVentaXid($idVenta);
+        $idVenta = (int) $_GET["idVenta"];
+        $data = Venta::getVentaXId($idVenta);
         echo json_encode($data);
     } else {
         $data = Venta::getIdVenta();

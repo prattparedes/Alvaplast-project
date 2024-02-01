@@ -10,12 +10,12 @@ class Venta
 {
     public static function getIdVenta()
     {
-        $con = Connection::Conectar();  
+        $con = Connection::Conectar();
         $tsmt = $con->prepare('exec sp_BuscarIdVenta ?');
-        $tsmt->bindParam(1,$id_compra,PDO::PARAM_INT|PDO::PARAM_INPUT_OUTPUT,32);
+        $tsmt->bindParam(1, $id_compra, PDO::PARAM_INT | PDO::PARAM_INPUT_OUTPUT, 32);
         $tsmt->execute();
         $longitud = 7;
-        $document_number = str_pad($id_compra,$longitud,"0",STR_PAD_LEFT);
+        $document_number = str_pad($id_compra, $longitud, "0", STR_PAD_LEFT);
         return $document_number;
     }
 
@@ -31,6 +31,13 @@ class Venta
         // Se recuperan los resultados en formato de objeto y se retornan.
         $ventas = $DATA->fetchAll(PDO::FETCH_OBJ);
         return $ventas;
+    }
+
+    public static function getVentasNoFacturables()
+    {
+        $con = Connection::Conectar();
+        $data = $con->query("exec sp_ListarVenta2");
+        return $data->fetchAll(PDO::FETCH_OBJ);
     }
 
     public static function obtenerVentaId()
@@ -50,6 +57,14 @@ class Venta
                 $con = null;
             }
         }
+    }
+
+
+    public static function getVentaXId(int $idVenta)
+    {
+        $con = Connection::Conectar();
+        $data = $con->query("exec sp_ListaVentaXID  $idVenta");
+        return $data->fetchAll(PDO::FETCH_OBJ);
     }
 
 
