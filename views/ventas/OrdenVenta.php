@@ -51,14 +51,14 @@
 
 
                         <a style="width: 100px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="nuevaOrdenVenta()">Nuevo</a>
-                        <a style="width: 100px;" name="" id="" class="btn btn-success" href="#" role="button">Grabar</a>
-                        <a style="width: 100px;" name="" id="" class="btn btn-warning" href="#" role="button">Modificar</a>
-                        <a style="width: 100px;" name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
+                        <a style="width: 100px;" name="" id="btnRegister" class="btn btn-success order__btn--inactive" href="#" role="button">Grabar</a>
+                        <a style="width: 100px;" name="" id="btnModify" class="btn btn-warning order__btn--inactive" href="#" role="button" onclick="modificarVenta()">Modificar</a>
+                        <a style="width: 100px;" name="" id="btnDelete" class="btn btn-danger order__btn--inactive" href="#" role="button">Eliminar</a>
 
 
 
 
-                        <button style="width: 100px;" class="btn btn-secondary" onclick="loadContent('views/modals/listaordenventa.php')">Buscar</button>
+                        <button style="width: 100px;" class="btn btn-secondary" onclick="abrirListadoVentas()">Buscar</button>
 
                         <!-- <button style="width: 90px;" class="btn btn-danger" onclick="loadContent('views/home.php')">Salir</button> -->
                     </div>
