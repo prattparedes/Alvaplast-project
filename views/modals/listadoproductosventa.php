@@ -82,11 +82,9 @@
                                         $productos = Producto::mostrarStockProducto($almacen, $cliente);
                                         foreach ($productos as $produc) { ?>
 
-                                            <tr>
+                                            <tr ondblclick="seleccionarProductoVenta(this)">
                                                 <td><?= $produc->id_producto ?></td>
                                                 <td><?= $produc->nombre_producto ?></td>
-                                                <td><?= $produc->modelo_producto ?></td>
-                                                <td><?= $produc->modelo_producto ?></td>
                                                 <td><?= $produc->procedencia ?></td>
                                                 <td><?= $produc->precio_venta ?></td>
                                                 <td><?= $produc->precio_compra ?></td>

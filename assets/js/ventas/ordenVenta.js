@@ -539,3 +539,62 @@ function mostrarFacturacion(tbodyId) {
   document.getElementById(tbodyId.value).style.display = 'table-row-group';
 
 }
+
+document.querySelector(".main__content").addEventListener("click", function (event) {
+
+  if (event.target.classList.contains("sell_submit")) {
+    event.preventDefault();
+    // Obtener los datos del formulario
+    const idVenta = document.getElementById("idVenta").value
+    const idAlmacen = document.getElementById("almacen").value;
+    const idPersonal = 2;
+    const idDocumento = document.getElementById("tipoDocumento").value;
+    const idCliente = document.getElementById("idcliente").value
+    const fecha = document.getElementById("fecha").value
+    const total = document.getElementById("productTotal").innerHTML; // Obtener la abreviatura del formulario
+    const subtotal = document.getElementById("productsubtotal2").innerHTML;
+    const igv = document.getElementById("productigv").innerHTML;
+    const idMoneda = document.getElementById("moneda").value;
+    const numeroDocumento = document.getElementById("numeroDocumento").value;
+    const serieDocumento = document.getElementById("serieDocumento").value;
+    const tipoPago = document.getElementById("tipoPago").value;
+    const pagoInicial = document.getElementById("inicial").value
+    const metodo = event.target.innerHTML
+
+
+
+    // Crear una solicitud XMLHttpRequest
+    const xhr = new XMLHttpRequest();
+    const url = "/Alvaplast-project/Controller/Ventas/VentaController.php"; // Ruta del controlador PHP
+
+    // Configurar la solicitud
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    console.log(metodo, fecha, tipoPago);
+    if (idVenta && idAlmacen) {
+      // Enviar los datos del formulario incluyendo descripcion y abreviatura
+      xhr.send("idVenta=" + idVenta + "&idAlmacen=" + idAlmacen + "&idPersonal=" + idPersonal + "&idDocmento=" + idDocumento + "&idCliente=" + idCliente + "&fecha=" + fecha + "&total=" + total + "&subtotal=" + subtotal + "&igv=" + igv + "&idMoneda=" + idMoneda + "&serieDocumento=" + serieDocumento + "&numeroDocumento=" + numeroDocumento + "&tipoPago=" + tipoPago + "&pagoInicial=" + pagoInicial + "&idPersonal=" + idPersonal + "&metodo=" + metodo);
+
+    } else {
+      alert("faltan datos")
+    }
+    // Manejar la respuesta del servidor
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          // La solicitud se completó correctamente
+          // Puedes manejar la respuesta del servidor aquí
+          alert(xhr.responseText);
+          //Envio de los datos de CompraProducto
+          if (metodo == "Eliminar") {
+            loadContent("views/buyorder.php");
+          }
+          //RegistrarDatosTabla(idCompra, metodo);
+        } else {
+          // Hubo un error en la solicitud
+          console.error('Error en la solicitud.');
+        }
+      }
+    };
+  }
+});

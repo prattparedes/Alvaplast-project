@@ -32,14 +32,15 @@
                     <div class="col-md-1">
                         <label class="col-form-label"></label>
                         <fieldset disabled>
-                            <input type="text" id="serieDocumento" class="form-control" aria-describedby="passwordHelpInline" value="001">
+                            <input type="text" id="numeroDocumento" class="form-control" aria-describedby="passwordHelpInline" value="001">
                         </fieldset>
                     </div>
 
                     <div class="col-md-2">
                         <label class="col-form-label"></label>
                         <fieldset disabled>
-                            <input type="text" class="form-control" id="idVenta" aria-describedby="passwordHelpInline" value=<?= Venta::getIdVenta(); ?>>
+                            <input type="text" class="form-control" id="serieDocumento" aria-describedby="passwordHelpInline" value=<?= Venta::getIdVenta(); ?>>
+                            <input type="hidden" id="idVenta" value="0">
                         </fieldset>
                     </div>
 
@@ -51,7 +52,7 @@
 
 
                         <a style="width: 100px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="nuevaOrdenVenta()">Nuevo</a>
-                        <a style="width: 100px;" name="" id="" class="btn btn-success" href="#" role="button">Grabar</a>
+                        <a style="width: 100px;" name="" id="" class="btn btn-success sell_submit" href="#" role="button">Grabar</a>
                         <a style="width: 100px;" name="" id="" class="btn btn-warning" href="#" role="button">Modificar</a>
                         <a style="width: 100px;" name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
 
@@ -121,7 +122,7 @@
                             <?php
                             $almacenes = Almacen::getAlmacenes();
                             foreach ($almacenes as $almacen) { ?>
-                                <option value="<?= $almacen->id_almacen ?>"><?= $almacen->descripcion ?></option>
+                                <option value="<?= $almacen->id_almacen ?>" style="display:none"><?= $almacen->descripcion ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -219,7 +220,7 @@
 
                     <div class="col-md-4">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="">
+                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="" id="productname">
                             <!-- <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoproductosventa.php')" type="button" id="">....</button> -->
                             <button class="btn btn-outline-secondary" href="" onclick="loadContent3()" type="button" id="">....</button>
                         </div>
@@ -233,11 +234,7 @@
                         <div class="col-md-2">
                             <label for="disabledSelect" class="form-label">Unidad</label>
                             <select id="productunit" class="form-select" disabled>
-                                <?php
-                                $unidades = Unidad::getUnidades();
-                                foreach ($unidades as $unidad) { ?>
-                                    <option value="<?= $unidad->id_unidad ?>"><?= $unidad->abreviatura ?></option>
-                                <?php } ?>
+                                <option value="F">Fardos</option>
                             </select>
                         </div>
 
@@ -295,18 +292,7 @@
                                         <!-- <tr> -->
 
                                         <tbody id="detalle_venta">
-                                            <tr>
-                                                <!-- <td>R1C1</td> -->
-                                                <td colspan="1">AlvaPlastic</td>
-                                                <td class="textcenter">2</td>
-                                                <td class="textcenter">F</td>
-                                                <td class="textcenter">99.00</td>
-                                                <td class="textcenter">126.00</td>
-                                                <td class="textcenter">198.00</td>
 
-
-
-                                            </tr>
                                         </tbody>
                                         <tfoot>
                                             <tr>

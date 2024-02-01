@@ -43,8 +43,9 @@ function loadContent2(page, data1, data2) {
 function loadContent3() {
 
   var opcion = document.getElementById("almacen").value
-  var cliente = 33
-  if (opcion == "0" || !opcion) { return alert("no se pudio") }
+  var cliente = document.getElementById("idcliente").value
+  if (cliente == "0" || !cliente) { return alert("debe seleccionar un cliente") }
+  if (opcion == "0" || !opcion) { return alert("debe seleccionar un almacen") }
   loadContent2('views/modals/listadoproductosventa.php', opcion, cliente)
 }
 

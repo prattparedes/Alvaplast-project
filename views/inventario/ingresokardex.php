@@ -188,71 +188,71 @@
 
 
                     <div class="row">
-                            <div class="col-auto">
-                                <div class="table-responsive">
-                                    <table class="tbl_venta">
-                                        <thead>
-                                            <tr>
-                                                <!-- <th>Codigo</th> -->
-                                                <th width="200">Producto</th>
-                                                <th  width="120">Cantidad</th>
-                                                <th class="textcenter" width="120">Unidad</th>
-                                                <th class="textright" width="120">PreCompra</th>
-                                                <th class="textright" width="120">Descuento</th>
-                                                <th class="textright" width="100">Total</th>
-                                               
+                        <div class="col-auto">
+                            <div class="table-responsive">
+                                <table class="tbl_venta">
+                                    <thead>
+                                        <tr>
+                                            <!-- <th>Codigo</th> -->
+                                            <th width="200">Producto</th>
+                                            <th width="120">Cantidad</th>
+                                            <th class="textcenter" width="120">Unidad</th>
+                                            <th class="textright" width="120">PreCompra</th>
+                                            <th class="textright" width="120">Descuento</th>
+                                            <th class="textright" width="100">Total</th>
 
 
-                                            </tr>
-                                        </thead>
 
-                                        <!-- <tr> -->
+                                        </tr>
+                                    </thead>
 
-                                        <tbody id="detalle_venta">
-                                            <tr>
-                                                <!-- <td>R1C1</td> -->
-                                                <td colspan="1">AlvaPlastic</td>
-                                                <td class="textcenter">2</td>
-                                                <td class="textright">F</td>
-                                                <td class="textright">99.00</td>
-                                                <td class="textright">126.00</td>
-                                                <td class="textright">198.00</td>
-                                               
+                                    <!-- <tr> -->
+
+                                    <tbody id="detalle_venta">
+                                        <tr>
+                                            <!-- <td>R1C1</td> -->
+                                            <td colspan="1">AlvaPlastic</td>
+                                            <td class="textcenter">2</td>
+                                            <td class="textright">F</td>
+                                            <td class="textright">99.00</td>
+                                            <td class="textright">126.00</td>
+                                            <td class="textright">198.00</td>
 
 
-                                            </tr>
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="5" class="textright">Precio Bruto</td>
-                                                <td class="textright">167.80</td>
-                                            </tr>
 
-                                            <tr>
-                                                <td colspan="5" class="textright">Descuento</td>
-                                                <td class="textright">00.00</td>
-                                            </tr>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="5" class="textright">Precio Bruto</td>
+                                            <td class="textright">167.80</td>
+                                        </tr>
 
-                                            <tr>
-                                                <td colspan="5" class="textright">Precio Neto</td>
-                                                <td class="textright">167.80</td>
-                                            </tr>
+                                        <tr>
+                                            <td colspan="5" class="textright">Descuento</td>
+                                            <td class="textright">00.00</td>
+                                        </tr>
 
-                                            <tr>
-                                                <td colspan="5" class="textright">IGV S/.</td>
-                                                <td class="textright">30.20</td>
-                                            </tr>
+                                        <tr>
+                                            <td colspan="5" class="textright">Precio Neto</td>
+                                            <td class="textright">167.80</td>
+                                        </tr>
 
-                                            <tr>
-                                                <td colspan="5" class="textright">Total S/.</td>
-                                                <td class="textright">198.00</td>
-                                            </tr>
-                                        </tfoot>
+                                        <tr>
+                                            <td colspan="5" class="textright">IGV S/.</td>
+                                            <td class="textright">30.20</td>
+                                        </tr>
 
-                                    </table>
-                                </div>
+                                        <tr>
+                                            <td colspan="5" class="textright">Total S/.</td>
+                                            <td class="textright">198.00</td>
+                                        </tr>
+                                    </tfoot>
+
+                                </table>
                             </div>
                         </div>
+                    </div>
                 </div>
             </form>
         </div>

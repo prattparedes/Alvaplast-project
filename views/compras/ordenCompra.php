@@ -95,6 +95,7 @@
                     <div class="col-md-2">
                         <label for="disabledSelect" class="form-label">Almacen</label>
                         <select id="almacen" class="form-select" disabled>
+                            <option value="">Seleccione almacen</option>
                             <?php
                             $almacenes = Almacen::getAlmacenes();
                             foreach ($almacenes as $almacen) { ?>

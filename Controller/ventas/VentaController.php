@@ -6,7 +6,7 @@ use Models\ventas\Venta;
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     print_r($_POST);
-    $id = (isset($_POST["idVenta"]) && $_POST["idVenta"] !== "") ? $_POST["idVenta"] : 1;
+    $id = (isset($_POST["idVenta"]) && $_POST["idVenta"] !== "0") ? (int) $_POST["idVenta"] : 1;
     $idAlmacen = (int) $_POST["idAlmacen"];
     $idPersonal = (int) $_POST["idPersonal"];
     $idDocumento = $_POST["idDocumento"];

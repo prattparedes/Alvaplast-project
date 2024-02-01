@@ -85,6 +85,7 @@
                                         foreach ($ventas as $ven) {
                                         ?>
                                             <tr>
+                                                <td style="display:none"><?= $ven->id_venta ?></td>
                                                 <td><?= $ven->razon_social ?></td>
                                                 <td><?= 'OV/' . $ven->numero_documento . '-' . $ven->serie_documento ?></td>
                                                 <td><?= explode(' ', $ven->fecha_emision)[0] ?></td>
@@ -102,6 +103,7 @@
                                         foreach ($ventas as $ven) {
                                         ?>
                                             <tr>
+                                                <td style="display:none"><?= $ven->id_venta ?></td>
                                                 <td><?= $ven->razon_social ?></td>
                                                 <td><?= 'OV/' . $ven->numero_documento . '-' . $ven->serie_documento ?></td>
                                                 <td><?= explode(' ', $ven->fecha_emision)[0] ?></td>
