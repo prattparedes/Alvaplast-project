@@ -119,10 +119,11 @@ function seleccionarProductoVenta(fila) {
   });
 }
 
-function abrirListadoCompras() {
-  guardarCopiaSeguridadCompra();
-  loadContent("views/modals/listaordencompra.php");
+function abrirListadoVentas() {
+  guardarCopiaSeguridadVenta();
+  loadContent("views/modals/listaordenventa.php");
 }
+
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 // FALTA ARREGLAR ESTA FUNCIÓN HASTA TENER LOS DATOS
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX

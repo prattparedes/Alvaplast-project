@@ -110,6 +110,11 @@ function seleccionarProductoCompra(fila) {
   }
 }
 
+function abrirListadoCompras() {
+  guardarCopiaSeguridadCompra();
+  loadContent("views/modals/listaordencompra.php");
+}
+
 // Función para seleccionar una Orden de Compra y llenar el formulario
 async function seleccionarOrdenCompra(fila) {
   const columnas = fila.querySelectorAll("td");

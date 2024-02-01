@@ -202,6 +202,7 @@
   <script src="assets/js/maintenance/Forms_maintenance.js"></script>
   <script src="assets/js/compra/ordenCompra.js"></script>
   <script src="assets/js/ventas/ordenVenta.js"></script>
+  <script src="assets/js/inventarios/ingresoKardex.js"></script>
   </body>
 </body>
 
