@@ -4,6 +4,9 @@ function nuevaOrdenVenta() {
   document.getElementById("fecha").value = establecerFechaHora();
 
   activarInputs();
+  document.getElementById("btnRegister").classList.remove("order__btn--inactive");
+  document.getElementById("btnModify").classList.add("order__btn--inactive");
+  document.getElementById("btnDelete").classList.add("order__btn--inactive");
 
   // Conseguir id de venta nuevo
   const xhr = new XMLHttpRequest();
@@ -69,6 +72,7 @@ function seleccionarCliente(fila) {
       rucDniInput.value = clientDNI;
     }
     activarInputs();
+    document.getElementById("btnRegister").classList.remove("order__btn--inactive");
   });
 }
 
@@ -111,13 +115,15 @@ function seleccionarProductoVenta(fila) {
       .getElementById("productstock")
       .setAttribute("disabled", "disabled");
     restaurarCopiaSeguridadVenta();
+    document.getElementById("btnRegister").classList.remove("order__btn--inactive");
   });
 }
 
-function abrirListadoCompras() {
-  guardarCopiaSeguridadCompra();
-  loadContent("views/modals/listaordencompra.php");
+function abrirListadoVentas() {
+  guardarCopiaSeguridadVenta();
+  loadContent("views/modals/listaordenventa.php");
 }
+
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 // FALTA ARREGLAR ESTA FUNCIÓN HASTA TENER LOS DATOS
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -200,6 +206,35 @@ function limpiarFormularioVenta() {
   const orderTable = document.getElementById("ordertable");
   const orderTableBody = orderTable.querySelector("tbody");
   orderTableBody.innerHTML = "";
+}
+
+// Función para Modificar la Compra
+function modificarVenta() {
+  let botonModificar = document.getElementById("btnModify");
+
+  if (botonModificar.classList.contains("order__btn--inactive")) {
+    return
+  }
+
+  if (botonModificar.innerHTML === "Modificar") {
+    guardarCopiaSeguridadVenta();
+    activarInputs();
+
+    botonModificar.innerHTML = "Cancelar";
+    botonModificar.style.backgroundColor = "gray";
+    botonModificar.style.borderColor = "gray";
+    document.getElementById("btnDelete").classList.add("order__btn--inactive");
+    document.getElementById("btnRegister").classList.remove("order__btn--inactive");
+  } else if (botonModificar.innerHTML === "Cancelar") {
+    restaurarCopiaSeguridadVenta();
+    desactivarInputs();
+
+    botonModificar.innerHTML = "Modificar";
+    botonModificar.style.backgroundColor = "#ffc107";
+    botonModificar.style.borderColor = "#ffc107";
+    document.getElementById("btnDelete").classList.remove("order__btn--inactive");
+    document.getElementById("btnRegister").classList.add("order__btn--inactive");
+  }
 }
 
 // Guardar Copia Seguridad de un Formulario si se cancela modificaciones
