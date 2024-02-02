@@ -72,7 +72,7 @@
                                     $compras = Compra::getCompras();
                                     foreach ($compras as $compra) {
                                     ?>
-                                        <tr ondblclick="seleccionarOrdenCompra(this)">
+                                        <tr onclick="seleccionarOrdenCompra(this)">
                                             <td><?= $compra->razon_social ?></td>
                                             <td><?= $compra->numero_documento . $compra->serie_documento ?></td>
                                             <td><?= explode(' ', $compra->fecha_compra)[0] ?></td>

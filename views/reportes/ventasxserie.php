@@ -1,72 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>REPORTE DE VENTAS POR SERIE</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="stylesheet" type="text/css" href="assets/css/estilo.css">
-    <!-- Bootstrap CSS v5.3.2 -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" /> -->
-
 </head>
 
 <body>
     <header>
-        <div class="container">
-            <h3>REPORTE DE VENTAS POR SERIE</h3>
-            <form>
-                <b><span class="d-block p-2 col-12 bg-info text-white">Registro de ventas por Correlativos</span></b>
+        <?php
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+
+        use Models\maintenance_models\Sucursal;
+        use Models\maintenance_models\Almacen;
+        use Models\maintenance_models\Moneda;
+        use Models\maintenance_models\Unidad;
+        use Models\compras\Compra;
+
+
+        ?>
+
+        <div class="kardex__movement">
+            <div class="kardex__left">
+
+
 
                 <div class="row">
-                    <div class="col-12 col-md-6 mb-3">
-                        <label for="tipoDocumento" class="col-form-label">Tipo de Documento:</label>
-                        <select id="tipoDocumento" class="form-select">
-                            <option>NOTA DE COBRANZA - A</option>
-                            <option>San Juan de Lurigancho</option>
-                        </select>
-                    </div>
 
-                    <div class="col-6 col-md-3 mb-3">
-                        <label for="fechaInicio" class="col-form-label">Inicio:</label>
-                        <input type="date" id="fechaInicio" class="form-control" aria-describedby="passwordHelpInline">
-                    </div>
+                    <h5 style="background: grey; color: white; text-align:center;">REPORTE DE VENTAS POR SERIE</h5>
 
-                    <div class="col-6 col-md-3 mb-3">
-                        <label for="fechaFin" class="col-form-label">Fin:</label>
-                        <input type="date" id="fechaFin" class="form-control" aria-describedby="passwordHelpInline">
-                    </div>
+                    <div class="row">
+                        <div class="" style="width: 355px;">
+                            <label for="almacen" class="col-form-label">Tipo de Documento:</label>
+                            <select id="almacen" class="form-select">
+                                <option>NO DEFINIDO</option>
+                            </select>
+                        </div>
 
-                    <div class="col-12">
-                        <button class="btn btn-primary" type="button">Consultar</button>
-                        <button class="btn btn-warning" type="button">Imprimir</button>
-                        <button class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Cancelar</button>
+                        <div class="row" style="margin-top: 10px;">
+                            <div class="col-md-5">
+                                <label for="inputEndDate" class="col-form-label">Fecha de Inicio:</label>
+                                <input type="date" id="inputEndDate" class="form-control" aria-describedby="passwordHelpInline">
+                            </div>
+
+                            <div class="col-md-5">
+                                <label for="inputFilter" class="col-form-label">Fecha Fin:</label>
+                                <input type="date" id="inputFilter" class="form-control" aria-describedby="passwordHelpInline">
+                            </div>
+                        </div>
                     </div>
+                    <div class="col-md-12" style="margin-top: 30px;">
+                    </div>
+                    <br><br>
                 </div>
-            </form>
+                <hr>
+                <div class="" id="">
 
-            <br>
-            <!-- Tabla 01 -->
-            <div class="container">
-                <b><span class="d-block p-2 col-12 bg-info text-white">Detalles de Venta</span></b>
-                <br>
+                </div>
+            </div>
+            <div class="kardex__right">
+                <div style="display:flex; align-items:center;">
+                    <div style="display:flex; flex-direction:column; margin-top:5px">
 
-                <div class="row">
-                    <div class="col-12">
-                        <div class="table-responsive">
-                        <table class="table border=1">
+                        <h6>REPORTE POR SERIE</h6>
+                        <hr style="margin-top: -7px;">
+
+                        <div class="col-md-12"style="margin-top: -15px;">
+                            <br>
+                            <button style="width: 90px;" class="btn btn-success" type="button">Consultar</button>
+                            <button style="width: 90px;" class="btn btn-warning" type="button">Imprimir</button>
+                            <button style="width: 90px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
+                            <br><br>
+                        </div>
+                        <div class="table--container">
+                            <table class="tbl_venta" style="width: 850px;">
                                 <thead>
                                     <tr>
-                                        <th scope="col-1">Codigo</th>
+                                        <th style="text-align: center;">Codigo</th>
                                         <th scope="col-1">Producto</th>
                                         <th scope="col-1">Cantidad</th>
                                         <th scope="col-1">Unidad</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="detalle_venta">
                                     <tr class="">
-                                        <td scope="row">A01</td>
+                                        <td scope="row" style="text-align: center;">A01</td>
                                         <td scope="row">Bolsa de Plastico Rey</td>
                                         <td scope="row">F</td>
                                         <td scope="row">Bolsas</td>
@@ -76,18 +88,3 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </header>
-
-    <main></main>
-    <footer>
-        <!-- place footer here -->
-    </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script> -->
-</body>
-
-</html>

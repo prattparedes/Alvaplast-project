@@ -1,14 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Mantenimiento de Documentos</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <link rel="stylesheet" type="text/css" href="assets/css/estilo.css">
-    <!-- Bootstrap CSS v5.3.2 -->
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" /> -->
 </head>
 
 <body>
@@ -16,116 +5,97 @@
         <?php
         require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
 
+
         use Models\maintenance_models\TipoDocumento;
         ?>
-        <div class="container">
-            <h1>Mantenimiento de Documentos</h1>
-            <form>
-                <b><span class="d-block p-2 col-12 bg-info text-white">Datos de los Documentos</span></b>
 
-                <div class="row g-3">
-                    <div class="col-12 col-md-2">
-                        <label for="inputPassword6" class="col-form-label">Codigo</label>
-                        <fieldset disabled>
-                            <input type="text" id="codigo" class="form-control" aria-describedby="passwordHelpInline" value="<?= TipoDocumento::getIdDocumento(); ?>">
-                        </fieldset>
-                    </div>
+        <div class="kardex__movement">
+            <div class="kardex__left">
 
-                    <div class="col-12 col-md-4">
-                        <label for="abreviatura" class="col-form-label">Abreviatura</label>
-                        <input type="text" id="abreviatura" class="form-control" aria-describedby="passwordHelpInline">
-                    </div>
-
-                    <div class="col-12 col-md-6">
-                        <label for="descripcion" class="col-form-label">Descripción</label>
-                        <input type="text" id="descripcion" class="form-control" aria-describedby="passwordHelpInline">
-                    </div>
-
-                    <div class="col-12 col-md-2">
-                        <label for="inputPassword6" class="col-form-label"></label>
-                        <div class="d-grid gap-2">
-                            <button type="button" class="btn btn-secondary">Nuevo</button>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-2">
-                        <label for="inputPassword6" class="col-form-label"></label>
-                        <div class="d-grid gap-2">
-                            <a name="" id="" class="btn btn-primary document_submit" href="#" role="button">Grabar</a>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-2">
-                        <label for="inputPassword6" class="col-form-label"></label>
-                        <div class="d-grid gap-2">
-                            <a name="" id="" class="btn btn-success document_submit" href="#" role="button">Modificar</a>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-2">
-                        <label for="inputPassword6" class="col-form-label"></label>
-                        <div class="d-grid gap-2">
-                            <a name="" id="" class="btn btn-danger document_submit" href="#" role="button">Eliminar</a>
-                        </div>
-                    </div>
-                </div>
-            </form>
-
-            <br><br>
-
-            <div class="container">
-                <h1>Listado de Documentos</h1>
+                <h5 style="background: gray; color: white; text-align:center;">MANTENIMIENTO POR DOCUMENTO</h5>
+                <hr>
 
                 <div class="row">
-                    <h5>Buscar por </h5>
+                    <b>
+                        <h6>Datos de Documentos</h6>
+                    </b>
+                </div>
+
+                <div class="row">
                     <div class="row">
-                        <div class="col-6">
-                            <label for="disabledSelect" class="form-label">Descripción</label>
-                            <input type="password" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        <div class="col-md-4" style="width: 400px;">
+                            <label for="inputPassword6" class="col-form-label">Codigo</label>
+                            <fieldset disabled>
+                                <input type="text" id="codigo" class="form-control" aria-describedby="passwordHelpInline">
+                            </fieldset>
                         </div>
+
+                        <div class="col-md-4" style="width: 400px;">
+                            <label for="inputPassword6" class="col-form-label">Abreviatura</label>
+                            <input type="text" id="abreviatura" class="form-control" aria-describedby="passwordHelpInline">
+                        </div>
+
+                        <div class="col-md-4" style="width: 400px;">
+                            <label for="inputPassword6" class="col-form-label">Descripción</label>
+                            <input type="text" id="descripcion" class="form-control" aria-describedby="passwordHelpInline">
+                        </div>
+
                     </div>
+
+
+                    <!-- <div class="col-md-12" style="margin-top: 30px;"> -->
+
+                    <div class="col-md-12">
+                        <br>
+                        <button style="width: 75px;" class="btn btn-primary" type="button">Nuevo</button>
+                        <button style="width: 75px;" class="btn btn-success" type="button">Grabar</button>
+                        <button style="width: 75px;" class="btn btn-warning" type="button">Editar</button>
+                        <button style="width: 80px;" class="btn btn-danger" type="button">Eliminar</button>
+                        <!-- <button style="width: 40px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">X</button> -->
+                        <br><br>
+                    </div>
+                    <!-- </div> -->
                 </div>
 
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="table-responsive">
-                            <table class="table border=1" id="documentsTable">
-                                <thead>
-                                    <tr>
-                                        <th scope="col-md-1">Codigo</th>
-                                        <th scope="col-1">Abreviatura</th>
-                                        <th scope="col-1">Descripción</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $documento = TipoDocumento::getDocumentos();
-                                    foreach ($documento as $doc) {
-                                    ?>
-                                        <tr>
-                                            <td><?= $doc->id_tipodocumento ?></td>
-                                            <td><?= $doc->abreviatura ?></td>
-                                            <td><?= $doc->descripcion ?></td>
-                                        </tr>
-                                    <?php } ?>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                <div class="" id=""></div>
             </div>
-        </div>
-    </header>
+            <div class="kardex__right">
+                <div style="display:flex; align-items:center;">
+                    <div style="display:flex; flex-direction:column; margin-top:5px">
 
-    <main></main>
+                        <h6>LISTADO POR TIPO DE DOCUMENTO</h6>
+                        <hr style="margin-top: -7px;">
+                        <p>Buscar por:</p>
 
-    <footer>
-        <!-- place footer here -->
-    </footer>
+                        <div class="col-md-4" style="width: 400px;">
+                            <label for="inputPassword6" class="form-label">Buscar por Descripción</label>
+                            <input type="text" id="descripcion" class="form-control" aria-describedby="passwordHelpInline" onkeyup="">
 
-    <!-- Bootstrap JavaScript Libraries -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script> -->
-</body>
-
-</html>
+                        </div>
+                        <br>
+                        <div class="table--container">
+                            <div class="table-responsive">
+                                <table class="tbl_venta" id="documentsTable" style="width:500px;">
+                                    <thead>
+                                        <tr>
+                                            <th class="textcenter" width="120">Codigo</th>
+                                            <th class="textcenter" width="120">Abreviatura</th>
+                                            <th class="textcenter" width="120">Descripción</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="detalle_venta">
+                                        <?php
+                                        $documento = TipoDocumento::getDocumentos();
+                                        foreach ($documento as $doc) {
+                                        ?>
+                                            <tr>
+                                                <td class="textcenter" width="120"><?= $doc->id_tipodocumento ?></td>
+                                                <td class="textcenter" width="220"><?= $doc->abreviatura ?></td>
+                                                <td class="textleft" width="320"><?= $doc->descripcion ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>

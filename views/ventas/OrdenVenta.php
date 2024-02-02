@@ -1,17 +1,9 @@
-<!-- 
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
-    <title>Orden de Venta</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> -->
 
-<link rel="stylesheet" type="text/css" href="assets/css/estilo.css">
-<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" /> -->
 </head>
 
 <body>
+
     <header>
         <?php
         require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
@@ -20,117 +12,62 @@
         use Models\maintenance_models\Almacen;
         use Models\maintenance_models\Moneda;
         use Models\maintenance_models\Unidad;
-        use Models\ventas\Venta;
-        ?>
-        <div class="container">
-            <h3>ORDEN DE VENTA</h3>
+        use Models\ventas\Venta; ?>
 
-            <form>
-                <span class="d-block p-1 col-md-10 bg-info text-white">Detalles de Orden de venta</span>
+        <div class="kardex__movement">
+            <div class="kardex__left" style="width: 30%;">
+                <!-- <h5 style="background: black; color: white; text-align:center;">ORDEN DE VENTA</h5> -->
 
                 <div class="row">
-                    <div class="col-md-1">
-                        <label class="col-form-label"></label>
+                    <h5 style="background: gray; color: white; text-align:center;">ORDEN DE VENTA</h5>
+                    <div class="" style="width: 188px;">
+                        <!-- <label for="number" class="col-form-label">Codigo</label> -->
                         <fieldset disabled>
-                            <input type="text" id="numeroDocumento" class="form-control" aria-describedby="passwordHelpInline" value="001">
+                            <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline">
                         </fieldset>
                     </div>
 
-                    <div class="col-md-2">
-                        <label class="col-form-label"></label>
+                    <div class="" style="width: 188px;">
+                        <!-- <label for="number" class="col-form-label">Codigo</label> -->
                         <fieldset disabled>
-                            <input type="text" class="form-control" id="serieDocumento" aria-describedby="passwordHelpInline" value=<?= Venta::getIdVenta(); ?>>
-                            <input type="hidden" id="idVenta" value="0">
+                            <input type="text" class="form-control" id="idVenta" aria-describedby="passwordHelpInline" value=<?= Venta::getIdVenta(); ?>>
                         </fieldset>
-                    </div>
-
-                    <div class="col-md-1"></div>
-
-                    <div class="col-md-6">
-                        <br>
-
-
-
-                        <a style="width: 100px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="nuevaOrdenVenta()">Nuevo</a>
-                        <a style="width: 100px;" name="" id="btnRegister" class="btn btn-success order__btn--inactive" href="#" role="button">Grabar</a>
-                        <a style="width: 100px;" name="" id="btnModify" class="btn btn-warning order__btn--inactive" href="#" role="button" onclick="modificarVenta()">Modificar</a>
-                        <a style="width: 100px;" name="" id="btnDelete" class="btn btn-danger order__btn--inactive" href="#" role="button">Eliminar</a>
-
-
-
-
-                        <button style="width: 100px;" class="btn btn-secondary" onclick="abrirListadoVentas()">Buscar</button>
-
-                        <!-- <button style="width: 90px;" class="btn btn-danger" onclick="loadContent('views/home.php')">Salir</button> -->
                     </div>
                 </div>
+                <hr>
+                <!--Buttoms  -->
+                <!-- <span style="margin-top: -5px;" class="d-block p-1 col-md-12 bg-danger text-white">Datos del Proveedor</span> -->
 
-                <br>
-                <span class="d-block p-1 col-md-5 bg-info text-white">Detalles de Cliente</span>
+
                 <div class="row">
-                    <label style="margin-top: 5px;" class="form-label">Cliente</label>
-                    <div class="col-md-5">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Ingrese nombre de cliente" aria-label="Recipient's username" aria-describedby="" id="cliente" disabled>
-                            <input type="hidden" id="idcliente" value="0">
-                            <button class="btn btn-outline-secondary" onclick="abrirListadoClientes()" type="button">....</button>
-                        </div>
+                    <b>
+                        <h6>Datos del Cliente</h6>
+                    </b>
 
+                    <div class="col-md-12">
+                        <label for="inputPassword6" class="form-label">Cliente</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Ingrese nombre de cliente" aria-describedby="" id="cliente" disabled>
+                            <input type="hidden" id="idcliente" value="0">
+                            <button style="height: 35px;" id="des" class="btn btn-outline-secondary" onclick="abrirListadoClientes()" type="button">....</button>
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-12" style="margin-top: -10px;">
                         <label for="inputPassword6" class="col-form-label">Dirección</label>
                         <input type="text" id="direccion" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
-                    <div class="col-md-1"></div>
-                    <div class="col-md-4">
-                        <span class="d-block p-1 col-md-12 bg-info text-white">Detalles de Producto</span>
-                        <label class="col-md-12 col-form-label">Vendedor</label>
-                        <select id="vendedor" class="form-select" disabled>
-                            <option>Susan Paredes Villanueva</option>
-                            <option>Extranjera</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-5">
-                        <label class="form-label">RUC - DNI</label>
+                    <div class="col-md-12">
+                        <label for="inputPassword6" class="col-form-label">RUC / DNI</label>
                         <input type="text" id="rucDni" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
-
-                    <div class="col-md-1">
-                        <div></div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <label for="sucursal" class="form-label">Sucursal</label>
-                        <select id="sucursal" class="form-select" onchange="listarAlmacenes(this.value)">
-                            <option value="">Seleccionar </option>
-                            <?php
-                            $data = Sucursal::getSucursales();
-                            foreach ($data as $dat) {
-                            ?>
-                                <option value="<?= $dat->id_sucursal ?>"><?= $dat->descripcion ?></option>
-                            <?php
-                            } ?>
-                        </select>
-                    </div>
-
-                    <div class="col-md-2">
-                        <label for="disabledSelect" class="form-label">Almacen</label>
-                        <select id="almacen" class="form-select" disabled>
-                            <option value="">Seleccione almacen</option>
-                            <?php
-                            $almacenes = Almacen::getAlmacenes();
-                            foreach ($almacenes as $almacen) { ?>
-                                <option value="<?= $almacen->id_almacen ?>" style="display:none"><?= $almacen->descripcion ?></option>
-                            <?php } ?>
-                        </select>
-                    </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-2">
-                        <label for="moneda" class="form-label">Moneda</label>
+                    <div class="col-md-6">
+                        <label for="inputPassword6" class="col-form-label">Moneda</label>
                         <select id="moneda" class="form-select" disabled>
                             <option value="">Seleccione moneda</option>
                             <?php
@@ -141,204 +78,279 @@
                         </select>
                     </div>
 
-                    <div class="col-md-2">
-                        <label for="disabledSelect" class="form-label">Tipo de Pago</label>
+                    <div class="col-md-6">
+                        <label for="inputPassword6" class="col-form-label">Tipo de Pago</label>
                         <select id="tipoPago" class="form-select" disabled>
                             <option value="">Elija una opción</option>
                             <option value="E">EFECTIVO</option>
                             <option value="C">CREDITO</option>
                         </select>
                     </div>
+                </div>
 
-                    <div class="col-md-2">
-                        <div></div>
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label for="inputPassword6" class="col-form-label">Inicial</label>
+                        <input type="number" id="inicial" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
-                    <div class="col-md-2">
-                        <label for="fecha" class="col-form-label">Fecha</label>
-                        <input type="datetime-local" id="fecha" class="form-control" disabled>
+                    <div class="col-md-6">
+                        <label for="inputPassword6" class="col-form-label">Monto Financiado</label>
+                        <input type="number" id="montofin" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <label for="inputPassword6" class="col-form-label">Cuotas</label>
+                        <input type="number" id="cuotas" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
-                    <div class="col-md-2">
-                        <label class="col-form-label">Tipo de Documento</label>
-                        <select name="" id="tipoDocumento" class="form-select" disabled>
-                            <option value="A">NOTA DE COBRANZA - A</option>
-                            <option value="B">NOTA DE COBRANZA - B</option>
-                            <option value="C">NOTA DE COBRANZA - C</option>
-                            <option value="D">NOTA DE COBRANZA - D</option>
-                            <option value="E">NOTA DE COBRANZA - E</option>
+                    <div class="col-md-6">
+                        <label for="inputPassword6" class="col-form-label">Monto cuotas</label>
+                        <input type="number" id="montocuo" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                    </div>
+                </div>
+                <hr>
+                <b>
+                    <h6 style="margin-top: 5px;">Datos de Vendedor</h6>
+                </b>
+
+                <!-- <label for="inputPassword6" class="col-md-12 col-form-label">Producto</label> -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <label for="inputPassword6" class="col-form-label">Vendedor</label>
+                        <select id="vendedor" class="form-select" disabled>
+                            <option>Susan Paredes Villanueva</option>
+                            <option>Extranjera</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-2">
-                        <label class="col-form-label">Inicial</label>
-                        <input type="number" id="inicial" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                    <div class="col-md-6">
+                        <label for="inputPassword6" class="col-form-label">Sucursal</label>
+                        <select id="sucursal" class="form-select" disabled>
+                            <option value="">PRINCIPAL</option>
+                            <?php
+                            $data = Sucursal::getSucursales();
+                            foreach ($data as $dat) {
+
+                            ?>
+                                <option value="<?= $dat->id_sucursal ?>"><?= $dat->descripcion ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
 
-                    <div class="col-md-2">
-                        <label class="col-form-label">Monto Financiado</label>
-                        <input type="number" id="montofin" class="form-control" aria-describedby="passwordHelpInline" disabled>
-                    </div>
-
-                    <div class="col-md-2">
-                        <!-- Deja este espacio vacío o agrega contenido según sea necesario -->
-                    </div>
-
-                    <div class="col-md-4">
-                        <label class="col-form-label">Notas</label>
-                        <textarea style="height: 5px;" class="form-control" placeholder="Leave a comment here" id="notas" disabled></textarea>
+                    <div class="col-md-6">
+                        <label for="inputPassword6" class="col-form-label">Almacen</label>
+                        <select id="almacen" class="form-select" disabled>
+                            <option value="">ALMACEN 1</option>
+                            <?php
+                            $almacenes = Almacen::getAlmacenes();
+                            foreach ($almacenes as $almacen) { ?>
+                                <option value="<?= $almacen->id_almacen ?>" style="display:none"><?= $almacen->descripcion ?></option>
+                            <?php } ?>
+                        </select>
                     </div>
                 </div>
+
 
                 <div class="row">
-                    <div class="col-md-2">
-                        <label class="col-form-label">Cuotas</label>
-                        <input type="number" id="cuotas" class="form-control" aria-describedby="passwordHelpInline" disabled>
+
+                    <div class="" style="width: 200px;">
+                        <label for="inputPassword6" class="col-form-label">Fecha</label>
+                        <input type="datetime-local" id="fecha" class="form-control" disabled>
                     </div>
 
-                    <div class="col-md-2">
-                        <label class="col-form-label">Monto Cuotas</label>
-                        <input type="number" id="montocuo" class="form-control" aria-describedby="passwordHelpInline" disabled>
-                    </div>
+                    <div class="" style="width: 200px;">
+                        <label for="inputPassword6" class="col-form-label"></label>
 
-                    <div class="col-md-2">
-                        <!-- Deja este espacio vacío o agrega contenido según sea necesario -->
-                    </div>
-
-
-                </div>
-
-                <div class="col-md-1">
-                    <!-- Deja este espacio vacío o agrega contenido según sea necesario -->
-                </div>
-                <br>
-                <div class="row">
-                    <span class="d-block p-1 col-md-10 bg-info text-white">Detalles de Producto</span>
-                    <label class="col-md-12 col-form-label">Producto</label>
-
-                    <div class="col-md-4">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="" id="productname">
-                            <!-- <button class="btn btn-outline-secondary" href="" onclick="loadContent('views/modals/listadoproductosventa.php')" type="button" id="">....</button> -->
-                            <button class="btn btn-outline-secondary" href="" onclick="loadContent3()" type="button" id="">....</button>
-                        </div>
-                    </div>
-
-                    <div class="col-md-1">
-                        <!-- Deja este espacio vacío o agrega contenido según sea necesario -->
                     </div>
 
                     <div class="row">
-                        <div class="col-md-2">
-                            <label for="disabledSelect" class="form-label">Unidad</label>
-                            <select id="productunit" class="form-select" disabled>
-                                <option value="F">Fardos</option>
+                        <div class="col-md-12">
+                            <label for="inputPassword6" class="col-form-label">Tipo de documento</label>
+                            <select name="" id="tipoDocumento" class="form-select" disabled>
+                                <option value="A">NOTA DE COBRANZA - A</option>
+                                <option value="B">NOTA DE COBRANZA - B</option>
+                                <option value="C">NOTA DE COBRANZA - C</option>
+                                <option value="D">NOTA DE COBRANZA - D</option>
+                                <option value="E">NOTA DE COBRANZA - E</option>
                             </select>
                         </div>
+                        <div class="col-md-12">
+                            <label for="inputPassword6" class="col-form-label">Notas</label>
 
-                        <div class="col-md-1">
-                            <label class="col-form-label">Cantidad</label>
-                            <input type="text" id="productquantity" class="form-control" aria-describedby="passwordHelpInline" disabled>
-                        </div>
-
-                        <div class="col-md-1">
-                            <label class="col-form-label">P_Unitario</label>
-                            <input type="text" id="productprice" class="form-control" aria-describedby="passwordHelpInline" disabled>
-                        </div>
-
-                        <div class="col-md-1">
-                            <label class="col-form-label">Descuento</label>
-                            <input type="text" id="productdiscount" class="form-control" aria-describedby="passwordHelpInline" disabled>
-                        </div>
-
-                        <div class="col-md-1">
-                            <label class="col-form-label">Stock</label>
-                            <input type="number" id="productstock" class="form-control" aria-describedby="passwordHelpInline" disabled>
-                        </div>
-
-                        <div class="col-md-3">
-                            <div class="mb-3"></div>
-                            <div class="mb-3"><br>
-                                <a name="" id="" class="btn btn-primary" href="#" role="button" onclick="añadirProductoOrdenVenta()">Agregar</a>
-                                <a name="" id="" class="btn btn-warning" href="#" role="button">Cancelar</a>
-                            </div>
+                            <textarea style="height: 5px;" class="form-control" placeholder="Leave a comment here" id="notas" disabled></textarea>
                         </div>
                     </div>
 
-                    <div class="container">
+                </div>
+                <br>
+            </div>
+
+
+            <div class="kardex__right">
+                <div style="display:flex; align-items:center;">
+                    <div style="display:flex; flex-direction:column; margin-top:4px">
+
+
+                        <div class="col-md-12" style="margin-top: -5px;">
+                            <!-- <a style="width: 80px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="nuevaOrdenVenta()">Nuevo</a>
+                            <a style="width: 75px;" name="" id="" class="btn btn-success" href="#" role="button">Grabar</a>
+                            <a style="width: 75px;" name="" id="" class="btn btn-warning" href="#" role="button">Editar</a>
+                            <a style="width: 78px;" name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a> -->
+
+                            <a style="width: 90px;" name="" id="btnNuevo" class="btn btn-primary" role="button" onclick="nuevaOrdenVenta()">Nuevo</a>
+                            <a style="width: 90px;" name="" id="btnRegister" class="btn btn-success order__btn--inactive" role="button">Grabar</a>
+                            <a style="width: 90px;" name="" id="btModify" class="btn btn-warning order__btn--inactive">Editar</a>
+                            <a style="width: 90px;" name="" id="btnDelete" class="btn btn-danger order__btn--inactive" role="button">Eliminar</a>
+
+
+
+
+                            <button style="width: 90px;" class="btn btn-secondary" onclick="loadContent('views/modals/listaordenventa.php')">Buscar</button>
+                        </div>
                         <br>
-
-                        <div class="row">
-                            <div class="col-auto">
-                                <div class="table-responsive">
-                                    <table class="tbl_venta" id="ordertable">
-                                        <thead>
-                                            <tr>
-                                                <!-- <th>Codigo</th> -->
-                                                <th width="200">Producto</th>
-                                                <th class="textcenter" width="120">Cantidad</th>
-                                                <th class="textcenter" width="120">Unidad</th>
-                                                <th class="textcenter" width="120">PreVenta</th>
-                                                <th class="textcenter" width="120">PreReal</th>
-                                                <th class="textcenter" width="120">Total</th>
+                        <hr style="margin-top: -15px;">
+                        <b>
+                            <h6 style="margin-top: 5px;">Detalles de Producto</h6>
+                        </b>
 
 
-
-                                            </tr>
-                                        </thead>
-
-                                        <!-- <tr> -->
-
-                                        <tbody id="detalle_venta">
-
-                                        </tbody>
-                                        <tfoot>
-                                            <tr>
-                                                <td colspan="5" class="textright">Precio Bruto</td>
-                                                <td class="textright" id="productsubtotal1">0</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td colspan="5" class="textright">Descuento</td>
-                                                <td class="textright" id="productDescuento">0</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td colspan="5" class="textright">Precio Neto</td>
-                                                <td class="textright" id="productsubtotal2">0</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td colspan="5" class="textright">IGV S/.</td>
-                                                <td class="textright" id="productigv">0</td>
-                                            </tr>
-
-                                            <tr>
-                                                <td colspan="5" class="textright">Total S/.</td>
-                                                <td class="textright" id="productTotal">0</td>
-                                            </tr>
-                                        </tfoot>
-
-                                    </table>
-                                </div>
+                        <div class="" style="width: 398px; margin-top:5px">
+                            <label for="inputPassword6" class="form-label">Producto</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="productname" placeholder="Seleccione Producto" aria-label="Recipient's username" aria-describedby="" disabled>
+                                <input type="hidden" type="text" id="productid">
+                                <button style="height: 35px;" class="btn btn-outline-secondary" href="" onclick="abrirListadoProductosVenta()" type="button">....</button>
                             </div>
+                        </div>
+                        <div><br></div>
+
+                        <div class="row" style="margin-top: -15px;">
+                            <div class="" style="width: 170px;">
+                                <label for="disabledSelect" class="form-label">Unidad</label>
+                                <select id="productunit" class="form-select" disabled>
+                                    <?php
+                                    $unidades = Unidad::getUnidades();
+                                    foreach ($unidades as $unidad) { ?>
+                                        <option value="<?= $unidad->id_unidad ?>"><?= $unidad->abreviatura ?></option>
+                                    <?php } ?>
+                                </select>
+                            </div>
+
+                            <div class="" style="width: 90px;margin-top:-5px">
+                                <label for="inputPassword6" class="col-form-label">Cantidad</label>
+                                <input type="text" id="productquantity" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                            </div>
+
+                            <div class="col-md-2" style="width: 110px;margin-top:-5px">
+                                <label for="inputPassword6" class="col-form-label">P_Unitario</label>
+                                <input type="text" id="productprice" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                            </div>
+
+                            <div class="col-md-2" style="width: 110px;margin-top:-5px">
+                                <label for="inputPassword6" class="col-form-label">Descuento</label>
+                                <input type="text" id="productdiscount" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                            </div>
+
+                            <div class="" style="width: 95px;margin-top:-5px">
+                                <label for="inputPassword6" class="col-form-label">Stock</label>
+                                <input type="number" id="productstock" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-4" style="margin-top: 10px;">
+                            <a name="" id="" class="btn btn-primary" href="#" role="button" onclick="añadirProductoOrdenVenta()">Agregar</a>
+                            <a name="" id="" class="btn btn-warning" href="#" role="button">Cancelar</a>
+
+                        </div>
+
+
+
+
+
+
+
+                        <hr>
+                        <div class="table--container">
+                            <table style="width:100%;" class="tbl_venta" id="ordertable">
+                                <thead>
+                                    <tr>
+                                        <th width="200">Producto</th>
+                                        <th width="70">Cantidad</th>
+                                        <th class="textcenter" width="120">Unidad</th>
+                                        <th class="textcenter" width="120">PreVenta</th>
+                                        <th class="textcenter" width="120">PreReal</th>
+                                        <th class="textcenter" width="120">Total</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="detalle_venta">
+
+
+                                </tbody>
+
+
+                                <tfoot class="footer">
+
+                                    <tr>
+                                        <td colspan="5" class="textright"></td>
+                                        <td class="textright">--</td>
+                                    </tr>
+
+
+                                    <tr>
+                                        <td colspan="5" class="textright">Precio Bruto</td>
+                                        <td class="textright" id="productsubtotal1">0.00</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="5" class="textright">Descuento</td>
+                                        <td class="textright" id="productDescuento">0.00</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="5" class="textright">Precio Neto</td>
+                                        <td class="textright" id="productsubtotal2">0.00</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="5" class="textright">IGV S/.</td>
+                                        <td class="textright" id="productigv">0.00</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="5" class="textright">Total S/.</td>
+                                        <td class="textright" id="productTotal">00.00</td>
+                                    </tr>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
-        </form>
-        </div>
-    </header>
-    <main></main>
-    <footer>
-        <!-- Coloca el contenido del pie de página aquí -->
-    </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+        <!-- <script>
+      $(function(){
+        $("#btn").attr("disabled","true");
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script> -->
+        $("#des").keyup(function(){
+          if($("#des").val()!="")
+          $("#btn").removeAttr("disabled");
+        });
+      });
+    </script>
+<script src="https://code.jquery.com/jquery-3.7.1.js" 
+integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script> -->
+
+
+
+
 </body>
-
-</html>
+</form>

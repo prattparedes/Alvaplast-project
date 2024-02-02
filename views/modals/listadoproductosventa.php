@@ -1,15 +1,3 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link rel="stylesheet" type="text/css" href="assets/css/estilo.css">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" /> -->
 </head>
 
 <body>
@@ -17,109 +5,98 @@
         <?php
         require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
 
+
         use Models\maintenance_models\Producto;
         ?>
 
-        <div class="container">
-            <h3>LISTADO DE PRODUCTOS </h3>
-            <form>
-                <b> <span class="d-block p-2 col-9 bg-info text-white">Datos de Productos</span></b>
-                <br>
+        <div class="kardex__movement">
+            <div class="kardex__left">
+
                 <div class="row">
+                    <h5 style="background: black; color: white; text-align:center;">PRODUCTOS</h5>
 
-                    <b> <span class="">Buscar por:</span></b>
-                    <div class="" style="width: 280px;">
-                        <label for="inputPassword6" class="col-form-label">Nombre</label>
+                    <b>
+                        <p>Buscar por:</p>
+                    </b>
+                    <hr>
 
-                        <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline">
-                    </div>
-
-                    <div class="" style="width: 280px;">
-                        <label for="inputPassword6" class="col-form-label">Codigo del Producto</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                    </div>
-
-                    <div class="" style="width: 280px;">
-                        <label for="inputPassword6" class="col-form-label">Procedencia</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                    </div>
-
-                </div>
-                <br>
-
-            </form>
-
-            <br>
-            <a style="width: 150px;" high="50" name="" id="" class="btn btn-success" href="#" role="button">Consultar</a>
-            <a style="width: 150px;" high="50" name="" id="" class="btn btn-danger" href="#" onclick="loadContent('views/ventas/ordenventa.php')" role="button">Cancelar</a>
-            <div class="container">
-                <h1>Productos</h1>
-                <b> <span class="d-block p-2 col-9 bg-info text-white">Detalles de Productos</span></b>
-
-                <br>
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="table-responsive">
-                            <table class="table border=1">
-                                <thead>
-                                    <tr>
-                                        <th scope="col-md-1">Codigo</th>
-                                        <th scope="col-md-1">Nombre</th>
-                                        <th scope="col-1">Procedencia</th>
-                                        <th scope="col-1">Precio Real</th>
-                                        <th scope="col-1">Precio venta</th>
-                                        <th scope="col-1">Stock</th>
-
-
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <?php if (isset($_GET["idAlmacen"]) && isset($_GET["idCliente"])) {
-                                        $almacen = $_GET["idAlmacen"];
-                                        $cliente = $_GET["idCliente"];
-
-                                        $productos = Producto::mostrarStockProducto($almacen, $cliente);
-                                        foreach ($productos as $produc) { ?>
-
-                                            <tr ondblclick="seleccionarProductoVenta(this)">
-                                                <td><?= $produc->id_producto ?></td>
-                                                <td><?= $produc->nombre_producto ?></td>
-                                                <td><?= $produc->procedencia ?></td>
-                                                <td><?= $produc->precio_venta ?></td>
-                                                <td><?= $produc->precio_compra ?></td>
-                                                <td><?= $produc->stock ?></td>
-                                            </tr>
-
-                                    <?php
-                                        }
-                                    } ?>
-
-                                </tbody>
-                            </table>
-
+                    <div class="row">
+                        <div class="col-md-4" style="width: 400px;">
+                            <label for="inputPassword6" class="col-form-label">Nombre</label>
+                            <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" onkeyup="filtrarProductosVenta(this.value)">
                         </div>
 
+                        <div class="col-md-4" style="width: 400px;">
+                            <label for="inputPassword6" class="col-form-label">Codigo Producto</label>
+                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        </div>
+
+                        <div class="col-md-4" style="width: 400px;">
+                            <label for="inputPassword6" class="col-form-label">Procedencia</label>
+                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                        </div>
+
+
+
                     </div>
 
+                    <div class="col-md-12">
+                        <br>
+                        <button style="width: 150px;" class="btn btn-danger" onclick="CancelarYRestaurarVenta()" type="button" id="">Cancelar</button>
 
-
-
+                        <br><br>
+                    </div>
                 </div>
 
+                <div class="" id=""></div>
             </div>
+            <div class="kardex__right">
+                <div style="display:flex; align-items:center;">
+                    <div style="display:flex; flex-direction:column; margin-top:5px">
+
+                        <h6 style="margin-top: -5ox;">LISTADO DE PRODUCTOS</h6>
+                        <hr style="margin-top: -7px;">
 
 
 
-    </header>
-    <main></main>
-    <footer>
-        <!-- place footer here -->
-    </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script> -->
-</body>
+                        <br>
+                        <div class="table--container" style="margin-top: -15px;">
+                            <div class="table-responsive">
+                                <table class="table border=1">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col-md-1">Codigo</th>
+                                            <th scope="col-md-1">Nombre</th>
+                                            <th scope="col-1">Procedencia</th>
+                                            <th scope="col-1">Precio Real</th>
+                                            <th scope="col-1">Precio venta</th>
+                                            <th scope="col-1">Stock</th>
 
-</html>
+
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        <?php
+                                        $productos = Producto::getProductos();
+                                        foreach ($productos as $producto) {
+                                            // Verifica si el stock es mayor que 0
+                                            if ($producto->stock > 0) { ?>
+                                                <tr onclick="seleccionarProductoVenta(this)">
+                                                    <td><?= $producto->id_producto ?></td>
+                                                    <td><?= $producto->nombre_producto ?></td>
+                                                    <td><?= $producto->procedencia ?></td>
+                                                    <td><?= number_format($producto->precio_compra, 2) ?></td>
+                                                    <td><?= number_format($producto->precio_venta, 2) ?></td>
+                                                    <td style="display:none;"><?= $producto->id_unidad ?></td>
+                                                    <td><?= $producto->stock ?></td>
+                                                </tr>
+                                        <?php }
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>

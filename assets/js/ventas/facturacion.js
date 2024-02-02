@@ -51,3 +51,32 @@ function mostrarFacturacion(tbodyId) {
   document.getElementById(tbodyId).style.display = 'table-row-group'
 
 }
+
+/*  */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

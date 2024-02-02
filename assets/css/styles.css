@@ -1,17 +1,9 @@
-/*
-
-GENERAL
-
-*/
+/* 
 
 hr {
   margin: 0.5rem 0;
 }
-
-/*
-Home
 */
-
 .home {
   display: flex;
   flex-direction: column;
@@ -21,6 +13,243 @@ Home
 .home__logo {
   width: 600px;
 }
+
+.nav-item {
+  cursor: pointer;
+  margin: 0 8px;
+ 
+}
+
+.nav-a{
+  font-size: 12px;
+}
+
+.btn-secondary {
+  background-color: #212529;
+  border: none;
+}
+
+.navbar-nav {
+  align-items: center;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+  background-color: var(--bs-btn-hover-bg);
+  
+}
+
+.dropdown-toggle {
+  border: none;
+  background-color: #212529;
+}
+
+.nav-link {
+  color: var(--bs-emphasis-color);
+  padding: 6px 12px;
+ 
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: rgba(var(--bs-emphasis-color-rgb), 0.85);
+  background-color: var(--bs-tertiary-bg);
+}
+
+.nav-pills .nav-link {
+  margin-left: 1.25rem;
+  
+}
+
+.nav-pills .nav-link.active {
+  color: rgba(var(--bs-emphasis-color-rgb), 0.85);
+  background-color: var(--bs-tertiary-bg);
+  
+}
+
+.collapse {
+  display: none;
+}
+
+.collapse.show {
+  display: block;
+}
+
+.nav-pills .nav-link.active {
+  font-weight: 600;
+}
+
+.form-select:focus {
+  border-color: #dee2e6;
+  outline: 0;
+  box-shadow: none;
+}
+
+/*- Tabla-*/
+
+/* #detalle_venta tr{
+	background-color: #280bcd !important;
+}
+#detalle_venta td{
+	border-bottom: 1px solid #CCC;
+}
+ */
+
+
+
+
+
+
+
+
+
+
+
+thead {
+  background-color: #034481 !important;
+  color: #ffffff !important;
+font-size: 13px;
+  
+}
+
+/* td {
+  color: #303030 !important;
+  font-size: 13px;
+} */
+/* Aplica color fondo table */
+td {
+  background-color: #ffffff !important;
+  color: #706c6c !important;
+  font-size: 13px;
+} 
+
+
+#detalle_venta tr{
+	background-color: #FFF !important;
+}
+#detalle_venta td{
+	border-bottom: 1px solid #CCC;
+} 
+
+
+
+
+
+
+
+
+
+
+tr:hover td{
+	background-color: rgb(129, 193, 245);
+	color:#dee2e6;
+}
+
+tbody tr {
+  cursor: pointer;
+}
+
+.textright{
+	text-align: right;
+}
+
+.textcenter{
+	text-align: center;
+}
+
+/*Quitar sombreado input*/
+input:focus, select:focus, select, input.form-control:focus {
+  outline:none !important;
+  outline-width: 0 !important;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+
+}
+
+.form-select{
+  height: 35px;
+  font-size: 13px;
+  outline:none !important;
+
+}
+
+.form-control{
+  height: 35px;
+  
+}
+
+select:focus{ outline: none;}
+
+* {
+  box-sizing: border-box;
+}
+
+@media(min-width:768px){
+  .contenedor{
+ 
+      display: flex;
+      padding: 10px; 
+      margin: 0 auto;
+      max-width: 1200px;
+      width: 95%;
+      padding: 0px;
+      display: flex;
+      height: 20px;
+      margin-left: 2%;
+       
+  }
+}
+
+@media(min-width:768px) {
+  .contenedor-formulario {
+      display: flex;
+  }
+}
+
+.formulario {
+  padding: 50px;
+  background-color: var(--azul);
+}
+
+.kardex__movement {
+  display: flex;
+  height: 100%;
+}
+
+.kardex__left {
+  min-width: 400px;
+  padding: 8px 16px;
+  background-color: rgb(255, 255, 255);
+  width: 22%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: rgb(223, 220, 220) 1.25px solid;
+  
+}
+
+.kardex__right {
+  min-width: 800px;
+  padding: 8px 16px;
+  width: 75%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/*----------------*/
+.table--container {
+  max-height: 600px; /* Altura máxima deseada para la tabla */
+  overflow-y: auto; /* Habilita el desplazamiento vertical cuando el contenido excede la altura máxima */
+}
+
+.table--container::-webkit-scrollbar {
+  display: none;
+}
+
+/************************
+/***********************/
 
 .main__container {
   width: 100vw;
@@ -36,17 +265,6 @@ Home
   overflow-x: hidden;
 }
 
-/* .home__btn {
-  font-size: 24px;
-  margin: 8px;
-  max-width: 100%;
-  height: 100px;
-  border: none;
-  display: grid;
-  align-items: center;
-  justify-content: center;
-}
-
 .home__btns {
   margin-top: 20px;
   display: grid;
@@ -54,25 +272,6 @@ Home
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-/*
-Botones
-*/
-
-/* .btn__add {
-  background-color: #2fc02f;
-  color: #fff;
-  border: none;
-  border-radius: 24px;
-  padding: 8px 16px;
-  font-size: 14px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background-color 120ms ease;
-} */
-
-/* .btn__add:hover {
-  background-color: rgb(55, 206, 87);
-} */ */
 
 .form__btn {
   background-color: #f5f5f5;
@@ -82,41 +281,17 @@ Botones
   background-color: #c0c0c0;
 }
 
-/*
-Tablas
-*/
-
-.table--container {
-  max-height: 800px; /* Altura máxima deseada para la tabla */
-  overflow-y: auto; /* Habilita el desplazamiento vertical cuando el contenido excede la altura máxima */
-}
-
-.table--container::-webkit-scrollbar {
-  display: none;
-}
-
-
-thead {
-  background-color: #034481 !important;
-  color: #ffffff !important;
-  
-}
-
-tfoot{
+/* tfoot{
   background-color: #034481 !important;
   
-}
+} */
 
+/* */
 
-td {
-  background-color: #f9f9f9 !important;
-  color: #777 !important;
-}
-
-td a {
+/* td a {
   margin-right: 5px !important;
   color: #777;
-}
+} */
 
 #deleteProduct {
   color: red !important;
@@ -125,18 +300,11 @@ td a {
   cursor: pointer;
 }
 
-/*
-Navbar
-*/
 
-/* tr:nth-child(even){
-  ba
-} */
-
-tr:hover td{
+/* tr:hover td{
 	background-color: rgb(7, 78, 136);
 	color: #dee2e6;
-}
+} */
 
 body {
   min-height: 100vh;
@@ -155,66 +323,7 @@ main {
   overflow-y: hidden;
 }
 
-.nav-item {
-  cursor: pointer;
-  margin: 0 8px;
-}
-
-.btn-secondary {
-  background-color: #212529;
-  border: none;
-}
-
-.navbar-nav {
-  align-items: center;
-}
-
-.navbar-nav .nav-item .nav-link:hover {
-  background-color: var(--bs-btn-hover-bg);
-}
-
-.dropdown-toggle {
-  border: none;
-  background-color: #212529;
-}
-
-.nav-link {
-  color: var(--bs-emphasis-color);
-  padding: 6px 12px;
-}
-
-.nav-link:hover,
-.nav-link:focus {
-  color: rgba(var(--bs-emphasis-color-rgb), 0.85);
-  background-color: var(--bs-tertiary-bg);
-}
-
-.nav-pills .nav-link {
-  margin-left: 1.25rem;
-}
-
-.nav-pills .nav-link.active {
-  color: rgba(var(--bs-emphasis-color-rgb), 0.85);
-  background-color: var(--bs-tertiary-bg);
-}
-
-.collapse {
-  display: none;
-}
-
-.collapse.show {
-  display: block;
-}
-
-.nav-pills .nav-link.active {
-  font-weight: 600;
-}
-
-/*
-
-  Maintenance
-
-  */
+/*  */
 
 .maintenance__btns {
   margin: 0 auto;
@@ -243,11 +352,6 @@ main {
   background-color: #c0c0c0 !important;
 }
 
-/*
-
-  Buy-Sell order Page
-
-  */
 
 .buyorder,
 .sellorder,
@@ -293,12 +397,6 @@ main {
   color: lightgray !important;
 }
 
-/*
-
-  Modals
-
-  */
-
 .modal__background {
   background-color: rgba(202, 202, 202, 0.8);
   position: absolute;
@@ -317,8 +415,7 @@ main {
   width: auto;
   height: auto;
   min-height: 400px;
-  /* max-height: 90%;
-    overflow: scroll; */
+  
   border: #082160 1.5px solid;
   background-color: white;
   border-radius: 20px;
@@ -371,17 +468,8 @@ main {
   display: none;
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
-}
 
-.table th,
-.table td {
-  border: 1px solid #ccc;
-  padding: 8px;
-  text-align: left;
-}
+/*  */
 
 .table__maintenance {
   max-width: 600px;
@@ -391,21 +479,15 @@ main {
   text-align: center;
 }
 
-.table__maintenance td, .table__maintenance th{
+/* .table__maintenance td, .table__maintenance th{
   padding: 0;
   border: none;
-}
+} */
 
-.table__maintenance--big  {
+/* .table__maintenance--big  {
   font-size: 12px;
-}
+} */
 
-/* Fijar encabezados */
-.table thead {
-  position: sticky;
-  top: 0;
-  background-color: #f5f5f5;
-}
 
 .modal__btn--search {
   margin-left: 20px;
@@ -424,34 +506,9 @@ main {
   transform: translate(-50%, -50%);
 }
 
-/*
 
-Kardex Movement
 
-*/
 
-.kardex__movement {
-  display: flex;
-  height: 100%;
-}
 
-.kardex__left {
-  min-width: 400px;
-  padding: 8px 16px;
-  background-color: lightgray;
-  width: 22%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  border: black 1.25px solid;
-}
 
-.kardex__right {
-  min-width: 900px;
-  padding: 8px 16px;
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  border: black 1.25px solid;
-}
+

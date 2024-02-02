@@ -1,86 +1,95 @@
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>Title</title>
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" /> -->
-    <link rel="stylesheet" type="text/css" href="assets/css/estilo.css">
- 
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" /> -->
 </head>
 
 <body>
     <header>
-        <div class="container">
-            <h1 class="mt-4 mb-4">REGULAR DOCUMENTO</h1>
+        <?php
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
 
-            <form>
-                <div class="bg-info text-white p-2 mb-3">Reporte de ventas por correlativos</div>
+        use Models\maintenance_models\Sucursal;
+        use Models\maintenance_models\Almacen;
+        use Models\maintenance_models\Moneda;
+        use Models\maintenance_models\Unidad;
+        use Models\compras\Compra;
+
+
+        ?>
+
+        <div class="kardex__movement">
+            <div class="kardex__left" style="width: 30%;">
+
+
 
                 <div class="row">
-                    <div class="col-md-3">
-                        <label for="inputStartDate" class="form-label">Fecha de Inicio:</label>
-                        <input type="date" id="inputStartDate" class="form-control" aria-describedby="passwordHelpInline">
+                <h5 style="background: gray; color: white; text-align:center;">REGULADOR DE NRO. DOCUMENTO</h5>
+                   
+                     <hr>  
+                     <h6>REPORTE DE VENTAS POR CORRELATIVOS</h6> 
+                    <div class="row">
+                        <div class="col-md-4" style="width: 400px;">
+                            <label for="inputStartDate" class="col-form-label">Fecha de Inicio:</label>
+                            <input type="date" id="inputStartDate" class="form-control" aria-describedby="passwordHelpInline">
+                        </div>
+
+
+
+                        <div class="col-md-4" style="width: 400px;">
+                            <label for="inputEndDate" class="col-form-label">Fecha de Fin:</label>
+                            <input type="date" id="inputEndDate" class="form-control" aria-describedby="passwordHelpInline">
+                        </div>
                     </div>
 
-                    <div class="col-md-3">
-                        <label for="inputEndDate" class="form-label">Fecha de Fin:</label>
-                        <input type="date" id="inputEndDate" class="form-control" aria-describedby="passwordHelpInline">
+                    <div class="col-md-12" style="margin-top: 30px;">
+                    <a style="width: 95px;" name="" id="" class="btn btn-success buy_submit" href="#" role="button">Consultar</a>
+                    <button style="width: 95px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
                     </div>
-
-                    <div class="col-md-4 mt-3 mt-md-0">
-                        <button class="btn btn-success me-2" type="button">Consultar</button>
-                        <button class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
-                    </div>
+                    <br><br><br><br>
                 </div>
 
-                <div class="row mt-3">
-                    <div class="col-12">
-                        <!-- Empty column for spacing -->
-                    </div>
-                </div>
-            </form>
-
-            <!-- Tabla 01 -->
-            <div class="bg-info text-white p-2 mt-4">Detalles de Producto</div>
-            <div class="table-responsive">
-            <table class="table border=1">
+                <div class="" id=""></div>
+            </div>
+            <div class="kardex__right">
+                <div style="display:flex; align-items:center;">
+                    <div style="display:flex; flex-direction:column; margin-top:5px">
+                      
+                    <b> <h6>DETALLES</h6></b>
+                  
+                <hr style="margin-top: -3px;">
+                <div class="table--container">
+                    <table style="width:100%;" class="tbl_venta" id="ordertable">
                     <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Producto</th>
-                            <th scope="col">Unidad</th>
-                            <th scope="col">Linea</th>
-                            <th scope="col">Marca</th>
-                            <th scope="col">Stock</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td scope="row">A01</td>
-                            <td scope="row">Bolsa de Plastico Rey</td>
-                            <td scope="row">F</td>
-                            <td scope="row">Bolsas</td>
-                            <td scope="row">Alfa</td>
-                            <td scope="row">0.0</td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <tr>
+                                    <th class="textcenter" width="50">-</th>
+                                    <th class="textcenter" width="200">Movimiento</th>
+                                    <th class="textcenter" width="100">Documento</th>
+                                    <th class="textcenter" width="100">Correlativo</th>
+                                    <th class="textcenter" width="200">Razón Social</th>
+                                    <th class="textright" width="100">Monto</th>
+
+                                </tr>
+                                    </thead>
+                                    
+                                    <tbody id="detalle_venta">
+                                <tr>
+                                    <td class="no-pad-top no-pad-bot align-middle">
+                                        <div class="margin-l-15 checkbox checkboxStyle-table checkColorGreenLight">
+                                            <input type="checkbox" class="tableid" name="tableid" id="tableid" class="click">
+                                            <label class="s18 text-normal"></label>
+                                    <td scope="row">olsa de Plastico Rey</td>
+                                    <td class="textcenter">1020304050</td>
+                                    <td class="textcenter">00000001</td>
+                                    <td class="textcenter">La Casita Alva</td>
+                                    <td class="textright">00.00</td>
+
+
+                                </tr>
+                                </tbody>
+
+
+                                        <tfoot class="footer">
+
+                                      
+                                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
-    </header>
-
-    <main></main>
-    <footer>
-        <!-- place footer here -->
-    </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <!-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script> -->
-</body>
-
-</html>

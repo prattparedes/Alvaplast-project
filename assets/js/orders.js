@@ -21,14 +21,14 @@ function establecerFechaHora() {
 
 // Función para activar todos los inputs, selects, etc.
 function activarInputs() {
-  elementosFormulario = document.querySelectorAll("input, select, textarea");
+  elementosFormulario = document.querySelectorAll("input, select, textarea, a, button");
   elementosFormulario.forEach(function (elemento) {
     elemento.removeAttribute("disabled");
   });
 }
 
 function desactivarInputs() {
-  elementosFormulario = document.querySelectorAll("input, select, textarea");
+  elementosFormulario = document.querySelectorAll("input, select, textarea, a, button");
   elementosFormulario.forEach(function (elemento) {
     elemento.setAttribute("disabled", "disabled");
   });
