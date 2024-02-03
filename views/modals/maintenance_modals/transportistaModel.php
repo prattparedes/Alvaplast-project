@@ -34,7 +34,7 @@
 
                 <div class="col-md-10">
                     <label for="nombres" class="col-form-label">Nombre</label>
-                    <input type="text" id="nombres" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                    <input type="text" id="nombres" class="form-control" aria-describedby="passwordHelpInline" disabled>
                 </div>
 
                 <div class="row">
@@ -51,7 +51,7 @@
 
                 <div class="col-md-10">
                     <label for="ruc" class="col-form-label">RUC</label>
-                    <input type="text" id="ruc" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                    <input type="text" id="ruc" class="form-control" aria-describedby="passwordHelpInline" disabled>
                 </div>
 
                 <div class="row">
@@ -62,33 +62,32 @@
 
                     <div class="col-md-5">
                         <label for="licencia" class="col-form-label">Licencia Nro.</label>
-                        <input type="text" id="licencia" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                        <input type="text" id="licencia" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
                     <div class="col-md-10">
                         <label for="inputPassword6" class="col-form-label">Dirección</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
                     <div class="col-md-5">
                         <label for="inputPassword6" class="col-form-label">Telefono</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
                     <div class="col-md-5">
                         <label for="inputPassword6" class="col-form-label">Celular</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
                 </div>
 
                 <br>
                 <div class="col-md-12">
-                    <a name="" id="" class="btn btn-primary provider_submits" href="#" role="button">Nuevo</a>
-                    <a name="" id="" class="btn btn-success provider_submits" href="#" role="button">Grabar</a>
-                    <!-- <button type="button" class="btn btn-success me-2 provider_submit">Grabar</button> -->
-                    <a name="" id="" class="btn btn-warning  provider_submits" href="#" role="button">Modificar</a>
-                    <a name="" id="" class="btn btn-danger provider_submits" href="#" role="button">Eliminar</a>
+                    <button id="btnNuevo" class="btn btn-primary" type="button" onclick="botónNuevoMantenimiento()">Nuevo</button>
+                    <button id="btnGrabar" class="btn btn-success order__btn--inactive" type="button" onclick="botónGrabarMantenimiento('1')">Grabar</button>
+                    <button id="btnEditar" class="btn btn-warning order__btn--inactive" type="button" onclick="botónEditarMantenimiento()">Editar</button>
+                    <button id="btnEliminar" class="btn btn-danger order__btn--inactive" type="button" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
                 </div>
                 <hr>
 

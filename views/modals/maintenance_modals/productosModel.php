@@ -22,11 +22,11 @@
                 <div class="row">
                     <div class="col-md-3">
                         <span style="display:inline-block; width:40px; margin-bottom:8px;">Codigo:</span>
-                        <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                        <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
                     <div class="col-md-5">
                         <label for="selectProcedencia" class="form-label">Procedencia</label>
-                        <select id="procedencia" class="form-select"disabled>
+                        <select id="procedencia" class="form-select" disabled>
                             <option value="NACIONAL">NACIONAL</option>
                             <option value="IMPORTADO">IMPORTADO</option>
                         </select>
@@ -35,7 +35,7 @@
                     <div class="col-md-4">
                         <label for="inputEstado" class="col-form-label">Estado</label>
                         <div class="form-check">
-                            <input style="width: 15px; height:15px" class="form-check-input" type="checkbox" value="" id="estado"disabled>
+                            <input style="width: 15px; height:15px" class="form-check-input" type="checkbox" value="" id="estado" disabled>
                             <label style="font-size: 16px;" class="form-check-label" for="estado">
                                 -Habilitado
                             </label>
@@ -45,19 +45,19 @@
 
                 <div class="col-md-10">
                     <label for="inputNombre" class="col-form-label">Nombre</label>
-                    <input type="text" id="nombre" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                    <input type="text" id="nombre" class="form-control" aria-describedby="passwordHelpInline" disabled>
                 </div>
 
                 <div class="col-md-10">
                     <label for="inputPassword6" class="col-form-label">Descripción</label>
-                    <textarea class="form-control" placeholder="Leave a comment here" id="descripcion"disabled></textarea>
+                    <textarea class="form-control" placeholder="Leave a comment here" id="descripcion" disabled></textarea>
                 </div>
 
 
                 <div class="row">
                     <div class="col-md-5" style="margin-top: 5px;">
                         <label for="selectMarca" class="form-label">Marca</label>
-                        <select id="marca" class="form-select"disabled>
+                        <select id="marca" class="form-select" disabled>
                             <?php
                             $marcas = Marca::getMarcas();
                             foreach ($marcas as $marca) { ?>
@@ -68,7 +68,7 @@
 
                     <div class="col-md-5" style="margin-top: 5px;">
                         <label for="selectUnidad" class="form-label">Unidad</label>
-                        <select id="unidad" class="form-select"disabled>
+                        <select id="unidad" class="form-select" disabled>
                             <?php
                             $unidades = Unidad::getUnidades();
                             foreach ($unidades as $unidad) { ?>
@@ -83,7 +83,7 @@
                     <div class="col-md-5" style="margin-top: 5px;">
                         <!-- <div class="col-md-2"style="margin-top: 5px;"> -->
                         <label for="selectLinea" class="form-label">Linea</label>
-                        <select id="linea" class="form-select"disabled>
+                        <select id="linea" class="form-select" disabled>
                             <?php
                             $lineas = Linea::ListarLineas();
                             foreach ($lineas as $lin) { ?>
@@ -98,13 +98,13 @@
 
                     <div class="col-md-5">
                         <label for="inputVolumen" class="col-form-label">Volumen</label>
-                        <input type="text" id="volumen" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                        <input type="text" id="volumen" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
                 </div>
 
                 <div class="col-md-5" style="margin-top: 5px;">
                     <label for="selectMoneda" class="form-label">Moneda</label>
-                    <select id="moneda" class="form-select"disabled>
+                    <select id="moneda" class="form-select" disabled>
                         <?php
                         $monedas = Moneda::getMonedas();
                         foreach ($monedas as $moneda) { ?>
@@ -117,14 +117,14 @@
                 <div class="row">
                     <div class="col-md-5">
                         <label for="inputCompra" class="col-form-label">P. Compra</label>
-                        <input type="text" id="precioCompra" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                        <input type="text" id="precioCompra" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
 
 
                     <div class="col-md-5">
                         <label for="inputStockMin" class="col-form-label">Stock Min</label>
-                        <input type="text" id="stockMinimo" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                        <input type="text" id="stockMinimo" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
                 </div>
 
@@ -132,14 +132,14 @@
                 <div class="row">
                     <div class="col-md-5">
                         <label for="inputVenta" class="col-form-label">P. Venta</label>
-                        <input type="text" id="precioVenta" class="form-control" aria-describedby="passwordHelpInline" placeholder=""disabled>
+                        <input type="text" id="precioVenta" class="form-control" aria-describedby="passwordHelpInline" placeholder="" disabled>
                     </div>
 
 
 
                     <div class="col-md-5">
                         <label for="inputStockMax" class="col-form-label">Stock Max</label>
-                        <input type="text" id="stockMaximo" class="form-control" aria-describedby="passwordHelpInline" placeholder=""disabled>
+                        <input type="text" id="stockMaximo" class="form-control" aria-describedby="passwordHelpInline" placeholder="" disabled>
                     </div>
                 </div>
 
@@ -147,16 +147,15 @@
                 <div class="row">
                     <div class="col-md-10">
                         <label for="formFile" class="form-label">Imagen</label>
-                        <input class="form-control" type="file" id="formFile"disabled>
+                        <input class="form-control" type="file" id="formFile" disabled>
                     </div>
 
                     <div class="col-md-12" style="margin-top: -10px;">
                         <br>
-                        <button style="width: 80px;" type="button" class="btn btn-secondary client_submit">Nuevo</button>
-                        <button style="width: 80px;" type="button" class="btn btn-primary client_submit">Grabar</button>
-                        <button style="width: 80px;" type="button" class="btn btn-success client_submit">Editar</button>
-                        <button style="width: 80px;" type="button" class="btn btn-danger client_submit">Eliminar</button>
-
+                        <button style="width: 80px;" id="btnNuevo" class="btn btn-primary" type="button" onclick="botónNuevoMantenimiento()">Nuevo</button>
+                        <button style="width: 80px;" id="btnGrabar" class="btn btn-success order__btn--inactive" type="button" onclick="botónGrabarMantenimiento('1')">Grabar</button>
+                        <button style="width: 80px;" id="btnEditar" class="btn btn-warning order__btn--inactive" type="button" onclick="botónEditarMantenimiento()">Editar</button>
+                        <button style="width: 80px;" id="btnEliminar" class="btn btn-danger order__btn--inactive" type="button" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
                     </div>
                 </div>
 
@@ -173,11 +172,11 @@
             <div class="kardex__right">
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:10px">
-                             
-                            <h6>LISTADO DE PRODUCTOS</h6>
-                            <hr style="margin-top: -7px;">
-                            <h6>Buscar por </h6>
-                      
+
+                        <h6>LISTADO DE PRODUCTOS</h6>
+                        <hr style="margin-top: -7px;">
+                        <h6>Buscar por </h6>
+
 
                         <div class="row">
                             <div class="col-md-6">

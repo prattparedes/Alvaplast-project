@@ -19,7 +19,7 @@
                     <div class="col-md-4">
                         <label for="number" class="col-form-label">Codigo</label>
                         <fieldset disabled>
-                            <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                            <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline" disabled>
                         </fieldset>
                     </div>
                 </div>
@@ -35,31 +35,31 @@
 
                     <div class="col-md-10">
                         <label for="inputPassword6" class="col-form-label">Nombre</label>
-                        <input type="text" id="nombres" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                        <input type="text" id="nombres" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
                 </div>
 
 
                 <div class="col-md-10">
                     <label for="inputPassword6" class="col-form-label">Apellido Paterno</label>
-                    <input type="text" id="paterno" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                    <input type="text" id="paterno" class="form-control" aria-describedby="passwordHelpInline" disabled>
                 </div>
 
                 <div class="col-md-10">
                     <label for="inputPassword6" class="col-form-label">Apellido Materno</label>
-                    <input type="text" id="materno" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                    <input type="text" id="materno" class="form-control" aria-describedby="passwordHelpInline" disabled>
                 </div>
 
 
                 <div class="row">
                     <div class="col-md-5">
                         <label for="inputPassword6" class="col-form-label">DNI</label>
-                        <input type="text" id="dni" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                        <input type="text" id="dni" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
                     <div class="col-md-5">
                         <label for="inputPassword6" class="col-form-label">Cargo</label>
-                        <select name="" id="cargo" class="form-select"disabled>
+                        <select name="" id="cargo" class="form-select" disabled>
                             <option value="" default>Elija una opción</option>
                             <option value="A">Administrador</option>
                             <option value="V">Vendedor</option>
@@ -71,7 +71,7 @@
                 <div class="row">
                     <div class="col-md-10">
                         <label for="inputPassword6" class="col-form-label">Direccion</label>
-                        <input type="text" id="direccion" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                        <input type="text" id="direccion" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
                 </div>
 
@@ -79,19 +79,19 @@
 
                     <div class="col-md-5">
                         <label for="inputPassword6" class="col-form-label">Telefono</label>
-                        <input type="text" id="telefono" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                        <input type="text" id="telefono" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
                     <div class="col-md-5">
                         <label for="inputPassword6" class="col-form-label">Celular</label>
-                        <input type="text" id="celular" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                        <input type="text" id="celular" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
                 </div>
 
                 <div class="col-md-2">
                     <label for="inputPassword6" class="col-form-label">Estado</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="estado"disabled>
+                        <input class="form-check-input" type="checkbox" value="" id="estado" disabled>
                         <label class="form-check-label" for="estado">Habilitado</label>
                     </div>
                 </div>
@@ -100,32 +100,31 @@
 
                     <div class="col-md-5">
                         <label for="inputPassword6" class="col-form-label">Usuario</label>
-                        <input type="text" id="usuario" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                        <input type="text" id="usuario" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
                     <div class="col-md-5">
                         <label for="inputPassword6" class="col-form-label">Contraseña</label>
-                        <input type="text" id="clave" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                        <input type="text" id="clave" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
                 </div>
 
                 <div class="col-md-10" style="margin-top:5px">
                     <label for="inputPassword6" class="col-form-label">Repetir contraseña</label>
-                    <input type="text" id="clave2" class="form-control" aria-describedby="passwordHelpInline"disabled>
+                    <input type="text" id="clave2" class="form-control" aria-describedby="passwordHelpInline" disabled>
                 </div>
                 <br>
                 <button style="width: 180px; height:35px" type="button" class="btn btn-secondary" onclick="cargarPermisosPersonal()"><i class="bi bi-person-vcard"></i><span>Permisos de Almacén</span></button>
-                  
+
                 <br>
                 <div class="col-md-12">
-                    <a name="" id="" class="btn btn-primary provider_submits" href="#" role="button">Nuevo</a>
-                    <a name="" id="" class="btn btn-success provider_submits" href="#" role="button">Grabar</a>
-                    <!-- <button type="button" class="btn btn-success me-2 provider_submit">Grabar</button> -->
-                    <a name="" id="" class="btn btn-info  provider_submits" href="#" role="button">Modificar</a>
-                    <a name="" id="" class="btn btn-danger provider_submits" href="#" role="button">Eliminar</a>
+                    <button id="btnNuevo" class="btn btn-primary" type="button" onclick="botónNuevoMantenimiento()">Nuevo</button>
+                    <button id="btnGrabar" class="btn btn-success order__btn--inactive" type="button" onclick="botónGrabarMantenimiento('1')">Grabar</button>
+                    <button id="btnEditar" class="btn btn-warning order__btn--inactive" type="button" onclick="botónEditarMantenimiento()">Editar</button>
+                    <button id="btnEliminar" class="btn btn-danger order__btn--inactive" type="button" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
                 </div>
                 <hr>
-               
+
             </div>
 
             <div class="kardex__right">
@@ -135,7 +134,7 @@
                         <b>
                             <h6>LISTADO DE PERSONAL</h6>
                         </b>
-<hr>
+                        <hr>
 
                         <div class="row">
                             <div class="col-md-4">
@@ -155,9 +154,9 @@
                         </div>
 
                         <div><br></div>
-                    <hr>
-                <div class="table--container">
-                <table class="tbl_venta" style="width:760px;">
+                        <hr>
+                        <div class="table--container">
+                            <table class="tbl_venta" style="width:760px;">
                                 <thead>
                                     <tr>
                                         <th>Código</th>
@@ -192,6 +191,6 @@
                                     <?php } ?>
                                 </tbody>
                             </table>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>

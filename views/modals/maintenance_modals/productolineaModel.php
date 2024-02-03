@@ -34,15 +34,15 @@
 
                     <!-- <div class="col-md-12" style="margin-top: 30px;"> -->
 
-                   <div class="col-md-12">
-                            <br>
-                            <button style="width: 80px;" class="btn btn-primary" type="button"disabled>Nuevo</button>
-                            <button style="width: 80px;" class="btn btn-success" type="button">Grabar</button>
-                            <button style="width: 80px;" class="btn btn-warning" type="button">Editar</button>
-                            <button style="width: 80px;" class="btn btn-danger" type="button">Eliminar</button>
-                            <!-- <button style="width: 40px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">X</button> -->
-                            <br><br>
-                        </div>
+                    <div class="col-md-12">
+                        <br>
+                        <button style="width: 80px;" id="btnNuevo" class="btn btn-primary" type="button" onclick="botónNuevoMantenimiento()">Nuevo</button>
+                        <button style="width: 80px;" id="btnGrabar" class="btn btn-success order__btn--inactive" type="button" onclick="botónGrabarMantenimiento('1')">Grabar</button>
+                        <button style="width: 80px;" id="btnEditar" class="btn btn-warning order__btn--inactive" type="button" onclick="botónEditarMantenimiento()">Editar</button>
+                        <button style="width: 80px;" id="btnEliminar" class="btn btn-danger order__btn--inactive" type="button" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
+                        <!-- <button style="width: 40px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">X</button> -->
+                        <br><br>
+                    </div>
                     <!-- </div> -->
                 </div>
 
@@ -60,29 +60,29 @@
                             <label for="inputPassword6" class="col-form-label">Descripción</label>
                             <input type="text" id="filtroLineas" class="form-control" aria-describedby="passwordHelpInline" onkeyup="FiltrarLineasMantenimiento()">
                         </div>
-<br>
+                        <br>
                         <div class="table--container">
-                        <div class="table-responsive">
-                                    <table class="tbl_venta" id="productlinesTable">
-                                        <thead>
-                                            <tr>
-                                                <th  class="textcenter" width="120">Codigo</th>
-                                                <th  class="textleft" width="300">Descripción</th>
-                                            </tr>
-                                        </thead>
+                            <div class="table-responsive">
+                                <table class="tbl_venta" id="productlinesTable">
+                                    <thead>
+                                        <tr>
+                                            <th class="textcenter" width="120">Codigo</th>
+                                            <th class="textleft" width="300">Descripción</th>
+                                        </tr>
+                                    </thead>
 
-                                        <tbody id="detalle_venta">
-                                            <?php
-                                            $data = Linea::ListarLineas();
-                                            foreach ($data as $linea) {
-                                            ?>
-                                                <tr>
-                                                    <td><?= $linea->id_linea ?></td>
-                                                    <td class="textleft"><?= $linea->descripcion ?></td>
-                                                </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
+                                    <tbody id="detalle_venta">
+                                        <?php
+                                        $data = Linea::ListarLineas();
+                                        foreach ($data as $linea) {
+                                        ?>
+                                            <tr>
+                                                <td><?= $linea->id_linea ?></td>
+                                                <td class="textleft"><?= $linea->descripcion ?></td>
+                                            </tr>
+                                        <?php } ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                </div>

@@ -90,18 +90,18 @@
                     </select>
                 </div>
 
-            <div class="row">
-                <div class="col-md-5">
-                    <label for="telefono" class="col-form-label">Telefono</label>
-                    <input type="text" id="telefono" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                <div class="row">
+                    <div class="col-md-5">
+                        <label for="telefono" class="col-form-label">Telefono</label>
+                        <input type="text" id="telefono" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                    </div>
+
+                    <div class="col-md-5">
+                        <label for="celular" class="col-form-label">Celular</label>
+                        <input type="text" id="celular" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                    </div>
                 </div>
 
-                <div class="col-md-5">
-                    <label for="celular" class="col-form-label">Celular</label>
-                    <input type="text" id="celular" class="form-control" aria-describedby="passwordHelpInline" disabled>
-                </div>
-            </div>
-            
                 <div class="col-md-5">
                     <label for="celular" class="col-form-label">Estado</label>
                     <select id="estado" class="form-select" disabled>
@@ -112,12 +112,12 @@
 
                 <hr>
 
-               
+
                 <div class="col-md-12">
-                    <a style="width: 80px;" id="" class="btn btn-primary me-2 provider_submit" href="#" role="button">Nuevo</a>
-                    <button style="width: 80px;margin-left:-10px;" type="button" style="margin-left:-8px" class="btn btn-success me-2 provider_submit">Grabar</button>
-                    <a style="width: 80px;margin-left:-10px;" name="" id="" style="margin-left:-8px" class="btn btn-warning me-2 provider_submit" href="#" role="button">Editar</a>
-                    <a style="width: 80px;margin-left:-10px;" name="" id="" style="margin-left:-8px" class="btn btn-danger provider_submits" href="#" role="button">Eliminar</a>
+                    <a style="width: 80px;" id="btnNuevo" class="btn btn-secondary me-2" href="#" role="button" onclick="botónNuevoMantenimiento()">Nuevo</a>
+                    <button style="width: 80px; margin-left:-10px;" id="btnGrabar" type="button" class="btn btn-primary me-2 order__btn--inactive" onclick="botónGrabarMantenimiento('1')">Grabar</button>
+                    <a style="width: 80px; margin-left:-10px;" id="btnEditar" name="" class="btn btn-success me-2 order__btn--inactive" href="#" role="button" onclick="botónEditarMantenimiento()">Editar</a>
+                    <a style="width: 80px; margin-left:-10px;" id="btnEliminar" name="" class="btn btn-danger order__btn--inactive" href="#" role="button" onclick="botónEliminarMantenimiento('2')">Eliminar</a>
                 </div>
             </div>
 

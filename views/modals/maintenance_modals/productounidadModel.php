@@ -27,12 +27,12 @@
 
                         <div class="col-md-4" style="width: 400px;">
                             <label for="inputPassword6" class="col-form-label">Abreviatura</label>
-                            <input type="text" id="abreviatura" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="text" id="abreviatura" class="form-control" aria-describedby="passwordHelpInline" disabled>
                         </div>
 
                         <div class="col-md-4" style="width: 400px;">
                             <label for="inputPassword6" class="col-form-label">Descripción</label>
-                            <input type="text" id="descripcion" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="text" id="descripcion" class="form-control" aria-describedby="passwordHelpInline" disabled>
                         </div>
 
                     </div>
@@ -42,10 +42,10 @@
 
                     <div class="col-md-12">
                         <br>
-                        <button style="width: 75px;" class="btn btn-primary" type="button">Nuevo</button>
-                        <button style="width: 75px;" class="btn btn-success" type="button">Grabar</button>
-                        <button style="width: 75px;" class="btn btn-warning" type="button">Editar</button>
-                        <button style="width: 80px;" class="btn btn-danger" type="button">Eliminar</button>
+                        <button style="width: 80px;" id="btnNuevo" type="button" class="btn btn-secondary"  onclick="botónNuevoMantenimiento()">Nuevo</button>
+                        <button style="width: 80px;" id="btnGrabar" type="button" class="btn btn-primary order__btn--inactive" onclick="botónGrabarMantenimiento('1')">Grabar</button>
+                        <button style="width: 80px;" id="btnEditar" type="button" class="btn btn-success order__btn--inactive" onclick="botónEditarMantenimiento()">Editar</button>
+                        <button style="width: 80px;" id="btnEliminar" type="button" class="btn btn-danger order__btn--inactive" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
                         <!-- <button style="width: 40px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">X</button> -->
                         <br><br>
                     </div>
