@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
 
+use Models\maintenance_models\Almacen;
 use Models\maintenance_models\Producto;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -22,6 +23,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($_POST["metodo"] == "Grabar") {
         $result = Producto::registrarProducto($idProducto, $idLinea, $idMarca, $idUnidad, $nombre, $codigo, $codigo, $procedencia, $codigo, $estado, $precioVenta, $precioCompra, $descripcion, $stockMin, $stockMax, $volumen, $idMoneda);
         if ($result) {
+            $data = Almacen::getAlmacenes();
+            foreach ($data as $dat) {
+                $descripcion = "el producto $nombre esta en el almacen $dat->desccipcion";
+                $result = Producto::registrarProductoxAlmacen($idProducto, $dat->id_almacen, $descripcion);
+            }
             $message = "producto registrado";
         } else {
             $message = "producto no registrado";

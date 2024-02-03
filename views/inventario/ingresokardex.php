@@ -7,7 +7,9 @@
 
         use Models\maintenance_models\Sucursal;
         use Models\maintenance_models\Almacen;
+        use Models\maintenance_models\Caja;
         use Models\maintenance_models\Moneda;
+        use Models\maintenance_models\TipoDocumento;
         use Models\maintenance_models\Unidad;
         use Models\ventas\Venta;
 
@@ -31,7 +33,7 @@
 
                     <div class="row">
                         <b>
-                            <h6>Datos del Cliente</h6>
+                            <h6>Datos del Proveedor</h6>
                         </b>
                     </div>
                     <div class="col-md-12">
@@ -52,7 +54,9 @@
                         <label for="number" class="col-form-label">Tipo de Pago</label>
                         <select name="" id="cargo" class="form-select">
                             <option value="" default>Elija una opción</option>
-                            <option value="" default>Efectivo</option>
+                            <option value="E" default>Efectivo</option>
+                            <option value="C" default>Credito</option>
+
                         </select>
                         </fieldset>
                     </div>
@@ -130,8 +134,13 @@
                             <div class="col-md-5">
                                 <label for="inputPassword6" class="col-form-label"></label>
                                 <select name="" id="" class="form-select">
-                                    <option value="" default>Elija una opción</option>
-                                    <option value="" default>Efectivo</option>
+                                    <?php $documentos = TipoDocumento::getDocumentos();
+                                    foreach ($documentos as $doc) {
+                                    ?>
+                                        <option value="<?= $doc->id_tipodocumento ?>"><?= $doc->descripcion ?></option>
+                                    <?php
+                                    }
+                                    ?>
                                 </select>
                             </div>
 
@@ -150,7 +159,12 @@
                         <div class="row">
                             <div class="col-md-10">
                                 <label for="inputPassword6" class="col-form-label">Caja</label>
-                                <input type="text" id="" class="form-control" aria-describedby="passwordHelpInline">
+                                <select name="caja" id="caja">
+                                    <?php $cajas = Caja::getCajas();
+                                    foreach ($cajas as $caja) { ?>
+                                        <option value="<?= $caja->id_caja ?>"><?= $caja->nombre_caja ?></option>
+                                    <?php } ?>
+                                </select>
                             </div>
                         </div>
 

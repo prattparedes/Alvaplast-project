@@ -189,4 +189,20 @@ class Producto
             }
         }
     }
+
+    public static function registrarProductoxAlmacen(int $idProducto, int $idAlmacen, string $descripcion)
+    {
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare("exec sp_RegistrarProducto_Almacen :idProducto,:idAlmacen, :descripcion");
+            $stmt->bindParam(":idProducto", $idProducto, PDO::PARAM_INT);
+            $stmt->bindParam(":idAlmacen", $idAlmacen, PDO::PARAM_INT);
+            $stmt->bindParam(":descripcion", $descripcion, PDO::PARAM_STR);
+            $stmt->execute();
+            $result = ($stmt->rowCount() > 0) ? true : false;
+            return $result;
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+        }
+    }
 }

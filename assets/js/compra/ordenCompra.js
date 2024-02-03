@@ -201,7 +201,6 @@ function limpiarFormularioCompra() {
 // Función para Modificar la Compra
 function modificarCompra() {
   let botonModificar = document.getElementById("btnModify");
-  document.getElementById("metodo").value = "modificar";
   if (botonModificar.classList.contains("order__btn--inactive")) {
     return
   }
@@ -209,6 +208,7 @@ function modificarCompra() {
   if (botonModificar.innerHTML === "Modificar") {
     guardarCopiaSeguridadCompra();
     activarInputs();
+    document.getElementById("metodo").value = "modificar";
 
     botonModificar.innerHTML = "Cancelar";
     botonModificar.style.backgroundColor = "gray";
@@ -218,7 +218,7 @@ function modificarCompra() {
   } else if (botonModificar.innerHTML === "Cancelar") {
     restaurarCopiaSeguridadCompra();
     desactivarInputs();
-
+    document.getElementById("metodo").value = "0";
     botonModificar.innerHTML = "Modificar";
     botonModificar.style.backgroundColor = "#ffc107";
     botonModificar.style.borderColor = "#ffc107";
@@ -653,7 +653,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     const tipoPago = document.getElementById("tipoPago").value;
     const idPersonal = 2;
     const mod = document.getElementById("metodo").value;
-    if (mod !== "0") {
+    if (mod == "0") {
       var metodo = event.target.innerHTML
     } else {
       var metodo = mod;
@@ -685,7 +685,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
           if (metodo == "Eliminar") {
             loadContent("views/buyorder.php");
           }
-          RegistrarDatosTabla(idCompra, metodo);
+          //RegistrarDatosTabla(idCompra, metodo);
         } else {
           // Hubo un error en la solicitud
           console.error('Error en la solicitud.');

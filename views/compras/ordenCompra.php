@@ -154,10 +154,10 @@
                     <button style="width: 80px;" class="btn btn-warning" type="button"disabled>Editar</button>
                     <a style="width: 80px;" class="btn btn-danger" type="button"disabled>Eliminar</a> -->
 
-                    <a style="width: 90px;" name="" id="btnNuevo" class="btn btn-primary" role="button" onclick="nuevaOrdenCompra()">Nuevo</a>
-                    <a style="width: 90px;" name="" id="btnRegister" class="btn btn-success order__btn--inactive" role="button">Grabar</a>
-                    <a style="width: 90px;" name="" id="btModify" class="btn btn-warning order__btn--inactive">Editar</a>
-                    <a style="width: 90px;" name="" id="btnDelete" class="btn btn-danger order__btn--inactive" role="button">Eliminar</a>
+                    <a style="width: 90px;" name="" id="btnNuevo" class="btn btn-primary " role="button" onclick="nuevaOrdenCompra()">Nuevo</a>
+                    <a style="width: 90px;" name="" id="btnRegister" class="btn btn-success order__btn--inactive buy_submit" role="button">Grabar</a>
+                    <a style="width: 90px;" name="" id="btnModify" class="btn btn-warning order__btn--inactive" onclick="modificarCompra()">Modificar</a>
+                    <a style="width: 90px;" name="" id="btnDelete" class="btn btn-danger order__btn--inactive buy_submit" role="button">Eliminar</a>
                        
                     <button style="width: 90px;" class="btn btn-secondary" onclick="abrirListadoCompras()">Buscar</button>
 
