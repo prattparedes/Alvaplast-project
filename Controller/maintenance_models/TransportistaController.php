@@ -17,7 +17,16 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     $estado = $_POST["estado"];
     if ($_POST["metodo"] === "Grabar") {
         $response = Transportistas::registrartransportista($id, $nombre, $apPaterno, $apMaterno, $dni, $ruc, $licencia, $direccion, $telefono, $celular, $estado);
-        $message = ($response) ? "transportista registrado" : "error en el registro";
+        $message = ($response) ? "transportista registrado" : "";
+    } else if ($_POST["metodo"] === "modificar") {
+        $response = Transportistas::modificarTransportista($id, $nombre, $apPaterno, $apMaterno, $dni, $ruc, $licencia, $direccion, $telefono, $celular, $estado);
+        $message = ($response) ? "modificacion exitosa" : "un error ocurrio";
+    } else if ($_POST["metodo"] === "Eliminar") {
+        $response = Transportistas::eliminarTransportista($id);
+        $message = ($response) ? "eliminado correctamente" : " hubo algun problema";
     }
-    echo $message;
+    if (isset($message)) {
+
+        echo $message;
+    }
 }

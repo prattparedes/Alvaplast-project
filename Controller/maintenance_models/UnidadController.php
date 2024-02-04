@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($_POST["metodo"] == "Grabar") {
         $result = Unidad::registrarUnidad($idUnidad, $abreviatura, $descripcion);
         $message = "unidad registrada";
-    } else if ($_POST["metodo"] == "Modificar") {
+    } else if ($_POST["metodo"] == "modificar") {
         $result = Unidad::modificarUnidad($idUnidad, $abreviatura, $descripcion);
         $message = "unidad modificada";
     } else if ($_POST["metodo"] == "Eliminar") {

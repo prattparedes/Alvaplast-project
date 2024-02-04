@@ -38,7 +38,6 @@ function listarProvincia(ubigeo) {
                     });
                 }
             } else {
-                console.log(xhr.responseText);
                 // Hubo un error en la solicitud
                 console.error("Error en la solicitud.");
             }
@@ -92,7 +91,6 @@ function listarDistrito(idprovincia) {
 
 //Formulario de envio de datos para el ClienteController
 document.querySelector(".main__content").addEventListener("click", function (event) {
-
     if (event.target.classList.contains("product_submit")) {
         event.preventDefault();
         // Obtener los datos del formulario
@@ -109,15 +107,19 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         } else {
             estado = "0";
         }
-        const precio_venta = document.getElementById("precioVenta").value;
+        const precio_venta = document.getElementById("precioVenta").value
         const precio_compra = document.getElementById("precioCompra").value
         const descripcion = document.getElementById("descripcion").value;
         const stockmin = document.getElementById("stockMinimo").value
         const stockmax = document.getElementById("stockMaximo").value
         const volumen = document.getElementById("volumen").value
         const idMoneda = document.getElementById("moneda").value
-        const metodo = event.target.innerHTML;
-        console.log(estado)
+        const mod = document.getElementById("metodo").value;
+        if (mod == "0" || !mod || mod == "") {
+            var metodo = event.target.innerHTML;
+        } else {
+            var metodo = mod
+        }
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
         const url = "/Alvaplast-project/Controller/maintenance_models/ProductoController.php"; // Ruta del controlador PHP
@@ -125,7 +127,6 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         // Configurar la solicitud
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        console.log()
         if (idLinea) {
             // Enviar los datos del formulario incluyendo descripcion y abreviatura
             xhr.send("idProducto=" + idProducto + "&idLinea=" + idLinea + "&idMarca=" + idMarca + "&idUnidad=" + idUnidad + "&nombre=" + nombre + "&procedencia=" + procedencia + "&estado=" + estado + "&precio_venta=" + precio_venta + "&precio_compra=" + precio_compra + "&descripcion=" + descripcion + "&stockmin=" + stockmin + "&stockmax=" + stockmax + "&metodo=" + metodo + "&volumen=" + volumen + "&idMoneda=" + idMoneda);
@@ -139,7 +140,8 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadContent('views/modals/maintenance_modals/productosModel.php');
+                    loadContent("views/modals/maintenance_modals/productosModel.php")
+                    botónNuevoMantenimiento();
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');
@@ -166,7 +168,13 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         const distritoOption = document.getElementById("distrito");
         const distrito = distritoOption.options[distritoOption.selectedIndex].text;
         const idUbigeo = distritoOption.value;
-        const metodo = event.target.innerHTML;
+        const mod = document.getElementById("metodo").value
+
+        if (mod == "modificar") {
+            var metodo = mod
+        } else {
+            var metodo = event.target.innerHTML;
+        }
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
         const url = "/Alvaplast-project/Controller/maintenance_models/ClienteController.php"; // Ruta del controlador PHP
@@ -174,7 +182,6 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         // Configurar la solicitud
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        console.log()
         if (razonSocial && dni) {
             // Enviar los datos del formulario incluyendo descripcion y abreviatura
             xhr.send("idCliente=" + idCliente + "&razonSocial=" + razonSocial + "&ruc=" + ruc + "&dni=" + dni + "&direccion=" + direccion + "&telefono=" + telefono + "&celular=" + celular + "&estado=" + estado + "&tipoCliente=" + tipoCliente + "&distrito=" + distrito + "&idUbigeo=" + idUbigeo + "&metodo=" + metodo);
@@ -217,7 +224,13 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         //const descripcion = document.getElementById("descripcion").value;
         const checkbox = document.getElementById("estado");
         var estado = (checkbox.checked) ? checkbox.value : "0";
-        const metodo = event.target.innerHTML;
+        const mod = document.getElementById("metodo").value
+        if (mod == "modificar") {
+            var metodo = mod
+        } else {
+
+            var metodo = event.target.innerHTML;
+        }
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
         const url = "/Alvaplast-project/Controller/maintenance_models/ProveedorController.php"; // Ruta del controlador PHP
@@ -225,7 +238,6 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         // Configurar la solicitud
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        console.log()
         if (razonSocial) {
             // Enviar los datos del formulario incluyendo descripcion y abreviatura
             xhr.send("idProveedor=" + idProveedor + "&idUbigeo=" + idUbigeo + "&razonSocial=" + razonSocial + "&ruc=" + ruc + "&direccion=" + direccion + "&telefono=" + telefono + "&fax=" + fax + "&contacto=" + contacto + "&email=" + email + "&estado=" + estado + "&metodo=" + metodo);
@@ -258,7 +270,13 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         // Obtener los datos del formulario
         const idLinea = document.getElementById("codigo").value;
         const descripcion = document.getElementById("descripcion").value; // Obtener la descripción del formulario // Obtener la abreviatura del formulario
-        const metodo = event.target.innerHTML;
+        const mod = document.getElementById("metodo").value
+        if (mod == "modificar") {
+            var metodo = mod
+        } else {
+
+            var metodo = event.target.innerHTML;
+        }
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
         const url = "/Alvaplast-project/Controller/maintenance_models/LineaController.php"; // Ruta del controlador PHP
@@ -266,7 +284,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         // Configurar la solicitud
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        console.log()
+
         if (descripcion) {
             // Enviar los datos del formulario incluyendo descripcion y abreviatura
             xhr.send("idLinea=" + idLinea + "&descripcion=" + descripcion + "&metodo=" + metodo);
@@ -298,7 +316,12 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         // Obtener los datos del formulario
         const idMarca = document.getElementById("codigo").value;
         const descripcion = document.getElementById("descripcion").value;
-        const metodo = event.target.innerHTML;
+        const mod = document.getElementById("metodo").value
+        if (mod == "modificar") {
+            var metodo = mod
+        } else {
+            var metodo = event.target.innerHTML;
+        }
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
         const url = "/Alvaplast-project/Controller/maintenance_models/MarcaController.php"; // Ruta del controlador PHP
@@ -306,7 +329,6 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         // Configurar la solicitud
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        console.log()
         if (descripcion) {
             // Enviar los datos del formulario incluyendo descripcion y abreviatura
             xhr.send("idMarca=" + idMarca + "&descripcion=" + descripcion + "&metodo=" + metodo);
@@ -320,7 +342,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadContent('views/modals/maintenance_modals/productomarcaModel.php');
+                    loadContent('views/modals/maintenance_modals/productosmarcaModel.php');
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');
@@ -338,7 +360,12 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         const idMarca = document.getElementById("codigo").value;
         const abreviatura = document.getElementById("abreviatura").value;
         const descripcion = document.getElementById("descripcion").value;
-        const metodo = event.target.innerHTML;
+        const mod = document.getElementById("metodo").value;
+        if (mod == "modificar") {
+            var metodo = mod
+        } else {
+            var metodo = event.target.innerHTML
+        }
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
         const url = "/Alvaplast-project/Controller/maintenance_models/UnidadController.php"; // Ruta del controlador PHP
@@ -346,7 +373,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         // Configurar la solicitud
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        console.log()
+
         if (descripcion && descripcion) {
             // Enviar los datos del formulario incluyendo descripcion y abreviatura
             xhr.send("idUnidad=" + idMarca + "&abreviatura=" + abreviatura + "&descripcion=" + descripcion + "&metodo=" + metodo);
@@ -360,7 +387,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    loadContent('views/modals/maintenance_modals/productomarcaModel.php');
+                    loadContent('views/modals/maintenance_modals/productounidadModel.php');
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');
@@ -379,7 +406,15 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         const id = document.getElementById("codigo").value;
         const descripcion = document.getElementById("descripcion").value; // Obtener la descripción del formulario
         const abreviatura = document.getElementById("abreviatura").value; // Obtener la abreviatura del formulario
-        const metodo = event.target.innerHTML;
+        if (abreviatura.includes('&')) {
+            return alert('el caracter & no es valido para la abreviatura')
+        }
+        const mod = document.getElementById("metodo").value
+        if (mod == "modificar") {
+            var metodo = mod
+        } else {
+            var metodo = event.target.innerHTML;
+        }
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
         const url = "/Alvaplast-project/Controller/maintenance_models/MonedaController.php"; // Ruta del controlador PHP
@@ -387,7 +422,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         // Configurar la solicitud
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        console.log()
+
         if (descripcion && abreviatura) {
             // Enviar los datos del formulario incluyendo descripcion y abreviatura
             xhr.send("descripcion=" + descripcion + "&abreviatura=" + abreviatura + "&metodo=" + metodo + "&id=" + id);
@@ -420,8 +455,13 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         const descripcion = document.getElementById("descripcion").value; // Obtener la descripción del formulario
         const direccion = document.getElementById("direccion").value;   // Obtener la abreviatura del formulario
         const telefono = document.getElementById("telefono").value;
+        const mod = document.getElementById("metodo").value
+        if (mod == "modificar") {
+            var metodo = mod
+        } else {
+            var metodo = event.target.innerHTML
+        }
 
-        const metodo = event.target.innerHTML;
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
         const url = "/Alvaplast-project/Controller/maintenance_models/SucursalController.php"; // Ruta del controlador PHP
@@ -429,7 +469,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         // Configurar la solicitud
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        console.log()
+
         if (descripcion && direccion && telefono) {
             // Enviar los datos del formulario incluyendo descripcion y abreviatura
             xhr.send("idSucursal=" + idSucursal + "&descripcion=" + descripcion + "&direccion=" + direccion + "&telefono=" + telefono + "&metodo=" + metodo);
@@ -462,8 +502,13 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         const idSucursal = document.getElementById("sucursal").value;
         const descripcion = document.getElementById("descripcion").value; // Obtener la descripción del formulario
         const codFAct = document.getElementById("facturacion").value;
+        const mod = document.getElementById("metodo").value
+        if (mod == "modificar") {
+            var metodo = mod
+        } else {
+            var metodo = event.target.innerHTML;
+        }
 
-        const metodo = event.target.innerHTML;
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
         const url = "/Alvaplast-project/Controller/maintenance_models/AlmacenController.php"; // Ruta del controlador PHP
@@ -471,7 +516,6 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         // Configurar la solicitud
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        console.log()
         if (descripcion) {
             // Enviar los datos del formulario incluyendo descripcion y abreviatura
             xhr.send("idAlmacen=" + id_almacen + "&idSucursal=" + idSucursal + "&descripcion=" + descripcion + "&metodo=" + metodo + "&cod_facturacion=" + codFAct);
@@ -485,7 +529,6 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // La solicitud se completó correctamente
                     // Puedes manejar la respuesta del servidor aquí
                     alert(xhr.responseText);
-                    console.log(xhr.responseText);
                     loadContent('views/modals/maintenance_modals/almacenModel.php');
                 } else {
                     // Hubo un error en la solicitud
@@ -509,8 +552,14 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         const marcaSelect = document.getElementById("marca");
         const marca = marcaSelect.options[marcaSelect.selectedIndex].text;
         const modelo = document.getElementById("modelo").value;
+        const mod = document.getElementById("metodo").value
+        if (mod == "modificar") {
+            var metodo = mod
+        } else {
 
-        const metodo = event.target.innerHTML;
+            var metodo = event.target.innerHTML;
+        }
+
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
         const url = "/Alvaplast-project/Controller/maintenance_models/VehiculoController.php"; // Ruta del controlador PHP
@@ -549,9 +598,17 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         // Obtener los datos del formulario
         const idDocumento = document.getElementById("codigo").value;   // Obtener la abreviatura del formulario
         const abreviatura = document.getElementById("abreviatura").value;
+        if (abreviatura.includes("&")) {
+            return alert("no puede usar el caracter & para la abreviatura")
+        }
         const descripcion = document.getElementById("descripcion").value;
+        const mod = document.getElementById("metodo").value
+        if (mod == "modificar") {
+            var metodo = mod
+        } else {
+            var metodo = event.target.innerHTML;
+        }
 
-        const metodo = event.target.innerHTML;
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
         const url = "/Alvaplast-project/Controller/maintenance_models/DocumentoController.php"; // Ruta del controlador PHP
@@ -598,7 +655,12 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         const telefono = document.getElementById("telefono").value;
         const celular = document.getElementById("celular").value;
         const estado = "A";
-        const metodo = event.target.innerHTML;
+        const mod = document.getElementById("metodo").value
+        if (mod == "modificar") {
+            var metodo = mod
+        } else {
+            var metodo = event.target.innerHTML;
+        }
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
         const url = "/Alvaplast-project/Controller/maintenance_models/TransportistaController.php"; // Ruta del controlador PHP

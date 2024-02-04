@@ -19,13 +19,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($_POST["metodo"] == "Grabar") {
         $result = Cliente::RegistrarCliente($idCliente, $razonSocial, $ruc, $dni, $direccion, $telefono, $celular, $estado, $tipoCliente, $distrito, $idUbigeo);
         $message = "cliente grabado";
-    } elseif ($_POST["metodo"] == "Modificar") {
+    } elseif ($_POST["metodo"] == "modificar") {
         $result = Cliente::ModificarCliente($idCliente, $razonSocial, $ruc, $dni, $direccion, $telefono, $celular, $estado, $tipoCliente, $distrito, $idUbigeo);
         $message = "cliente modificado";
     } elseif ($_POST["metodo"] == "Eliminar") {
         Cliente::EliminarCliente($idCliente);
         $result = Cliente::verificarCliente($idCliente);
-        $message = ($result) ? "cliente eliminado" : "no se pudo eliminar al cliente. tiene registrada ventas ";
+        $message = ($result >= 0) ?  "cliente eliminado" : "no se pudo eliminar al cliente. tiene registrada ventas ";
     }
 
     echo $message;

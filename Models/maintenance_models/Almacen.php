@@ -148,4 +148,12 @@ class Almacen
             }
         }
     }
+
+
+    public static function obtenerCodFacturacion(int $idAlmacen)
+    {
+        $con = Connection::Conectar();
+        $stmt = $con->query("exec sp_ListarCodigo_Facturacion $idAlmacen");
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 }

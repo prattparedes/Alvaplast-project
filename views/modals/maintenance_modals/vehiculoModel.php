@@ -21,6 +21,7 @@
                             <label for="inputPassword6" class="col-form-label">Codigo</label>
                             <fieldset disabled>
                                 <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline">
+                                <input type="hidden" id="metodo" value="">
                             </fieldset>
                         </div>
 
@@ -43,12 +44,13 @@
                                 <option value="Lamborghini">Lamborghini</option>
                                 <option value="Dodge">Dodge</option>
                                 <option value="Hyundai">Hyundai</option>
-                                <option value="Kia">KIA</option>
+                                <option value="KIA">KIA</option>
                                 <option value="Ford">Ford</option>
                                 <option value="JAC">JAC</option>
                                 <option value="FAW">Faw</option>
                                 <option value="Honda">Honda</option>
                                 <option value="Isuzu">Isuzu</option>
+                                <option value="Toyota">Toyota</option>
                             </select>
                         </div>
 
@@ -64,10 +66,10 @@
 
                     <div class="col-md-12">
                         <br>
-                        <button style="width: 75px;" class="btn btn-primary" type="button">Nuevo</button>
-                        <button style="width: 75px;" class="btn btn-success" type="button">Grabar</button>
-                        <button style="width: 75px;" class="btn btn-warning" type="button">Editar</button>
-                        <button style="width: 80px;" class="btn btn-danger" type="button">Eliminar</button>
+                        <button style="width: 80px;" id="btnNuevo" class="btn btn-primary" type="button" onclick="botónNuevoMantenimiento()">Nuevo</button>
+                        <button style="width: 80px;" id="btnGrabar" class="btn btn-success order__btn--inactive vehicle_submit" type="button" onclick="botónGrabarMantenimiento('1')">Grabar</button>
+                        <button style="width: 80px;" id="btnEditar" class="btn btn-warning order__btn--inactive" type="button" onclick="botónEditarMantenimiento()">Editar</button>
+                        <button style="width: 80px;" id="btnEliminar" class="btn btn-danger order__btn--inactive vehicle_submit" type="button" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
                         <!-- <button style="width: 40px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">X</button> -->
                         <br><br>
                     </div>

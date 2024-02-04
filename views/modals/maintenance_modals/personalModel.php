@@ -118,11 +118,10 @@
 
                 <br>
                 <div class="col-md-12">
-                    <a name="" id="" class="btn btn-primary provider_submits" href="#" role="button">Nuevo</a>
-                    <a name="" id="" class="btn btn-success provider_submits" href="#" role="button">Grabar</a>
-                    <!-- <button type="button" class="btn btn-success me-2 provider_submit">Grabar</button> -->
-                    <a name="" id="" class="btn btn-info  provider_submits" href="#" role="button">Modificar</a>
-                    <a name="" id="" class="btn btn-danger provider_submits" href="#" role="button">Eliminar</a>
+                    <button id="btnNuevo" class="btn btn-primary" type="button" onclick="botónNuevoMantenimiento()">Nuevo</button>
+                    <button id="btnGrabar" class="btn btn-success order__btn--inactive" type="button" onclick="botónGrabarMantenimiento('1')">Grabar</button>
+                    <button id="btnEditar" class="btn btn-warning order__btn--inactive" type="button" onclick="botónEditarMantenimiento()">Editar</button>
+                    <button id="btnEliminar" class="btn btn-danger order__btn--inactive" type="button" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
                 </div>
                 <hr>
 

@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($_POST["metodo"] == "Grabar") {
         $result = Proveedor::registrarProveedor($idProveedor, $idUbigeo, $razonSocial, $ruc, $direccion, $telefono, $fax, $contacto, $email, $descripcion, $estadoReal);
         $message = "proveedor registrado";
-    } else if ($_POST["metodo"] == "Modificar") {
+    } else if ($_POST["metodo"] == "modificar") {
         $result = Proveedor::modificarProveedor($idProveedor, $idUbigeo, $razonSocial, $ruc, $direccion, $telefono, $fax, $contacto, $email, $descripcion, $estadoReal);
         $message = "proveedor modificado";
     } else if ($_POST["metodo"] == "Eliminar") {

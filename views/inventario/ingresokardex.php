@@ -24,8 +24,8 @@
                 <div class="col-md-10">
                     <label for="inputPassword6" class="form-label">Nro. O/C</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" aria-describedby="button-addon2">
-                        <button style="width:40px;height:35px" class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="loadContent('views/modals/listaordencompra.php')">....</button>
+                        <input type="text" class="form-control" aria-describedby="button-addon2" id="numeroOC">
+                        <button style=" width:40px;height:35px" class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="abrirListadoOC()">....</button>
                     </div>
 
 
@@ -38,21 +38,21 @@
                     </div>
                     <div class="col-md-12">
                         <label for="inputPassword6" class="col-form-label">RUC/DNI</label>
-                        <input type="text" id="materno" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="rucDni" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
                 </div>
 
 
                 <div class="col-md-10">
                     <label for="inputPassword6" class="col-form-label">Proveedor</label>
-                    <input type="text" id="telefono" class="form-control" aria-describedby="passwordHelpInline">
+                    <input type="text" id="proveedor" class="form-control" aria-describedby="passwordHelpInline">
                 </div>
 
 
                 <div class="row">
                     <div class="col-md-5">
                         <label for="number" class="col-form-label">Tipo de Pago</label>
-                        <select name="" id="cargo" class="form-select">
+                        <select name="" id="tipoPago" class="form-select">
                             <option value="" default>Elija una opción</option>
                             <option value="E" default>Efectivo</option>
                             <option value="C" default>Credito</option>
@@ -64,14 +64,14 @@
 
                     <div class="col-md-5">
                         <label for="inputPassword6" class="col-form-label">Fecha de Emisión</label>
-                        <input type="date" id="nombres" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="datetime-local" id="fecha1" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-5">
                         <label for="inputPassword6" class="col-form-label">Inicial</label>
-                        <input placeholder="" id="telefono" class="form-control" aria-describedby="passwordHelpInline">
+                        <input placeholder="" id="inicial" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
 
                     <div class="col-md-5">
@@ -83,7 +83,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <label for="inputPassword6" class="col-form-label">Llegada</label>
-                        <input type="date" id="nombres" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="datetime-local" id="fecha2" class="form-control" aria-describedby="passwordHelpInline">
                     </div>
 
 
@@ -103,7 +103,7 @@
                     <div class="col-md-5">
                         <label for="inputPassword6" class="col-form-label">Incluye IGV</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                            <input class="form-check-input" type="checkbox" value="" id="igv">
                         </div>
                     </div>
                 </div>
@@ -117,7 +117,7 @@
 
 
                         <div class="col-md-12">
-                            <a style="width: 75px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="nuevaOrdenCompra()">Nuevo</a>
+                            <a style="width: 75px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="">Nuevo</a>
                             <a style="width: 75px;" name="" id="" class="btn btn-success buy_submit" href="#" role="button">Grabar</a>
                             <a style="width: 80px;" name="" id="" class="btn btn-warning" href="#" role="button">Exportar</a>
                             <a style="width: 75px;margin-top:1px" name="" id="" class="btn btn-danger  buy_submit" href="#" role="button">Salir</a>
@@ -133,7 +133,7 @@
                         <div class="row">
                             <div class="col-md-5">
                                 <label for="inputPassword6" class="col-form-label"></label>
-                                <select name="" id="" class="form-select">
+                                <select name="" id="tipoDocumento" class="form-select" disabled>
                                     <?php $documentos = TipoDocumento::getDocumentos();
                                     foreach ($documentos as $doc) {
                                     ?>
@@ -146,12 +146,12 @@
 
                             <div class="col-md-2">
                                 <label for="inputPassword6" class="col-form-label"></label>
-                                <input type="text" id="" class="form-control" aria-describedby="passwordHelpInline">
+                                <input type="text" id="numero1" class="form-control" aria-describedby="passwordHelpInline" maxlength="3">
                             </div>
 
                             <div class="col-md-3">
                                 <label for="inputPassword6" class="col-form-label"></label>
-                                <input type="text" id="" class="form-control" aria-describedby="passwordHelpInline">
+                                <input type="text" id="numero2" class="form-control" aria-describedby="passwordHelpInline" maxlength="7">
                             </div>
                         </div>
 
@@ -159,11 +159,8 @@
                         <div class="row">
                             <div class="col-md-10">
                                 <label for="inputPassword6" class="col-form-label">Caja</label>
-                                <select name="caja" id="caja">
-                                    <?php $cajas = Caja::getCajas();
-                                    foreach ($cajas as $caja) { ?>
-                                        <option value="<?= $caja->id_caja ?>"><?= $caja->nombre_caja ?></option>
-                                    <?php } ?>
+                                <select name="caja" id="caja" class="form-select">
+
                                 </select>
                             </div>
                         </div>
@@ -196,16 +193,6 @@
                         </thead>
 
                         <tbody id="detalle_venta">
-                            <tr>
-
-                                <td class="textleft">Gran feria de AlvaPlastic de 50x50cm</td>
-                                <td class="textcenter">2</td>
-                                <td class="textcenter">F</td>
-                                <td class="textcenter">12599.00</td>
-                                <td class="textcenter">12615.00</td>
-                                <td class="textcenter">50198.00</td>
-
-                            </tr>
 
                         </tbody>
 
@@ -213,27 +200,27 @@
                         <tfoot>
                             <tr>
                                 <td colspan="5" class="textright">Precio Bruto</td>
-                                <td class="textright">50198.00</td>
+                                <td class="textright" id="productsubtotal1">00.00</td>
                             </tr>
 
                             <tr>
                                 <td colspan="5" class="textright">Descuento</td>
-                                <td class="textright">00.00</td>
+                                <td class="textright" id="productDescuento">00.00</td>
                             </tr>
 
                             <tr>
                                 <td colspan="5" class="textright">Precio Neto</td>
-                                <td class="textright">167.80</td>
+                                <td class="textright" id="productsubtotal2">00.00</td>
                             </tr>
 
                             <tr>
                                 <td colspan="5" class="textright">IGV S/.</td>
-                                <td class="textright">30.20</td>
+                                <td class="textright" id="productigv">00.00</td>
                             </tr>
 
                             <tr>
                                 <td colspan="5" class="textright">Total S/.</td>
-                                <td class="textright">198.00</td>
+                                <td class="textright" id="productTotal">00.00</td>
                             </tr>
                         </tfoot>
                     </table>

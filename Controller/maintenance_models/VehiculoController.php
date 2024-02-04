@@ -4,7 +4,6 @@ require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
 use Models\maintenance_models\Vehiculo;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    //print_r($_POST);
     $idVehiculo = (int) $_POST["idVehiculo"];
     $placa = $_POST["placa"];
     $marca = $_POST["marca"];
@@ -13,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($_POST["metodo"] === "Grabar") {
         $response = Vehiculo::registrarVehiculo($idVehiculo, $placa, $marca, $modelo, $tipo);
         $message = ($response) ? "correcto registrado" : "incorrecto";
-    } else if ($_POST["metodo"] === "Modificar") {
+    } else if ($_POST["metodo"] === "modificar") {
         $response = Vehiculo::modificarVehiculo($idVehiculo, $placa, $marca, $modelo, $tipo);
         $message = ($response) ? "correcto modificado" : "incorrecto";
     } else if ($_POST["metodo"] == "Eliminar") {

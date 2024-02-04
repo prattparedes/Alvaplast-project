@@ -24,6 +24,7 @@
                         <label for="number" class="col-form-label">Codigo</label>
                         <fieldset disabled>
                             <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                            <input type="hidden" id="metodo" value="">
                         </fieldset>
                     </div>
                 </div>
@@ -67,28 +68,27 @@
 
                     <div class="col-md-10">
                         <label for="inputPassword6" class="col-form-label">Dirección</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                        <input type="text" id="direccion" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
                     <div class="col-md-5">
                         <label for="inputPassword6" class="col-form-label">Telefono</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                        <input type="text" id="telefono" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
                     <div class="col-md-5">
                         <label for="inputPassword6" class="col-form-label">Celular</label>
-                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                        <input type="text" id="celular" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
                 </div>
 
                 <br>
                 <div class="col-md-12">
-                    <a name="" id="" class="btn btn-primary provider_submits" href="#" role="button">Nuevo</a>
-                    <a name="" id="" class="btn btn-success provider_submits" href="#" role="button">Grabar</a>
-                    <!-- <button type="button" class="btn btn-success me-2 provider_submit">Grabar</button> -->
-                    <a name="" id="" class="btn btn-warning  provider_submits" href="#" role="button">Modificar</a>
-                    <a name="" id="" class="btn btn-danger provider_submits" href="#" role="button">Eliminar</a>
+                    <button id="btnNuevo" class="btn btn-primary" type="button" onclick="botónNuevoMantenimiento()">Nuevo</button>
+                    <button id="btnGrabar" class="btn btn-success order__btn--inactive carrier_submit" type="button" onclick="botónGrabarMantenimiento('1')">Grabar</button>
+                    <button id="btnEditar" class="btn btn-warning order__btn--inactive" type="button" onclick="botónEditarMantenimiento()">Editar</button>
+                    <button id="btnEliminar" class="btn btn-danger order__btn--inactive carrier_submit" type="button" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
                 </div>
                 <hr>
 

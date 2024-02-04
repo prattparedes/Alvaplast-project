@@ -21,6 +21,7 @@
                             <label for="inputPassword6" class="col-form-label">Codigo</label>
                             <fieldset disabled>
                                 <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline">
+                                <input type="hidden" id="metodo" value="">
                             </fieldset>
                         </div>
 
@@ -46,10 +47,10 @@
 
                     <div class="col-md-12">
                         <br>
-                        <button style="width: 75px;" class="btn btn-primary" type="button">Nuevo</button>
-                        <button style="width: 75px;" class="btn btn-success" type="button">Grabar</button>
-                        <button style="width: 75px;" class="btn btn-warning" type="button">Editar</button>
-                        <button style="width: 80px;" class="btn btn-danger" type="button">Eliminar</button>
+                        <button style="width: 80px;" id="btnNuevo" class="btn btn-primary" type="button" onclick="botónNuevoMantenimiento()">Nuevo</button>
+                        <button style="width: 80px;" id="btnGrabar" class="btn btn-success order__btn--inactive branch_submit" type="button" onclick="botónGrabarMantenimiento('1')">Grabar</button>
+                        <button style="width: 80px;" id="btnEditar" class="btn btn-warning order__btn--inactive" type="button" onclick="botónEditarMantenimiento()">Editar</button>
+                        <button style="width: 80px;" id="btnEliminar" class="btn btn-danger order__btn--inactive branch_submit" type="button" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
                         <!-- <button style="width: 40px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">X</button> -->
                         <br><br>
                     </div>
@@ -86,18 +87,20 @@
 
                                     <tbody id="detalle_venta">
                                         <?php
-                                        $sucursal = Sucursal::getSucursales();
-
-                                        foreach ($sucursal as $suc) {
+                                        $sucursales = Sucursal::getSucursales();
+                                        foreach ($sucursales as $sucursal) {
                                         ?>
                                             <tr>
-                                                <td class="textcenter" width="120"><?= $suc->id_sucursal ?></td>
-                                                <td class="textleft" width="320"><?= $suc->descripcion ?></td>
-                                                <td class="textleft" width="320"><?= $suc->direccion ?></td>
-                                                <td><?= $suc->telefono ?></td>
+                                                <td class="textcenter" width="120"><?= $sucursal->id_sucursal ?></td>
+                                                <td class="textleft" width="320"><?= $sucursal->descripcion ?></td>
+                                                <td class="textleft" width="320"><?= $sucursal->direccion ?></td>
+                                                <td><?= $sucursal->telefono ?></td>
                                             </tr>
-                                        <?php } ?>
+                                        <?php
+                                        }
+                                        ?>
                                     </tbody>
+
                                 </table>
                             </div>
                         </div>

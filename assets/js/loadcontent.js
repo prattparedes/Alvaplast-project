@@ -8,6 +8,7 @@ function loadContent(page) {
           document.querySelector(".main__content").innerHTML = this.responseText;
           resolve(); // Resuelve la promesa si la carga es exitosa
         } else {
+          console.error("Error en la carga del contenido. Estado: " + this.status);
           reject(new Error("Error en la carga del contenido")); // Rechaza la promesa en caso de error
         }
       }
@@ -31,6 +32,7 @@ function loadContent2(page, data1, data2) {
 
           resolve(); // Resuelve la promesa si la carga es exitosa
         } else {
+
           reject(new Error("Error en la carga del contenido")); // Rechaza la promesa en caso de error
         }
       }

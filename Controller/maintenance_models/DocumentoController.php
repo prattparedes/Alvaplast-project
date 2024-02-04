@@ -10,12 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     if ($_POST["metodo"] === "Grabar") {
         $response = TipoDocumento::registrarDocumento($id, $abreviatura, $descripcion);
         $message = ($response) ? "registrado correctamente" : "error al registrar";
-    } else if ($_POST["metodo"] === "Modificar") {
+    } else if ($_POST["metodo"] === "modificar") {
         $response = TipoDocumento::modificarDocumento($id, $abreviatura, $descripcion);
         $message = ($response) ? "modificado correctamente" : "error";
     } else if ($_POST["metodo"] === "Eliminar") {
         $response = TipoDocumento::eliminarDocumento($id);
-        $message = ($response) ? "eliminado correctamente" : "error";
+        $message = ($response) ? "eliminado correctamente" : "error al eliminar";
     }
     echo $message;
 }

@@ -23,16 +23,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($_POST["metodo"] == "Grabar") {
         $result = Producto::registrarProducto($idProducto, $idLinea, $idMarca, $idUnidad, $nombre, $codigo, $codigo, $procedencia, $codigo, $estado, $precioVenta, $precioCompra, $descripcion, $stockMin, $stockMax, $volumen, $idMoneda);
         if ($result) {
-            $data = Almacen::getAlmacenes();
-            foreach ($data as $dat) {
-                $descripcion = "el producto $nombre esta en el almacen $dat->desccipcion";
-                $result = Producto::registrarProductoxAlmacen($idProducto, $dat->id_almacen, $descripcion);
-            }
+
             $message = "producto registrado";
         } else {
             $message = "producto no registrado";
         }
-    } elseif ($_POST["metodo"] == "Modificar") {
+    } elseif ($_POST["metodo"] == "modificar") {
         $result = Producto::modificarProducto($idProducto, $idLinea, $idMarca, $idUnidad, $nombre, $codigo, $codigo, $procedencia, $codigo, $estado, $precioVenta, $precioCompra, $descripcion, $stockMin, $stockMax, $volumen, $idMoneda);
         if ($result) {
             $message = "producto Modificado con exito!!";
@@ -47,3 +43,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo $message;
     }
 }
+
+
+/*$data = Almacen::getAlmacenes();
+            foreach ($data as $dat) {
+                $descripcion = "el producto $nombre esta en el almacen $dat->desccipcion";
+                $result = Producto::registrarProductoxAlmacen($idProducto, $dat->id_almacen, $descripcion);
+            }*/

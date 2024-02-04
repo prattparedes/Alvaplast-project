@@ -20,6 +20,7 @@
                     <label for="Codigo" class="col-form-label">Codigo</label>
                     <fieldset disabled>
                         <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                        <input type="hidden" id="metodo" value="">
                     </fieldset>
                 </div>
 
@@ -108,10 +109,10 @@
 
                 <div class="col-md-12" style="margin-top: -10px;">
                     <br>
-                    <button style="width: 80px;" type="button" class="btn btn-secondary client_submit">Nuevo</button>
-                    <button style="width: 80px;" type="button" class="btn btn-primary client_submit">Grabar</button>
-                    <button style="width: 80px;" type="button" class="btn btn-success client_submit">Editar</button>
-                    <button style="width: 80px;" type="button" class="btn btn-danger client_submit">Eliminar</button>
+                    <button style="width: 80px;" id="btnNuevo" class="btn btn-primary " type="button" onclick="botónNuevoMantenimiento()">Nuevo</button>
+                    <button style="width: 80px;" id="btnGrabar" class="btn btn-success order__btn--inactive provider_submit" type="button" onclick="botónGrabarMantenimiento('1')">Grabar</button>
+                    <button style="width: 80px;" id="btnEditar" class="btn btn-warning order__btn--inactive" type="button" onclick="botónEditarMantenimiento()">Editar</button>
+                    <button style="width: 80px;" id="btnEliminar" class="btn btn-danger order__btn--inactive provider_submit" type="button" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
                 </div>
 
 

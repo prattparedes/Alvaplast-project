@@ -15,8 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 
-  <script src="https://code.jquery.com/jquery-3.7.1.js" 
-  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
 
   <!-- <script>
@@ -130,7 +129,7 @@ $(function(){
               </li>
 
 
-              
+
 
 
               <li class="nav-item">
@@ -215,7 +214,7 @@ $(function(){
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
- <script src="assets/js/loadcontent.js"></script>
+  <script src="assets/js/loadcontent.js"></script>
   <script src="assets/js/modals.js"></script>
   <script src="assets/js/orders.js"></script>
   <script src="assets/js/formController.js"></script>
@@ -225,11 +224,11 @@ $(function(){
   <script src="assets/js/maintenance/Forms_maintenance.js"></script>
   <script src="assets/js/compra/ordenCompra.js"></script>
   <script src="assets/js/ventas/ordenVenta.js"></script>
-
+  <script src="assets/js/inventarios/ingresoKardex.js"></script>
   <script src="assets/js/habilitar.js"></script>
-  
 
- 
+
+
 
 
 

@@ -39,8 +39,19 @@ document
             break;
           }
         }
-        console.log(vehiculoMarca)
+        console.log(vehiculoMarca);
         marcaInput.value = vehiculoMarca;
+
+        //Activar botones
+        document
+          .getElementById("btnGrabar")
+          .classList.add("order__btn--inactive");
+        document
+          .getElementById("btnEditar")
+          .classList.remove("order__btn--inactive");
+        document
+          .getElementById("btnEliminar")
+          .classList.remove("order__btn--inactive");
       }
     }
   });
@@ -70,24 +81,16 @@ document
         document.getElementById("descripcion").value = monedaDescripcion;
         document.getElementById("abreviatura").value = monedaSimbolo;
 
-        // //Activar botones Modificar-Eliminar
-        // const botonesModificarEliminar = document.querySelectorAll(
-        //   ".maintenanceform__btn--inactive"
-        // );
-        // botonesModificarEliminar.forEach((boton) => boton.classList.remove("maintenanceform__btn--inactive"))
-
-        // // Desactivar Grabar
-        // const botonGrabar = document.querySelectorAll(
-        //   ".maintenanceform__btn"
-        // )[1];
-        // botonGrabar.classList.add("maintenanceform__btn--inactive")
-
-        // // Desactivar inputs-selects-textareas del documento
-        // const elementos = document.querySelectorAll('input, select, textarea');
-
-        // elementos.forEach(elemento => {
-        //   elemento.disabled = true;
-        // });
+        //Activar botones
+        document
+          .getElementById("btnGrabar")
+          .classList.add("order__btn--inactive");
+        document
+          .getElementById("btnEditar")
+          .classList.remove("order__btn--inactive");
+        document
+          .getElementById("btnEliminar")
+          .classList.remove("order__btn--inactive");
       }
     }
   });
@@ -124,6 +127,17 @@ document
         document.getElementById("ruc").value = transportistaRuc;
         document.getElementById("dni").value = transportistaDNI;
         document.getElementById("licencia").value = transportistaLicencia;
+
+        //Activar botones
+        document
+          .getElementById("btnGrabar")
+          .classList.add("order__btn--inactive");
+        document
+          .getElementById("btnEditar")
+          .classList.remove("order__btn--inactive");
+        document
+          .getElementById("btnEliminar")
+          .classList.remove("order__btn--inactive");
       }
     }
   });
@@ -152,6 +166,17 @@ document
         document.getElementById("codigo").value = documentoCodigo;
         document.getElementById("abreviatura").value = documentoAbreviatura;
         document.getElementById("descripcion").value = documentoDescripcion;
+
+        //Activar botones
+        document
+          .getElementById("btnGrabar")
+          .classList.add("order__btn--inactive");
+        document
+          .getElementById("btnEditar")
+          .classList.remove("order__btn--inactive");
+        document
+          .getElementById("btnEliminar")
+          .classList.remove("order__btn--inactive");
       }
     }
   });
@@ -178,10 +203,45 @@ document
         const almacenSucursal = contenidoFila[3];
         console.log(almacenSucursal);
         const almacenDescripcion = contenidoFila[2];
+        const url = `/Alvaplast-project/Controller/maintenance_models/AlmacenController.php?id=${almacenCodigo}`
+        console.log(almacenCodigo);
+        fetch(url)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`Error de red: ${response.status}`);
+            }
+            return response.json(); // Analizar la respuesta como JSON
+          })
+          .then(data => {
+            // Hacer algo con los datos obtenidos
+            const fact = document.getElementById("facturacion")
+            if (data.length === 0) {
+              fact.value = "";
+              fact.disabled = true;
+            } else {
+              fact.value = data[0].id_Codigo;
+              fact.disabled = true;
+            }
+
+          })
+          .catch(error => {
+            console.error('Error en la solicitud:', error);
+          });
 
         document.getElementById("codigo").value = almacenCodigo;
         document.getElementById("sucursal").value = almacenSucursal;
         document.getElementById("descripcion").value = almacenDescripcion;
+
+        //Activar botones
+        document
+          .getElementById("btnGrabar")
+          .classList.add("order__btn--inactive");
+        document
+          .getElementById("btnEditar")
+          .classList.remove("order__btn--inactive");
+        document
+          .getElementById("btnEliminar")
+          .classList.remove("order__btn--inactive");
       }
     }
   });
@@ -213,6 +273,17 @@ document
         document.getElementById("descripcion").value = sucursalDescripcion;
         document.getElementById("direccion").value = sucursalDireccion;
         document.getElementById("telefono").value = sucursalTelefono;
+
+        //Activar botones
+        document
+          .getElementById("btnGrabar")
+          .classList.add("order__btn--inactive");
+        document
+          .getElementById("btnEditar")
+          .classList.remove("order__btn--inactive");
+        document
+          .getElementById("btnEliminar")
+          .classList.remove("order__btn--inactive");
       }
     }
   });
@@ -242,6 +313,17 @@ document
         document.getElementById("codigo").value = unidadID;
         document.getElementById("abreviatura").value = unidadCodigoUnidad;
         document.getElementById("descripcion").value = unidadDescripcion;
+
+        //Activar botones
+        document
+          .getElementById("btnGrabar")
+          .classList.add("order__btn--inactive");
+        document
+          .getElementById("btnEditar")
+          .classList.remove("order__btn--inactive");
+        document
+          .getElementById("btnEliminar")
+          .classList.remove("order__btn--inactive");
       }
     }
   });
@@ -269,6 +351,17 @@ document
 
         document.getElementById("codigo").value = marcaID;
         document.getElementById("descripcion").value = marcaDescripcion;
+
+        //Activar botones
+        document
+          .getElementById("btnGrabar")
+          .classList.add("order__btn--inactive");
+        document
+          .getElementById("btnEditar")
+          .classList.remove("order__btn--inactive");
+        document
+          .getElementById("btnEliminar")
+          .classList.remove("order__btn--inactive");
       }
     }
   });
@@ -296,6 +389,17 @@ document
 
         document.getElementById("codigo").value = lineaCódigo;
         document.getElementById("descripcion").value = lineaDescripcion;
+
+        //Activar botones
+        document
+          .getElementById("btnGrabar")
+          .classList.add("order__btn--inactive");
+        document
+          .getElementById("btnEditar")
+          .classList.remove("order__btn--inactive");
+        document
+          .getElementById("btnEliminar")
+          .classList.remove("order__btn--inactive");
       }
     }
   });
@@ -347,14 +451,25 @@ document
         // document.getElementById("descripcion").value = proveedorDescripcion;
         document.getElementById("fax").value = proveedorFax;
         document.getElementById("contacto").value = proveedorContacto;
-        document.getElementById("estado").checked = proveedorEstado === '1';
-        console.log(proveedorEstado)
+        document.getElementById("estado").checked = proveedorEstado === "1";
+        console.log(proveedorEstado);
 
         document.getElementById("departamento").value = primerNumero;
         listarProvincia(primerNumero);
         document.getElementById("provincia").value = segundoNumero;
         listarDistrito(segundoNumero);
         document.getElementById("distrito").value = tercerNumero;
+
+        //Activar botones
+        document
+          .getElementById("btnGrabar")
+          .classList.add("order__btn--inactive");
+        document
+          .getElementById("btnEditar")
+          .classList.remove("order__btn--inactive");
+        document
+          .getElementById("btnEliminar")
+          .classList.remove("order__btn--inactive");
       }
     }
   });
@@ -362,7 +477,8 @@ document
 function listarProvincia(ubigeo) {
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/maintenance_models/ubigeoController.php"; // Ruta del controlador PHP
+  const url =
+    "/Alvaplast-project/Controller/maintenance_models/ubigeoController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);
@@ -396,7 +512,7 @@ function listarProvincia(ubigeo) {
           });
 
           // Listar distrito predeterminado
-          listarDistrito(parsedProvincias[0].id_ubigeo)
+          listarDistrito(parsedProvincias[0].id_ubigeo);
         }
       } else {
         // Hubo un error en la solicitud
@@ -409,7 +525,8 @@ function listarProvincia(ubigeo) {
 function listarDistrito(idprovincia) {
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/maintenance_models/ubigeoController.php"; // Ruta del controlador PHP
+  const url =
+    "/Alvaplast-project/Controller/maintenance_models/ubigeoController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);
@@ -502,6 +619,17 @@ document
         document.getElementById("provincia").value = segundoNumero;
         listarDistrito(segundoNumero);
         document.getElementById("distrito").value = tercerNumero;
+
+        //Activar botones
+        document
+          .getElementById("btnGrabar")
+          .classList.add("order__btn--inactive");
+        document
+          .getElementById("btnEditar")
+          .classList.remove("order__btn--inactive");
+        document
+          .getElementById("btnEliminar")
+          .classList.remove("order__btn--inactive");
       }
     }
   });
@@ -553,6 +681,17 @@ document
         document.getElementById("stockMinimo").value = productoStockMinimo;
         document.getElementById("stockMaximo").value = productoStockMaximo;
         document.getElementById("estado").checked = productoEstado === "1";
+
+        //Activar botones
+        document
+          .getElementById("btnGrabar")
+          .classList.add("order__btn--inactive");
+        document
+          .getElementById("btnEditar")
+          .classList.remove("order__btn--inactive");
+        document
+          .getElementById("btnEliminar")
+          .classList.remove("order__btn--inactive");
 
         // const hexString = contenidoFila[15]; // Tu cadena hexadecimal
         // const byteArray = hexString
@@ -651,6 +790,13 @@ function llenarFormularioStaff(fila) {
   document.getElementById("clave").value = staffclave;
   document.getElementById("clave2").value = staffclave;
   document.getElementById("celular").value = staffcelular;
+
+  //Activar botones
+  document.getElementById("btnGrabar").classList.add("order__btn--inactive");
+  document.getElementById("btnEditar").classList.remove("order__btn--inactive");
+  document
+    .getElementById("btnEliminar")
+    .classList.remove("order__btn--inactive");
 }
 
 // Modal de Permisos Personal
@@ -661,8 +807,92 @@ function cargarPermisosPersonal() {
     alert("Seleccione usuario");
     return;
   } else {
-    loadContent("views/modals/maintenance_modals/permisosModel.php").then(() => {
-      document.getElementById("usuarioPersonal").innerHTML = personalSeleccionado;
-    })
+    loadContent("views/modals/maintenance_modals/permisosModel.php").then(
+      () => {
+        document.getElementById("usuarioPersonal").innerHTML =
+          personalSeleccionado;
+      }
+    );
   }
+}
+
+// Funciones para activar y Desactivar Botones
+function botónNuevoMantenimiento() {
+  LimpiarFormularioMantenimiento();
+  activarInputs();
+  document.getElementById("btnGrabar").classList.remove("order__btn--inactive");
+  document.getElementById("btnEditar").classList.add("order__btn--inactive");
+  document.getElementById("btnEliminar").classList.add("order__btn--inactive");
+}
+
+function botónGrabarMantenimiento(funciónGrabar) {
+  if (
+    document
+      .getElementById("btnGrabar")
+      .classList.contains("order__btn--inactive")
+  ) {
+    return;
+  }
+
+  // LLenar con la función correspondiente a grabar de ese mantenimiento
+  console.log(funciónGrabar);
+
+  // Generar una alerta de Sí o No
+
+}
+
+function botónEditarMantenimiento() {
+  //Si el botón está con clase order__btn--inactive no se hace nada y se acaba la función
+  if (
+    document
+      .getElementById("btnEditar")
+      .classList.contains("order__btn--inactive")
+  ) {
+    return;
+  }
+
+  // Si el botón dice Anular se limpia el formulario
+  if (document.getElementById("btnEditar").innerHTML === "Anular") {
+    botónNuevoMantenimiento();
+    document.getElementById("btnEditar").innerHTML = "Editar";
+    document.getElementById("metodo").value = "0";
+    return;
+  }
+
+  // Si el botón dice Editar se cambia a Cancelar y se activa Grabar y los inputs
+  if (document.getElementById("btnEditar").innerHTML === "Editar") {
+    document.getElementById("metodo").value = "modificar";
+    activarInputs();
+    document
+      .getElementById("btnGrabar")
+      .classList.remove("order__btn--inactive");
+    document
+      .getElementById("btnEliminar")
+      .classList.add("order__btn--inactive");
+    document.getElementById("btnEditar").innerHTML = "Anular";
+    return;
+  }
+}
+
+function botónEliminarMantenimiento(funciónEliminar) {
+  if (
+    document
+      .getElementById("btnEliminar")
+      .classList.contains("order__btn--inactive")
+  ) {
+    return;
+  }
+
+  //Llenar con la función para Eliminar
+  console.log(funciónEliminar);
+
+  //botónNuevoMantenimiento();
+}
+
+function LimpiarFormularioMantenimiento() {
+  // Limpiar formulario
+  const formInputs = document.querySelectorAll("input");
+  formInputs.forEach((input) => {
+    input.value = "";
+  });
 }

@@ -132,7 +132,7 @@ class Cliente
             $stmt = $con->prepare("select razon_social from Cliente where id_cliente = :id");
             $stmt->bindParam(":id", $idCliente, PDO::PARAM_INT);
             $stmt->execute();
-            $result = ($stmt->rowCount() > 0) ?  true : false;
+            $result = $stmt->rowCount();
             return $result;
         } catch (PDOException $err) {
             echo $err;

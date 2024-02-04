@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       if ($_POST['metodo'] == "Grabar") {
             $result = Moneda::RegistrarMoneda($id, $descripcion, $abre);
             $message = "moneda registrada";
-      } else if ($_POST['metodo'] == "Modificar") {
+      } else if ($_POST['metodo'] == "modificar") {
             $result = Moneda::ModificarMoneda($id, $descripcion, $abre);
             $message = "moneda modificada";
       } else if ($_POST['metodo'] == "Eliminar") {

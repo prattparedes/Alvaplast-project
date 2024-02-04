@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($_POST["metodo"] == "Grabar") {
         $result = Marca::registrarMarca($idMarca, $descripcion);
         $message = "marca grabada";
-    } else if ($_POST["metodo"] == "Modificar") {
+    } else if ($_POST["metodo"] == "modificar") {
         $result = Marca::modificarMarca($idMarca, $descripcion);
         $message = "marca modificada";
     } else if ($_POST["metodo"] == "Eliminar") {

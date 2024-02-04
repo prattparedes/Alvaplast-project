@@ -27,6 +27,7 @@
                             <label for="inputPassword6" class="col-form-label">Codigo</label>
                             <fieldset disabled>
                                 <input type="text" id="codigo" class="form-control" aria-describedby="passwordHelpInline">
+                                <input type="hidden" id="metodo" value="">
                             </fieldset>
                         </div>
 
@@ -47,10 +48,10 @@
 
                     <div class="col-md-12">
                         <br>
-                        <button style="width: 75px;" class="btn btn-primary" type="button">Nuevo</button>
-                        <button style="width: 75px;" class="btn btn-success" type="button">Grabar</button>
-                        <button style="width: 75px;" class="btn btn-warning" type="button">Editar</button>
-                        <button style="width: 80px;" class="btn btn-danger" type="button">Eliminar</button>
+                        <button style="width: 80px;" id="btnNuevo" type="button" class="btn btn-secondary" onclick="botónNuevoMantenimiento()">Nuevo</button>
+                        <button style="width: 80px;" id="btnGrabar" type="button" class="btn btn-primary order__btn--inactive document_submit" onclick="botónGrabarMantenimiento('1')">Grabar</button>
+                        <button style="width: 80px;" id="btnEditar" type="button" class="btn btn-success order__btn--inactive" onclick="botónEditarMantenimiento()">Editar</button>
+                        <button style="width: 80px;" id="btnEliminar" type="button" class="btn btn-danger order__btn--inactive document_submit" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
                         <!-- <button style="width: 40px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">X</button> -->
                         <br><br>
                     </div>

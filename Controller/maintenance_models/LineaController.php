@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($_POST["metodo"] == "Grabar") {
         $result = Linea::registrarLinea($idLinea, $descripcion);
         $message = "Linea registrada";
-    } elseif ($_POST["metodo"] == "Modificar") {
+    } elseif ($_POST["metodo"] == "modificar") {
         $result = Linea::modificarLinea($idLinea, $descripcion);
         $message = "Linea modificada";
     } elseif ($_POST["metodo"] == "Eliminar") {
