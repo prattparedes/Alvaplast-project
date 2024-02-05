@@ -122,6 +122,7 @@ function abrirListadoCompras() {
   guardarCopiaSeguridadCompra();
   loadContent("views/modals/listaordencompra.php");
 }
+
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 // FALTA ARREGLAR ESTA FUNCIÓN HASTA TENER LOS DATOS
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -170,9 +171,9 @@ async function seleccionarOrdenVenta(fila) {
         datosCompraProducto,
         datosProveedor
       );
-      console.log("Datos Compra:", datosCompra);
-      console.log("Datos Compra Producto:", datosCompraProducto);
-      console.log("Dirección del proveedor:", datosProveedor.direccion);
+      // console.log("Datos Compra:", datosCompra);
+      // console.log("Datos Compra Producto:", datosCompraProducto);
+      // console.log("Dirección del proveedor:", datosProveedor.direccion);
     });
   } catch (error) {
     console.error(error);

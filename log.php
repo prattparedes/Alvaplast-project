@@ -188,12 +188,12 @@ $(function(){
             </div>
           </li>
 
-          <li style="font-size: 13px;width:130px;" class="nav-item">
+          <!-- <li style="font-size: 13px;width:130px;" class="nav-item">
             <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/usarios.php')">
               <i class="bi bi-people"></i>
               USUARIOS
             </a>
-          </li>
+          </li> -->
           </ul>
         </div>
     </div>
@@ -224,6 +224,7 @@ $(function(){
   <script src="assets/js/ventas/ordenVenta.js"></script>
   <script src="assets/js/inventarios/ingresoKardex.js"></script>
   <script src="assets/js/habilitar.js"></script>
+  <script src="assets/js/ventas/facturacion.js"></script>
   <script src="assets/js/alerts/alertmodal.js"></script>
   </body>
 

@@ -274,6 +274,7 @@ function guardarCopiaSeguridadCompra() {
     fecha: document.getElementById("fecha").value,
     descripcion: document.getElementById("descripcion").value,
     modificarActivo: document.getElementById("btnModify").innerHTML,
+    metodo: document.getElementById('metodo').value,
     precios: datosPrecios, // Guardar el array con los valores de la tabla precios
     productos: [], // Inicializar un array vacío para los productos
   };
@@ -374,6 +375,7 @@ function restaurarCopiaSeguridadCompra() {
   document.getElementById("tipoPago").value = copy.tipoPago;
   document.getElementById("fecha").value = copy.fecha;
   document.getElementById("descripcion").value = copy.descripcion;
+  document.getElementById("metodo").value = copy.metodo;
 
   if (copy.modificarActivo === 'Cancelar') {
     let botonModificar = document.getElementById('btnModify');
@@ -693,6 +695,13 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     } else {
       var metodo = mod;
     }
+    if (metodo === "Grabar" && document.getElementById('btnRegister').classList.contains('order__btn--inactive')) {
+      return
+    }
+
+    if (metodo === "Eliminar" && document.getElementById('btnDelete').classList.contains('order__btn--inactive')) {
+      return
+    }
 
     // Crear una solicitud XMLHttpRequest
     const xhr = new XMLHttpRequest();
@@ -701,6 +710,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     // Configurar la solicitud
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    console.log(metodo, fecha, tipoPago);
     if (idCompra && idAlmacen) {
       // Enviar los datos del formulario incluyendo descripcion y abreviatura
       xhr.send("idCompra=" + idCompra + "&fecha=" + fecha + "&total=" + total + "&subtotal=" + subtotal + "&igv=" + igv + "&idMoneda=" + idMoneda + "&numeroDocumento=" + numeroDocumento + "&serieDocumento=" + serieDocumento + "&idProveedor=" + idProveedor + "&idAlmacen=" + idAlmacen + "&tipoPago=" + tipoPago + "&idPersonal=" + idPersonal + "&metodo=" + metodo);
@@ -714,15 +724,13 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         if (xhr.status === 200) {
           // La solicitud se completó correctamente
           // Puedes manejar la respuesta del servidor aquí
-          console.log(xhr.responseText)
+          alert(xhr.responseText);
           //Envio de los datos de CompraProducto
-          alert(xhr.responseText)
-
           if (metodo == "Eliminar") {
-            //loadContent("views/buyorder.php");
+            loadContent("views/buyorder.php");
           }
-          //RegistrarDatosTabla(idCompra, metodo);
           RegistrarDatosTabla(idCompra, metodo, idAlmacen, nombreAlmacen);
+          //RegistrarDatosTabla(idCompra, metodo);
         } else {
           // Hubo un error en la solicitud
           console.error('Error en la solicitud.');
@@ -731,7 +739,6 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     };
   }
 });
-
 
 async function registrarCompraKardex() {
   let idCompra = document.getElementById("idCompra").value;
