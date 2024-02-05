@@ -264,6 +264,7 @@ function guardarCopiaSeguridadCompra() {
 
   // Guardar las claves y valores principales
   copiaSeguridadFormulario = {
+    id_compra: document.getElementById('idCompra').value,
     proveedor: document.getElementById("proveedor").value,
     id_proveedor: document.getElementById("idproveedor").value,
     direccion: document.getElementById("direccion").value,
@@ -374,6 +375,7 @@ function restaurarCopiaSeguridadCompra() {
   document.getElementById("fecha").value = copy.fecha;
   document.getElementById("descripcion").value = copy.descripcion;
   document.getElementById("metodo").value = copy.metodo;
+  document.getElementById('idCompra').value = copy.id_compra;
 
   if (copy.modificarActivo === 'Cancelar') {
     let botonModificar = document.getElementById('btnModify');
