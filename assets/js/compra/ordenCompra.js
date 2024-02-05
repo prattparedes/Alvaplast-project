@@ -274,6 +274,7 @@ function guardarCopiaSeguridadCompra() {
     fecha: document.getElementById("fecha").value,
     descripcion: document.getElementById("descripcion").value,
     modificarActivo: document.getElementById("btnModify").innerHTML,
+    metodo: document.getElementById('metodo').value,
     precios: datosPrecios, // Guardar el array con los valores de la tabla precios
     productos: [], // Inicializar un array vacío para los productos
   };
@@ -372,6 +373,7 @@ function restaurarCopiaSeguridadCompra() {
   document.getElementById("tipoPago").value = copy.tipoPago;
   document.getElementById("fecha").value = copy.fecha;
   document.getElementById("descripcion").value = copy.descripcion;
+  document.getElementById("metodo").value = copy.metodo;
 
   if (copy.modificarActivo === 'Cancelar') {
     let botonModificar = document.getElementById('btnModify');
