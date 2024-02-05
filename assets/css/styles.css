@@ -17,10 +17,9 @@ hr {
 .nav-item {
   cursor: pointer;
   margin: 0 8px;
- 
 }
 
-.nav-a{
+.nav-a {
   font-size: 12px;
 }
 
@@ -35,7 +34,6 @@ hr {
 
 .navbar-nav .nav-item .nav-link:hover {
   background-color: var(--bs-btn-hover-bg);
-  
 }
 
 .dropdown-toggle {
@@ -46,7 +44,6 @@ hr {
 .nav-link {
   color: var(--bs-emphasis-color);
   padding: 6px 12px;
- 
 }
 
 .nav-link:hover,
@@ -57,13 +54,11 @@ hr {
 
 .nav-pills .nav-link {
   margin-left: 1.25rem;
-  
 }
 
 .nav-pills .nav-link.active {
   color: rgba(var(--bs-emphasis-color-rgb), 0.85);
   background-color: var(--bs-tertiary-bg);
-  
 }
 
 .collapse {
@@ -94,21 +89,10 @@ hr {
 }
  */
 
-
-
-
-
-
-
-
-
-
-
 thead {
   background-color: #034481 !important;
   color: #ffffff !important;
-font-size: 13px;
-  
+  font-size: 13px;
 }
 
 /* td {
@@ -120,89 +104,79 @@ td {
   background-color: #ffffff !important;
   color: #706c6c !important;
   font-size: 13px;
-} 
-
-
-#detalle_venta tr{
-	background-color: #FFF !important;
 }
-#detalle_venta td{
-	border-bottom: 1px solid #CCC;
-} 
 
+#detalle_venta tr {
+  background-color: #fff !important;
+}
+#detalle_venta td {
+  border-bottom: 1px solid #ccc;
+}
 
-
-
-
-
-
-
-
-
-tr:hover td{
-	background-color: rgb(129, 193, 245);
-	color:#dee2e6;
+tr:hover td {
+  background-color: rgb(129, 193, 245);
+  color: #dee2e6;
 }
 
 tbody tr {
   cursor: pointer;
 }
 
-.textright{
-	text-align: right;
+.textright {
+  text-align: right;
 }
 
-.textcenter{
-	text-align: center;
+.textcenter {
+  text-align: center;
 }
 
 /*Quitar sombreado input*/
-input:focus, select:focus, select, input.form-control:focus {
-  outline:none !important;
+input:focus,
+select:focus,
+select,
+input.form-control:focus {
+  outline: none !important;
   outline-width: 0 !important;
   box-shadow: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
-
 }
 
-.form-select{
+.form-select {
   height: 35px;
   font-size: 13px;
-  outline:none !important;
-
+  outline: none !important;
 }
 
-.form-control{
+.form-control {
   height: 35px;
-  
 }
 
-select:focus{ outline: none;}
+select:focus {
+  outline: none;
+}
 
 * {
   box-sizing: border-box;
 }
 
-@media(min-width:768px){
-  .contenedor{
- 
-      display: flex;
-      padding: 10px; 
-      margin: 0 auto;
-      max-width: 1200px;
-      width: 95%;
-      padding: 0px;
-      display: flex;
-      height: 20px;
-      margin-left: 2%;
-       
+@media (min-width: 768px) {
+  .contenedor {
+    display: flex;
+    padding: 10px;
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 95%;
+    padding: 0px;
+    display: flex;
+    height: 20px;
+    margin-left: 2%;
   }
 }
 
-@media(min-width:768px) {
+@media (min-width: 768px) {
   .contenedor-formulario {
-      display: flex;
+    display: flex;
   }
 }
 
@@ -225,7 +199,6 @@ select:focus{ outline: none;}
   display: flex;
   flex-direction: column;
   border: rgb(223, 220, 220) 1.25px solid;
-  
 }
 
 .kardex__right {
@@ -237,6 +210,37 @@ select:focus{ outline: none;}
   flex-direction: column;
 }
 
+@media (max-width: 1232px) {
+  .kardex__movement {
+    flex-direction: column;
+  }
+
+  .kardex__right {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #ordertable {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 562px) {
+  /* Ocultar la tercera y quinta columna */
+  #ordertable tr td:nth-child(3),
+  #ordertable tr th:nth-child(3),
+  #ordertable tr td:nth-child(5),
+  #ordertable tr th:nth-child(5) {
+    display: none;
+  }
+
+  /* Ajustar el ancho de las columnas en el footer */
+  #ordertable tfoot td:nth-child(1),
+  #ordertable tfoot td:nth-child(2) {
+    /* Ajustar el ancho de las columnas */
+    width: auto;
+  }
+}
 
 /*----------------*/
 .table--container {
@@ -272,7 +276,6 @@ select:focus{ outline: none;}
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-
 .form__btn {
   background-color: #f5f5f5;
 }
@@ -299,7 +302,6 @@ select:focus{ outline: none;}
   text-align: center;
   cursor: pointer;
 }
-
 
 /* tr:hover td{
 	background-color: rgb(7, 78, 136);
@@ -351,7 +353,6 @@ main {
 .maintenance__btn--inactive:hover {
   background-color: #c0c0c0 !important;
 }
-
 
 .buyorder,
 .sellorder,
@@ -415,7 +416,7 @@ main {
   width: auto;
   height: auto;
   min-height: 400px;
-  
+
   border: #082160 1.5px solid;
   background-color: white;
   border-radius: 20px;
@@ -468,14 +469,14 @@ main {
   display: none;
 }
 
-
 /*  */
 
 .table__maintenance {
   max-width: 600px;
 }
 
-.table__maintenance tbody tr td, .table__maintenance thead th{
+.table__maintenance tbody tr td,
+.table__maintenance thead th {
   text-align: center;
 }
 
@@ -487,7 +488,6 @@ main {
 /* .table__maintenance--big  {
   font-size: 12px;
 } */
-
 
 .modal__btn--search {
   margin-left: 20px;
@@ -506,9 +506,53 @@ main {
   transform: translate(-50%, -50%);
 }
 
+/**
+Alert
+**/
 
+/* Estilos para la superposición */
+#overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* Color de fondo semitransparente */
+  z-index: 1; /* Sitúa la superposición sobre todo */
+}
 
+/* Estilos para el alertModal */
+#alertModal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  max-width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  text-align: center;
+  z-index: 2; /* Sitúa el alertModal encima de la superposición */
+}
 
+#alertModal button {
+  width: 20%;
+  margin: 10px 20px;
+  padding: 6px;
+  font-size: 16px;
+}
 
+#alertModal #btnSi:hover {
+  background-color: rgb(0, 110, 255);
+  color: white;
+}
 
-
+#alertModal #btnNo:hover {
+  background-color: rgb(248, 100, 100);
+  color: white;
+}

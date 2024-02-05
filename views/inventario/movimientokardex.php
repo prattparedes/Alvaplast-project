@@ -45,7 +45,7 @@
                             $producto = Producto::getProductos();
                             foreach ($producto as $produc) {
                             ?>
-                                <tr onclick="seleccionarProductos(this)">
+                                <tr>
                                     <td style="display:none;"><?= $produc->id_producto ?></td>
                                     <td class="textleft" width="320"><?= $produc->nombre_producto ?></td>
                                     <td><?= $produc->unidad ?></td>
@@ -61,7 +61,7 @@
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:-40px">
                     
-                        <p id="productoSeleccionadoKardex" style="font-weight:700;">BANDEJA DON LUCHO</p>
+                        <p id="productoSeleccionadoKardex" style="font-weight:700;">-</p>
 
                         <div class="col-md-8">
                             Stock Físico Final: <span id="stockfinal" style="font-weight:700;">-</span>

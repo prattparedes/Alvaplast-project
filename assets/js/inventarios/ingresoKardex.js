@@ -22,9 +22,15 @@ async function seleccionarOCKardex(fila) {
     // Obtener el valor de la segunda columna (posición 1 en base a índices)
     const valorSegundaColumna = columnas[1].innerText.trim().substring(3);
 
+    obtenerDatosOCKardex(valorSegundaColumna)
+}
+
+async function obtenerDatosOCKardex(idCompra) {
+    console.log(idCompra)
+    console.log(typeof(idCompra))
     // URLs dinámicas basadas en los valores extraídos
-    const urlCompra = `http://localhost/Alvaplast-project/Controller/compras/CompraController.php?idCompra=${valorSegundaColumna}`;
-    const urlCompraProducto = `http://localhost/Alvaplast-project/Controller/compras/CompraProductoController.php?idCompra=${valorSegundaColumna}`;
+    const urlCompra = `http://localhost/Alvaplast-project/Controller/compras/CompraController.php?idCompra=${idCompra}`;
+    const urlCompraProducto = `http://localhost/Alvaplast-project/Controller/compras/CompraProductoController.php?idCompra=${idCompra}`;
 
     try {
         // Realizar las solicitudes fetch para obtener los datos de Compra y Compra Producto

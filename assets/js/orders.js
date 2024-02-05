@@ -32,6 +32,11 @@ function desactivarInputs() {
   elementosFormulario.forEach(function (elemento) {
     elemento.setAttribute("disabled", "disabled");
   });
+
+  selectsNavbar = document.querySelectorAll(".dropdown-toggle")
+  selectsNavbar.forEach((selectNav) => {
+    selectNav.removeAttribute('disabled');
+  })
 }
 
 // Función para actualizar la tabla de precios en las ordenes de compra y venta

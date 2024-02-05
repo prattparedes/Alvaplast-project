@@ -242,6 +242,7 @@ function guardarCopiaSeguridadVenta() {
     fecha: document.getElementById("fecha").value,
     tipoDocumento: document.getElementById("tipoDocumento").value,
     notas: document.getElementById("notas").value,
+    modificarActivo: document.getElementById("btnModify").innerHTML,
     precios: datosPrecios, // Guardar el array con los valores de la tabla precios
     productos: [], // Inicializar un array vacío para los productos
   };
@@ -348,6 +349,17 @@ function restaurarCopiaSeguridadVenta() {
   document.getElementById("fecha").value = copy.fecha;
   document.getElementById("tipoDocumento").value = copy.tipoDocumento;
   document.getElementById("notas").value = copy.notas;
+
+  if (copy.modificarActivo === 'Cancelar') {
+    let botonModificar = document.getElementById('btnModify');
+    botonModificar.classList.remove('order__btn--inactive');
+    botonModificar.innerHTML = "Cancelar";
+    botonModificar.style.backgroundColor = "gray";
+    botonModificar.style.borderColor = "gray";
+    document.getElementById("btnDelete").classList.add("order__btn--inactive");
+    document
+      .getElementById("btnRegister")
+      .classList.remove("order__btn--inactive");
 }
 
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
