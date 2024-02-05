@@ -200,13 +200,11 @@ $(function(){
     </nav>
     <div class="main__content">
       <?php include 'views/home.php'; ?>
-
-      <?php include 'views/modals/alertModal.php'; ?>
     </div>
     </div>
   </main>
   <footer>
-    <!-- place footer here -->
+    <?php include 'views/modals/alertamodal.php'; ?>
   </footer>
   <!-- Bootstrap JavaScript Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
@@ -226,13 +224,7 @@ $(function(){
   <script src="assets/js/ventas/ordenVenta.js"></script>
   <script src="assets/js/inventarios/ingresoKardex.js"></script>
   <script src="assets/js/habilitar.js"></script>
-
-
-
-
-
-
-
+  <script src="assets/js/alerts/alertmodal.js"></script>
   </body>
 
 </html>

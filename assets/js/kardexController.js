@@ -22,7 +22,7 @@ document
 
       const id_producto = fila.cells[0].textContent.trim();
       const nombreProducto = fila.cells[1].textContent.trim();
-      productoSeleccionado.value = nombreProducto;
+      productoSeleccionado.innerText = nombreProducto;
 
       // Mostrar la fila de carga antes de enviar la solicitud
       mostrarFilaDeCarga();

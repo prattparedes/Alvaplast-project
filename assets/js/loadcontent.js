@@ -83,3 +83,6 @@ function loadModalContent(modalName) {
   });
 }
 
+function loadAlert() {
+  
+}

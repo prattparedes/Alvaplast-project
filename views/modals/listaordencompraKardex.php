@@ -42,10 +42,8 @@
             </form>
 
 
-            <button style="width: 150px;" class="btn btn-danger" onclick="loadContent('views/inventario/ingresokardex.php')" type="button" id="">Cancelar</button>
+            <button style="width: 150px; margin-bottom: 40px;" class="btn btn-danger" onclick="loadContent('views/inventario/ingresokardex.php')" type="button" id="">Cancelar</button>
 
-
-            <h1>Proveedores</h1>
             <b> <span class="d-block p-2 col-9 bg-info text-white">Listado de ordenes de compra</span></b>
 
             <br>

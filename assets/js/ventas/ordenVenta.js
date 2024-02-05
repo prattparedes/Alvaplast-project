@@ -242,6 +242,7 @@ function guardarCopiaSeguridadVenta() {
     fecha: document.getElementById("fecha").value,
     tipoDocumento: document.getElementById("tipoDocumento").value,
     notas: document.getElementById("notas").value,
+    modificarActivo: document.getElementById("btnModify").innerHTML,
     precios: datosPrecios, // Guardar el array con los valores de la tabla precios
     productos: [], // Inicializar un array vacío para los productos
   };
@@ -348,46 +349,57 @@ function restaurarCopiaSeguridadVenta() {
   document.getElementById("fecha").value = copy.fecha;
   document.getElementById("tipoDocumento").value = copy.tipoDocumento;
   document.getElementById("notas").value = copy.notas;
-}
 
-// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-// FALTA ARREGLAR ESTA FUNCIÓN HASTA TENER LOS DATOS
-// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  if (copy.modificarActivo === 'Cancelar') {
+    let botonModificar = document.getElementById('btnModify');
+    botonModificar.classList.remove('order__btn--inactive');
+    botonModificar.innerHTML = "Cancelar";
+    botonModificar.style.backgroundColor = "gray";
+    botonModificar.style.borderColor = "gray";
+    document.getElementById("btnDelete").classList.add("order__btn--inactive");
+    document
+      .getElementById("btnRegister")
+      .classList.remove("order__btn--inactive");
+  }
 
-// Función para pasar los datos obtenidos de la lista de compras al formulario de compras
-function rellenarFormularioVenta(datosCompra, datosProductos, datosProveedor) {
-  const proveedorInput = document.getElementById("proveedor");
-  const direccionInput = document.getElementById("direccion");
-  const sucursalSelect = document.getElementById("sucursal");
-  const monedaSelect = document.getElementById("moneda");
-  const almacenSelect = document.getElementById("almacen");
-  const tipoPagoSelect = document.getElementById("tipoPago");
-  const fechaInput = document.getElementById("fecha");
-  const igvCheckbox = document.getElementById("igv");
-  const descripcionTextarea = document.getElementById("descripcion");
-  const idCompraInput = document.getElementById("idCompra");
+  // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  // FALTA ARREGLAR ESTA FUNCIÓN HASTA TENER LOS DATOS
+  // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-  //Rellenar Formulario
-  proveedorInput.value = datosProveedor.razon_social;
-  direccionInput.value = datosProveedor.direccion;
-  sucursalSelect.value = "1";
-  monedaSelect.value = datosCompra.id_moneda;
-  almacenSelect.value = datosCompra.id_almacen;
-  tipoPagoSelect.value = datosCompra.tipo_pago;
-  fechaInput.value = datosCompra.fecha_compra;
-  igvCheckbox.checked = true;
-  descripcionTextarea.value =
-    datosCompra.descripcion !== undefined ? datosCompra.descripcion : "";
-  idCompraInput.value = "00" + datosCompra.id_compra;
+  // Función para pasar los datos obtenidos de la lista de compras al formulario de compras
+  function rellenarFormularioVenta(datosCompra, datosProductos, datosProveedor) {
+    const proveedorInput = document.getElementById("proveedor");
+    const direccionInput = document.getElementById("direccion");
+    const sucursalSelect = document.getElementById("sucursal");
+    const monedaSelect = document.getElementById("moneda");
+    const almacenSelect = document.getElementById("almacen");
+    const tipoPagoSelect = document.getElementById("tipoPago");
+    const fechaInput = document.getElementById("fecha");
+    const igvCheckbox = document.getElementById("igv");
+    const descripcionTextarea = document.getElementById("descripcion");
+    const idCompraInput = document.getElementById("idCompra");
 
-  // Rellenar Productos
-  const tablaProductos = document.getElementById("ordertable");
-  tablaProductos.querySelector("tbody").innerHTML = "";
+    //Rellenar Formulario
+    proveedorInput.value = datosProveedor.razon_social;
+    direccionInput.value = datosProveedor.direccion;
+    sucursalSelect.value = "1";
+    monedaSelect.value = datosCompra.id_moneda;
+    almacenSelect.value = datosCompra.id_almacen;
+    tipoPagoSelect.value = datosCompra.tipo_pago;
+    fechaInput.value = datosCompra.fecha_compra;
+    igvCheckbox.checked = true;
+    descripcionTextarea.value =
+      datosCompra.descripcion !== undefined ? datosCompra.descripcion : "";
+    idCompraInput.value = "00" + datosCompra.id_compra;
 
-  // Iterar sobre los datos de productos y añadir filas a la tabla
-  datosProductos.forEach((producto) => {
-    const row = document.createElement("tr");
-    row.innerHTML = `
+    // Rellenar Productos
+    const tablaProductos = document.getElementById("ordertable");
+    tablaProductos.querySelector("tbody").innerHTML = "";
+
+    // Iterar sobre los datos de productos y añadir filas a la tabla
+    datosProductos.forEach((producto) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
         <td style="display: none;">${producto.id_producto}</td>
         <td colspan="1">${producto.nombre_producto}</td>
         <td class="textright">${producto.cantidad}</td>
@@ -395,160 +407,156 @@ function rellenarFormularioVenta(datosCompra, datosProductos, datosProveedor) {
         <td class="textright">${producto.precio_compra}</td>
         <td class="textright">${producto.descuento}</td>
         <td class="textright">${producto.Sub_Total}</td>`;
-    tablaProductos.querySelector("tbody").appendChild(row);
-  });
+      tablaProductos.querySelector("tbody").appendChild(row);
+    });
 
-  // Obtener las celdas de la tabla por su ID
-  const productSubtotal1 = document.getElementById("productsubtotal1");
-  const productSubtotal2 = document.getElementById("productsubtotal2");
-  const productIgvCell = document.getElementById("productigv");
-  const productTotalCell = document.getElementById("productTotal");
-  const productDescuento = document.getElementById("productDescuento");
+    // Obtener las celdas de la tabla por su ID
+    const productSubtotal1 = document.getElementById("productsubtotal1");
+    const productSubtotal2 = document.getElementById("productsubtotal2");
+    const productIgvCell = document.getElementById("productigv");
+    const productTotalCell = document.getElementById("productTotal");
+    const productDescuento = document.getElementById("productDescuento");
 
-  // Asignar valores a las celdas de la tabla con los datos de la compra
-  productSubtotal1.textContent = datosCompra.subtotal;
-  productSubtotal2.textContent = datosCompra.subtotal;
-  productIgvCell.textContent = datosCompra.igv;
-  productTotalCell.textContent = datosCompra.total;
-  productDescuento.textContent = 0;
-}
+    // Asignar valores a las celdas de la tabla con los datos de la compra
+    productSubtotal1.textContent = datosCompra.subtotal;
+    productSubtotal2.textContent = datosCompra.subtotal;
+    productIgvCell.textContent = datosCompra.igv;
+    productTotalCell.textContent = datosCompra.total;
+    productDescuento.textContent = 0;
+  }
 
-// Añadir nueva fila en la tabla de órdenes de venta/compra
-function añadirProductoOrdenVenta() {
-  const cantidad = parseFloat(document.getElementById("productquantity").value);
-  const precioUnitario = parseFloat(
-    document.getElementById("productprice").value
-  );
-  let descuento = parseFloat(document.getElementById("productdiscount").value);
-  const unidad = document.getElementById("productunit").selectedOptions[0].text;
-  descuento = isNaN(descuento) ? 0 : descuento;
-  const descuentoAplicado =
-    isNaN(descuento) || descuento < 0 || descuento > 100 ? 0 : descuento;
+  // Añadir nueva fila en la tabla de órdenes de venta/compra
+  function añadirProductoOrdenVenta() {
+    const cantidad = parseFloat(document.getElementById("productquantity").value);
+    const precioUnitario = parseFloat(
+      document.getElementById("productprice").value
+    );
+    let descuento = parseFloat(document.getElementById("productdiscount").value);
+    const unidad = document.getElementById("productunit").selectedOptions[0].text;
+    descuento = isNaN(descuento) ? 0 : descuento;
+    const descuentoAplicado =
+      isNaN(descuento) || descuento < 0 || descuento > 100 ? 0 : descuento;
 
-  const rowData = window.clickedRowData;
+    const rowData = window.clickedRowData;
 
-  if (cantidad && unidad) {
-    if (rowData) {
-      const idPro = rowData[0];
-      const nombreProducto = rowData[1];
-      const precioReal = parseFloat(rowData[3]);
+    if (cantidad && unidad) {
+      if (rowData) {
+        const idPro = rowData[0];
+        const nombreProducto = rowData[1];
+        const precioReal = parseFloat(rowData[3]);
 
-      // Verificar que el producto a agregar no esté actualmente agregado
-      let productosAgregadosEl = document.querySelectorAll(
-        "#ordertable tbody tr td:nth-child(2)"
-      );
-      let productosAgregados = [];
+        // Verificar que el producto a agregar no esté actualmente agregado
+        let productosAgregadosEl = document.querySelectorAll(
+          "#ordertable tbody tr td:nth-child(2)"
+        );
+        let productosAgregados = [];
 
-      productosAgregadosEl.forEach((td) => {
-        productosAgregados.push(td.innerText);
-      });
-
-      if (productosAgregados.includes(nombreProducto)) {
-        alert("El producto ya ha sido agregado.");
-        return; // Sale de la función si el producto ya existe
-      }
-
-      let datosProducto = [];
-      let addToProducts = true; // Variable para controlar la adición a productosAgregados
-
-      if (document.getElementById("productstock")) {
-        const stock = parseFloat(document.getElementById("productstock").value);
-        if (cantidad > stock) {
-          alert("No hay stock suficiente");
-          addToProducts = false; // No agrega el producto si no hay suficiente stock
-        }
-      }
-
-      if (addToProducts) {
-        productosAgregados.push(nombreProducto);
-        datosProducto = [
-          idPro,
-          nombreProducto,
-          cantidad,
-          unidad,
-          precioUnitario,
-          precioReal,
-          (cantidad * precioUnitario * (1 - descuentoAplicado / 100)).toFixed(
-            2
-          ),
-        ];
-
-        const tablaExterna = document
-          .getElementById("ordertable")
-          .getElementsByTagName("tbody")[0];
-        const nuevaFila = tablaExterna.insertRow();
-        console.log(datosProducto);
-        datosProducto.forEach((contenido, index) => {
-          const celda = nuevaFila.insertCell();
-
-          // Aplicar estilos y atributos según el índice
-          switch (index) {
-            case 0:
-              celda.style.display = "none";
-              celda.textContent = contenido;
-              break;
-            case 1:
-              // Aquí puedes agregar estilos adicionales si es necesario
-              celda.colSpan = "1";
-              celda.textContent = contenido;
-              break;
-            case 2:
-              celda.classList.add("textcenter");
-              celda.textContent = contenido;
-              break;
-            case 3:
-              celda.classList.add("textcenter");
-              celda.textContent = contenido;
-              break;
-            default:
-              celda.textContent = contenido;
-              celda.classList.add("textright");
-              break;
-          }
+        productosAgregadosEl.forEach((td) => {
+          productosAgregados.push(td.innerText);
         });
 
-        // Limpiar datos del formulario
-        window.clickedRowData = null;
-        document.getElementById("productname").value = "Seleccione Producto";
-        document.getElementById("productprice").value = null;
-        document.getElementById("productdiscount").value = null;
-        document.getElementById("productquantity").value = null;
-        document.getElementById("productunit").value = null;
-
-        if (document.getElementById("productstock")) {
-          document.getElementById("productstock").value = null;
+        if (productosAgregados.includes(nombreProducto)) {
+          alert("El producto ya ha sido agregado.");
+          return; // Sale de la función si el producto ya existe
         }
 
-        // Actualiza tabla de precios
-        actualizarTablaPrecios();
+        let datosProducto = [];
+        let addToProducts = true; // Variable para controlar la adición a productosAgregados
+
+        if (document.getElementById("productstock")) {
+          const stock = parseFloat(document.getElementById("productstock").value);
+          if (cantidad > stock) {
+            alert("No hay stock suficiente");
+            addToProducts = false; // No agrega el producto si no hay suficiente stock
+          }
+        }
+
+        if (addToProducts) {
+          productosAgregados.push(nombreProducto);
+          datosProducto = [
+            idPro,
+            nombreProducto,
+            cantidad,
+            unidad,
+            precioUnitario,
+            precioReal,
+            (cantidad * precioUnitario * (1 - descuentoAplicado / 100)).toFixed(
+              2
+            ),
+          ];
+
+          const tablaExterna = document
+            .getElementById("ordertable")
+            .getElementsByTagName("tbody")[0];
+          const nuevaFila = tablaExterna.insertRow();
+          console.log(datosProducto);
+          datosProducto.forEach((contenido, index) => {
+            const celda = nuevaFila.insertCell();
+
+            // Aplicar estilos y atributos según el índice
+            switch (index) {
+              case 0:
+                celda.style.display = "none";
+                celda.textContent = contenido;
+                break;
+              case 1:
+                // Aquí puedes agregar estilos adicionales si es necesario
+                celda.colSpan = "1";
+                celda.textContent = contenido;
+                break;
+              case 2:
+                celda.classList.add("textcenter");
+                celda.textContent = contenido;
+                break;
+              case 3:
+                celda.classList.add("textcenter");
+                celda.textContent = contenido;
+                break;
+              default:
+                celda.textContent = contenido;
+                celda.classList.add("textright");
+                break;
+            }
+          });
+
+          // Limpiar datos del formulario
+          window.clickedRowData = null;
+          document.getElementById("productname").value = "Seleccione Producto";
+          document.getElementById("productprice").value = null;
+          document.getElementById("productdiscount").value = null;
+          document.getElementById("productquantity").value = null;
+          document.getElementById("productunit").value = null;
+
+          if (document.getElementById("productstock")) {
+            document.getElementById("productstock").value = null;
+          }
+
+          // Actualiza tabla de precios
+          actualizarTablaPrecios();
+        }
+      }
+    } else {
+      const añadirProductoBoton = document.getElementById("addproduct");
+      if (!añadirProductoBoton.classList.contains("order__btn--inactive")) {
+        alert("La cantidad y la unidad no deben estar vacías.");
       }
     }
-  } else {
-    const añadirProductoBoton = document.getElementById("addproduct");
-    if (!añadirProductoBoton.classList.contains("order__btn--inactive")) {
-      alert("La cantidad y la unidad no deben estar vacías.");
-    }
   }
-}
 
 
 
 
-function mostrarFacturacion(tbodyId) {
-  console.log(tbodyId.value);
-  document.getElementById("facturable").style.display = "none";
-  document.getElementById("noFacturable").style.display = "none";
+  function mostrarFacturacion(tbodyId) {
+    console.log(tbodyId.value);
+    document.getElementById("facturable").style.display = "none";
+    document.getElementById("noFacturable").style.display = "none";
 
 
-  document.getElementById(tbodyId.value).style.display = 'table-row-group';
+    document.getElementById(tbodyId.value).style.display = 'table-row-group';
 
-}
+  }
 
-/*     Falta Aqui   */
-
-
-
-
+  /*     Falta Aqui   */
 
 
 
@@ -557,9 +565,14 @@ function mostrarFacturacion(tbodyId) {
 
 
 
-function CancelarYRestaurarVenta() {
-  loadContent("views/ventas/ordenventa.php").then(() => {
-    restaurarCopiaSeguridadVenta();
-    activarInputs();
-  })
+
+
+
+
+  function CancelarYRestaurarVenta() {
+    loadContent("views/ventas/ordenventa.php").then(() => {
+      restaurarCopiaSeguridadVenta();
+      activarInputs();
+    })
+  }
 }
