@@ -4,14 +4,14 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
 use Models\compras\Compra;
 use Models\compras\CompraProducto;
 use Models\maintenance_models\TipoCambio;
+use Models\maintenance_models\Producto;
+use Models\maintenance_models\Almacen;
+
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    print_r($_POST);
-    return;
     $idCompra = intval($_POST["idCompra"]);
     $fecha = date("Y-m-d H:i:s", strtotime(str_replace('/', '-', $_POST["fecha"])));
     $fechaFormateada = str_replace(' ', 'T', $fecha);
-    echo $fechaFormateada . "////";
     $total = (float) $_POST["total"];
     $subtotal = (float) $_POST["subtotal"];
     $igv = (float) $_POST["igv"];
@@ -33,11 +33,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $result = Compra::RegistrarCompra($idCompra, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $idProveedor, $idAlmacen, $tipoPago, $idPersonal);
             $message = ($result) ? "registrado correctamente" : "error en la insercion";
         }
-    } else if ($_POST["metodo"] === "Modificar") {
+    } else if ($_POST["metodo"] === "modificar") {
         $result = Compra::ModificarCompra($idCompra, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $idProveedor, $idAlmacen, $tipoPago, $idPersonal);
+        CompraProducto::EliminarProductoXcompra($idCompra);
         $message = ($result) ? "Compra editada" : "error en la compra chaval";
     } else if ($_POST["metodo"] == "Eliminar") {
-        $message = "Compra eliminada";
+        $result = Compra::EliminarCompra($idCompra, $idPersonal);
+        $message = ($result) ? "Compra eliminada" : "error al eliminar compra";
     }
     if ($result) {
         echo $message;

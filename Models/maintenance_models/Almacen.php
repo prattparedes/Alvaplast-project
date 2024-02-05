@@ -156,4 +156,33 @@ class Almacen
         $stmt = $con->query("exec sp_ListarCodigo_Facturacion $idAlmacen");
         return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
+
+    public static function  validarProductoAlmacen(int $idAlmacen, int $idProducto)
+    {
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare("exec sp_ListarProducto_Almacen :idProducto, :idAlmacen");
+            $stmt->bindParam(":idProducto", $idProducto, PDO::PARAM_INT);
+            $stmt->bindParam(":idAlmacen", $idAlmacen, PDO::PARAM_INT);
+            $stmt->execute();
+            $row = $stmt->rowCount();
+            $result = ($row > 0) ? true : false;
+            return $result;
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+        }
+    }
+
+    public static function eliminarProductoAlmacen(int $idAlmacen)
+    {
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare(" exec sp_EliminarProducto_Almacen :idAlmacen");
+            $stmt->bindParam(":idAlmacen", $idAlmacen, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = ($stmt->rowCount() > 0) ? true : false;
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+        }
+    }
 }

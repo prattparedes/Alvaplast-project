@@ -132,7 +132,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Sucursal</label>
-                        <select id="sucursal" class="form-select" disabled>
+                        <select id="sucursal" class="form-select" disabled onchange="listarAlmacenes(this.value)">
                             <option value="">PRINCIPAL</option>
                             <?php
                             $data = Sucursal::getSucursales();

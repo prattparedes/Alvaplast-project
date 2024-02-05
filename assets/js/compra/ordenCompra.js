@@ -650,6 +650,8 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     const serieDocumento = idCompra;
     const idProveedor = document.getElementById("idproveedor").value;
     const idAlmacen = document.getElementById("almacen").value;
+    const Almacen = document.getElementById("almacen").selectedIndex;
+    const nombreAlmacen = document.getElementById("almacen").options[Almacen].text;
     const tipoPago = document.getElementById("tipoPago").value;
     const idPersonal = 2;
     const mod = document.getElementById("metodo").value;
@@ -666,7 +668,6 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     // Configurar la solicitud
     xhr.open("POST", url, true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    console.log(metodo, fecha, tipoPago);
     if (idCompra && idAlmacen) {
       // Enviar los datos del formulario incluyendo descripcion y abreviatura
       xhr.send("idCompra=" + idCompra + "&fecha=" + fecha + "&total=" + total + "&subtotal=" + subtotal + "&igv=" + igv + "&idMoneda=" + idMoneda + "&numeroDocumento=" + numeroDocumento + "&serieDocumento=" + serieDocumento + "&idProveedor=" + idProveedor + "&idAlmacen=" + idAlmacen + "&tipoPago=" + tipoPago + "&idPersonal=" + idPersonal + "&metodo=" + metodo);
@@ -680,12 +681,15 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         if (xhr.status === 200) {
           // La solicitud se completó correctamente
           // Puedes manejar la respuesta del servidor aquí
-          alert(xhr.responseText);
+          console.log(xhr.responseText)
           //Envio de los datos de CompraProducto
+          alert(xhr.responseText)
+
           if (metodo == "Eliminar") {
-            loadContent("views/buyorder.php");
+            //loadContent("views/buyorder.php");
           }
           //RegistrarDatosTabla(idCompra, metodo);
+          RegistrarDatosTabla(idCompra, metodo, idAlmacen, nombreAlmacen);
         } else {
           // Hubo un error en la solicitud
           console.error('Error en la solicitud.');
@@ -695,7 +699,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
   }
 });
 
-function RegistrarDatosTabla(idCompra, metodo) {
+function RegistrarDatosTabla(idCompra, metodo, idalmacen, almacen) {
   const tabla = document.getElementById("ordertable");
   const filas = tabla.querySelectorAll("tbody tr");
 
@@ -703,6 +707,7 @@ function RegistrarDatosTabla(idCompra, metodo) {
     const columnas = fila.querySelectorAll("td");
     //Asignar los datos para mandar a la casa 
     const idProducto = columnas[0].textContent.trim();
+    const nombreProducto = columnas[1].textContent.trim();
     const cantidad = columnas[2].textContent.trim();
     const precioCompra = columnas[4].textContent.trim();
     const descuento = columnas[5].textContent.trim();
@@ -715,7 +720,7 @@ function RegistrarDatosTabla(idCompra, metodo) {
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     if (precioCompra && subTotal) {
       //Enviamos los datos al controlador
-      http.send("idCompra=" + idCompra + "&idProducto=" + idProducto + "&cantidad=" + cantidad + "&precioCompra=" + precioCompra + "&descuento=" + descuento + "&subtotal=" + subTotal + "&metodo=" + metodo);
+      http.send("idCompra=" + idCompra + "&idProducto=" + idProducto + "&cantidad=" + cantidad + "&precioCompra=" + precioCompra + "&descuento=" + descuento + "&subtotal=" + subTotal + "&metodo=" + metodo + "&idAlmacen=" + idalmacen + "&nombreProducto=" + nombreProducto + "&nombreAlmacen=" + almacen);
     } else {
       alert("faltan datos")
     }
@@ -725,8 +730,8 @@ function RegistrarDatosTabla(idCompra, metodo) {
         if (http.status === 200) {
           // La solicitud se completó correctamente
           // Puedes manejar la respuesta del servidor aquí
-          console.log(http.responseText);
-          loadContent("views/ordencompra.php");
+          //console.log(http.responseText);
+          //loadContent("views/ordencompra.php");
         } else {
           // Hubo un error en la solicitud
           console.error('Error en la insercion de los datos');

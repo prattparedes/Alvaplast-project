@@ -43,10 +43,3 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo $message;
     }
 }
-
-
-/*$data = Almacen::getAlmacenes();
-            foreach ($data as $dat) {
-                $descripcion = "el producto $nombre esta en el almacen $dat->desccipcion";
-                $result = Producto::registrarProductoxAlmacen($idProducto, $dat->id_almacen, $descripcion);
-            }*/

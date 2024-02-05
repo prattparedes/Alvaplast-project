@@ -15,7 +15,8 @@ class CompraProducto
         try {
             $con = Connection::Conectar();
             $tsmt = $con->prepare("exec sp_RegistrarCompra_Producto ?, ?, ?, ?, ?, ?");
-            $result = $tsmt->execute([$idCompra, $idProducto, $cantidad, $precioCompra, $descuento, $subtotal]);
+            $tsmt->execute([$idCompra, $idProducto, $cantidad, $precioCompra, $descuento, $subtotal]);
+            $result = ($tsmt->rowCount() > 0) ? true : false;
             return $result;
         } catch (Exception $e) {
             echo $e->getMessage();
