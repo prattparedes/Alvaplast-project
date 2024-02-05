@@ -21,7 +21,7 @@
 
                 <div class="row">
                     
-                    <h5 style="background: grey; color: white; text-align:center;">REPORTE DE VENTAS POR CLIENTE</h5>
+                    <h5 style="background: black; color: white; text-align:center;" class="titulo">REPORTE DE VENTAS POR CLIENTE</h5>
                   
                     <div class="row">
                     <label for="inputPassword6" class="col-form-label">Cliente</label>
@@ -50,10 +50,7 @@
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:5px">
 
-                    <h6>REPORTE DE VENTAS</h6>
-                        <hr style="margin-top: -7px;">
-
-                        <div class="col-md-12"style="margin-top: -15px;">
+                    <div class="col-md-12"style="margin-top: -15px;">
                             <br>
                             <button style="width: 90px;" class="btn btn-success" type="button">Consultar</button>
                             <button style="width: 90px;" class="btn btn-primary" type="button">Exportar</button>
@@ -61,6 +58,11 @@
                             <button style="width: 90px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
                             <br><br>
                         </div>
+                    <!-- <h6>REPORTE DE VENTAS</h6> -->
+                    <h5 style="background: teal; color: white; text-align:left;" class="titulo">REPORTE DE VENTAS</h5>
+                        <hr style="margin-top: -7px;">
+
+                       
                         <div class="table--container">
                             <table class="tbl_venta" style="width: 850px;">
                             <thead>

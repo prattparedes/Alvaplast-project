@@ -14,10 +14,10 @@
 
                 <div class="row">
 
-                    <h5 style="background: grey; color: white; text-align:center;">MANTENIMIENTO DE LINEA</h5>
+                    <h5 style="background: grey; color: white; text-align:center;" class="titulo">MANTENIMIENTO DE MARCA</h5>
 
                     <div class="row">
-                        <div class="col-md-4" style="width: 400px;">
+                        <div class="col-md-6" style="width: 400px;">
                             <label for="inputPassword6" class="col-form-label">Codigo</label>
                             <fieldset disabled>
                                 <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline">
@@ -25,7 +25,7 @@
                             </fieldset>
                         </div>
 
-                        <div class="col-md-4" style="width: 400px;">
+                        <div class="col-md-6" style="width: 400px;">
                             <label for="inputPassword6" class="col-form-label">Descripción</label>
                             <input type="text" id="descripcion" class="form-control" aria-describedby="passwordHelpInline">
                         </div>
@@ -53,7 +53,8 @@
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:5px">
 
-                        <h6>LISTADO DE MARCA</h6>
+                        <!-- <h6>LISTADO DE MARCA</h6> -->
+                        <h5 style="background: teal; color: white; text-align:left;" class="titulo">LISTADO DE MARCA</h5>
                         <hr style="margin-top: -7px;">
                         <p>Buscar por:</p>
 

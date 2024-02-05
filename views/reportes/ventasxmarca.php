@@ -21,7 +21,7 @@
 
                 <div class="row">
                     
-                    <h5 style="background: grey; color: white; text-align:center;">REPORTE DE VENTAS POR MARCA</h5>
+                    <h5 style="background: black; color: white; text-align:center;" class="titulo">REPORTE DE VENTAS POR MARCA</h5>
                   
                     <div class="row">
                         <div class="" style="width: 355px;">
@@ -51,8 +51,9 @@
             <div class="kardex__right">
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:5px">
-
-                    <h6>REPORTE POR MARCA</h6>
+<!-- 
+                    <h6>REPORTE POR MARCA</h6> -->
+                    <h5 style="background: teal; color: white; text-align:left;" class="titulo">REPORTE POR MARCA</h5>
                         <hr style="margin-top: -7px;">
 
                         <div class="col-md-12"style="margin-top: -15px;">

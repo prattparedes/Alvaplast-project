@@ -14,7 +14,7 @@
 
                 <div class="row">
 
-                    <h5 style="background: grey; color: white; text-align:center;">MANTENIMIENTO DE ALMACEN</h5>
+                    <h5 style="background: black; color: white; text-align:center;" class="titulo">MANTENIMIENTO DE ALMACEN</h5>
 
                     <div class="row">
                         <div class="col-md-4" style="width: 400px;">
@@ -67,7 +67,8 @@
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:5px">
 
-                        <h6>LISTADO DE ALMACEN</h6>
+                        <!-- <h6>LISTADO DE ALMACEN</h6> -->
+                        <h5 style="background: teal; color: white; text-align:left;" class="titulo">LISTADO DE ALMACEN</h5>
                         <hr style="margin-top: -7px;">
 
                         <div class="col-md-4" style="width: 400px;">

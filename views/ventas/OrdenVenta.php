@@ -15,18 +15,18 @@
         use Models\ventas\Venta; ?>
 
         <div class="kardex__movement">
-            <div class="kardex__left" style="width: 30%;">
+            <div class="kardex__left">
                 <!-- <h5 style="background: black; color: white; text-align:center;">ORDEN DE VENTA</h5> -->
 
                 <div class="row">
-                    <h5 style="background: gray; color: white; text-align:center;">ORDEN DE VENTA</h5>
+                    <h5 style="background: Black; color: white; text-align:center;" class="titulo">ORDEN DE VENTA</h5>
                     <div class="" style="width: 188px;">
                         <!-- <label for="number" class="col-form-label">Codigo</label> -->
                         <fieldset disabled>
-                            <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline" value="001">
                         </fieldset>
                     </div>
-
+                    -
                     <div class="" style="width: 188px;">
                         <!-- <label for="number" class="col-form-label">Codigo</label> -->
                         <fieldset disabled>
@@ -41,7 +41,8 @@
 
                 <div class="row">
                     <b>
-                        <h6>Datos del Cliente</h6>
+                        <!-- <h6>Datos del Cliente</h6> -->
+                        <h5 style="background: teal; color: white; text-align:left;" class="titulo">DATOS DEL CLIENTE</h5>
                     </b>
 
                     <div class="col-md-12">
@@ -115,7 +116,8 @@
                 </div>
                 <hr>
                 <b>
-                    <h6 style="margin-top: 5px;">Datos de Vendedor</h6>
+                    <!-- <h6 style="margin-top: 5px;">Datos de Vendedor</h6> -->
+                    <h5 style="background: teal; color: white; text-align:left;" class="titulo">DATOS DEL VENDEDOR</h5>
                 </b>
 
                 <!-- <label for="inputPassword6" class="col-md-12 col-form-label">Producto</label> -->
@@ -132,22 +134,22 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Sucursal</label>
-                        <select id="sucursal" class="form-select" disabled>
-                            <option value="">PRINCIPAL</option>
+                        <select id="sucursal" class="form-select" onchange="listarAlmacenes(this.value)" disabled>
+                            <option value="">Seleccionar </option>
                             <?php
                             $data = Sucursal::getSucursales();
                             foreach ($data as $dat) {
-
                             ?>
                                 <option value="<?= $dat->id_sucursal ?>"><?= $dat->descripcion ?></option>
-                            <?php } ?>
+                            <?php
+                            } ?>
                         </select>
                     </div>
 
                     <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Almacen</label>
                         <select id="almacen" class="form-select" disabled>
-                            <option value="">ALMACEN 1</option>
+                            <option value="">Seleccione</option>
                             <?php
                             $almacenes = Almacen::getAlmacenes();
                             foreach ($almacenes as $almacen) { ?>
@@ -170,7 +172,7 @@
 
                     </div>
 
-                    <div class="row">
+                  
                         <div class="col-md-12">
                             <label for="inputPassword6" class="col-form-label">Tipo de documento</label>
                             <select name="" id="tipoDocumento" class="form-select" disabled>
@@ -190,8 +192,7 @@
 
                 </div>
                 <br>
-            </div>
-
+            
 
             <div class="kardex__right">
                 <div style="display:flex; align-items:center;">
@@ -217,7 +218,8 @@
                         <br>
                         <hr style="margin-top: -15px;">
                         <b>
-                            <h6 style="margin-top: 5px;">Detalles de Producto</h6>
+                            <!-- <h6 style="margin-top: 5px;">Detalles de Producto</h6> -->
+                            <h5 style="background: teal; color: white; text-align:left;" class="titulo">DETALLES DE PRODUCTOS</h5>
                         </b>
 
 

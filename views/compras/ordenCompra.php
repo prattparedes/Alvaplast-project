@@ -14,9 +14,9 @@
 
         ?>
 
-        <div class="kardex__movement">
-            <div class="kardex__left" style="width: 30%;">
-                <h5 style="background: gray; color: white; text-align:center;">ORDEN DE COMPRA</h5>
+        <div class="kardex__movement" >
+            <div class="kardex__left">
+                <h5 style="background: Black; color: white; text-align:center;" class="titulo">ORDEN DE COMPRA</h5>
 
                 <div class="row" style="margin-top: 7px;">
                     <div class="" style="width: 188px;">
@@ -40,7 +40,8 @@
 
                 <div class="row">
                     <b>
-                        <h6>DATOS DEL PROVEEDOR</h6>
+                        <!-- <h6>DATOS DEL PROVEEDOR</h6> -->
+                        <h5 style="background: teal; color: white; text-align:left;" class="titulo">DATOS DEL PROVEEDOR</h5>
                     </b>
                     <label for="inputPassword6" class="col-form-label">Proveedor</label>
                     <div class="col-md-12">
@@ -48,7 +49,7 @@
                             <input type="text" class="form-control" id="proveedor" placeholder="Seleccione proveedor" aria-label="Recipient's username" aria-describedby="" disabled>
                             <input type="hidden" id="idproveedor" value="0">
                             <input type="hidden" id="metodo" value="0">
-                            <button class="btn btn-outline-secondary" href="" onclick="abrirListadoProveedor()" type="button">....</button>
+                            <button style="height: 35px;" class="btn btn-outline-secondary" href="" onclick="abrirListadoProveedor()" type="button">....</button>
                         </div>
                     </div>
                 </div>
@@ -166,8 +167,8 @@
                     </div>
 
                     <hr style="margin-top: 10px;">
-
-                   <b><h6>DETALLES DE PRODUCTOS</h6></b>
+                    <h5 style="background: Teal; color: white; text-align:left;" class="titulo">DETALLE DE PRODUCTOS</h5>
+                   
                     <label for="inputPassword6" class="col-md-12 col-form-label">Producto</label>
                     <div class="col-md-6">
                         <div class="input-group mb-3">
