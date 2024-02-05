@@ -7,7 +7,6 @@ use Models\maintenance_models\TipoCambio;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     print_r($_POST);
-    return;
     $idCompra = intval($_POST["idCompra"]);
     $fecha = date("Y-m-d H:i:s", strtotime(str_replace('/', '-', $_POST["fecha"])));
     $fechaFormateada = str_replace(' ', 'T', $fecha);

@@ -294,8 +294,6 @@ function guardarCopiaSeguridadCompra() {
 
     copiaSeguridadFormulario.productos.push(rowData);
   });
-
-  console.log('copia seguridad= ', copiaSeguridadFormulario);
 }
 
 //Restaurar copia de seguridad
@@ -691,6 +689,14 @@ document
         var metodo = event.target.innerHTML;
       } else {
         var metodo = mod;
+      }
+
+      if (metodo === "Grabar" && document.getElementById('btnRegister').classList.contains('order__btn--inactive')) {
+        return
+      }
+
+      if (metodo === "Eliminar" && document.getElementById('btnDelete').classList.contains('order__btn--inactive')) {
+        return
       }
 
       // Crear una solicitud XMLHttpRequest

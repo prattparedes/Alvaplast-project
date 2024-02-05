@@ -2,7 +2,6 @@
 function NuevoIngreso() {
     document.getElementById("numeroOC").removeAttribute("disabled");
     document.getElementById("tipoDocumento").removeAttribute("disabled");
-    document.getElementById("numeroOC").removeAttribute("disabled");
     document.getElementById("fecha2").removeAttribute("disabled");
     document.getElementById("numero1").removeAttribute("disabled");
     document.getElementById("numero2").removeAttribute("disabled");
