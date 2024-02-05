@@ -118,7 +118,6 @@
                     <div class="col-md-6" style="margin-top: 5px;">
                         <label for="disabledSelect" class="form-label">Tipo de Pago</label>
                         <select id="tipoPago" class="form-select" disabled>
-                            <option value="">Elija una opción</option>
                             <option value="E">EFECTIVO</option>
                             <option value="C">CREDITO</option>
                         </select>

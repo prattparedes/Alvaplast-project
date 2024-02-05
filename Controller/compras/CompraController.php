@@ -9,6 +9,7 @@ use Models\maintenance_models\Almacen;
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    print_r($_POST);
     $idCompra = intval($_POST["idCompra"]);
     $fecha = date("Y-m-d H:i:s", strtotime(str_replace('/', '-', $_POST["fecha"])));
     $fechaFormateada = str_replace(' ', 'T', $fecha);
@@ -28,6 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if ($idMoneda == 2) {
             $tipoCambio = TipoCambio::obtenerTipoCambio("c"); //tenemos que pasar el tipo de orden que es ("v" venta , "c" compra)
             $result = Compra::RegistrarCompraConCambio($idCompra, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $idProveedor, $idAlmacen, $tipoCambio, $tipoPago, $idPersonal);
+            echo $result;
             $message = ($result) ? "registrado correctamente" : "error en la insercion";
         } else {
             $result = Compra::RegistrarCompra($idCompra, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $idProveedor, $idAlmacen, $tipoPago, $idPersonal);
@@ -41,9 +43,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $result = Compra::EliminarCompra($idCompra, $idPersonal);
         $message = ($result) ? "Compra eliminada" : "error al eliminar compra";
     }
-    if ($result) {
-        echo $message;
-    }
+
+    echo $message;
 }
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (isset($_GET["idCompra"]) && $_GET["idCompra"] !== 999999999) {
