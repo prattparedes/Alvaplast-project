@@ -366,6 +366,7 @@ function rellenarFormularioCompra(datosCompra, datosProductos, datosProveedor) {
   const igvCheckbox = document.getElementById("igv");
   const descripcionTextarea = document.getElementById("descripcion");
   const idCompraInput = document.getElementById("idCompra");
+  const idProveedor = document.getElementById('idproveedor');
 
   //Rellenar Formulario
   proveedorInput.value = datosProveedor.razon_social;
@@ -379,6 +380,8 @@ function rellenarFormularioCompra(datosCompra, datosProductos, datosProveedor) {
   descripcionTextarea.value =
     datosCompra.descripcion !== undefined ? datosCompra.descripcion : "";
   idCompraInput.value = "00" + datosCompra.id_compra;
+  console.log(datosCompra.id_proveedor);
+  idProveedor.value = datosCompra.id_proveedor;
 
   // Rellenar Productos
   const tablaProductos = document.getElementById("ordertable");
