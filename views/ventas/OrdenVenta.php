@@ -133,7 +133,7 @@
                     <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Sucursal</label>
                         <select id="sucursal" class="form-select" disabled onchange="listarAlmacenes(this.value)">
-                            <option value="">PRINCIPAL</option>
+                            <option value="">seleccionar sucursal</option>
                             <?php
                             $data = Sucursal::getSucursales();
                             foreach ($data as $dat) {
@@ -147,7 +147,7 @@
                     <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Almacen</label>
                         <select id="almacen" class="form-select" disabled>
-                            <option value="">ALMACEN 1</option>
+                            <option value="">seleccionar almacen</option>
                             <?php
                             $almacenes = Almacen::getAlmacenes();
                             foreach ($almacenes as $almacen) { ?>
@@ -206,7 +206,7 @@
 
                             <a style="width: 90px;" name="" id="btnNuevo" class="btn btn-primary" role="button" onclick="nuevaOrdenVenta()">Nuevo</a>
                             <a style="width: 90px;" name="" id="btnRegister" class="btn btn-success order__btn--inactive" role="button">Grabar</a>
-                            <a style="width: 90px;" name="" id="btModify" class="btn btn-warning order__btn--inactive">Editar</a>
+                            <a style="width: 90px;" name="" id="btnModify" class="btn btn-warning order__btn--inactive">Editar</a>
                             <a style="width: 90px;" name="" id="btnDelete" class="btn btn-danger order__btn--inactive" role="button">Eliminar</a>
 
 

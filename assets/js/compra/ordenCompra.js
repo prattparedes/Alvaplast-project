@@ -731,7 +731,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
           alert(xhr.responseText);
           //Envio de los datos de CompraProducto
           if (metodo == "Eliminar") {
-            loadContent("views/buyorder.php");
+            loadContent("views/compras/ordenCompra.php");
           }
           RegistrarDatosTabla(idCompra, metodo, idAlmacen, nombreAlmacen);
           //RegistrarDatosTabla(idCompra, metodo);
