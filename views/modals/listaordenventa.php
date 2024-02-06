@@ -19,12 +19,12 @@
 
                     <div class="row" style="margin-top: 10px;">
                         <div class="col-md-5">
-                            <input type="radio" style="width: 18px; height:18px" name="tipoOrden" value="facturable" onclick="mostrarFacturacion(this)" checked />
+                            <input type="radio" style="width: 18px; height:18px" name="tipoOrden" value="facturable" onclick="mostrarFacturacion(this.value)" checked />
                             <label for="facturable">Facturable</label>
                         </div>
 
                         <div class="col-md-5">
-                            <input type="radio" style="width: 18px; height:18px" name="tipoOrden" value="noFacturable" onclick="mostrarFacturacion(this)" />
+                            <input type="radio" style="width: 18px; height:18px" name="tipoOrden" value="noFacturable" onclick="mostrarFacturacion(this.value)" />
                             <label for="noFacturable">No Facturable</label>
                         </div>
 
