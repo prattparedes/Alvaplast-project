@@ -1,4 +1,7 @@
 <?php
+
+use Models\ventas\VentaProducto;
+
 require_once($_SERVER['DOCUMENT_ROOT'] . "/Alvaplast-project/autoload.php");
 
 use Models\maintenance_models\TipoCambio;
@@ -6,6 +9,7 @@ use Models\ventas\Venta;
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
     print_r($_POST);
+    return;
     $id = (isset($_POST["idVenta"]) && $_POST["idVenta"] !== "0") ? (int) $_POST["idVenta"] : 1;
     $idAlmacen = (int) $_POST["idAlmacen"];
     $idPersonal = (int) $_POST["idPersonal"];
@@ -36,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $message = ($response) ? "venta registrada" : "error en el registro";
     } else if ($_POST["metodo"] === "Modificar") {
         $response = Venta::modificarVenta($id, $idAlmacen, $idPersonal, $idDocumento, $idCliente, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $tipoPago, $pagoInicial, $montoFinanciado, $numCuotas, $montoCuota);
+        VentaProducto::eliminarProductoVenta($id);
         $message = ($response) ? "modificado" : "error";
     } else if ($_POST["metodo"] === "Eliminar") {
         $response = Venta::eliminarVenta($idVenta);

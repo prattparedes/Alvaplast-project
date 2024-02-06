@@ -362,45 +362,45 @@ function restaurarCopiaSeguridadVenta() {
       .getElementById("btnRegister")
       .classList.remove("order__btn--inactive");
   }
+}
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+// FALTA ARREGLAR ESTA FUNCIÓN HASTA TENER LOS DATOS
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-  // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-  // FALTA ARREGLAR ESTA FUNCIÓN HASTA TENER LOS DATOS
-  // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+// Función para pasar los datos obtenidos de la lista de compras al formulario de compras
+function rellenarFormularioVenta(datosCompra, datosProductos, datosProveedor) {
+  const proveedorInput = document.getElementById("proveedor");
+  const direccionInput = document.getElementById("direccion");
+  const sucursalSelect = document.getElementById("sucursal");
+  const monedaSelect = document.getElementById("moneda");
+  const almacenSelect = document.getElementById("almacen");
+  const tipoPagoSelect = document.getElementById("tipoPago");
+  const fechaInput = document.getElementById("fecha");
+  const igvCheckbox = document.getElementById("igv");
+  const descripcionTextarea = document.getElementById("descripcion");
+  const idCompraInput = document.getElementById("idCompra");
 
-  // Función para pasar los datos obtenidos de la lista de compras al formulario de compras
-  function rellenarFormularioVenta(datosCompra, datosProductos, datosProveedor) {
-    const proveedorInput = document.getElementById("proveedor");
-    const direccionInput = document.getElementById("direccion");
-    const sucursalSelect = document.getElementById("sucursal");
-    const monedaSelect = document.getElementById("moneda");
-    const almacenSelect = document.getElementById("almacen");
-    const tipoPagoSelect = document.getElementById("tipoPago");
-    const fechaInput = document.getElementById("fecha");
-    const igvCheckbox = document.getElementById("igv");
-    const descripcionTextarea = document.getElementById("descripcion");
-    const idCompraInput = document.getElementById("idCompra");
+  //Rellenar Formulario
+  proveedorInput.value = datosProveedor.razon_social;
+  direccionInput.value = datosProveedor.direccion;
+  sucursalSelect.value = "1";
+  monedaSelect.value = datosCompra.id_moneda;
+  almacenSelect.value = datosCompra.id_almacen;
+  tipoPagoSelect.value = datosCompra.tipo_pago;
+  fechaInput.value = datosCompra.fecha_compra;
+  igvCheckbox.checked = true;
+  descripcionTextarea.value =
+    datosCompra.descripcion !== undefined ? datosCompra.descripcion : "";
+  idCompraInput.value = "00" + datosCompra.id_compra;
 
-    //Rellenar Formulario
-    proveedorInput.value = datosProveedor.razon_social;
-    direccionInput.value = datosProveedor.direccion;
-    sucursalSelect.value = "1";
-    monedaSelect.value = datosCompra.id_moneda;
-    almacenSelect.value = datosCompra.id_almacen;
-    tipoPagoSelect.value = datosCompra.tipo_pago;
-    fechaInput.value = datosCompra.fecha_compra;
-    igvCheckbox.checked = true;
-    descripcionTextarea.value =
-      datosCompra.descripcion !== undefined ? datosCompra.descripcion : "";
-    idCompraInput.value = "00" + datosCompra.id_compra;
+  // Rellenar Productos
+  const tablaProductos = document.getElementById("ordertable");
+  tablaProductos.querySelector("tbody").innerHTML = "";
 
-    // Rellenar Productos
-    const tablaProductos = document.getElementById("ordertable");
-    tablaProductos.querySelector("tbody").innerHTML = "";
-
-    // Iterar sobre los datos de productos y añadir filas a la tabla
-    datosProductos.forEach((producto) => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
+  // Iterar sobre los datos de productos y añadir filas a la tabla
+  datosProductos.forEach((producto) => {
+    const row = document.createElement("tr");
+    row.innerHTML = `
         <td style="display: none;">${producto.id_producto}</td>
         <td colspan="1">${producto.nombre_producto}</td>
         <td class="textright">${producto.cantidad}</td>
@@ -408,172 +408,281 @@ function restaurarCopiaSeguridadVenta() {
         <td class="textright">${producto.precio_compra}</td>
         <td class="textright">${producto.descuento}</td>
         <td class="textright">${producto.Sub_Total}</td>`;
-      tablaProductos.querySelector("tbody").appendChild(row);
-    });
+    tablaProductos.querySelector("tbody").appendChild(row);
+  });
 
-    // Obtener las celdas de la tabla por su ID
-    const productSubtotal1 = document.getElementById("productsubtotal1");
-    const productSubtotal2 = document.getElementById("productsubtotal2");
-    const productIgvCell = document.getElementById("productigv");
-    const productTotalCell = document.getElementById("productTotal");
-    const productDescuento = document.getElementById("productDescuento");
+  // Obtener las celdas de la tabla por su ID
+  const productSubtotal1 = document.getElementById("productsubtotal1");
+  const productSubtotal2 = document.getElementById("productsubtotal2");
+  const productIgvCell = document.getElementById("productigv");
+  const productTotalCell = document.getElementById("productTotal");
+  const productDescuento = document.getElementById("productDescuento");
 
-    // Asignar valores a las celdas de la tabla con los datos de la compra
-    productSubtotal1.textContent = datosCompra.subtotal;
-    productSubtotal2.textContent = datosCompra.subtotal;
-    productIgvCell.textContent = datosCompra.igv;
-    productTotalCell.textContent = datosCompra.total;
-    productDescuento.textContent = 0;
+  // Asignar valores a las celdas de la tabla con los datos de la compra
+  productSubtotal1.textContent = datosCompra.subtotal;
+  productSubtotal2.textContent = datosCompra.subtotal;
+  productIgvCell.textContent = datosCompra.igv;
+  productTotalCell.textContent = datosCompra.total;
+  productDescuento.textContent = 0;
+}
+
+// Añadir nueva fila en la tabla de órdenes de venta/compra
+
+
+
+
+
+function mostrarFacturacion(tbodyId) {
+  console.log(tbodyId.value);
+  document.getElementById("facturable").style.display = "none";
+  document.getElementById("noFacturable").style.display = "none";
+
+
+  document.getElementById(tbodyId.value).style.display = 'table-row-group';
+
+}
+
+
+
+
+/*     Falta Aqui   */
+document.querySelector(".main__content").addEventListener("click", function (event) {
+
+  if (event.target.classList.contains("sell_submit")) {
+    event.preventDefault();
+    // Obtener los datos del formulario
+    const idVenta = document.getElementById("idVenta").value
+    const idAlmacen = document.getElementById("almacen").value;
+    const idPersonal = 2;
+    const idDocumento = document.getElementById("tipoDocumento").value
+    const idCliente = document.getElementById("idcliente").value
+    const fecha = document.getElementById("fecha").value; // Obtener la descripción del formulario
+    const total = document.getElementById("productTotal").innerHTML; // Obtener la abreviatura del formulario
+    const subtotal = document.getElementById("productsubtotal2").innerHTML;
+    const igv = document.getElementById("productigv").innerHTML;
+    const idMoneda = document.getElementById("moneda").value;
+    const numeroDocumento = document.getElementById("numeroDocumento").value;
+    const serieDocumento = document.getElementById("serieDocumento").value
+    const tipoPago = document.getElementById("tipoPago").value;
+    const pagoInicial = document.getElementById("inicial").value
+    const mod = document.getElementById("metodo").value;
+    if (mod == "modificar") {
+      var metodo = mod;
+    } else {
+      var metodo = event.target.innerHTML
+    }
+    if (metodo === "Grabar" && document.getElementById('btnRegister').classList.contains('order__btn--inactive')) {
+      return
+    }
+
+    if (metodo === "Eliminar" && document.getElementById('btnDelete').classList.contains('order__btn--inactive')) {
+      return
+    }
+
+    // Crear una solicitud XMLHttpRequest
+    const xhr = new XMLHttpRequest();
+    const url = "/Alvaplast-project/Controller/ventas/VentaController.php"; // Ruta del controlador PHP
+
+    // Configurar la solicitud
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    console.log(metodo, fecha, tipoPago);
+    if (idAlmacen) {
+      // Enviar los datos del formulario incluyendo descripcion y abreviatura
+      xhr.send("idVenta=" + idVenta + "&fecha=" + fecha + "&total=" + total + "&subtotal=" + subtotal + "&igv=" + igv + "&idMoneda=" + idMoneda + "&numeroDocumento=" + numeroDocumento + "&serieDocumento=" + serieDocumento + "&idCliente=" + idCliente + "&idAlmacen=" + idAlmacen + "&tipoPago=" + tipoPago + "&idPersonal=" + idPersonal + "&metodo=" + metodo + "&idDocumento=" + idDocumento + "&pagoInicial=" + pagoInicial);
+
+    } else {
+      alert("faltan datos")
+    }
+    // Manejar la respuesta del servidor
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          // La solicitud se completó correctamente
+          // Puedes manejar la respuesta del servidor aquí
+          alert(xhr.responseText);
+          //Envio de los datos de CompraProducto
+          if (metodo == "Eliminar") {
+            loadContent("views/ventas/ordenVenta.php");
+          }
+          RegistrarDatosTabla(idCompra, metodo);
+          //RegistrarDatosTabla(idCompra, metodo);
+        } else {
+          // Hubo un error en la solicitud
+          console.error('Error en la solicitud.');
+        }
+      }
+    };
   }
+});
+function RegistrarDatosTabla(idCompra, metodo) {
+  const tabla = document.getElementById("ordertable");
+  const filas = tabla.querySelectorAll("tbody tr");
 
-  // Añadir nueva fila en la tabla de órdenes de venta/compra
-  function añadirProductoOrdenVenta() {
-    const cantidad = parseFloat(document.getElementById("productquantity").value);
-    const precioUnitario = parseFloat(
-      document.getElementById("productprice").value
-    );
-    let descuento = parseFloat(document.getElementById("productdiscount").value);
-    const unidad = document.getElementById("productunit").selectedOptions[0].text;
-    descuento = isNaN(descuento) ? 0 : descuento;
-    const descuentoAplicado =
-      isNaN(descuento) || descuento < 0 || descuento > 100 ? 0 : descuento;
+  filas.forEach((fila) => {
+    const columnas = fila.querySelectorAll("td");
+    //Asignar los datos para mandar a la casa
+    const idProducto = columnas[0].textContent.trim();
+    const nombreProducto = columnas[1].textContent.trim();
+    const cantidad = columnas[2].textContent.trim();
+    const precioCompra = columnas[4].textContent.trim();
+    const descuento = columnas[5].textContent.trim();
+    const subTotal = columnas[6].textContent.trim();
+    // comenzamos con el protocolo http
+    const http = new XMLHttpRequest();
+    const url =
+      "/Alvaplast-project/Controller/ventas/VentaProductoController.php";
+    //configuración de la solicitud
+    http.open("POST", url, true);
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    if (precioCompra && subTotal) {
+      //Enviamos los datos al controlador
+      http.send("idCompra=" + idCompra + "&idProducto=" + idProducto + "&cantidad=" + cantidad + "&precioCompra=" + precioCompra + "&descuento=" + descuento + "&subtotal=" + subTotal + "&metodo=" + metodo);
+    } else {
+      alert("faltan datos");
+    }
 
-    const rowData = window.clickedRowData;
+    http.onreadystatechange = function () {
+      if (http.readyState === XMLHttpRequest.DONE) {
+        if (http.status === 200) {
+          // La solicitud se completó correctamente
+          // Puedes manejar la respuesta del servidor aquí
+          console.log(http.responseText);
 
-    if (cantidad && unidad) {
-      if (rowData) {
-        const idPro = rowData[0];
-        const nombreProducto = rowData[1];
-        const precioReal = parseFloat(rowData[3]);
+          // Envío a Kardex
+          if (metodo === "Grabar") {
+            openAlertModal();
+          }
+        } else {
+          // Hubo un error en la solicitud
+          console.error("Error en la insercion de los datos");
+        }
+      }
+    };
+  });
+}
 
-        // Verificar que el producto a agregar no esté actualmente agregado
-        let productosAgregadosEl = document.querySelectorAll(
-          "#ordertable tbody tr td:nth-child(2)"
-        );
-        let productosAgregados = [];
 
-        productosAgregadosEl.forEach((td) => {
-          productosAgregados.push(td.innerText);
+function CancelarYRestaurarVenta() {
+  loadContent("views/ventas/ordenventa.php").then(() => {
+    restaurarCopiaSeguridadVenta();
+    activarInputs();
+  })
+}
+
+function añadirProductoOrdenVenta() {
+  const cantidad = parseFloat(document.getElementById("productquantity").value);
+  const precioUnitario = parseFloat(
+    document.getElementById("productprice").value
+  );
+  let descuento = parseFloat(document.getElementById("productdiscount").value);
+  const unidad = document.getElementById("productunit").selectedOptions[0].text;
+  descuento = isNaN(descuento) ? 0 : descuento;
+  const descuentoAplicado =
+    isNaN(descuento) || descuento < 0 || descuento > 100 ? 0 : descuento;
+
+  const rowData = window.clickedRowData;
+
+  if (cantidad && unidad) {
+    if (rowData) {
+      const idPro = rowData[0];
+      const nombreProducto = rowData[1];
+      const precioReal = parseFloat(rowData[3]);
+
+      // Verificar que el producto a agregar no esté actualmente agregado
+      let productosAgregadosEl = document.querySelectorAll(
+        "#ordertable tbody tr td:nth-child(2)"
+      );
+      let productosAgregados = [];
+
+      productosAgregadosEl.forEach((td) => {
+        productosAgregados.push(td.innerText);
+      });
+
+      if (productosAgregados.includes(nombreProducto)) {
+        alert("El producto ya ha sido agregado.");
+        return; // Sale de la función si el producto ya existe
+      }
+
+      let datosProducto = [];
+      let addToProducts = true; // Variable para controlar la adición a productosAgregados
+
+      if (document.getElementById("productstock")) {
+        const stock = parseFloat(document.getElementById("productstock").value);
+        if (cantidad > stock) {
+          alert("No hay stock suficiente");
+          addToProducts = false; // No agrega el producto si no hay suficiente stock
+        }
+      }
+
+      if (addToProducts) {
+        productosAgregados.push(nombreProducto);
+        datosProducto = [
+          idPro,
+          nombreProducto,
+          cantidad,
+          unidad,
+          precioUnitario,
+          precioReal,
+          (cantidad * precioUnitario * (1 - descuentoAplicado / 100)).toFixed(
+            2
+          ),
+        ];
+
+        const tablaExterna = document
+          .getElementById("ordertable")
+          .getElementsByTagName("tbody")[0];
+        const nuevaFila = tablaExterna.insertRow();
+        console.log(datosProducto);
+        datosProducto.forEach((contenido, index) => {
+          const celda = nuevaFila.insertCell();
+
+          // Aplicar estilos y atributos según el índice
+          switch (index) {
+            case 0:
+              celda.style.display = "none";
+              celda.textContent = contenido;
+              break;
+            case 1:
+              // Aquí puedes agregar estilos adicionales si es necesario
+              celda.colSpan = "1";
+              celda.textContent = contenido;
+              break;
+            case 2:
+              celda.classList.add("textcenter");
+              celda.textContent = contenido;
+              break;
+            case 3:
+              celda.classList.add("textcenter");
+              celda.textContent = contenido;
+              break;
+            default:
+              celda.textContent = contenido;
+              celda.classList.add("textright");
+              break;
+          }
         });
 
-        if (productosAgregados.includes(nombreProducto)) {
-          alert("El producto ya ha sido agregado.");
-          return; // Sale de la función si el producto ya existe
-        }
-
-        let datosProducto = [];
-        let addToProducts = true; // Variable para controlar la adición a productosAgregados
+        // Limpiar datos del formulario
+        window.clickedRowData = null;
+        document.getElementById("productname").value = "Seleccione Producto";
+        document.getElementById("productprice").value = null;
+        document.getElementById("productdiscount").value = null;
+        document.getElementById("productquantity").value = null;
+        document.getElementById("productunit").value = null;
 
         if (document.getElementById("productstock")) {
-          const stock = parseFloat(document.getElementById("productstock").value);
-          if (cantidad > stock) {
-            alert("No hay stock suficiente");
-            addToProducts = false; // No agrega el producto si no hay suficiente stock
-          }
+          document.getElementById("productstock").value = null;
         }
 
-        if (addToProducts) {
-          productosAgregados.push(nombreProducto);
-          datosProducto = [
-            idPro,
-            nombreProducto,
-            cantidad,
-            unidad,
-            precioUnitario,
-            precioReal,
-            (cantidad * precioUnitario * (1 - descuentoAplicado / 100)).toFixed(
-              2
-            ),
-          ];
-
-          const tablaExterna = document
-            .getElementById("ordertable")
-            .getElementsByTagName("tbody")[0];
-          const nuevaFila = tablaExterna.insertRow();
-          console.log(datosProducto);
-          datosProducto.forEach((contenido, index) => {
-            const celda = nuevaFila.insertCell();
-
-            // Aplicar estilos y atributos según el índice
-            switch (index) {
-              case 0:
-                celda.style.display = "none";
-                celda.textContent = contenido;
-                break;
-              case 1:
-                // Aquí puedes agregar estilos adicionales si es necesario
-                celda.colSpan = "1";
-                celda.textContent = contenido;
-                break;
-              case 2:
-                celda.classList.add("textcenter");
-                celda.textContent = contenido;
-                break;
-              case 3:
-                celda.classList.add("textcenter");
-                celda.textContent = contenido;
-                break;
-              default:
-                celda.textContent = contenido;
-                celda.classList.add("textright");
-                break;
-            }
-          });
-
-          // Limpiar datos del formulario
-          window.clickedRowData = null;
-          document.getElementById("productname").value = "Seleccione Producto";
-          document.getElementById("productprice").value = null;
-          document.getElementById("productdiscount").value = null;
-          document.getElementById("productquantity").value = null;
-          document.getElementById("productunit").value = null;
-
-          if (document.getElementById("productstock")) {
-            document.getElementById("productstock").value = null;
-          }
-
-          // Actualiza tabla de precios
-          actualizarTablaPrecios();
-        }
-      }
-    } else {
-      const añadirProductoBoton = document.getElementById("addproduct");
-      if (!añadirProductoBoton.classList.contains("order__btn--inactive")) {
-        alert("La cantidad y la unidad no deben estar vacías.");
+        // Actualiza tabla de precios
+        actualizarTablaPrecios();
       }
     }
-  }
-
-
-
-
-  function mostrarFacturacion(tbodyId) {
-    console.log(tbodyId.value);
-    document.getElementById("facturable").style.display = "none";
-    document.getElementById("noFacturable").style.display = "none";
-
-
-    document.getElementById(tbodyId.value).style.display = 'table-row-group';
-
-  }
-
-  /*     Falta Aqui   */
-
-
-
-
-
-
-
-
-
-
-
-
-  function CancelarYRestaurarVenta() {
-    loadContent("views/ventas/ordenventa.php").then(() => {
-      restaurarCopiaSeguridadVenta();
-      activarInputs();
-    })
+  } else {
+    const añadirProductoBoton = document.getElementById("addproduct");
+    if (!añadirProductoBoton.classList.contains("order__btn--inactive")) {
+      alert("La cantidad y la unidad no deben estar vacías.");
+    }
   }
 }

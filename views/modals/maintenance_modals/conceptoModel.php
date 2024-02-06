@@ -51,7 +51,8 @@
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:5px">
 
-                        <h6>LISTADO DE LINEA</h6>
+                        <!-- <h6>LISTADO DE LINEA</h6> -->
+                        <h5 style="background: teal; color: white; text-align:left;" class="titulo">LISTADO DE CONCEPTO</h5>
                         <hr style="margin-top: -7px;">
                         <p>Buscar por:</p>
 

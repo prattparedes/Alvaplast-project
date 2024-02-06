@@ -12,7 +12,7 @@
         <div class="kardex__movement">
             <div class="kardex__left">
 
-                <h5 style="background: gray; color: white; text-align:center;">MANTENIMIENTO POR DOCUMENTO</h5>
+                <h5 style="background: black; color: white; text-align:center;" class="titulo">MANTENIMIENTO POR DOCUMENTO</h5>
                 <hr>
 
                 <div class="row">
@@ -64,7 +64,8 @@
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:5px">
 
-                        <h6>LISTADO POR TIPO DE DOCUMENTO</h6>
+                        <!-- <h6>LISTADO POR TIPO DE DOCUMENTO</h6> -->
+                        <h5 style="background: teal; color: white; text-align:left;" class="titulo">LISTADO POR TIPO DE DOCUMENTO</h5>
                         <hr style="margin-top: -7px;">
                         <p>Buscar por:</p>
 

@@ -12,12 +12,13 @@
         <div class="kardex__movement">
             <div class="kardex__left">
 
-                <h6 style="background: gray; color: white; text-align:center;">MANTENIMIENTO POR TIPO DE CAMBIO</h6>
+                <h6 style="background: black; color: white; text-align:center;" class="titulo">MANTENIMIENTO POR TIPO DE CAMBIO</h6>
                 <hr>
 
                 <div class="row">
                     <b>
-                        <h6>Datos de Cambio de Moneda</h6>
+                        <!-- <h6>Datos de Cambio de Moneda</h6> -->
+                        <h5 style="background: teal; color: white; text-align:left;" class="titulo">DATOS DE CAMBIO DE MONEDA</h5>
                     </b>
                 </div>
 
@@ -75,7 +76,8 @@
                     <div style="display:flex; align-items:center;">
                         <div style="display:flex; flex-direction:column; margin-top:5px">
 
-                            <h6>LISTADO DE TIPO DE CAMBIO</h6>
+                            <!-- <h6>LISTADO DE TIPO DE CAMBIO</h6> -->
+                            <h5 style="background: teal; color: white; text-align:left;" class="titulo">LISTADO DE TIPO DE CAMBIO</h5>
                             <hr style="margin-top: -7px;">
                            
                           

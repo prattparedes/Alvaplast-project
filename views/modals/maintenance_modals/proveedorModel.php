@@ -10,10 +10,11 @@
 
         <div class="kardex__movement">
             <div class="kardex__left">
-                <h5 style="background: black; color: white; text-align:center;">MANTENIMIENTO DE PROVEEDORES</h5>
-                <hr>
+                <h5 style="background: black; color: white; text-align:center;" class="titulo">MANTENIMIENTO DE PROVEEDORES</h5>
+                <hr style="margin-top: -3px;">
                 <b>
-                    <h6>Datos del Proveedor</h6>
+                    <!-- <h6>Datos del Proveedor</h6> -->
+                    <h5 style="background: teal; color: white; text-align:left;" class="titulo">DATOS DEL PROVEEDOR</h5>
                 </b>
 
                 <div class="col-md-5" style="margin-top: -5px;">
@@ -24,47 +25,47 @@
                     </fieldset>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-10">
+               
+                    <div class="col-md-12">
                         <label for="razonSocial" class="col-form-label">Razon Social</label>
                         <input type="text" id="razonSocial" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <label for="inputPassword6" class="col-form-label">RUC</label>
                         <input type="text" id="ruc" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
-                </div>
+              
 
-                <div class="col-md-10">
+                <div class="col-md-12">
                     <label for="inputPassword6" class="col-form-label">Direccion</label>
                     <input type="text" id="direccion" class="form-control" aria-describedby="passwordHelpInline" disabled>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Telefono</label>
                         <input type="text" id="telefono" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Fax</label>
                         <input type="text" id="fax" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
                 </div>
 
-                <div class="col-md-10">
+                <div class="col-md-12">
                     <label for="inputPassword6" class="col-form-label">Contacto</label>
                     <input type="text" id="contacto" class="form-control" aria-describedby="passwordHelpInline" disabled>
                 </div>
 
-                <div class="col-md-10">
+                <div class="col-md-12">
                     <label for="inputPassword6" class="col-form-label">Email</label>
                     <input type="text" id="email" class="form-control" aria-describedby="passwordHelpInline" disabled>
                 </div>
 
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Estado</label>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="1" id="estado">
@@ -72,7 +73,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label for="disabledSelect" class="form-label">Departamento</label>
                         <select id="departamento" class="form-select" onchange="listarProvincia(this.value)" disabled>
                             <?php
@@ -86,20 +87,20 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label for="disabledSelect" class="form-label">Provincia</label>
                         <select id="provincia" class="form-select" onchange="listarDistrito(this.value)" disabled>
                         </select>
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label for="selectDistrito" class="form-label">Distrito</label>
                         <select id="distrito" class="form-select" disabled>
                         </select>
                     </div>
                 </div>
 
-                <div class="col-md-10">
+                <div class="col-md-12">
                     <label for="inputPassword6" class="col-form-label">Descripción</label>
                     <input type="text" id="email" class="form-control" aria-describedby="passwordHelpInline" disabled>
                 </div>
@@ -114,34 +115,26 @@
                     <button style="width: 80px;" id="btnEditar" class="btn btn-warning order__btn--inactive" type="button" onclick="botónEditarMantenimiento()">Editar</button>
                     <button style="width: 80px;" id="btnEliminar" class="btn btn-danger order__btn--inactive provider_submit" type="button" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
                 </div>
-
-
-
-
-                <hr>
-                <div class="table--container" id="productosKardex">
-                    <!-- <table border="1" style="width:90%;" class="table" id=""> -->
-
-                    <!-- </table> -->
-                </div>
+             
             </div>
             <div class="kardex__right">
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:10px">
 
-                        <h6>LISTADO DE PROVEEDORES</h6>
+                        <!-- <h6>LISTADO DE PROVEEDORES</h6> -->
+                        <h5 style="background: teal; color: white; text-align:left;" class="titulo">LISTADO DE PROVEEDORES</h5>
                         <hr style="margin-top: -7px;">
 
                         <h6>Buscar por </h6>
 
 
                         <div class="row">
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <label for="disabledSelect" class="form-label">Proveedor</label>
                                 <input type="text" id="filtroProveedorNombre" class="form-control" aria-describedby="passwordHelpInline" onkeyup="FiltrarProveedoresNombre()">
                             </div>
 
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                                 <label for="disabledSelect" class="form-label">RUC</label>
                                 <input type="text" id="filtroProveedorRuc" class="form-control" aria-describedby="passwordHelpInline" onkeyup="FiltrarProveedoresNombre()">
                             </div>

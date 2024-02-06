@@ -14,6 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     if ($_POST["metodo"] === "Grabar") {
         $result = VentaProducto::registrarProductoVenta($idVenta, $idProducto, $cantidad, $precioVenta, $descuento, $subtotal);
+    } elseif ($_POST["metodo"] === "modificar") {
+        VentaProducto::registrarProductoVenta($idVenta, $idProducto, $cantidad, $precioVenta, $descuento, $subtotal);
     }
 } else if ($_SERVER['REQUEST_METHOD'] === "GET") {
     if (isset($_GET["idVenta"])) {

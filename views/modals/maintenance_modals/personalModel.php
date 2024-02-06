@@ -16,7 +16,7 @@
                 <h5 style="background: black; color: white; text-align:center;">MANTENIMIENTO DE PERSONAL</h5>
 
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label for="number" class="col-form-label">Codigo</label>
                         <fieldset disabled>
                             <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline" disabled>
@@ -30,34 +30,35 @@
 
                 <div class="row">
                     <b>
-                        <h6>Datos del Cliente</h6>
+                        <!-- <h6>Datos del Cliente</h6> -->
+                        <h5 style="background: teal; color: white; text-align:left;" class="titulo">DATOS DEL CLIENTE</h5>
                     </b>
 
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <label for="inputPassword6" class="col-form-label">Nombre</label>
                         <input type="text" id="nombres" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
                 </div>
 
 
-                <div class="col-md-10">
+                <div class="col-md-12">
                     <label for="inputPassword6" class="col-form-label">Apellido Paterno</label>
                     <input type="text" id="paterno" class="form-control" aria-describedby="passwordHelpInline" disabled>
                 </div>
 
-                <div class="col-md-10">
+                <div class="col-md-12">
                     <label for="inputPassword6" class="col-form-label">Apellido Materno</label>
                     <input type="text" id="materno" class="form-control" aria-describedby="passwordHelpInline" disabled>
                 </div>
 
 
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">DNI</label>
                         <input type="text" id="dni" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Cargo</label>
                         <select name="" id="cargo" class="form-select" disabled>
                             <option value="" default>Elija una opción</option>
@@ -69,7 +70,7 @@
 
 
                 <div class="row">
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <label for="inputPassword6" class="col-form-label">Direccion</label>
                         <input type="text" id="direccion" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
@@ -77,18 +78,18 @@
 
                 <div class="row">
 
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Telefono</label>
                         <input type="text" id="telefono" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Celular</label>
                         <input type="text" id="celular" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
                 </div>
 
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <label for="inputPassword6" class="col-form-label">Estado</label>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="estado" disabled>
@@ -98,18 +99,18 @@
 
                 <div class="row">
 
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Usuario</label>
                         <input type="text" id="usuario" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Contraseña</label>
                         <input type="text" id="clave" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
                 </div>
 
-                <div class="col-md-10" style="margin-top:5px">
+                <div class="col-md-12" style="margin-top:5px">
                     <label for="inputPassword6" class="col-form-label">Repetir contraseña</label>
                     <input type="text" id="clave2" class="form-control" aria-describedby="passwordHelpInline" disabled>
                 </div>
@@ -132,22 +133,23 @@
                     <div style="display:flex; flex-direction:column; margin-top:4px">
 
                         <b>
-                            <h6>LISTADO DE PERSONAL</h6>
+                            <!-- <h6>LISTADO DE PERSONAL</h6> -->
+                            <h5 style="background: teal; color: white; text-align:left;" class="titulo">LISTADO DE PERSONAL</h5>
                         </b>
                         <hr>
 
                         <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label for="inputPassword6" class="col-form-label">Apellido Paterno</label>
                                 <input type="text" id="paterno" class="form-control" aria-describedby="passwordHelpInline">
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label for="inputPassword6" class="col-form-label">Apellido Materno</label>
                                 <input type="text" id="materno" class="form-control" aria-describedby="passwordHelpInline">
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label for="inputPassword6" class="col-form-label">Dni</label>
                                 <input type="text" id="materno" class="form-control" aria-describedby="passwordHelpInline">
                             </div>

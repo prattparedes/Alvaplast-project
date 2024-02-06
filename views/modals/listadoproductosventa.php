@@ -79,20 +79,23 @@
 
                                     <tbody>
                                         <?php
-                                        $productos = Producto::getProductos();
-                                        foreach ($productos as $producto) {
-                                            // Verifica si el stock es mayor que 0
-                                            if ($producto->stock > 0) { ?>
+                                        if (isset($_GET["idAlmacen"]) && isset($_GET["idCliente"])) {
+                                            $cliente = (int) $_GET["idCliente"];
+                                            $almacen = (int) $_GET["idAlmacen"];
+                                            $productos = Producto::mostrarStockProducto($almacen, $cliente);
+                                            foreach ($productos as $product) {
+                                        ?>
                                                 <tr onclick="seleccionarProductoVenta(this)">
-                                                    <td><?= $producto->id_producto ?></td>
-                                                    <td><?= $producto->nombre_producto ?></td>
-                                                    <td><?= $producto->procedencia ?></td>
-                                                    <td><?= number_format($producto->precio_compra, 2) ?></td>
-                                                    <td><?= number_format($producto->precio_venta, 2) ?></td>
-                                                    <td style="display:none;"><?= $producto->id_unidad ?></td>
-                                                    <td><?= $producto->stock ?></td>
+                                                    <td><?= $product->id_producto ?></td>
+                                                    <td><?= $product->nombre_producto ?></td>
+                                                    <td><?= $product->procedencia ?></td>
+                                                    <td><?= number_format($product->precio_compra, 2) ?></td>
+                                                    <td><?= number_format($product->precio_venta, 2) ?></td>
+                                                    <td style="display:none;"><?= $product->id_unidad ?></td>
+                                                    <td><?= $product->stock ?></td>
                                                 </tr>
-                                        <?php }
+                                        <?php
+                                            }
                                         }
                                         ?>
                                     </tbody>

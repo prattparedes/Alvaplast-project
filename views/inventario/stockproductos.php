@@ -20,7 +20,7 @@
 
 
                 <div class="row">
-                    <h5 style="background: grey; color: white; text-align:center;">STOCK DE PRODUCTOS</h5>
+                    <h5 style="background: black; color: white; text-align:center;" class="titulo">STOCK DE PRODUCTOS</h5>
 
 
                     <div class="row">
@@ -68,10 +68,12 @@
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:5px">
 
-                        <h5>Detalles de Stock de Productos</h5>
+                        <!-- <h5>Detalles de Stock de Productos</h5> -->
+                        <h5 style="background: teal; color: white; text-align:left; margin-top:10px" class="titulo">DETALLE DEL STOCK DE PRODUCTOS</h5>
                         <hr>
                         <div class="table--container">
-                            <table class="tbl_venta" style="width: 750px;">
+                         
+                            <table class="tbl_venta" id="" style="width: 850px;">
                                 <thead>
                                     <tr>
                                         <th scope="col-3">ID</th>

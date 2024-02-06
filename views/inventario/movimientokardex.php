@@ -9,9 +9,9 @@
 
 
         <div class="kardex__movement">
-            <div class="kardex__leftx">
+            <div class="kardex__left">
                 
-                <h5 style="background: gray; color: white; text-align:center; margin-top:5px">MOVIMIENTO KARDEX</h5>
+                <h5 style="background: black; color: white; text-align:center; margin-top:5px" class="titulo">MOVIMIENTO KARDEX</h5>
                 <div class="col-md-8">
                     <span style="display:inline-block; width:40px; margin-bottom:8px;">Codigo</span>
                     <select name="almacen" id="almacenSelect" class="form-select">
@@ -84,18 +84,10 @@
 
                         </div>
 
-
-
-
-
-
-
                         <div class="" style="width:160px;">
                             <label for="fecha1" class="col-form-label">Hasta</label>
                             <input type="date" id="fecha2" class="form-control" aria-describedby="passwordHelpInline">
                         </div>
-
-
 
                         <!-- <p style="margin-bottom:0;">Hasta:
                             <input type="date" id="fecha2" name="fecha2">

@@ -99,7 +99,8 @@
                     <div style="display:flex; flex-direction:column; margin-top:4px">
 
                         <b>
-                            <h6>LISTADO DE TRASPORTISTAS</h6>
+                            <!-- <h6>LISTADO DE TRASPORTISTAS</h6> -->
+                            <h5 style="background: teal; color: white; text-align:left;" class="titulo">LISTADO DE TRASPORTISTAS</h5>
                         </b>
                         <hr>
 

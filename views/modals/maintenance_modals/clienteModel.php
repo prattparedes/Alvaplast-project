@@ -14,13 +14,14 @@
 
         <div class="kardex__movement">
             <div class="kardex__left">
-                <h5 style="background: gray; color: white; text-align:center;">MANTENIMIENTO DE CLIENTE</h5>
-                <hr style="margin-top: 5px;">
+                <h5 style="background: black; color: white; text-align:center;" class="titulo">MANTENIMIENTO DE CLIENTE</h5>
+                <hr style="margin-top: -3px;">
 
 
 
                 <b>
-                    <h6>Datos del Cliente</h6>
+                    <!-- <h6>Datos del Cliente</h6> -->
+                    <h5 style="background: teal; color: white; text-align:left;" class="titulo">DATOS DEL CLIENTE</h5>
                 </b>
 
                 <div class="col-md-5" style="margin-top: -5px;">
@@ -127,7 +128,8 @@
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:4px">
 
-                        <h6>LISTADO DE CLIENTES</h6>
+                        <!-- <h6>LISTADO DE CLIENTES</h6> -->
+                        <h5 style="background: teal; color: white; text-align:left;" class="titulo">LISTADO DE CLIENTES</h5>
                         <hr style="margin-top: -7px;">
 
                         <h6>Buscar por: </h6>

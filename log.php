@@ -38,10 +38,7 @@ $(function(){
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
           <a class="navbar-brand" href="#" onclick="loadContent('views/home.php')">
-            <svg class="bi pe-none me-2" width="40" height="32">
-              <use xlink:href="#bootstrap" />
-            </svg>
-            ALVAPLASTIC
+            &nbsp;&nbsp;ALVAPLASTIC
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -49,12 +46,11 @@ $(function(){
           <div class="collapse navbar-collapse" id="navbarNav" style="justify-content:center; align-items:center;">
             <ul class="navbar-nav">
 
-              <li style="font-size: 13px;" class="nav-item">
-                <!-- <a class="nav-link text-white btn btn-secondary" aria-current="page" href="#" onclick="loadContent('views/home.php')"> -->
+              <!-- <li style="font-size: 13px;" class="nav-item">
                 <i class="bi bi-house-door"></i>
                 INICIO
                 </a>
-              </li>
+              </li> -->
 
 
               <li style="font-size: 13px;" class="nav-item">
