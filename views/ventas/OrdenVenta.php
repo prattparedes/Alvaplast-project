@@ -19,7 +19,7 @@
                 <!-- <h5 style="background: black; color: white; text-align:center;">ORDEN DE VENTA</h5> -->
 
                 <div class="row">
-                    <h5 style="background: Black; color: white; text-align:center;" class="titulo">ORDEN DE VENTA</h5>
+                    <h5 style="background: Black; color: white; text-align:center;" class="titulo" id="titulo">ORDEN DE VENTA</h5>
                     <div class="" style="width: 188px;">
                         <!-- <label for="number" class="col-form-label">Codigo</label> -->
                         <fieldset disabled>
@@ -230,7 +230,7 @@
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" id="productname" placeholder="Seleccione Producto" aria-label="Recipient's username" aria-describedby="" disabled>
                                 <input type="hidden" type="text" id="productid">
-                                <button style="height: 35px;" class="btn btn-outline-secondary" href="" onclick="loadContent3()" type="button">....</button>
+                                <button style="height: 35px;" class="btn btn-outline-secondary" href="" onclick="abrirListadoProductosVenta()" type="button">....</button>
                             </div>
                         </div>
                         <div><br></div>

@@ -77,10 +77,37 @@ function seleccionarCliente(fila) {
 
 // Función para ir al listado de productos
 function abrirListadoProductosVenta() {
-  if (!document.getElementById("productname").disabled) {
-    guardarCopiaSeguridadVenta();
-    loadContent("views/modals/listadoproductosventa.php");
+  var opcion = document.getElementById("almacen").value;
+  var cliente = document.getElementById("idcliente").value;
+
+  if (cliente == "0" || !cliente) { 
+    return alert("Debe seleccionar un cliente"); 
   }
+  
+  if (opcion == "0" || !opcion) { 
+    return alert("Debe seleccionar un almacén"); 
+  }
+  
+  guardarCopiaSeguridadVenta();
+  
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4) {
+      if (this.status == 200) {
+        document.getElementById("navbarNav").classList.remove("show")
+        document.querySelector(".main__content").innerHTML = this.responseText;
+
+        // Aquí puedes utilizar el valor de additionalData como desees
+        console.log("Datos adicionales:", opcion, cliente);
+
+        // Ya no necesitas la lógica de la promesa aquí
+      } else {
+        alert("Error en la carga del contenido");
+      }
+    }
+  };
+  xhttp.open("GET", 'views/modals/listadoproductosventa.php' + "?idAlmacen=" + encodeURIComponent(opcion) + "&idCliente=" + encodeURIComponent(cliente), true);
+  xhttp.send();
 }
 
 // Función para seleccionar Producto y pasarlo al formulario
@@ -227,6 +254,7 @@ function guardarCopiaSeguridadVenta() {
 
   // Guardar las claves y valores principales
   copiaSeguridadFormulario = {
+    id_venta: document.getElementById('idVenta').value,
     cliente: document.getElementById("cliente").value,
     id_cliente: document.getElementById("idcliente").value,
     direccion: document.getElementById("direccion").value,
@@ -334,6 +362,7 @@ function restaurarCopiaSeguridadVenta() {
   // Restaurar los valores principales del formulario
   console.log("restaurando: ", copiaSeguridadFormulario);
   let copy = copiaSeguridadFormulario;
+  document.getElementById("idVenta").value = copy.id_venta;
   document.getElementById("cliente").value = copy.cliente;
   document.getElementById("idcliente").value = copy.id_cliente;
   document.getElementById("direccion").value = copy.direccion;
@@ -350,6 +379,8 @@ function restaurarCopiaSeguridadVenta() {
   document.getElementById("fecha").value = copy.fecha;
   document.getElementById("tipoDocumento").value = copy.tipoDocumento;
   document.getElementById("notas").value = copy.notas;
+
+  console.log(copy);
 
   if (copy.modificarActivo === 'Cancelar') {
     let botonModificar = document.getElementById('btnModify');
@@ -515,6 +546,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     };
   }
 });
+
 function RegistrarDatosTabla(idCompra, metodo) {
   const tabla = document.getElementById("ordertable");
   const filas = tabla.querySelectorAll("tbody tr");

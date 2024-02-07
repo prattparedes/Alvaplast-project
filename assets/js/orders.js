@@ -25,6 +25,18 @@ function activarInputs() {
   elementosFormulario.forEach(function (elemento) {
     elemento.removeAttribute("disabled");
   });
+
+  if (document.getElementById("titulo").innerHTML === 'ORDEN DE COMPRA') {
+    document.getElementById('direccion').setAttribute("disabled", "disabled");
+  }
+  if (document.getElementById("titulo").innerHTML === 'ORDEN DE VENTA') {
+    document.getElementById('direccion').setAttribute("disabled", "disabled");
+    document.getElementById('rucDni').setAttribute("disabled", "disabled");
+    document.getElementById('inicial').setAttribute("disabled", "disabled");
+    document.getElementById('montocuo').setAttribute("disabled", "disabled");
+    document.getElementById('montofin').setAttribute("disabled", "disabled");
+    document.getElementById('cuotas').setAttribute("disabled", "disabled");
+  }
 }
 
 function desactivarInputs() {
@@ -80,4 +92,12 @@ function actualizarTablaPrecios() {
   productSubtotal2.innerText = (total - igv).toFixed(2);
   productIgv.innerText = igv.toFixed(2);
   productTotal.innerText = total.toFixed(2);
+
+  // Actualizar Inicial/Monto final/cuotas/monto cuotas en caso de estar en ventas
+  if (document.getElementById('inicial')) {
+    document.getElementById('inicial').value = total.toFixed(2);
+    document.getElementById('cuotas').value = 0;
+    document.getElementById('montofin').value = 0;
+    document.getElementById('montocuo').value = 0;
+  }
 }
