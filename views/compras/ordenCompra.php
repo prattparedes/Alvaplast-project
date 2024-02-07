@@ -16,7 +16,7 @@
 
         <div class="kardex__movement" >
             <div class="kardex__left">
-                <h5 style="background: Black; color: white; text-align:center;" class="titulo">ORDEN DE COMPRA</h5>
+                <h5 style="background: Black; color: white; text-align:center;" class="titulo" id="titulo">ORDEN DE COMPRA</h5>
 
                 <div class="row" style="margin-top: 7px;">
                     <div class="" style="width: 188px;">

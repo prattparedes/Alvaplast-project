@@ -25,6 +25,18 @@ function activarInputs() {
   elementosFormulario.forEach(function (elemento) {
     elemento.removeAttribute("disabled");
   });
+
+  if (document.getElementById("titulo").innerHTML === 'ORDEN DE COMPRA') {
+    document.getElementById('direccion').setAttribute("disabled", "disabled");
+  }
+  if (document.getElementById("titulo").innerHTML === 'ORDEN DE VENTA') {
+    document.getElementById('direccion').setAttribute("disabled", "disabled");
+    document.getElementById('rucDni').setAttribute("disabled", "disabled");
+    document.getElementById('inicial').setAttribute("disabled", "disabled");
+    document.getElementById('montocuo').setAttribute("disabled", "disabled");
+    document.getElementById('montofin').setAttribute("disabled", "disabled");
+    document.getElementById('cuotas').setAttribute("disabled", "disabled");
+  }
 }
 
 function desactivarInputs() {

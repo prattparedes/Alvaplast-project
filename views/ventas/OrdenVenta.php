@@ -19,7 +19,7 @@
                 <!-- <h5 style="background: black; color: white; text-align:center;">ORDEN DE VENTA</h5> -->
 
                 <div class="row">
-                    <h5 style="background: Black; color: white; text-align:center;" class="titulo">ORDEN DE VENTA</h5>
+                    <h5 style="background: Black; color: white; text-align:center;" class="titulo" id="titulo">ORDEN DE VENTA</h5>
                     <div class="" style="width: 188px;">
                         <!-- <label for="number" class="col-form-label">Codigo</label> -->
                         <fieldset disabled>
