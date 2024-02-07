@@ -80,4 +80,12 @@ function actualizarTablaPrecios() {
   productSubtotal2.innerText = (total - igv).toFixed(2);
   productIgv.innerText = igv.toFixed(2);
   productTotal.innerText = total.toFixed(2);
+
+  // Actualizar Inicial/Monto final/cuotas/monto cuotas en caso de estar en ventas
+  if (document.getElementById('inicial')) {
+    document.getElementById('inicial').value = total.toFixed(2);
+    document.getElementById('cuotas').value = 0;
+    document.getElementById('montofin').value = 0;
+    document.getElementById('montocuo').value = 0;
+  }
 }

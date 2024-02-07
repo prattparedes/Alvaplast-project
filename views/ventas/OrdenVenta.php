@@ -230,7 +230,7 @@
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control" id="productname" placeholder="Seleccione Producto" aria-label="Recipient's username" aria-describedby="" disabled>
                                 <input type="hidden" type="text" id="productid">
-                                <button style="height: 35px;" class="btn btn-outline-secondary" href="" onclick="loadContent3()" type="button">....</button>
+                                <button style="height: 35px;" class="btn btn-outline-secondary" href="" onclick="abrirListadoProductosVenta()" type="button">....</button>
                             </div>
                         </div>
                         <div><br></div>
