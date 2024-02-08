@@ -48,7 +48,7 @@
                         <button type="button" class="btn btn-success" style="width: 100px;">Consultar</button>
 
                         <!-- <button style="width: 150px;" class="btn btn-danger" onclick="CancelarYRestaurarVenta()" type="button" id="">Cancelar</button> -->
-                        <button style="width: 100px;" class="btn btn-danger" href="" onclick="CancelarYRestaurarVenta()">Cancelar</button>
+                        <button style="width: 100px;" class="btn btn-danger" href="" onclick="CancelaryRestaurarFacturación()">Cancelar</button>
 
                         <br><br>
                     </div>

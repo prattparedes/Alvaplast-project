@@ -209,13 +209,13 @@
 
                             <a style="width: 90px;" name="" id="btnNuevo" class="btn btn-primary" role="button" onclick="nuevaOrdenVenta()">Nuevo</a>
                             <a style="width: 90px;" name="" id="btnRegister" class="btn btn-success order__btn--inactive sell_submit" role="button">Grabar</a>
-                            <a style="width: 90px;" name="" id="btnModify" class="btn btn-warning order__btn--inactive">Editar</a>
+                            <a style="width: 90px;" name="" id="btnModify" class="btn btn-warning order__btn--inactive" onclick="modificarVenta()">Editar</a>
                             <a style="width: 90px;" name="" id="btnDelete" class="btn btn-danger order__btn--inactive sell_submit" role="button">Eliminar</a>
 
 
 
 
-                            <button style="width: 90px;" class="btn btn-secondary" onclick="loadContent('views/modals/listaordenventa.php')">Buscar</button>
+                            <button style="width: 90px;" class="btn btn-secondary" id="btnSearch" onclick="abrirListadoVentas()">Buscar</button>
                         </div>
                         <br>
                         <hr style="margin-top: -15px;">
@@ -271,7 +271,7 @@
                         </div>
                         <div class="col-md-4" style="margin-top: 10px;">
                             <a name="" id="" class="btn btn-primary" href="#" role="button" onclick="añadirProductoOrdenVenta()">Agregar</a>
-                            <a name="" id="" class="btn btn-warning" href="#" role="button">Cancelar</a>
+                            <a name="" id="" class="btn btn-warning" href="#" role="button" onclick="eliminarFilas()">Cancelar</a>
 
                         </div>
 

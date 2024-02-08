@@ -159,7 +159,7 @@
                     <a style="width: 90px;" name="" id="btnModify" class="btn btn-warning order__btn--inactive" onclick="modificarCompra()">Modificar</a>
                     <a style="width: 90px;" name="" id="btnDelete" class="btn btn-danger order__btn--inactive buy_submit" role="button">Eliminar</a>
                        
-                    <button style="width: 90px;" class="btn btn-secondary" onclick="abrirListadoCompras()">Buscar</button>
+                    <button style="width: 90px;" class="btn btn-secondary" id="btnSearch" onclick="abrirListadoCompras()">Buscar</button>
 
 
 
@@ -209,7 +209,7 @@
                     </div> 
                     <div class="col-md-4" style="margin-top: 10px;">
                     <a name="" id="addproduct" class="btn btn-primary" href="#" role="button" onclick="añadirProductoOrdenCompra()">Agregar</a>
-                    <a name="" id="" class="btn btn-warning" href="#" role="button">Cancelar</a>
+                    <a name="" id="" class="btn btn-warning" href="#" role="button" onclick="eliminarFilas()">Eliminar</a>
 
                     </div>
 

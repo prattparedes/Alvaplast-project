@@ -118,6 +118,11 @@ thead {
   font-size: 13px;
 }
 
+.columna__seleccionada {
+  background-color: rgb(129, 193, 245);
+  color: #dee2e6;
+}
+
 /* td {
   color: #303030 !important;
   font-size: 13px;

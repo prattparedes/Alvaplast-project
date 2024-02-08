@@ -52,6 +52,13 @@ function mostrarFacturacion(tbodyId) {
 
 }
 
+function CancelaryRestaurarFacturación() {
+  onload('views/ventas/facturacion.php').then(() => {
+    //RestaurarCopiaFacturación
+
+  })
+}
+
 /*  */
 
 

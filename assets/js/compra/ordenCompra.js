@@ -36,7 +36,7 @@ function nuevaOrdenCompra() {
 // Función para ir al listado de proveedores
 function abrirListadoProveedor() {
   if (!document.getElementById("proveedor").disabled) {
-    guardarCopiaSeguridadCompra();
+    guardarCopiaSeguridadCompra(copiaSeguridadFormulario);
     loadContent("views/modals/listadoproveedores.php");
   }
 }
@@ -62,7 +62,7 @@ function seleccionarProveedor(fila) {
       .getElementById("btnRegister")
       .classList.remove("order__btn--inactive");
     // Cambiar el HTML de los spans por los datos
-    restaurarCopiaSeguridadCompra();
+    restaurarCopiaSeguridadCompra(copiaSeguridadFormulario);
     document.getElementById("idproveedor").value = providerID;
     document.getElementById("proveedor").value = providerName;
     document.getElementById("direccion").value = providerDirection;
@@ -73,7 +73,7 @@ function seleccionarProveedor(fila) {
 // Función para ir al listado de productos
 function abrirListadoProductosCompra() {
   if (!document.getElementById("productname").disabled) {
-    guardarCopiaSeguridadCompra();
+    guardarCopiaSeguridadCompra(copiaSeguridadFormulario);
     loadContent("views/modals/listadoproductoscompras.php");
   }
 }
@@ -106,7 +106,7 @@ function seleccionarProductoCompra(fila) {
     document.getElementById("productprice").value = productPrice;
     activarInputs();
     document.getElementById("productunit").setAttribute("disabled", "disabled");
-    restaurarCopiaSeguridadCompra();
+    restaurarCopiaSeguridadCompra(copiaSeguridadFormulario);
   });
 
   // Verificar si existe el elemento productstock
@@ -115,6 +115,14 @@ function seleccionarProductoCompra(fila) {
     const productStock = contenidoFila[7];
     productStockElement.innerText = productStock;
   }
+}
+
+function abrirListadoCompras() {
+  if (document.getElementById('btnSearch').classList.contains("order__btn--inactive")){
+    return
+  }
+  guardarCopiaSeguridadCompra(copiaSeguridadFormulario);
+  loadContent("views/modals/listaordencompra.php");
 }
 
 // Función para seleccionar una Orden de Compra y llenar el formulario
@@ -217,7 +225,7 @@ function modificarCompra() {
   }
 
   if (botonModificar.innerHTML === "Modificar") {
-    guardarCopiaSeguridadCompra();
+    guardarCopiaSeguridadCompra(copiaSeguridadFormularioInicial);
     activarInputs();
     document.getElementById("metodo").value = "modificar";
 
@@ -228,8 +236,9 @@ function modificarCompra() {
     document
       .getElementById("btnRegister")
       .classList.remove("order__btn--inactive");
+    document.getElementById("btnSearch").classList.add("order__btn--inactive");
   } else if (botonModificar.innerHTML === "Cancelar") {
-    restaurarCopiaSeguridadCompra();
+    restaurarCopiaSeguridadCompra(copiaSeguridadFormularioInicial);
     desactivarInputs();
     document.getElementById("metodo").value = "0";
     botonModificar.innerHTML = "Modificar";
@@ -241,11 +250,17 @@ function modificarCompra() {
     document
       .getElementById("btnRegister")
       .classList.add("order__btn--inactive");
+      document
+      .getElementById("btnSearch")
+      .classList.remove("order__btn--inactive");
+      document
+      .getElementById("btnSearch")
+      .removeAttribute("disabled");
   }
 }
 
 // Guardar Copia Seguridad de un Formulario si se cancela modificaciones
-function guardarCopiaSeguridadCompra() {
+function guardarCopiaSeguridadCompra(formulario) {
   // Obtener filas de la tabla productos
   const tablaProductos = document.getElementById("ordertable");
   const filasProductos = tablaProductos.querySelectorAll("tbody tr");
@@ -263,51 +278,85 @@ function guardarCopiaSeguridadCompra() {
   });
 
   // Guardar las claves y valores principales
-  copiaSeguridadFormulario = {
-    id_compra: document.getElementById('idCompra').value,
-    proveedor: document.getElementById("proveedor").value,
-    id_proveedor: document.getElementById("idproveedor").value,
-    direccion: document.getElementById("direccion").value,
-    sucursal: document.getElementById("sucursal").value,
-    moneda: document.getElementById("moneda").value,
-    almacen: document.getElementById("almacen").value,
-    tipoPago: document.getElementById("tipoPago").value,
-    fecha: document.getElementById("fecha").value,
-    descripcion: document.getElementById("descripcion").value,
-    modificarActivo: document.getElementById("btnModify").innerHTML,
-    metodo: document.getElementById('metodo').value,
-    precios: datosPrecios, // Guardar el array con los valores de la tabla precios
-    productos: [], // Inicializar un array vacío para los productos
-  };
-
-  // Guardar los datos de las filas de productos en el array correspondiente
-  filasProductos.forEach((fila) => {
-    const columnas = fila.querySelectorAll("td");
-
-    const rowData = {
-      id_producto: columnas[0].innerText,
-      producto: columnas[1].innerText,
-      cantidad: columnas[2].innerText,
-      unidad: columnas[3].innerText,
-      precioCompra: columnas[4].innerText,
-      descuento: columnas[5].innerText,
-      total: columnas[6].innerText,
+  if (formulario === copiaSeguridadFormulario) {
+    copiaSeguridadFormulario = {
+      id_compra: document.getElementById('idCompra').value,
+      proveedor: document.getElementById("proveedor").value,
+      id_proveedor: document.getElementById("idproveedor").value,
+      direccion: document.getElementById("direccion").value,
+      sucursal: document.getElementById("sucursal").value,
+      moneda: document.getElementById("moneda").value,
+      almacen: document.getElementById("almacen").value,
+      tipoPago: document.getElementById("tipoPago").value,
+      fecha: document.getElementById("fecha").value,
+      descripcion: document.getElementById("descripcion").value,
+      modificarActivo: document.getElementById("btnModify").innerHTML,
+      metodo: document.getElementById('metodo').value,
+      precios: datosPrecios, // Guardar el array con los valores de la tabla precios
+      productos: [], // Inicializar un array vacío para los productos
     };
-
-    copiaSeguridadFormulario.productos.push(rowData);
-  });
-
-  console.log('copia seguridad= ', copiaSeguridadFormulario);
+  
+    // Guardar los datos de las filas de productos en el array correspondiente
+    filasProductos.forEach((fila) => {
+      const columnas = fila.querySelectorAll("td");
+  
+      const rowData = {
+        id_producto: columnas[0].innerText,
+        producto: columnas[1].innerText,
+        cantidad: columnas[2].innerText,
+        unidad: columnas[3].innerText,
+        precioCompra: columnas[4].innerText,
+        descuento: columnas[5].innerText,
+        total: columnas[6].innerText,
+      };
+  
+      copiaSeguridadFormulario.productos.push(rowData);
+    });
+  } else if (formulario === copiaSeguridadFormularioInicial) {
+    copiaSeguridadFormularioInicial = {
+      id_compra: document.getElementById('idCompra').value,
+      proveedor: document.getElementById("proveedor").value,
+      id_proveedor: document.getElementById("idproveedor").value,
+      direccion: document.getElementById("direccion").value,
+      sucursal: document.getElementById("sucursal").value,
+      moneda: document.getElementById("moneda").value,
+      almacen: document.getElementById("almacen").value,
+      tipoPago: document.getElementById("tipoPago").value,
+      fecha: document.getElementById("fecha").value,
+      descripcion: document.getElementById("descripcion").value,
+      modificarActivo: document.getElementById("btnModify").innerHTML,
+      metodo: document.getElementById('metodo').value,
+      precios: datosPrecios, // Guardar el array con los valores de la tabla precios
+      productos: [], // Inicializar un array vacío para los productos
+    };
+  
+    // Guardar los datos de las filas de productos en el array correspondiente
+    filasProductos.forEach((fila) => {
+      const columnas = fila.querySelectorAll("td");
+  
+      const rowData = {
+        id_producto: columnas[0].innerText,
+        producto: columnas[1].innerText,
+        cantidad: columnas[2].innerText,
+        unidad: columnas[3].innerText,
+        precioCompra: columnas[4].innerText,
+        descuento: columnas[5].innerText,
+        total: columnas[6].innerText,
+      };
+  
+      copiaSeguridadFormularioInicial.productos.push(rowData);
+    });
+  }
 }
 
 //Restaurar copia de seguridad
-function restaurarCopiaSeguridadCompra() {
+function restaurarCopiaSeguridadCompra(formulario) {
   console.log("restaurando");
   // Restaurar los valores de la tabla de precios
   const preciosTabla = document.querySelector("#ordertable tfoot");
   const celdasPrecios = preciosTabla.querySelectorAll("tr  td:nth-child(2)");
 
-  copiaSeguridadFormulario.precios.forEach((precio, index) => {
+  formulario.precios.forEach((precio, index) => {
     if (index < 5) {
       celdasPrecios[index].innerText = precio;
     }
@@ -320,8 +369,9 @@ function restaurarCopiaSeguridadCompra() {
   // Limpiar la tabla de productos antes de restaurar los datos
   cuerpoTablaProductos.innerHTML = "";
 
-  copiaSeguridadFormulario.productos.forEach((producto) => {
+  formulario.productos.forEach((producto) => {
     const nuevaFila = document.createElement("tr");
+    nuevaFila.setAttribute("onclick", "seleccionarFila(this)");
 
     const columnasProducto = [
       producto.id_producto,
@@ -366,7 +416,7 @@ function restaurarCopiaSeguridadCompra() {
   });
 
   // Restaurar los valores principales del formulario
-  let copy = copiaSeguridadFormulario;
+  let copy = formulario;
   document.getElementById("proveedor").value = copy.proveedor;
   document.getElementById("idproveedor").value = copy.id_proveedor;
   document.getElementById("direccion").value = copy.direccion;
@@ -427,6 +477,7 @@ function rellenarFormularioCompra(datosCompra, datosProductos, datosProveedor) {
   // Iterar sobre los datos de productos y añadir filas a la tabla
   datosProductos.forEach((producto) => {
     const row = document.createElement("tr");
+    row.setAttribute("onclick", "seleccionarFila(this)");
     row.innerHTML = `
         <td style="display: none;">${producto.id_producto}</td>
         <td colspan="1">${producto.nombre_producto}</td>
@@ -532,8 +583,6 @@ function añadirProductoOrdenCompra() {
         productosAgregados.push(td.innerText);
       });
 
-      console.log(productosAgregados);
-
       if (productosAgregados.includes(nombreProducto)) {
         alert("El producto ya ha sido agregado.");
         return; // Sale de la función si el producto ya existe
@@ -567,8 +616,9 @@ function añadirProductoOrdenCompra() {
         const tablaExterna = document
           .getElementById("ordertable")
           .getElementsByTagName("tbody")[0];
+
         const nuevaFila = tablaExterna.insertRow();
-        console.log(datosProducto);
+        nuevaFila.setAttribute("onclick", "seleccionarFila(this)");
         datosProducto.forEach((contenido, index) => {
           const celda = nuevaFila.insertCell();
 
@@ -799,7 +849,7 @@ function RegistrarDatosTabla(idCompra, metodo, idalmacen, almacen) {
 // Función Cancelar en el listado/productos/proveedores
 function CancelarYRestaurarCompra() {
   loadContent("views/compras/ordencompra.php").then(() => {
-    restaurarCopiaSeguridadCompra();
+    restaurarCopiaSeguridadCompra(copiaSeguridadFormulario);
     activarInputs();
   });
 }
