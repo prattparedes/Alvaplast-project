@@ -24,7 +24,7 @@
                 <div class="col-md-12">
                     <label for="inputPassword6" class="form-label">Nro. O/C</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" aria-describedby="button-addon2" id="numeroOC">
+                        <input type="text" class="form-control" aria-describedby="button-addon2" id="numeroOC" disabled>
                         <button style=" width:40px;height:35px" class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="abrirListadoOC()">....</button>
                     </div>
 
@@ -39,21 +39,21 @@
                     </div>
                     <div class="col-md-12">
                         <label for="inputPassword6" class="col-form-label">RUC/DNI</label>
-                        <input type="text" id="rucDni" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="rucDni" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
                 </div>
 
 
                 <div class="col-md-12">
                     <label for="inputPassword6" class="col-form-label">Proveedor</label>
-                    <input type="text" id="proveedor" class="form-control" aria-describedby="passwordHelpInline">
+                    <input type="text" id="proveedor" class="form-control" aria-describedby="passwordHelpInline" disabled>
                 </div>
 
 
                 <div class="row">
                     <div class="col-md-6">
                         <label for="number" class="col-form-label">Tipo de Pago</label>
-                        <select name="" id="tipoPago" class="form-select">
+                        <select name="" id="tipoPago" class="form-select"  disabled>
                             <option value="" default>Elija una opción</option>
                             <option value="E" default>Efectivo</option>
                             <option value="C" default>Credito</option>
@@ -65,46 +65,46 @@
 
                     <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Fecha de Emisión</label>
-                        <input type="datetime-local" id="fecha1" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="datetime-local" id="fecha1" class="form-control" aria-describedby="passwordHelpInline"  disabled>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Inicial</label>
-                        <input placeholder="" id="inicial" class="form-control" aria-describedby="passwordHelpInline">
+                        <input placeholder="" id="inicial" class="form-control" aria-describedby="passwordHelpInline"  disabled>
                     </div>
 
                     <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">N. Cuotas</label>
-                        <input type="text" id="telefono" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="telefono" class="form-control" aria-describedby="passwordHelpInline"  disabled>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Llegada</label>
-                        <input type="datetime-local" id="fecha2" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="datetime-local" id="fecha2" class="form-control" aria-describedby="passwordHelpInline"  disabled>
                     </div>
 
 
 
                     <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">M.Financiado</label>
-                        <input type="text" id="telefono" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="telefono" class="form-control" aria-describedby="passwordHelpInline"  disabled>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">M. Cuota</label>
-                        <input type="text" id="telefono" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="text" id="telefono" class="form-control" aria-describedby="passwordHelpInline"  disabled>
                     </div>
 
                     <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Incluye IGV</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="igv">
+                            <input class="form-check-input" type="checkbox" value="" id="igv" disabled>
                         </div>
                     </div>
                 </div>
@@ -118,12 +118,10 @@
 
 
                         <div class="col-md-12">
-                            <a style="width: 90px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="">Nuevo</a>
+                            <a style="width: 90px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="NuevoIngreso()">Nuevo</a>
                             <a style="width: 90px;" name="" id="" class="btn btn-success buy_submit" href="#" role="button">Grabar</a>
                             <a style="width: 90px;" name="" id="" class="btn btn-warning" href="#" role="button">Exportar</a>
-                            <a style="width: 90px;margin-top:1px" name="" id="" class="btn btn-danger  buy_submit" href="#" role="button">Salir</a>
-
-                            <button style="width: 90px;" class="btn btn-secondary" onclick="loadContent('views/modals/listaordenventa.php')">Buscar</button>
+                            <a style="width: 90px;margin-top:1px" name="" id="" class="btn btn-danger  buy_submit" href="#" role="button" onclick="loadContent('views/home.php')">Salir</a>
                         </div>
 
                         <b>
@@ -149,12 +147,11 @@
                             <div class="kardex__row--document">
                                 <div style="width:100px; margin-right:12px;">
                                     <label for="inputPassword6" class="col-form-label"></label>
-                                    <input type="text" id="numero1" class="form-control" aria-describedby="passwordHelpInline" maxlength="3">
+                                    <input type="text" id="numero1" class="form-control" aria-describedby="passwordHelpInline" maxlength="3"  disabled>
                                 </div>
-
                                 <div style="width:200px;">
                                     <label for="inputPassword6" class="col-form-label"></label>
-                                    <input type="text" id="numero2" class="form-control" aria-describedby="passwordHelpInline" maxlength="7">
+                                    <input type="text" id="numero2" class="form-control" aria-describedby="passwordHelpInline" maxlength="7"  disabled>
                                 </div>
                             </div>
                         </div>
@@ -163,7 +160,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <label for="inputPassword6" class="col-form-label">Caja</label>
-                                <select name="caja" id="caja" class="form-select">
+                                <select name="caja" id="caja" class="form-select"  disabled>
 
                                 </select>
                             </div>

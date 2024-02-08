@@ -265,7 +265,7 @@
                         <div class="col-md-12" style="margin-top: -5px;">
                             <a style="width: 90px;" id="" class="btn btn-primary me-2 provider_submit" href="#" role="button">Nuevo</a>
                             <button style="width: 90px;margin-left:-10px;" type="button" class="btn btn-success me-2 provider_submit">Grabar</button>
-                            <a style="width: 90px;margin-left:-10px;" name="" id="" class="btn btn-warning me-2 provider_submit" href="#" role="button">Editar</a>
+                            <a style="width: 90px;margin-left:-10px;" name="" id="" class="btn btn-warning me-2 provider_submit" href="#" role="button">Anular</a>
                             <a style="width: 90px;margin-left:-10px;" name="" id="" class="btn btn-danger provider_submits" href="#" role="button">Eliminar</a>
                             <a style="width: 90px;margin-left:-3px;" name="" id="" class="btn btn-info provider_submits" href="#" role="button">Imprimir</a>
                             <button style="width: 90px;" style="margin-left:8px" class="btn btn-secondary me-2" href="#" onclick="loadContent('views/modals/filtroregistrofacturacion.php')" role="button">Buscar</button>

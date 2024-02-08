@@ -157,6 +157,9 @@ function seleccionarProductoVenta(fila) {
     document.getElementById("productprice").value = productPrice;
     activarInputs();
     document.getElementById("productunit").setAttribute("disabled", "disabled");
+    document.getElementById("productquantity").removeAttribute("disabled");
+    document.getElementById("productprice").removeAttribute("disabled");
+    document.getElementById("productdiscount").removeAttribute("disabled");
     document
       .getElementById("productstock")
       .setAttribute("disabled", "disabled");
@@ -168,13 +171,16 @@ function seleccionarProductoVenta(fila) {
 // FALTA ARREGLAR ESTA FUNCIÓN HASTA TENER LOS DATOS
 // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 function abrirListadoVentas() {
-  if (document.getElementById('btnSearch').classList.contains("order__btn--inactive")){
-    return
+  if (
+    document
+      .getElementById("btnSearch")
+      .classList.contains("order__btn--inactive")
+  ) {
+    return;
   }
   guardarCopiaSeguridadVenta(copiaSeguridadFormulario);
   loadContent("views/modals/listaordenventa.php");
 }
-
 
 // Función para seleccionar una Orden de Venta y llenar el formulario
 async function seleccionarOrdenVenta(fila) {
@@ -238,16 +244,14 @@ function limpiarFormularioVenta() {
   document.getElementById("productigv").innerHTML = 0.0;
   document.getElementById("productTotal").innerHTML = 0.0;
 
-  // Limpiar formulario de venta
+  // Seleccionar todos los inputs, textareas y selects excepto los dos primeros inputs
   const formInputs = document.querySelectorAll(
-    "#almacen, #descripcion, #direccion, #fecha, #moneda, #proveedor, #sucursal, #tipoPago"
+    "input:not(:nth-child(-n+2)), textarea, select"
   );
+
+  // Iterar sobre los elementos seleccionados y limpiar sus valores
   formInputs.forEach((input) => {
-    if (input.tagName === "SELECT") {
-      input.value = "";
-    } else {
-      input.value = "";
-    }
+    input.value = "";
   });
 
   // Limpiar tabla de orden
@@ -288,12 +292,10 @@ function modificarVenta() {
     document
       .getElementById("btnRegister")
       .classList.add("order__btn--inactive");
-      document
+    document
       .getElementById("btnSearch")
       .classList.remove("order__btn--inactive");
-      document
-      .getElementById("btnSearch")
-      .removeAttribute("disabled");
+    document.getElementById("btnSearch").removeAttribute("disabled");
   }
 }
 
@@ -339,11 +341,11 @@ function guardarCopiaSeguridadVenta(formulario) {
       precios: datosPrecios, // Guardar el array con los valores de la tabla precios
       productos: [], // Inicializar un array vacío para los productos
     };
-  
+
     // Guardar los datos de las filas de productos en el array correspondiente
     filasProductos.forEach((fila) => {
       const columnas = fila.querySelectorAll("td");
-  
+
       const rowData = {
         id_producto: columnas[0].innerText,
         producto: columnas[1].innerText,
@@ -353,7 +355,7 @@ function guardarCopiaSeguridadVenta(formulario) {
         descuento: columnas[5].innerText,
         total: columnas[6].innerText,
       };
-  
+
       copiaSeguridadFormulario.productos.push(rowData);
     });
   } else if (formulario === copiaSeguridadFormularioInicial) {
@@ -379,11 +381,11 @@ function guardarCopiaSeguridadVenta(formulario) {
       precios: datosPrecios, // Guardar el array con los valores de la tabla precios
       productos: [], // Inicializar un array vacío para los productos
     };
-  
+
     // Guardar los datos de las filas de productos en el array correspondiente
     filasProductos.forEach((fila) => {
       const columnas = fila.querySelectorAll("td");
-  
+
       const rowData = {
         id_producto: columnas[0].innerText,
         producto: columnas[1].innerText,
@@ -393,11 +395,10 @@ function guardarCopiaSeguridadVenta(formulario) {
         descuento: columnas[5].innerText,
         total: columnas[6].innerText,
       };
-  
+
       copiaSeguridadFormularioInicial.productos.push(rowData);
     });
   }
-
 }
 
 //Restaurar copia de seguridad

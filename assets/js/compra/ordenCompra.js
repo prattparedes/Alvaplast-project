@@ -99,13 +99,15 @@ function seleccionarProductoCompra(fila) {
   loadContent("views/compras/ordencompra.php").then(() => {
     document
       .getElementById("btnRegister")
-      .classList.remove("order__btn--inactive"); //Aqui se Modifico----------------
-    // Cambiar el HTML de los spans por los datos
+      .classList.remove("order__btn--inactive");
     document.getElementById("productunit").value = productUnit;
     document.getElementById("productname").value = productName;
     document.getElementById("productprice").value = productPrice;
     activarInputs();
     document.getElementById("productunit").setAttribute("disabled", "disabled");
+    document.getElementById('productquantity').removeAttribute("disabled");
+    document.getElementById('productprice').removeAttribute("disabled");
+    document.getElementById('productdiscount').removeAttribute("disabled");
     restaurarCopiaSeguridadCompra(copiaSeguridadFormulario);
   });
 
@@ -114,6 +116,7 @@ function seleccionarProductoCompra(fila) {
   if (productStockElement) {
     const productStock = contenidoFila[7];
     productStockElement.innerText = productStock;
+    document.getElementById('productstock').setAttribute("disabled", "disabled");
   }
 }
 
@@ -175,9 +178,6 @@ async function seleccionarOrdenCompra(fila) {
       document
         .getElementById("btnDelete")
         .classList.remove("order__btn--inactive");
-      // console.log("Datos Compra:", datosCompra);
-      // console.log("Datos Compra Producto:", datosCompraProducto);
-      // console.log("Dirección del proveedor:", datosProveedor.direccion);
     });
   } catch (error) {
     console.error(error);

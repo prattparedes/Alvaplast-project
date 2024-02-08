@@ -249,10 +249,8 @@ function filtrarKardexPorFechas() {
 function exportarPDF() {
   const productoSeleccionado = document.getElementById(
     "productoSeleccionadoKardex"
-  ).value;
-  const AlmacenSeleccionado = document.getElementById(
-    "almacenSelect"
-  ).value;
+  ).innerHTML;
+  const AlmacenSeleccionado = document.getElementById("almacenSelect").value;
   const fecha1 = new Date(document.getElementById("fecha1").value);
   const fecha2 = new Date(document.getElementById("fecha2").value);
 
@@ -277,7 +275,15 @@ function exportarPDF() {
   const doc = new jsPDF();
 
   // Título del documento
-  doc.text("Movimientos de " + productoSeleccionado + " (Almacén " + AlmacenSeleccionado +")", 14, 10); // Texto y posición
+  doc.text(
+    "Movimientos de " +
+      productoSeleccionado +
+      " (Almacén " +
+      AlmacenSeleccionado +
+      ")",
+    14,
+    10
+  ); // Texto y posición
   if (
     !(
       fechaFormateada1 === "Invalid Date" || fechaFormateada2 === "Invalid Date"
@@ -315,7 +321,7 @@ function exportarPDF() {
     }
   });
 
-  console.log(datosFilas)
+  console.log(datosFilas);
   // Configurar tamaño de fuente para las filas
   const fontSize = 10; // Tamaño de fuente para las filas
   doc.setFontSize(fontSize);
@@ -353,6 +359,15 @@ function exportarPDF() {
     });
   }
 
-  // Guardar el PDF
-  doc.save("movimientos.pdf");
+  // Guardar el PDF como una cadena de datos (blob)
+  const pdfData = doc.output();
+
+  // Crear un objeto blob con los datos del PDF
+  const blob = new Blob([pdfData], { type: "application/pdf" });
+
+  // Crear una URL para el objeto blob
+  const url = URL.createObjectURL(blob);
+
+  // Abrir la URL en una nueva ventana del navegador
+  window.open(url);
 }

@@ -5,13 +5,9 @@
         <?php
         require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
 
-        use Models\maintenance_models\Sucursal;
+        use Models\maintenance_models\Producto;
         use Models\maintenance_models\Almacen;
-        use Models\maintenance_models\Moneda;
-        use Models\maintenance_models\Unidad;
-        use Models\compras\Compra;
-
-
+        use Models\maintenance_models\Linea;
         ?>
 
         <div class="kardex__movement">
@@ -26,9 +22,16 @@
                     <div class="row">
                         <div class="col-md-6">
                             <label for="number" class="col-form-label">Almacen</label>
-                            <select name="" id="cargo" class="form-select">
+                            <select name="" id="cargo" class="form-select" onchange="listarProductosStockXAlmacen(this.value)">
                                 <option value="" default>Elija una opción</option>
-                                <option value="" default>ALMACEN 1</option>
+                                <?php
+                                $almacenes = Almacen::getAlmacenes();
+                                foreach ($almacenes as $almac) {
+                                ?>
+                                    <option value="<?= $almac->id_almacen ?>"><?= $almac->descripcion ?></option>
+                                <?php
+                                }
+                                ?>
                             </select>
                         </div>
 
@@ -36,14 +39,24 @@
 
                         <div class="col-md-6">
                             <label for="inputEndDate" class="col-form-label">Linea:</label>
-                            <input type="text" id="inputEndDate" class="form-control" aria-describedby="passwordHelpInline">
+                            <select name="" class="form-select" id="" onchange="FiltrarLineaProductosStockKardex(this.value)">
+                                <option value="">Todas las Lineas</option>
+                                <?php
+                                $lineas = Linea::ListarLineas();
+                                foreach ($lineas as $linea) {
+                                ?>
+                                    <option value="<?= $linea->descripcion ?>"><?= $linea->descripcion ?></option>
+                                <?php
+                                }
+                                ?>
+                            </select>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-12">
                             <label for="inputFilter" class="col-form-label">Producto:</label>
-                            <input type="text" id="inputFilter" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="text" id="inputFilter" class="form-control" aria-describedby="passwordHelpInline" onkeyup="FiltrarProductosStockKardex(this.value)">
                         </div>
                     </div>
 
@@ -72,8 +85,8 @@
                         <h5 style="background: teal; color: white; text-align:left; margin-top:10px" class="titulo">DETALLE DEL STOCK DE PRODUCTOS</h5>
                         <hr>
                         <div class="table--container">
-                         
-                            <table class="tbl_venta" id="" style="width: 850px;">
+
+                            <table class="tbl_venta" id="stock__products--table" style="width: 850px;">
                                 <thead>
                                     <tr>
                                         <th scope="col-3">ID</th>
@@ -85,14 +98,19 @@
                                     </tr>
                                 </thead>
                                 <tbody id="detalle_venta">
-                                    <tr class="">
-                                        <td scope="row">A01</td>
-                                        <td class="textleft">Bolsa de Plastico Rey</td>
-                                        <td class="textcenter">F</td>
-                                        <td class="textcenter">Bolsas</td>
-                                        <td class="textcenter">Alfa</td>
-                                        <td class="textcenter">0.0</td>
-                                    </tr>
+                                    <?php
+                                    $producto = Producto::getProductos();
+                                    foreach ($producto as $produc) {
+                                    ?>
+                                        <tr>
+                                            <td scope="row"><?= $produc->id_producto ?></td>
+                                            <td class="textleft"><?= $produc->nombre_producto ?></td>
+                                            <td class="textcenter"><?= $produc->unidad ?></td>
+                                            <td class="textcenter"><?= $produc->linea ?></td>
+                                            <td class="textcenter"><?= $produc->marca ?></td>
+                                            <td class="textcenter"><?= $produc->stock == 0 ? '0.0' : $produc->stock ?></td>
+                                        </tr>
+                                    <?php } ?>
                                 </tbody>
                             </table>
                         </div>

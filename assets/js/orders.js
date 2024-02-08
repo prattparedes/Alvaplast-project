@@ -40,6 +40,14 @@ function activarInputs() {
     document.getElementById("montofin").setAttribute("disabled", "disabled");
     document.getElementById("cuotas").setAttribute("disabled", "disabled");
   }
+
+  document.getElementById('productunit').setAttribute("disabled", "disabled");
+  document.getElementById('productquantity').setAttribute("disabled", "disabled");
+  document.getElementById('productprice').setAttribute("disabled", "disabled");
+  document.getElementById('productdiscount').setAttribute("disabled", "disabled");
+  if (document.getElementById('productstock')) {
+    document.getElementById('productstock').setAttribute("disabled", "disabled");
+  }
 }
 
 function desactivarInputs() {

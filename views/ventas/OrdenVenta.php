@@ -18,9 +18,9 @@
             <div class="kardex__left">
                 <!-- <h5 style="background: black; color: white; text-align:center;">ORDEN DE VENTA</h5> -->
 
-                <div class="row">
+                <div class="row numero_documento--title">
                     <h5 style="background: Black; color: white; text-align:center;" class="titulo" id="titulo">ORDEN DE VENTA</h5>
-                    <div class="" style="width: 188px;">
+                    <div class="numero_documento" style="width: 188px;">
                         <!-- <label for="number" class="col-form-label">Codigo</label> -->
                         <fieldset disabled>
                             <input type="number" id="serieDocumento" class="form-control" aria-describedby="passwordHelpInline" value="001">
@@ -28,7 +28,7 @@
                         </fieldset>
                     </div>
                     -
-                    <div class="" style="width: 188px;">
+                    <div class="numero_documento" style="width: 188px;">
                         <!-- <label for="number" class="col-form-label">Codigo</label> -->
                         <fieldset disabled>
                             <input type="text" class="form-control" id="numeroDocumento" aria-describedby="passwordHelpInline" value=<?= Venta::getIdVenta(); ?>>
@@ -169,12 +169,6 @@
                         <input type="datetime-local" id="fecha" class="form-control" disabled>
                     </div>
 
-                    <div class="" style="width: 200px;">
-                        <label for="inputPassword6" class="col-form-label"></label>
-
-                    </div>
-
-
                     <div class="col-md-12">
                         <label for="inputPassword6" class="col-form-label">Tipo de documento</label>
                         <select name="" id="tipoDocumento" class="form-select" disabled>
@@ -201,7 +195,7 @@
                     <div style="display:flex; flex-direction:column; margin-top:4px">
 
 
-                        <div class="col-md-12" style="margin-top: -5px;">
+                        <div class="col-md-12" style="margin-top: -5px; width:468px;">
                             <!-- <a style="width: 80px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="nuevaOrdenVenta()">Nuevo</a>
                             <a style="width: 75px;" name="" id="" class="btn btn-success" href="#" role="button">Grabar</a>
                             <a style="width: 75px;" name="" id="" class="btn btn-warning" href="#" role="button">Editar</a>
@@ -235,7 +229,7 @@
                         </div>
                         <div><br></div>
 
-                        <div class="row" style="margin-top: -15px;">
+                        <div class="row product__details" style="margin-top: -15px; flex-wrap:nowrap;">
                             <div class="" style="width: 170px;">
                                 <label for="disabledSelect" class="form-label">Unidad</label>
                                 <select id="productunit" class="form-select" disabled>
@@ -269,10 +263,9 @@
 
 
                         </div>
-                        <div class="col-md-4" style="margin-top: 10px;">
+                        <div style="margin-top: 20px;">
                             <a name="" id="" class="btn btn-primary" href="#" role="button" onclick="añadirProductoOrdenVenta()">Agregar</a>
                             <a name="" id="" class="btn btn-warning" href="#" role="button" onclick="eliminarFilas()">Cancelar</a>
-
                         </div>
 
 
