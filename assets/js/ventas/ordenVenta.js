@@ -4,7 +4,9 @@ function nuevaOrdenVenta() {
   document.getElementById("fecha").value = establecerFechaHora();
 
   activarInputs();
-  document.getElementById("btnRegister").classList.remove("order__btn--inactive");
+  document
+    .getElementById("btnRegister")
+    .classList.remove("order__btn--inactive");
   document.getElementById("btnModify").classList.add("order__btn--inactive");
   document.getElementById("btnDelete").classList.add("order__btn--inactive");
   // Conseguir id de venta nuevo
@@ -56,7 +58,9 @@ function seleccionarCliente(fila) {
 
   // Cambiar al formulario y luego cambiar el html
   loadContent("views/ventas/ordenVenta.php").then(() => {
-    document.getElementById("btnRegister").classList.remove("order__btn--inactive");//--------------------------------------
+    document
+      .getElementById("btnRegister")
+      .classList.remove("order__btn--inactive"); //--------------------------------------
     // Cambiar el HTML de los spans por los datos
     restaurarCopiaSeguridadVenta();
     document.getElementById("idcliente").value = clientID;
@@ -80,21 +84,26 @@ function abrirListadoProductosVenta() {
   var opcion = document.getElementById("almacen").value;
   var cliente = document.getElementById("idcliente").value;
 
-  if (cliente == "0" || !cliente) { 
-    return alert("Debe seleccionar un cliente"); 
+  if (cliente == "0" || !cliente) {
+    return alert("Debe seleccionar un cliente");
   }
-  
-  if (opcion == "0" || !opcion) { 
-    return alert("Debe seleccionar un almacén"); 
+
+  if (opcion == "0" || !opcion) {
+    return (alert = alertify
+      .alert("Información", "Debe seleccionar un almacén")
+      .set("label", "Aceptar"));
+
+    alert.set("modal", false); //al pulsar fuera del dialog se cierra o no
+    // return alert("Debe seleccionar un almacén");
   }
-  
+
   guardarCopiaSeguridadVenta();
-  
+
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4) {
       if (this.status == 200) {
-        document.getElementById("navbarNav").classList.remove("show")
+        document.getElementById("navbarNav").classList.remove("show");
         document.querySelector(".main__content").innerHTML = this.responseText;
 
         // Aquí puedes utilizar el valor de additionalData como desees
@@ -106,7 +115,15 @@ function abrirListadoProductosVenta() {
       }
     }
   };
-  xhttp.open("GET", 'views/modals/listadoproductosventa.php' + "?idAlmacen=" + encodeURIComponent(opcion) + "&idCliente=" + encodeURIComponent(cliente), true);
+  xhttp.open(
+    "GET",
+    "views/modals/listadoproductosventa.php" +
+      "?idAlmacen=" +
+      encodeURIComponent(opcion) +
+      "&idCliente=" +
+      encodeURIComponent(cliente),
+    true
+  );
   xhttp.send();
 }
 
@@ -130,7 +147,9 @@ function seleccionarProductoVenta(fila) {
 
   // Cambiar al formulario y luego cambiar el html
   loadContent("views/ventas/OrdenVenta.php").then(() => {
-    document.getElementById("btnRegister").classList.remove("order__btn--inactive");//-----------------------------------
+    document
+      .getElementById("btnRegister")
+      .classList.remove("order__btn--inactive"); //-----------------------------------
     // Cambiar el HTML de los spans por los datos
     document.getElementById("productstock").value = productStock;
     document.getElementById("productunit").value = productUnit;
@@ -254,7 +273,7 @@ function guardarCopiaSeguridadVenta() {
 
   // Guardar las claves y valores principales
   copiaSeguridadFormulario = {
-    id_venta: document.getElementById('idVenta').value,
+    id_venta: document.getElementById("idVenta").value,
     cliente: document.getElementById("cliente").value,
     id_cliente: document.getElementById("idcliente").value,
     direccion: document.getElementById("direccion").value,
@@ -382,9 +401,9 @@ function restaurarCopiaSeguridadVenta() {
 
   console.log(copy);
 
-  if (copy.modificarActivo === 'Cancelar') {
-    let botonModificar = document.getElementById('btnModify');
-    botonModificar.classList.remove('order__btn--inactive');
+  if (copy.modificarActivo === "Cancelar") {
+    let botonModificar = document.getElementById("btnModify");
+    botonModificar.classList.remove("order__btn--inactive");
     botonModificar.innerHTML = "Cancelar";
     botonModificar.style.backgroundColor = "gray";
     botonModificar.style.borderColor = "gray";
@@ -459,93 +478,125 @@ function rellenarFormularioVenta(datosCompra, datosProductos, datosProveedor) {
 
 // Añadir nueva fila en la tabla de órdenes de venta/compra
 
-
-
-
-
 function mostrarFacturacion(tbodyId) {
   console.log(tbodyId.value);
   document.getElementById("facturable").style.display = "none";
   document.getElementById("noFacturable").style.display = "none";
 
-
-  document.getElementById(tbodyId.value).style.display = 'table-row-group';
-
+  document.getElementById(tbodyId.value).style.display = "table-row-group";
 }
 
-
-
-
 /*     Falta Aqui   */
-document.querySelector(".main__content").addEventListener("click", function (event) {
-
-  if (event.target.classList.contains("sell_submit")) {
-    event.preventDefault();
-    // Obtener los datos del formulario
-    const idVenta = document.getElementById("idVenta").value
-    const idAlmacen = document.getElementById("almacen").value;
-    const idPersonal = 2;
-    const idDocumento = document.getElementById("tipoDocumento").value
-    const idCliente = document.getElementById("idcliente").value
-    const fecha = document.getElementById("fecha").value; // Obtener la descripción del formulario
-    const total = document.getElementById("productTotal").innerHTML; // Obtener la abreviatura del formulario
-    const subtotal = document.getElementById("productsubtotal2").innerHTML;
-    const igv = document.getElementById("productigv").innerHTML;
-    const idMoneda = document.getElementById("moneda").value;
-    const numeroDocumento = document.getElementById("numeroDocumento").value;
-    const serieDocumento = document.getElementById("serieDocumento").value
-    const tipoPago = document.getElementById("tipoPago").value;
-    const pagoInicial = document.getElementById("inicial").value
-    const mod = document.getElementById("metodo").value;
-    if (mod == "modificar") {
-      var metodo = mod;
-    } else {
-      var metodo = event.target.innerHTML
-    }
-    if (metodo === "Grabar" && document.getElementById('btnRegister').classList.contains('order__btn--inactive')) {
-      return
-    }
-
-    if (metodo === "Eliminar" && document.getElementById('btnDelete').classList.contains('order__btn--inactive')) {
-      return
-    }
-
-    // Crear una solicitud XMLHttpRequest
-    const xhr = new XMLHttpRequest();
-    const url = "/Alvaplast-project/Controller/ventas/VentaController.php"; // Ruta del controlador PHP
-
-    // Configurar la solicitud
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    console.log(metodo, fecha, tipoPago);
-    if (idAlmacen) {
-      // Enviar los datos del formulario incluyendo descripcion y abreviatura
-      xhr.send("idVenta=" + idVenta + "&fecha=" + fecha + "&total=" + total + "&subtotal=" + subtotal + "&igv=" + igv + "&idMoneda=" + idMoneda + "&numeroDocumento=" + numeroDocumento + "&serieDocumento=" + serieDocumento + "&idCliente=" + idCliente + "&idAlmacen=" + idAlmacen + "&tipoPago=" + tipoPago + "&idPersonal=" + idPersonal + "&metodo=" + metodo + "&idDocumento=" + idDocumento + "&pagoInicial=" + pagoInicial);
-
-    } else {
-      alert("faltan datos")
-    }
-    // Manejar la respuesta del servidor
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          // La solicitud se completó correctamente
-          // Puedes manejar la respuesta del servidor aquí
-          alert(xhr.responseText);
-          //Envio de los datos de CompraProducto
-          if (metodo == "Eliminar") {
-            loadContent("views/ventas/ordenVenta.php");
-          }
-          RegistrarDatosTabla(idCompra, metodo);
-          //RegistrarDatosTabla(idCompra, metodo);
-        } else {
-          // Hubo un error en la solicitud
-          console.error('Error en la solicitud.');
-        }
+document
+  .querySelector(".main__content")
+  .addEventListener("click", function (event) {
+    if (event.target.classList.contains("sell_submit")) {
+      event.preventDefault();
+      // Obtener los datos del formulario
+      const idVenta = document.getElementById("idVenta").value;
+      const idAlmacen = document.getElementById("almacen").value;
+      const idPersonal = 2;
+      const idDocumento = document.getElementById("tipoDocumento").value;
+      const idCliente = document.getElementById("idcliente").value;
+      const fecha = document.getElementById("fecha").value; // Obtener la descripción del formulario
+      const total = document.getElementById("productTotal").innerHTML; // Obtener la abreviatura del formulario
+      const subtotal = document.getElementById("productsubtotal2").innerHTML;
+      const igv = document.getElementById("productigv").innerHTML;
+      const idMoneda = document.getElementById("moneda").value;
+      const numeroDocumento = document.getElementById("numeroDocumento").value;
+      const serieDocumento = document.getElementById("serieDocumento").value;
+      const tipoPago = document.getElementById("tipoPago").value;
+      const pagoInicial = document.getElementById("inicial").value;
+      const mod = document.getElementById("metodo").value;
+      if (mod == "modificar") {
+        var metodo = mod;
+      } else {
+        var metodo = event.target.innerHTML;
       }
-    };
-  }
-});
+      if (
+        metodo === "Grabar" &&
+        document
+          .getElementById("btnRegister")
+          .classList.contains("order__btn--inactive")
+      ) {
+        return;
+      }
+
+      if (
+        metodo === "Eliminar" &&
+        document
+          .getElementById("btnDelete")
+          .classList.contains("order__btn--inactive")
+      ) {
+        return;
+      }
+
+      // Crear una solicitud XMLHttpRequest
+      const xhr = new XMLHttpRequest();
+      const url = "/Alvaplast-project/Controller/ventas/VentaController.php"; // Ruta del controlador PHP
+
+      // Configurar la solicitud
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      console.log(metodo, fecha, tipoPago);
+      if (idAlmacen) {
+        // Enviar los datos del formulario incluyendo descripcion y abreviatura
+        xhr.send(
+          "idVenta=" +
+            idVenta +
+            "&fecha=" +
+            fecha +
+            "&total=" +
+            total +
+            "&subtotal=" +
+            subtotal +
+            "&igv=" +
+            igv +
+            "&idMoneda=" +
+            idMoneda +
+            "&numeroDocumento=" +
+            numeroDocumento +
+            "&serieDocumento=" +
+            serieDocumento +
+            "&idCliente=" +
+            idCliente +
+            "&idAlmacen=" +
+            idAlmacen +
+            "&tipoPago=" +
+            tipoPago +
+            "&idPersonal=" +
+            idPersonal +
+            "&metodo=" +
+            metodo +
+            "&idDocumento=" +
+            idDocumento +
+            "&pagoInicial=" +
+            pagoInicial
+        );
+      } else {
+        alert("faltan datos");
+      }
+      // Manejar la respuesta del servidor
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            // La solicitud se completó correctamente
+            // Puedes manejar la respuesta del servidor aquí
+            alert(xhr.responseText);
+            //Envio de los datos de CompraProducto
+            if (metodo == "Eliminar") {
+              loadContent("views/ventas/ordenVenta.php");
+            }
+            RegistrarDatosTabla(idCompra, metodo);
+            //RegistrarDatosTabla(idCompra, metodo);
+          } else {
+            // Hubo un error en la solicitud
+            console.error("Error en la solicitud.");
+          }
+        }
+      };
+    }
+  });
 
 function RegistrarDatosTabla(idCompra, metodo) {
   const tabla = document.getElementById("ordertable");
@@ -569,7 +620,22 @@ function RegistrarDatosTabla(idCompra, metodo) {
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     if (precioCompra && subTotal) {
       //Enviamos los datos al controlador
-      http.send("idCompra=" + idCompra + "&idProducto=" + idProducto + "&cantidad=" + cantidad + "&precioCompra=" + precioCompra + "&descuento=" + descuento + "&subtotal=" + subTotal + "&metodo=" + metodo);
+      http.send(
+        "idCompra=" +
+          idCompra +
+          "&idProducto=" +
+          idProducto +
+          "&cantidad=" +
+          cantidad +
+          "&precioCompra=" +
+          precioCompra +
+          "&descuento=" +
+          descuento +
+          "&subtotal=" +
+          subTotal +
+          "&metodo=" +
+          metodo
+      );
     } else {
       alert("faltan datos");
     }
@@ -594,12 +660,11 @@ function RegistrarDatosTabla(idCompra, metodo) {
   });
 }
 
-
 function CancelarYRestaurarVenta() {
   loadContent("views/ventas/ordenventa.php").then(() => {
     restaurarCopiaSeguridadVenta();
     activarInputs();
-  })
+  });
 }
 
 function añadirProductoOrdenVenta() {
