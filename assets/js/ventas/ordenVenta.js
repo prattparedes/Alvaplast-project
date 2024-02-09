@@ -79,6 +79,7 @@ function seleccionarCliente(fila) {
   });
 }
 
+
 // Función para ir al listado de productos
 function abrirListadoProductosVenta() {
   var opcion = document.getElementById("almacen").value;
@@ -624,70 +625,45 @@ document
       const xhr = new XMLHttpRequest();
       const url = "/Alvaplast-project/Controller/ventas/VentaController.php"; // Ruta del controlador PHP
 
-      // Configurar la solicitud
-      xhr.open("POST", url, true);
-      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      console.log(metodo, fecha, tipoPago);
-      if (idAlmacen) {
-        // Enviar los datos del formulario incluyendo descripcion y abreviatura
-        xhr.send(
-          "idVenta=" +
-            idVenta +
-            "&fecha=" +
-            fecha +
-            "&total=" +
-            total +
-            "&subtotal=" +
-            subtotal +
-            "&igv=" +
-            igv +
-            "&idMoneda=" +
-            idMoneda +
-            "&numeroDocumento=" +
-            numeroDocumento +
-            "&serieDocumento=" +
-            serieDocumento +
-            "&idCliente=" +
-            idCliente +
-            "&idAlmacen=" +
-            idAlmacen +
-            "&tipoPago=" +
-            tipoPago +
-            "&idPersonal=" +
-            idPersonal +
-            "&metodo=" +
-            metodo +
-            "&idDocumento=" +
-            idDocumento +
-            "&pagoInicial=" +
-            pagoInicial
-        );
-      } else {
-        alert("faltan datos");
-      }
-      // Manejar la respuesta del servidor
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status === 200) {
-            // La solicitud se completó correctamente
-            // Puedes manejar la respuesta del servidor aquí
-            alert(xhr.responseText);
-            //Envio de los datos de CompraProducto
-            if (metodo == "Eliminar") {
-              loadContent("views/ventas/ordenVenta.php");
-            }
-            RegistrarDatosTabla(idCompra, metodo);
-            //RegistrarDatosTabla(idCompra, metodo);
-          } else {
-            // Hubo un error en la solicitud
-            console.error("Error en la solicitud.");
-          }
-        }
-      };
-    }
-  });
+    // Configurar la solicitud
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    console.log(metodo, fecha, tipoPago);
+    if (idAlmacen) {
+      // Enviar los datos del formulario incluyendo descripcion y abreviatura
+      xhr.send("idVenta=" + idVenta + "&fecha=" + fecha + "&total=" + total + "&subtotal=" + subtotal + "&igv=" + igv + "&idMoneda=" + idMoneda + "&numeroDocumento=" + numeroDocumento + "&serieDocumento=" + serieDocumento + "&idCliente=" + idCliente + "&idAlmacen=" + idAlmacen + "&tipoPago=" + tipoPago + "&idPersonal=" + idPersonal + "&metodo=" + metodo + "&idDocumento=" + idDocumento + "&pagoInicial=" + pagoInicial);
 
-function RegistrarDatosTabla(idCompra, metodo) {
+    } else {
+      alert("faltan datos")
+    }
+    // Manejar la respuesta del servidor
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          // La solicitud se completó correctamente
+          // Puedes manejar la respuesta del servidor aquí
+          //Envio de los datos de CompraProducto
+          if (metodo == "Eliminar") {
+            alert("venta eliminada");
+            loadContent("views/ventas/ordenVenta.php");
+          } else if (metodo == "modificar") {
+            alert("venta modificada . id " + xhr.responseText)
+            RegistrarDatosTabla(xhr.responseText, metodo);
+          } else if (metodo == "Grabar") {
+            alert("venta nueva creada . id :" + xhr.responseText);
+            RegistrarDatosTabla(xhr.responseText, metodo);
+          }
+
+        } else {
+          // Hubo un error en la solicitud
+          console.error('Error en la solicitud.');
+        }
+      }
+    };
+  }
+});
+
+function RegistrarDatosTabla(idVenta, metodo) {
   const tabla = document.getElementById("ordertable");
   const filas = tabla.querySelectorAll("tbody tr");
 
@@ -695,7 +671,6 @@ function RegistrarDatosTabla(idCompra, metodo) {
     const columnas = fila.querySelectorAll("td");
     //Asignar los datos para mandar a la casa
     const idProducto = columnas[0].textContent.trim();
-    const nombreProducto = columnas[1].textContent.trim();
     const cantidad = columnas[2].textContent.trim();
     const precioCompra = columnas[4].textContent.trim();
     const descuento = columnas[5].textContent.trim();
@@ -738,7 +713,7 @@ function RegistrarDatosTabla(idCompra, metodo) {
 
           // Envío a Kardex
           if (metodo === "Grabar") {
-            openAlertModal();
+            loadContent('views/ventas/OrdenVenta.php');
           }
         } else {
           // Hubo un error en la solicitud

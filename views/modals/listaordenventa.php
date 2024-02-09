@@ -97,6 +97,7 @@
                                                 <td><?= $ven->total ?></td>
                                                 <td><?= $ven->Moneda ?></td>
                                                 <td><?= $ven->nombres . ' ' . $ven->ap_paterno . ' ' . $ven->ap_materno ?></td>
+                                                <td style="display: none;"><?= $ven->id_venta ?></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>
@@ -114,6 +115,7 @@
                                                 <td><?= $ven->total ?></td>
                                                 <td><?= $ven->Moneda ?></td>
                                                 <td><?= $ven->nombres . ' ' . $ven->ap_paterno . ' ' . $ven->ap_materno ?></td>
+                                                <td style="display: none;"><?= $ven->id_venta ?></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

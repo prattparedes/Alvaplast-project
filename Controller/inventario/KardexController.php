@@ -14,4 +14,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Enviar la respuesta al frontend
     echo json_encode($movimientos);
 }
-?>

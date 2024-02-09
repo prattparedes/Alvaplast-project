@@ -23,7 +23,7 @@
                     <div class="numero_documento" style="width: 188px;">
                         <!-- <label for="number" class="col-form-label">Codigo</label> -->
                         <fieldset disabled>
-                            <input type="number" id="serieDocumento" class="form-control" aria-describedby="passwordHelpInline" value="001">
+                            <input type="number" id="numeroDocumento" class="form-control" aria-describedby="passwordHelpInline" value="001">
                             <input type="hidden" id="idVenta" value="">
                         </fieldset>
                     </div>
@@ -31,7 +31,7 @@
                     <div class="numero_documento" style="width: 188px;">
                         <!-- <label for="number" class="col-form-label">Codigo</label> -->
                         <fieldset disabled>
-                            <input type="text" class="form-control" id="numeroDocumento" aria-describedby="passwordHelpInline" value=<?= Venta::getIdVenta(); ?>>
+                            <input type="text" class="form-control" id="serieDocumento" aria-describedby="passwordHelpInline" value=<?= Venta::getIdVenta(); ?>>
                             <input type="hidden" id="metodo" value="">
                         </fieldset>
                     </div>
@@ -172,11 +172,11 @@
                     <div class="col-md-12">
                         <label for="inputPassword6" class="col-form-label">Tipo de documento</label>
                         <select name="" id="tipoDocumento" class="form-select" disabled>
-                            <option value="A">NOTA DE COBRANZA - A</option>
-                            <option value="B">NOTA DE COBRANZA - B</option>
-                            <option value="C">NOTA DE COBRANZA - C</option>
-                            <option value="D">NOTA DE COBRANZA - D</option>
-                            <option value="E">NOTA DE COBRANZA - E</option>
+                            <option value="001">NOTA DE COBRANZA - A</option>
+                            <option value="002">NOTA DE COBRANZA - B</option>
+                            <option value="003">NOTA DE COBRANZA - C</option>
+                            <option value="012">NOTA DE COBRANZA - D</option>
+                            <option value="013">NOTA DE COBRANZA - E</option>
                         </select>
                     </div>
                     <div class="col-md-12">
