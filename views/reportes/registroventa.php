@@ -13,7 +13,6 @@
 
 
         ?>
-
         <div class="kardex__movement">
             <div class="kardex__left">
 
@@ -49,34 +48,38 @@
                                 <?php } ?>
                             </select>
                         </div>
+                        <?php
+                        date_default_timezone_set('America/Lima'); // Establecer la zona horaria de Perú
+                        $currentDateTime = date('Y-m-d H:i');
+                        ?>
 
                         <div class="col-md-6">
                             <label for="inputEndDate" class="col-form-label">Fecha de Inicio:</label>
-                            <input type="date" id="inputEndDate" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="datetime-local" id="fecha1" class="form-control" aria-describedby="passwordHelpInline" value="<?php echo $currentDateTime; ?>">
                         </div>
 
                         <div class="col-md-6">
                             <label for="inputFilter" class="col-form-label">Fecha Fin:</label>
-                            <input type="date" id="inputFilter" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="datetime-local" id="fecha2" class="form-control" aria-describedby="passwordHelpInline" value="<?php echo $currentDateTime; ?>">
                         </div>
                     </div>
 
                     <div class="col-md-12" style="margin-top: 30px;"> </div>
                     <br><br>
-               
-                <hr>
-             </div>
+
+                    <hr>
+                </div>
             </div>
             <div class="kardex__right">
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:5px">
 
                         <!-- <h6>REPORTE DE VENTAS</h6> -->
-                    
+
 
                         <div class="col-md-12" style="margin-top: -15px;">
                             <br>
-                            <button style="width: 90px;" class="btn btn-success" type="button">Consultar</button>
+                            <button style="width: 90px;" class="btn btn-success" type="button" onclick="consultarReporteVentas()">Consultar</button>
                             <button style="width: 90px;" class="btn btn-primary" type="button">Exportar</button>
                             <button style="width: 90px;" class="btn btn-warning" type="button">Imprimir</button>
                             <button style="width: 90px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
@@ -85,8 +88,8 @@
 
                         <h5 style="background: teal; color: white; text-align:left;" class="titulo">REPORTE DE VENTAS</h5>
                         <hr style="margin-top: -7px;">
-                        <div class="table--container">
-                            <table class="tbl_venta" style="width: 850px;">
+                        <div class="table--container" id="estadoCuenta--table">
+                            <table class="tbl_venta" style="width: 850px;" id="reporte--table">
                                 <thead>
                                     <tr>
                                         <!-- <th scope="col">ID</th> -->
@@ -100,8 +103,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="detalle_venta">
-                                    <tr class="">
-                                        <!-- <td scope="row">A01</td> -->
+                                    <!-- <tr class="">
                                         <td class="textcenter" scope="row">25-02-2023</td>
                                         <td class="textcenter" scope="row">10251545</td>
                                         <td class="textcenter" scope="row">10205565789</td>
@@ -109,7 +111,7 @@
                                         <td class="textcenter" scope="row">0.0</td>
                                         <td class="textcenter" scope="row">Alfa</td>
                                         <td class="textcenter" scope="row">0.0</td>
-                                    </tr>
+                                    </tr> -->
                                 </tbody>
                             </table>
                         </div>

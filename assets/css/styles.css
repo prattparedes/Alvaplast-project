@@ -186,6 +186,10 @@ select:focus {
   box-sizing: border-box;
 }
 
+.kardex__right {
+  overflow-x: scroll;
+}
+
 @media (min-width: 768px) {
   .kardex__movement {
     display: flex;

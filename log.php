@@ -242,6 +242,8 @@ $(function(){
   <script src="assets/js/habilitar.js"></script>
   <script src="assets/js/ventas/facturacion.js"></script>
   <script src="assets/js/alerts/alertmodal.js"></script>
+  <script src="assets/js/reportes/reporteVentas.js"></script>
+  <script src="assets/js/ventas/EstadoCuenta.js"></script>
   </body>
 
 </html>
