@@ -143,4 +143,11 @@ class Cliente
             }
         }
     }
+
+    public static function obtenerClienteXId(int $idCliente)
+    {
+        $con = Connection::Conectar();
+        $stmt = $con->query("exec sp_ListaClienteXID $idCliente");
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
 }

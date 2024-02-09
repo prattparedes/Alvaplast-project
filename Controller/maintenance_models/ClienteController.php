@@ -29,4 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     echo $message;
+} else if ($_SERVER["REQUEST_METHOD"] === "GET") {
+    if (isset($_GET["idCliente"])) {
+        $data = Cliente::obtenerClienteXId($_GET["idCliente"]);
+        echo json_encode($data);
+    }
 }

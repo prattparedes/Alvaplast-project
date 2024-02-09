@@ -23,7 +23,7 @@
                     <div class="" style="width: 188px;">
                         <!-- <label for="number" class="col-form-label">Codigo</label> -->
                         <fieldset disabled>
-                            <input type="number" id="serieDocumento" class="form-control" aria-describedby="passwordHelpInline" value="001">
+                            <input type="number" id="numeroDocumento" class="form-control" aria-describedby="passwordHelpInline" value="001">
                             <input type="hidden" id="idVenta" value="">
                         </fieldset>
                     </div>
@@ -31,7 +31,7 @@
                     <div class="" style="width: 188px;">
                         <!-- <label for="number" class="col-form-label">Codigo</label> -->
                         <fieldset disabled>
-                            <input type="text" class="form-control" id="numeroDocumento" aria-describedby="passwordHelpInline" value=<?= Venta::getIdVenta(); ?>>
+                            <input type="text" class="form-control" id="serieDocumento" aria-describedby="passwordHelpInline" value=<?= Venta::getIdVenta(); ?>>
                             <input type="hidden" id="metodo" value="">
                         </fieldset>
                     </div>

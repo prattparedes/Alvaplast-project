@@ -59,6 +59,13 @@ class Venta
         }
     }
 
+    public static function obtenerVentaXDocumento(int $serieDocumento)
+    {
+        $con = Connection::Conectar();
+        $stmt = $con->query("select id_venta from Venta where serie_documento = $serieDocumento ");
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+
 
     public static function getVentaXId(int $idVenta)
     {

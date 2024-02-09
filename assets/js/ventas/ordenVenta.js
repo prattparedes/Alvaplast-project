@@ -75,21 +75,22 @@ function seleccionarCliente(fila) {
   });
 }
 
+
 // Función para ir al listado de productos
 function abrirListadoProductosVenta() {
   var opcion = document.getElementById("almacen").value;
   var cliente = document.getElementById("idcliente").value;
 
-  if (cliente == "0" || !cliente) { 
-    return alert("Debe seleccionar un cliente"); 
+  if (cliente == "0" || !cliente) {
+    return alert("Debe seleccionar un cliente");
   }
-  
-  if (opcion == "0" || !opcion) { 
-    return alert("Debe seleccionar un almacén"); 
+
+  if (opcion == "0" || !opcion) {
+    return alert("Debe seleccionar un almacén");
   }
-  
+
   guardarCopiaSeguridadVenta();
-  
+
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4) {
@@ -99,13 +100,13 @@ function abrirListadoProductosVenta() {
 
         // Aquí puedes utilizar el valor de additionalData como desees
         console.log("Datos adicionales:", opcion, cliente);
-
-        // Ya no necesitas la lógica de la promesa aquí
-      } else {
-        alert("Error en la carga del contenido");
       }
+      // Ya no necesitas la lógica de la promesa aquí
+    } else {
+      alert("Error en la carga del contenido");
     }
-  };
+  }
+    ;
   xhttp.open("GET", 'views/modals/listadoproductosventa.php' + "?idAlmacen=" + encodeURIComponent(opcion) + "&idCliente=" + encodeURIComponent(cliente), true);
   xhttp.send();
 }
@@ -497,6 +498,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     const tipoPago = document.getElementById("tipoPago").value;
     const pagoInicial = document.getElementById("inicial").value
     const mod = document.getElementById("metodo").value;
+    console.log(serieDocumento)
     if (mod == "modificar") {
       var metodo = mod;
     } else {
@@ -531,13 +533,18 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         if (xhr.status === 200) {
           // La solicitud se completó correctamente
           // Puedes manejar la respuesta del servidor aquí
-          alert(xhr.responseText);
           //Envio de los datos de CompraProducto
           if (metodo == "Eliminar") {
+            alert("venta eliminada");
             loadContent("views/ventas/ordenVenta.php");
+          } else if (metodo == "modificar") {
+            alert("venta modificada . id " + xhr.responseText)
+            RegistrarDatosTabla(xhr.responseText, metodo);
+          } else if (metodo == "Grabar") {
+            alert("venta nueva creada . id :" + xhr.responseText);
+            RegistrarDatosTabla(xhr.responseText, metodo);
           }
-          RegistrarDatosTabla(idCompra, metodo);
-          //RegistrarDatosTabla(idCompra, metodo);
+
         } else {
           // Hubo un error en la solicitud
           console.error('Error en la solicitud.');
@@ -547,7 +554,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
   }
 });
 
-function RegistrarDatosTabla(idCompra, metodo) {
+function RegistrarDatosTabla(idVenta, metodo) {
   const tabla = document.getElementById("ordertable");
   const filas = tabla.querySelectorAll("tbody tr");
 
@@ -555,7 +562,6 @@ function RegistrarDatosTabla(idCompra, metodo) {
     const columnas = fila.querySelectorAll("td");
     //Asignar los datos para mandar a la casa
     const idProducto = columnas[0].textContent.trim();
-    const nombreProducto = columnas[1].textContent.trim();
     const cantidad = columnas[2].textContent.trim();
     const precioCompra = columnas[4].textContent.trim();
     const descuento = columnas[5].textContent.trim();
@@ -569,7 +575,7 @@ function RegistrarDatosTabla(idCompra, metodo) {
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     if (precioCompra && subTotal) {
       //Enviamos los datos al controlador
-      http.send("idCompra=" + idCompra + "&idProducto=" + idProducto + "&cantidad=" + cantidad + "&precioCompra=" + precioCompra + "&descuento=" + descuento + "&subtotal=" + subTotal + "&metodo=" + metodo);
+      http.send("idVenta=" + idVenta + "&idProducto=" + idProducto + "&cantidad=" + cantidad + "&precioVenta=" + precioCompra + "&descuento=" + descuento + "&subtotal=" + subTotal + "&metodo=" + metodo);
     } else {
       alert("faltan datos");
     }
@@ -583,7 +589,7 @@ function RegistrarDatosTabla(idCompra, metodo) {
 
           // Envío a Kardex
           if (metodo === "Grabar") {
-            openAlertModal();
+            loadContent('views/ventas/OrdenVenta.php');
           }
         } else {
           // Hubo un error en la solicitud
@@ -718,3 +724,4 @@ function añadirProductoOrdenVenta() {
     }
   }
 }
+
