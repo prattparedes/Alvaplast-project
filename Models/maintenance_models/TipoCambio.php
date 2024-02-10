@@ -38,4 +38,10 @@ class TipoCambio
             }
         }
     }
+
+    public static function obtenerTC() {
+        $con = Connection::Conectar();
+        $data = $con->query('exec sp_LitarTipo_Cambio');
+        return $data->fetch(PDO::FETCH_OBJ);
+    }
 }

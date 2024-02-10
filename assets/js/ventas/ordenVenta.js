@@ -2,6 +2,9 @@
 function nuevaOrdenVenta() {
   limpiarFormularioVenta();
   document.getElementById("fecha").value = establecerFechaHora();
+  document.getElementById("moneda").value = "1";
+  document.getElementById("sucursal").value = "1";
+  document.getElementById("almacen").value = "1";
 
   activarInputs();
   document
@@ -160,7 +163,7 @@ function seleccionarProductoVenta(fila) {
     document.getElementById("productunit").setAttribute("disabled", "disabled");
     document.getElementById("productquantity").removeAttribute("disabled");
     document.getElementById("productprice").removeAttribute("disabled");
-    document.getElementById("productdiscount").removeAttribute("disabled");
+    // document.getElementById("productdiscount").removeAttribute("disabled");
     document
       .getElementById("productstock")
       .setAttribute("disabled", "disabled");
@@ -736,11 +739,11 @@ function añadirProductoOrdenVenta() {
   const precioUnitario = parseFloat(
     document.getElementById("productprice").value
   );
-  let descuento = parseFloat(document.getElementById("productdiscount").value);
+  // let descuento = parseFloat(document.getElementById("productdiscount").value);
   const unidad = document.getElementById("productunit").selectedOptions[0].text;
-  descuento = isNaN(descuento) ? 0 : descuento;
-  const descuentoAplicado =
-    isNaN(descuento) || descuento < 0 || descuento > 100 ? 0 : descuento;
+  // descuento = isNaN(descuento) ? 0 : descuento;
+  // const descuentoAplicado =
+    // // // // isNaN(descuento) || descuento < 0 || descuento > 100 ? 0 : descuento;
 
   const rowData = window.clickedRowData;
 
@@ -785,7 +788,7 @@ function añadirProductoOrdenVenta() {
           unidad,
           precioUnitario,
           precioReal,
-          (cantidad * precioUnitario * (1 - descuentoAplicado / 100)).toFixed(
+          (cantidad * precioUnitario * (1 - 0 / 100)).toFixed(
             2
           ),
         ];
@@ -828,7 +831,7 @@ function añadirProductoOrdenVenta() {
         window.clickedRowData = null;
         document.getElementById("productname").value = "Seleccione Producto";
         document.getElementById("productprice").value = null;
-        document.getElementById("productdiscount").value = null;
+        // document.getElementById("productdiscount").value = null;
         document.getElementById("productquantity").value = null;
         document.getElementById("productunit").value = null;
 

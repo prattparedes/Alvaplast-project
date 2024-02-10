@@ -41,12 +41,20 @@ function activarInputs() {
     document.getElementById("cuotas").setAttribute("disabled", "disabled");
   }
 
-  document.getElementById('productunit').setAttribute("disabled", "disabled");
-  document.getElementById('productquantity').setAttribute("disabled", "disabled");
-  document.getElementById('productprice').setAttribute("disabled", "disabled");
-  document.getElementById('productdiscount').setAttribute("disabled", "disabled");
-  if (document.getElementById('productstock')) {
-    document.getElementById('productstock').setAttribute("disabled", "disabled");
+  document.getElementById("productunit").setAttribute("disabled", "disabled");
+  document
+    .getElementById("productquantity")
+    .setAttribute("disabled", "disabled");
+  document.getElementById("productprice").setAttribute("disabled", "disabled");
+  if (document.getElementById('productdiscount')) {
+    document
+    .getElementById("productdiscount")
+    .setAttribute("disabled", "disabled");
+  }
+  if (document.getElementById("productstock")) {
+    document
+      .getElementById("productstock")
+      .setAttribute("disabled", "disabled");
   }
 }
 
@@ -115,32 +123,42 @@ function actualizarTablaPrecios() {
   }
 }
 
-// Eliminar fila de la ordenCompra ordenVenta
 function seleccionarFila(fila) {
-  columnas = fila.querySelectorAll("td");
-  if (columnas[0].classList.contains("columna__seleccionada")) {
-    columnas.forEach((columna) => {
+  // Obtener todas las filas de la tabla
+  const filas = fila.parentElement.querySelectorAll("tr");
+
+  // Deseleccionar todas las filas
+  filas.forEach((fila) => {
+    fila.querySelectorAll("td").forEach((columna) => {
       columna.classList.remove("columna__seleccionada");
     });
-  } else {
-    columnas.forEach((columna) => {
-      columna.classList.add("columna__seleccionada");
-    });
-  }
+  });
+
+  // Seleccionar la fila deseada
+  fila.querySelectorAll("td").forEach((columna) => {
+    columna.classList.add("columna__seleccionada");
+  });
 }
 
 function eliminarFilas() {
-  if (document.getElementById('productname').disabled) {
-    return
+  if (document.getElementById("productname").disabled) {
+    return;
   }
 
   let filas = document.querySelectorAll("#detalle_venta tr");
-  filas.forEach(function(fila) {
-    let columnasSeleccionadas = fila.querySelectorAll("td.columna__seleccionada");
+  filas.forEach(function (fila) {
+    let columnasSeleccionadas = fila.querySelectorAll(
+      "td.columna__seleccionada"
+    );
     if (columnasSeleccionadas.length > 0) {
-        fila.remove();
+      fila.remove();
     }
-  
-  actualizarTablaPrecios();
-});
+
+    actualizarTablaPrecios();
+  });
+
+  let filasactualizadas = document.querySelectorAll("#detalle_venta tr");
+  if (filasactualizadas.length === 0) {
+      document.getElementById("moneda").removeAttribute("disabled");
+  }
 }

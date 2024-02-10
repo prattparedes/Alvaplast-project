@@ -14,22 +14,23 @@
 
         ?>
 
-        <div class="kardex__movement" >
+        <div class="kardex__movement">
             <div class="kardex__left">
-                <h5 style="background: Black; color: white; text-align:center;" class="titulo" id="titulo">ORDEN DE COMPRA</h5>
+                <h5 style="background: Black; color: white; text-align:center;" class="titulo" id="titulo">ORDEN DE
+                    COMPRA</h5>
 
-                <div class="row" style="margin-top: 7px;">
-                    <div class="" style="width: 188px;">
+                <div class="row" style="margin-top: 7px; display:flex; justify-content:center;">
+                    <div class="" style="width: 160px;">
                         <!-- <label for="number" class="col-form-label">Codigo</label> -->
                         <fieldset disabled>
-                            <input type="text" id="numeroDocumento" class="form-control" aria-describedby="passwordHelpInline" value="001">
+                            <input type="text" style="width:100%" id="numeroDocumento" class="form-control" aria-describedby="passwordHelpInline" value="001">
                         </fieldset>
                     </div>
 
-                    <div class="" style="width: 188px;">
+                    <div class="" style="width: 160px;">
                         <!-- <label for="number" class="col-form-label">Codigo</label> -->
                         <fieldset disabled>
-                            <input type="text" style="width:112px;" id="idCompra" class="form-control" aria-describedby="passwordHelpInline" value=<?= Compra::getIdCompra(); ?>>
+                            <input type="text" style="width:100%" id="idCompra" class="form-control" aria-describedby="passwordHelpInline" value=<?= Compra::getIdCompra(); ?>>
                         </fieldset>
                     </div>
                 </div>
@@ -37,11 +38,19 @@
                 <!--Buttoms  -->
                 <!-- <span style="margin-top: -5px;" class="d-block p-1 col-md-12 bg-danger text-white">Datos del Proveedor</span> -->
 
-
+                <div class="col-md-12" style="margin-top: -5px; display:flex; justify-content:center;">
+                    <a style="width: 75px; margin: 0 3px;" name="" id="btnNuevo" class="btn btn-primary " role="button" onclick="nuevaOrdenCompra()">Nuevo</a>
+                    <a style="width: 75px; margin: 0 3px;" name="" id="btnRegister" class="btn btn-success order__btn--inactive buy_submit" role="button">Grabar</a>
+                    <a style="width: 75px; margin: 0 3px;" name="" id="btnModify" class="btn btn-warning order__btn--inactive" onclick="modificarCompra()">Editar</a>
+                    <a style="width: 75px; margin: 0 3px;" name="" id="btnDelete" class="btn btn-danger order__btn--inactive buy_submit" role="button">Eliminar</a>
+                    <button style="width: 75px; margin: 0 3px;" class="btn btn-secondary" id="btnSearch" onclick="abrirListadoCompras()">Buscar</button>
+                </div>
+                <hr>
                 <div class="row">
                     <b>
                         <!-- <h6>DATOS DEL PROVEEDOR</h6> -->
-                        <h5 style="background: teal; color: white; text-align:left;" class="titulo">DATOS DEL PROVEEDOR</h5>
+                        <h5 style="background: teal; color: white; text-align:left;" class="titulo">DATOS DEL PROVEEDOR
+                        </h5>
                     </b>
                     <label for="inputPassword6" class="col-form-label">Proveedor</label>
                     <div class="col-md-12">
@@ -60,12 +69,13 @@
                     <div class="col-md-6">
                         <label for="sucursal" class="form-label">Sucursal</label>
                         <select id="sucursal" class="form-select" onchange="listarAlmacenes(this.value)" disabled>
-                            <option value="">Seleccionar </option>
                             <?php
                             $data = Sucursal::getSucursales();
                             foreach ($data as $dat) {
                             ?>
-                                <option value="<?= $dat->id_sucursal ?>"><?= $dat->descripcion ?></option>
+                                <option value="<?= $dat->id_sucursal ?>" selected>
+                                    <?= $dat->descripcion ?>
+                                </option>
                             <?php
                             } ?>
                         </select>
@@ -74,11 +84,12 @@
                     <div class="col-md-6" style="margin-top: 5px;">
                         <label for="disabledSelect" class="form-label">Almacen</label>
                         <select id="almacen" class="form-select" disabled>
-                            <option value="">Seleccione almacen</option>
                             <?php
                             $almacenes = Almacen::getAlmacenes();
                             foreach ($almacenes as $almacen) { ?>
-                                <option value="<?= $almacen->id_almacen ?>" style="display:none"><?= $almacen->descripcion ?></option>
+                                <option value="<?= $almacen->id_almacen ?>" <?= $almacen->id_almacen == 1 ? "selected" : "" ?>>
+                                    <?= $almacen->descripcion ?>
+                                </option>
                             <?php } ?>
                         </select>
                     </div>
@@ -93,12 +104,13 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label for="moneda" class="form-label">Moneda</label>
-                        <select id="moneda" class="form-select" disabled>
-                            <option value="">Seleccione moneda</option>
+                        <select id="moneda" class="form-select" disabled onchange="cambiarMoneda(this.value)">
                             <?php
                             $monedas = Moneda::getMonedas();
                             foreach ($monedas as $moneda) { ?>
-                                <option value="<?= $moneda->id_moneda ?>"><?= $moneda->descripcion ?></option>
+                                <option value="<?= $moneda->id_moneda ?>">
+                                    <?= $moneda->descripcion ?>
+                                </option>
                             <?php } ?>
                         </select>
                     </div>
@@ -124,11 +136,11 @@
                         </select>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-4" style="display:none;">
                         <label for="inputPassword6" class="col-form-label">Incluye IGV</label>
 
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="igv" disabled>
+                        <div class="form-check" >
+                            <input class="form-check-input" type="checkbox" value="" id="igv" disabled checked>
                             <label class="form-check-label" for="flexCheckDefault">Habilitado</label>
                             <br><br>
                         </div>
@@ -136,7 +148,7 @@
 <!--  -->
                     <br><br>
                 </div>
-
+                <hr>
                 <div class="" id="">
                   
                 </div>
@@ -144,26 +156,7 @@
             <div class="kardex__right">
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:5px">
-                  
-                       
 
-                    <div class="col-md-12" style="margin-top: -5px;">
-
-                    <!-- <a style="width: 90px;" name="" id="btnNuevo" class="btn btn-primary" role="button" onclick="nuevaOrdenCompra()">Nuevo</a>
-                    <button style="width: 80px;" class="btn btn-success" type="button"disabled>Grabar</button>
-                    <button style="width: 80px;" class="btn btn-warning" type="button"disabled>Editar</button>
-                    <a style="width: 80px;" class="btn btn-danger" type="button"disabled>Eliminar</a> -->
-
-                    <a style="width: 90px;" name="" id="btnNuevo" class="btn btn-primary " role="button" onclick="nuevaOrdenCompra()">Nuevo</a>
-                    <a style="width: 90px;" name="" id="btnRegister" class="btn btn-success order__btn--inactive buy_submit" role="button">Grabar</a>
-                    <a style="width: 90px;" name="" id="btnModify" class="btn btn-warning order__btn--inactive" onclick="modificarCompra()">Modificar</a>
-                    <a style="width: 90px;" name="" id="btnDelete" class="btn btn-danger order__btn--inactive buy_submit" role="button">Eliminar</a>
-                       
-                    <button style="width: 90px;" class="btn btn-secondary" id="btnSearch" onclick="abrirListadoCompras()">Buscar</button>
-
-
-
-                    </div>
 
                     <hr style="margin-top: 10px;">
                     <h5 style="background: Teal; color: white; text-align:left;" class="titulo">DETALLE DE PRODUCTOS</h5>
@@ -186,7 +179,7 @@
                             <?php
                             $unidades = Unidad::getUnidades();
                             foreach ($unidades as $unidad) { ?>
-                                <option value="<?= $unidad->id_unidad ?>"><?= $unidad->abreviatura ?></option>
+                                    <option value="<?= $unidad->id_unidad ?>"><?= $unidad->abreviatura ?></option>
                             <?php } ?>
                             </select>
                         </div>
@@ -201,7 +194,7 @@
                             <input type="text" id="productprice" class="form-control" aria-describedby="passwordHelpInline" disabled>
                         </div>
 
-                        <div class="col-md-2"style="margin-top: -5px;">
+                        <div class="col-md-2" style="margin-top: -5px; opacity: 0;" id="descuento--div">
                             <label for="inputPassword6" class="col-form-label">Descuento</label>
                             <input type="text" id="productdiscount" class="form-control" aria-describedby="passwordHelpInline" disabled>
                         </div>
@@ -236,8 +229,6 @@
                                     <tbody id="detalle_venta">
                                                                                                           
                                     </tbody>
-
-
                                         <tfoot>
 
                                         <tr>
@@ -252,7 +243,7 @@
                                             </tr>
     
                                             <tr>
-                                                <td colspan="5" class="textright">Descuento</td>
+                                                <td colspan="5" class="textright">Descuento S/.</td>
                                                 <td class="textright" id="productDescuento">0.00</td>
                                             </tr>
     
