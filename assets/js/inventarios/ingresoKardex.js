@@ -26,7 +26,7 @@ async function seleccionarOCKardex(fila) {
 
 async function obtenerDatosOCKardex(idCompra) {
     console.log(idCompra)
-    console.log(typeof(idCompra))
+    console.log(typeof (idCompra))
     // URLs dinámicas basadas en los valores extraídos
     const urlCompra = `http://localhost/Alvaplast-project/Controller/compras/CompraController.php?idCompra=${idCompra}`;
     const urlCompraProducto = `http://localhost/Alvaplast-project/Controller/compras/CompraProductoController.php?idCompra=${idCompra}`;
@@ -85,6 +85,9 @@ function rellenarFormularioIngresoKardex(
     datosProveedor
 ) {
     // Rellenar Formulario
+    document.getElementById("idOperacion").value = datosCompra.id_compra;
+    document.getElementById("idMoneda").value = datosCompra.id_moneda;
+    document.getElementById("almacen").value = datosCompra.id_almacen;
     document.getElementById("proveedor").value = datosProveedor.razon_social;
     document.getElementById("rucDni").value = datosProveedor.ruc;
     document.getElementById("numeroOC").value =
@@ -92,7 +95,7 @@ function rellenarFormularioIngresoKardex(
     document.getElementById("tipoPago").value = datosCompra.tipo_pago;
     document.getElementById("inicial").value = datosCompra.total;
     document.getElementById("fecha1").value = datosCompra.fecha_compra;
-    document.getElementById("fecha2").value = datosCompra.fecha_compra;
+    document.getElementById("fecha2").value = establecerFechaHora();
     document.getElementById("igv").checked = datosCompra.igv ? true : false;
     listarCajas(datosCompra.id_almacen)
     // Rellenar Productos
@@ -162,4 +165,51 @@ function listarCajas(values) {
             console.error("Error al obtener datos:", error);
             throw error; // Puedes manejar el error o relanzarlo según tus necesidades
         });
-}   
+}
+
+
+document.querySelector(".main__content").addEventListener("click", function (event) {
+    if (event.target.classList.contains("kardex_submit")) {
+        event.preventDefault();
+
+        const idCaja = document.getElementById("caja").value
+        const idOperacion = document.getElementById("idOperacion").value
+        const idAlmacen = document.getElementById("almacen").value
+        const idDocumento = document.getElementById("tipoDocumento").value
+        const numeroDocumento = document.getElementById("numero1").value
+        const serieDocumento = document.getElementById("numero2").value
+        const tipoMovimiento = document.getElementById("tipoOperacion").value
+        const monto = document.getElementById("inicial").value
+        const fecha = document.getElementById("fecha2").value
+        const metodo = event.target.innerHTML
+
+        const xhr = new XMLHttpRequest();
+        const url = "/Alvaplast-project/Controller/inventario/KardexController.php";
+
+        xhr.open("POST", url, true)
+        xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        if (idCaja, idOperacion) {
+            xhr.send("idCaja=" + idCaja + "&idOperacion=" + idOperacion + "&idAlmacen=" + idAlmacen + "&idDocumento=" + idDocumento + "&numeroDocumento=" + numeroDocumento + "&serieDocumento=" + serieDocumento + "&tipoMovimiento=" + tipoMovimiento + "&monto=" + monto + "&fecha=" + fecha + "&metodo=" + metodo);
+        } else {
+            alert("faltan datos")
+        }
+
+
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    // La solicitud se completó correctamente
+                    // Puedes manejar la respuesta del servidor aquí
+                    console.log(xhr.responseText);
+                    //Envio de los datos de CompraProducto
+
+                    //RegistrarDatosTabla(idCompra, metodo);
+                } else {
+                    // Hubo un error en la solicitud
+                    console.error('Error en la solicitud.');
+                }
+            }
+        };
+    }
+});

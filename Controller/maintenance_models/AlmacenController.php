@@ -5,7 +5,7 @@ use Models\maintenance_models\Almacen;
 use Models\maintenance_models\Caja;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $idAlmacen = isset($_POST["idAlmacen"]) && $_POST["idAlmacen"] !== "" ? $_POST["idAlmacen"] : 1;;
+    $idAlmacen = isset($_POST["idAlmacen"]) && $_POST["idAlmacen"] !== "" ? $_POST["idAlmacen"] : 1;
     $idSucursal = (int) $_POST["idSucursal"];
     $descripcion = $_POST["descripcion"];
     $cod_facturacion = $_POST["cod_facturacion"];

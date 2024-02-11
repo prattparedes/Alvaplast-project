@@ -5,6 +5,7 @@ namespace Models\inventario;
 use config\Connection;
 use PDO;
 use Exception;
+use PDOException;
 
 class Kardex
 {
@@ -26,5 +27,15 @@ class Kardex
         $resultados = $statement->fetchAll(PDO::FETCH_OBJ);
 
         return $resultados;
+    }
+
+    public static function registrarKardex(int $idKardex, string $fecha, string $numeroDocumento, string $serieDocumento, string $idDocumento, int $idProducto, int $idAlmacen, int $idMovmiento, float $stock, float $cantidad, float $precio, float $descuento, string $tipo, string $total, string $rucDni, string $nombre)
+    {
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare("exec ");
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+        }
     }
 }

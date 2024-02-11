@@ -26,6 +26,8 @@
                     <div class="input-group">
                         <input type="text" class="form-control" aria-describedby="button-addon2" id="numeroOC">
                         <button style=" width:40px;height:35px" class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="abrirListadoOC()">....</button>
+                        <input type="hidden" id="idOperacion" value="">
+                        <input type="hidden" id="tipoOperacion" value="S">
                     </div>
 
 
@@ -73,6 +75,7 @@
                     <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Inicial</label>
                         <input placeholder="" id="inicial" class="form-control" aria-describedby="passwordHelpInline">
+                        <input type="hidden" id="idMoneda" value="">
                     </div>
 
                     <div class="col-md-6">
@@ -119,7 +122,7 @@
 
                         <div class="col-md-12">
                             <a style="width: 90px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="">Nuevo</a>
-                            <a style="width: 90px;" name="" id="" class="btn btn-success buy_submit" href="#" role="button">Grabar</a>
+                            <a style="width: 90px;" name="" id="" class="btn btn-success kardex_submit" href="#" role="button">Grabar</a>
                             <a style="width: 90px;" name="" id="" class="btn btn-warning" href="#" role="button">Exportar</a>
                             <a style="width: 90px;margin-top:1px" name="" id="" class="btn btn-danger  buy_submit" href="#" role="button">Salir</a>
 
@@ -167,6 +170,7 @@
 
                                 </select>
                             </div>
+                            <input type="hidden" id="almacen" value="">
                         </div>
 
                         <br>

@@ -32,4 +32,39 @@ class Movimiento
             return false;
         }
     }
+
+    public static function obtenerUltimaOperacion()
+    {
+        $con = Connection::Conectar();
+        $stmt = $con->query(" select max(id_movimiento) as 'id_movimiento' from Movimiento");
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
+    public static function atenderCompra(int $idOperacion)
+    {
+        $estado = 2;
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare("exec sp_AtenderCompra :idCompra , :estado");
+            $stmt->bindParam(":idCompra", $idOperacion, PDO::PARAM_INT);
+            $stmt->bindParam(":estado", $estado, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = ($stmt->rowCount()) ? true : false;
+            return $result;
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+        }
+    }
+
+    public static function atenderVenta(int $idOperacion)
+    {
+        $estado = 2;
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare("exec sp_AtenderVenta :idVenta, :estado");
+            $stmt->bindParam(":idVenta", $idOperacion, PDO::PARAM_INT);
+            $stmt->bindParam(":estado", $estado, PDO::PARAM_INT);
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+        }
+    }
 }
