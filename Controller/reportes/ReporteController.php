@@ -15,6 +15,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 echo json_encode($result);
                 break;
             case "Compras":
+                $idAlmacen = (int) $_POST["idAlmacen"];
+                $fechaIni = $_POST["fechaIni"];
+                $fechaFin = $_POST["fechaFin"];
+                $proveedor = $_POST["proveedor"];
+                $result = Reporte::listarReporteCompras($fechaIni, $fechaFin, $proveedor, $idAlmacen);
+                echo json_encode($result);
                 break;
             case "Documento":
                 break;

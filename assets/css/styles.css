@@ -653,3 +653,7 @@ Alert
   background-color: rgb(248, 100, 100);
   color: white;
 }
+
+.blue-text {
+  color: blue !important;
+}

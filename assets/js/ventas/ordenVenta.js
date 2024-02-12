@@ -8,7 +8,7 @@ function nuevaOrdenVenta() {
   document.getElementById("tipoPago").value = "E";
   document.getElementById("tipoDocumento").value = "001";
   document.getElementById("vendedor").value = "1";
-
+  
   activarInputs();
   document
     .getElementById("btnRegister")

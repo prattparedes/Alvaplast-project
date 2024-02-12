@@ -149,6 +149,13 @@ function actualizarTablaMovimientosKardex(datos) {
 
     // Agregar la fila al tbody de la tabla
     tbody.appendChild(fila);
+
+    // Color azul si es que es Compra}
+    if (movimiento.tipo !== "V") {
+      fila.querySelectorAll("td").forEach((celda) => {
+        celda.classList.add("blue-text");
+      });
+    }
   });
 }
 

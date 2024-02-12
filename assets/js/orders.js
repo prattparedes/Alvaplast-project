@@ -39,6 +39,7 @@ function activarInputs() {
     document.getElementById("montocuo").setAttribute("disabled", "disabled");
     document.getElementById("montofin").setAttribute("disabled", "disabled");
     document.getElementById("cuotas").setAttribute("disabled", "disabled");
+    document.getElementById("moneda").setAttribute("disabled", "disabled");
   }
 
   if ((document.getElementById("titulo").innerHTML === "FACTURACIÓN")) {

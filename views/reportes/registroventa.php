@@ -88,7 +88,7 @@
 
                         <h5 style="background: teal; color: white; text-align:left;" class="titulo">REPORTE DE VENTAS</h5>
                         <hr style="margin-top: -7px;">
-                        <div class="table--container" id="estadoCuenta--table">
+                        <div class="table--container">
                             <table class="tbl_venta" style="width: 850px;" id="reporte--table">
                                 <thead>
                                     <tr>

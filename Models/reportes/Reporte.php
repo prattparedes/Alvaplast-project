@@ -28,13 +28,10 @@ class Reporte
     public static function listarReporteCompras($fechaIni, $fechaFin, $razonSocial, $idAlmacen)
     {
         try {
-            $fechaIniFormatted = $fechaIni->format('Y-m-d H:i:s');
-            $fechaFinFormatted = $fechaFin->format('Y-m-d H:i:s');
-
             $con = Connection::Conectar();
             $stmt = $con->prepare("exec sp_ReporteCompras :fechaIni, :fechaFin, :razonSocial, :idAlmacen");
-            $stmt->bindParam(":fechaIni", $fechaIniFormatted, PDO::PARAM_STR);
-            $stmt->bindParam(":fechaFin", $fechaFinFormatted, PDO::PARAM_STR);
+            $stmt->bindParam(":fechaIni", $fechaIni, PDO::PARAM_STR);
+            $stmt->bindParam(":fechaFin", $fechaFin, PDO::PARAM_STR);
             $stmt->bindParam(":razonSocial", $razonSocial, PDO::PARAM_STR);
             $stmt->bindParam(":idAlmacen", $idAlmacen, PDO::PARAM_INT);
             $stmt->execute();
