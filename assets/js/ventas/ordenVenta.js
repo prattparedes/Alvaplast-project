@@ -190,7 +190,7 @@ function abrirListadoVentas() {
 async function seleccionarOrdenVenta(fila) {
   const columnas = fila.querySelectorAll("td");
 
-  // Obtener el valor de la segunda columna (posición 1 en base a índices)
+  // Obtener el valor de la segunda columna
   const valorSegundaColumna = columnas[1].innerText.trim().substring(7);
 
   // Realizar la solicitud fetch y esperar la respuesta
@@ -930,6 +930,23 @@ function filtrarClienteVenta(filtro) {
   filasclientes.forEach((fila) => {
     const nombreProducto = fila
       .querySelector("td:nth-child(2)")
+      .textContent.toLowerCase()
+      .trim();
+
+    if (nombreProducto.includes(filtro)) {
+      fila.style.display = "table-row";
+    } else {
+      fila.style.display = "none";
+    }
+  });
+}
+
+// Función para filtrar la ordenes de venta por clientes
+function filtrarOrdenVentaXCliente(filtro) {
+  const filasclientes = document.querySelectorAll("#listaordenventa tbody tr");
+  filasclientes.forEach((fila) => {
+    const nombreProducto = fila
+      .querySelector("td:nth-child(1)")
       .textContent.toLowerCase()
       .trim();
 

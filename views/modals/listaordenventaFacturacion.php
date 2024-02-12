@@ -35,7 +35,7 @@
                         <div class="col-md-4" style="width: 400px;">
 
                             <label for="inputDni" class="col-form-label">Cliente</label>
-                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" onkeyup="filtrarOrdenVentaXCliente(this.value)">
                         </div>
 
                     </div>
@@ -48,7 +48,7 @@
                         <button type="button" class="btn btn-success" style="width: 100px;">Consultar</button>
 
                         <!-- <button style="width: 150px;" class="btn btn-danger" onclick="CancelarYRestaurarVenta()" type="button" id="">Cancelar</button> -->
-                        <button style="width: 100px;" class="btn btn-danger" href="" onclick="CancelaryRestaurarFacturación()">Cancelar</button>
+                        <button style="width: 100px;" class="btn btn-danger" href="" onclick="loadContent('views/ventas/facturacion.php')">Cancelar</button>
 
                         <br><br>
                     </div>
@@ -63,13 +63,10 @@
                         <h6 style="margin-top: -5ox;">LISTA ORDEN DE VENTA</h6>
                         <hr style="margin-top: -7px;">
 
-
-
-
                         <br>
                         <div class="table--container" style="margin-top: -15px;">
                             <div class="table-responsive">
-                                <table class="table border=1">
+                                <table class="table border=1" id="listaordenventa">
                                     <thead>
                                         <tr>
                                             <th>Cliente</th>
@@ -89,7 +86,7 @@
                                         $ventas = Venta::getVentas();
                                         foreach ($ventas as $ven) {
                                         ?>
-                                            <tr>
+                                            <tr onclick="seleccionarOrdenVentaFacturación(this)">
                                                 <td><?= $ven->razon_social ?></td>
                                                 <td><?= 'OV/' . $ven->numero_documento . '-' . $ven->serie_documento ?></td>
                                                 <td><?= explode(' ', $ven->fecha_emision)[0] ?></td>
@@ -106,7 +103,7 @@
                                         $ventas = Venta::getVentasNoFacturables();
                                         foreach ($ventas as $ven) {
                                         ?>
-                                            <tr>
+                                            <tr onclick="seleccionarOrdenVentaFacturación(this)">
                                                 <td><?= $ven->razon_social ?></td>
                                                 <td><?= 'OV/' . $ven->numero_documento . '-' . $ven->serie_documento ?></td>
                                                 <td><?= explode(' ', $ven->fecha_emision)[0] ?></td>

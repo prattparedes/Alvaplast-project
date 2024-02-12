@@ -33,9 +33,8 @@
                         </b>
                         <hr style="margin-top: -10px;">
                         <div class="col-md-4" style="width: 400px;">
-
                             <label for="inputDni" class="col-form-label">Cliente</label>
-                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" onkeyup="filtrarOrdenVentaXCliente(this.value)">
                         </div>
 
                     </div>
@@ -69,7 +68,7 @@
                         <br>
                         <div class="table--container" style="margin-top: -15px;">
                             <div class="table-responsive">
-                                <table class="table border=1">
+                                <table class="table border=1" id="listaordenventa">
                                     <thead>
                                         <tr>
                                             <th>Cliente</th>

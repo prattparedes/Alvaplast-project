@@ -32,13 +32,20 @@ function activarInputs() {
   if (document.getElementById("titulo").innerHTML === "ORDEN DE COMPRA") {
     document.getElementById("direccion").setAttribute("disabled", "disabled");
   }
-  if (document.getElementById("titulo").innerHTML === "ORDEN DE VENTA") {
+  if (document.getElementById("titulo").innerHTML === "ORDEN DE VENTA" || document.getElementById("titulo").innerHTML === "FACTURACIÓN" ) {
     document.getElementById("direccion").setAttribute("disabled", "disabled");
     document.getElementById("rucDni").setAttribute("disabled", "disabled");
     document.getElementById("inicial").setAttribute("disabled", "disabled");
     document.getElementById("montocuo").setAttribute("disabled", "disabled");
     document.getElementById("montofin").setAttribute("disabled", "disabled");
     document.getElementById("cuotas").setAttribute("disabled", "disabled");
+  }
+
+  if ((document.getElementById("titulo").innerHTML === "FACTURACIÓN")) {
+    document.getElementById("cliente").setAttribute("disabled", "disabled");
+    document.getElementById("moneda").setAttribute("disabled", "disabled");
+    document.getElementById("marcaVehiculo").setAttribute("disabled", "disabled");
+    return
   }
 
   document.getElementById("productunit").setAttribute("disabled", "disabled");

@@ -17,13 +17,10 @@
 
         <div class="kardex__movement">
             <div class="kardex__left">
-                <!-- <h5 style="background: black; color: white; text-align:center;">ORDEN DE VENTA</h5> -->
-
                 <div class="row numero_documento--title">
                     <h5 style="background: Black; color: white; text-align:center;" class="titulo" id="titulo">ORDEN DE VENTA</h5>
                     <div class="row" style="margin-top: 7px; display:flex; justify-content:center;">
                         <div class="numero_documento" style="width: 160px;">
-                            <!-- <label for="number" class="col-form-label">Codigo</label> -->
                             <fieldset disabled>
                                 <input type="number" id="numeroDocumento" class="form-control" aria-describedby="passwordHelpInline" value="001">
                                 <input type="hidden" id="idVenta" value="">
@@ -31,7 +28,6 @@
                         </div>
                         -
                         <div class="numero_documento" style="width: 160px;">
-                            <!-- <label for="number" class="col-form-label">Codigo</label> -->
                             <fieldset disabled>
                                 <input type="text" class="form-control" id="serieDocumento" aria-describedby="passwordHelpInline" value=<?= Venta::getSerieVenta(); ?>>
                                 <input type="hidden" id="metodo" value="">
@@ -40,9 +36,6 @@
                     </div>
                 </div>
                 <hr>
-                <!--Buttoms  -->
-                <!-- <span style="margin-top: -5px;" class="d-block p-1 col-md-12 bg-danger text-white">Datos del Proveedor</span> -->
-
                 <div class="col-md-12" style="margin-top: -5px; display:flex; justify-content:center;">
                     <a style="width: 75px; margin: 0 3px;" name="" id="btnNuevo" class="btn btn-primary" role="button" onclick="nuevaOrdenVenta()">Nuevo</a>
                     <a style="width: 75px; margin: 0 3px;" name="" id="btnRegister" class="btn btn-success order__btn--inactive sell_submit" role="button">Grabar</a>
