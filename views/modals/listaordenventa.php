@@ -89,7 +89,7 @@
                                         $ventas = Venta::getVentas();
                                         foreach ($ventas as $ven) {
                                         ?>
-                                            <tr>
+                                            <tr onclick="seleccionarOrdenVenta(this)">
                                                 <td><?= $ven->razon_social ?></td>
                                                 <td><?= 'OV/' . $ven->numero_documento . '-' . $ven->serie_documento ?></td>
                                                 <td><?= explode(' ', $ven->fecha_emision)[0] ?></td>
@@ -107,7 +107,7 @@
                                         $ventas = Venta::getVentasNoFacturables();
                                         foreach ($ventas as $ven) {
                                         ?>
-                                            <tr>
+                                            <tr onclick="seleccionarOrdenVenta(this)">
                                                 <td><?= $ven->razon_social ?></td>
                                                 <td><?= 'OV/' . $ven->numero_documento . '-' . $ven->serie_documento ?></td>
                                                 <td><?= explode(' ', $ven->fecha_emision)[0] ?></td>

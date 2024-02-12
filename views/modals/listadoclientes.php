@@ -23,19 +23,8 @@
                     <div class="row">
                         <div class="col-md-4" style="width: 400px;">
                             <label for="inputRazonSocial" class="col-form-label">Razón Social</label>
-                            <input type="text" id="inputRazonSocial" class="form-control" />
+                            <input type="text" id="inputRazonSocial" class="form-control" onkeyup="filtrarClienteVenta(this.value)"/>
                         </div>
-
-                        <div class="col-md-4" style="width: 400px;">
-                            <label for="inputRuc" class="col-form-label">RUC</label>
-                            <input type="text" id="inputRuc" class="form-control" />
-                        </div>
-
-                        <div class="col-md-4" style="width: 400px;">
-                            <label for="inputDni" class="col-form-label">DNI</label>
-                            <input type="text" id="inputDni" class="form-control" />
-                        </div>
-
 
 
                     </div>
@@ -71,7 +60,7 @@
                         <br>
                         <div class="table--container" style="margin-top: -15px;">
                             <div class="table-responsive">
-                                <table class="table border=1">
+                                <table class="table border=1" id="clienttable">
                                     <thead>
                                         <tr>
                                             <th scope="col-md-1">Codigo</th>

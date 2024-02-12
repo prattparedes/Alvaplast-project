@@ -5,6 +5,9 @@ function nuevaOrdenVenta() {
   document.getElementById("moneda").value = "1";
   document.getElementById("sucursal").value = "1";
   document.getElementById("almacen").value = "1";
+  document.getElementById("tipoPago").value = "E";
+  document.getElementById("tipoDocumento").value = "001";
+  document.getElementById("vendedor").value = "1";
 
   activarInputs();
   document
@@ -12,6 +15,7 @@ function nuevaOrdenVenta() {
     .classList.remove("order__btn--inactive");
   document.getElementById("btnModify").classList.add("order__btn--inactive");
   document.getElementById("btnDelete").classList.add("order__btn--inactive");
+
   // Conseguir id de venta nuevo
   const xhr = new XMLHttpRequest();
   const url = "/Alvaplast-project/Controller/ventas/VentaController.php"; // Ruta del controlador PHP
@@ -28,6 +32,7 @@ function nuevaOrdenVenta() {
           /^"|"$/g,
           ""
         );
+        console.log(xhr.responseText);
       } else {
         console.error("Error en la solicitud.");
       }
@@ -81,7 +86,6 @@ function seleccionarCliente(fila) {
     activarInputs();
   });
 }
-
 
 // Función para ir al listado de productos
 function abrirListadoProductosVenta() {
@@ -171,9 +175,6 @@ function seleccionarProductoVenta(fila) {
   });
 }
 
-// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-// FALTA ARREGLAR ESTA FUNCIÓN HASTA TENER LOS DATOS
-// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 function abrirListadoVentas() {
   if (
     document
@@ -186,53 +187,65 @@ function abrirListadoVentas() {
   loadContent("views/modals/listaordenventa.php");
 }
 
-// Función para seleccionar una Orden de Venta y llenar el formulario
 async function seleccionarOrdenVenta(fila) {
   const columnas = fila.querySelectorAll("td");
 
   // Obtener el valor de la segunda columna (posición 1 en base a índices)
-  const valorSegundaColumna = columnas[1].innerText.trim().substring(3);
+  const valorSegundaColumna = columnas[1].innerText.trim().substring(7);
+
+  // Realizar la solicitud fetch y esperar la respuesta
+  const response = await fetch(
+    `http://localhost/Alvaplast-project/Controller/ventas/VentaController.php?serieDocumento=${valorSegundaColumna}`
+  );
+
+  // Verificar si la solicitud fue exitosa
+  if (!response.ok) {
+    throw new Error("No se pudo obtener la ID de la venta.");
+  }
+
+  // Extraer el cuerpo de la respuesta como JSON
+  const data = await response.json();
+  const idVenta = data.id_venta;
 
   // URLs dinámicas basadas en los valores extraídos
-  const urlCompra = `http://localhost/Alvaplast-project/Controller/compras/CompraController.php?idCompra=${valorSegundaColumna}`;
-  const urlCompraProducto = `http://localhost/Alvaplast-project/Controller/compras/CompraProductoController.php?idCompra=${valorSegundaColumna}`;
+  const urlVenta = `http://localhost/Alvaplast-project/Controller/ventas/VentaController.php?idVenta=${idVenta}`;
+  const urlVentaProducto = `http://localhost/Alvaplast-project/Controller/ventas/VentaProductoController.php?idVenta=${idVenta}`;
 
   try {
-    // Realizar las solicitudes fetch para obtener los datos de Compra y Compra Producto
-    const [responseCompra, responseCompraProducto] = await Promise.all([
-      fetch(urlCompra),
-      fetch(urlCompraProducto),
+    // Realizar las solicitudes fetch para obtener los datos de Venta y Venta Producto
+    const [responseVenta, responseVentaProducto] = await Promise.all([
+      fetch(urlVenta),
+      fetch(urlVentaProducto),
     ]);
 
-    if (!responseCompra.ok || !responseCompraProducto.ok) {
+    if (!responseVenta.ok || !responseVentaProducto.ok) {
       throw new Error("Error al obtener los datos.");
     }
 
-    const [datosCompra, datosCompraProducto] = await Promise.all([
-      responseCompra.json(),
-      responseCompraProducto.json(),
+    const [datosVenta, datosVentaProducto] = await Promise.all([
+      responseVenta.json(),
+      responseVentaProducto.json(),
     ]);
 
-    // Obtener la dirección del proveedor
-    const urlProveedor = `http://localhost/Alvaplast-project/Controller/maintenance_models/ProveedorController.php?idProveedor=${datosCompra.id_proveedor}`;
-    const responseProveedor = await fetch(urlProveedor);
+    // Obtener la dirección del cliente
+    const idCliente = datosVenta[0].id_cliente;
+    const urlcliente = `http://localhost/Alvaplast-project/Controller/maintenance_models/ClienteController.php?idCliente=${idCliente}`;
+    const responsecliente = await fetch(urlcliente);
 
-    if (!responseProveedor.ok) {
-      throw new Error("Error al obtener los datos del proveedor.");
+    if (!responsecliente.ok) {
+      throw new Error("Error al obtener los datos del cliente.");
     }
 
-    const [datosProveedor] = await responseProveedor.json();
-
+    const datosCliente = await responsecliente.json();
     // Regresar al formulario y llenarlo con los datos obtenidos
-    loadContent("views/compras/ordencompra.php").then(() => {
-      rellenarFormularioCompra(
-        datosCompra,
-        datosCompraProducto,
-        datosProveedor
-      );
-      // console.log("Datos Compra:", datosCompra);
-      // console.log("Datos Compra Producto:", datosCompraProducto);
-      // console.log("Dirección del proveedor:", datosProveedor.direccion);
+    loadContent("views/ventas/OrdenVenta.php").then(() => {
+      rellenarFormularioVenta(datosVenta, datosVentaProducto, datosCliente);
+      document
+        .getElementById("btnModify")
+        .classList.remove("order__btn--inactive");
+      document
+        .getElementById("btnDelete")
+        .classList.remove("order__btn--inactive");
     });
   } catch (error) {
     console.error(error);
@@ -270,7 +283,7 @@ function modificarVenta() {
     return;
   }
 
-  if (botonModificar.innerHTML === "Modificar") {
+  if (botonModificar.innerHTML === "Editar") {
     guardarCopiaSeguridadVenta(copiaSeguridadFormularioInicial);
     activarInputs();
     document.getElementById("metodo").value = "modificar";
@@ -287,7 +300,7 @@ function modificarVenta() {
     restaurarCopiaSeguridadVenta(copiaSeguridadFormularioInicial);
     desactivarInputs();
     document.getElementById("metodo").value = "0";
-    botonModificar.innerHTML = "Modificar";
+    botonModificar.innerHTML = "Editar";
     botonModificar.style.backgroundColor = "#ffc107";
     botonModificar.style.borderColor = "#ffc107";
     document
@@ -355,7 +368,7 @@ function guardarCopiaSeguridadVenta(formulario) {
         producto: columnas[1].innerText,
         cantidad: columnas[2].innerText,
         unidad: columnas[3].innerText,
-        precioCompra: columnas[4].innerText,
+        precioVenta: columnas[4].innerText,
         descuento: columnas[5].innerText,
         total: columnas[6].innerText,
       };
@@ -395,7 +408,7 @@ function guardarCopiaSeguridadVenta(formulario) {
         producto: columnas[1].innerText,
         cantidad: columnas[2].innerText,
         unidad: columnas[3].innerText,
-        precioCompra: columnas[4].innerText,
+        precioVenta: columnas[4].innerText,
         descuento: columnas[5].innerText,
         total: columnas[6].innerText,
       };
@@ -434,7 +447,7 @@ function restaurarCopiaSeguridadVenta(formulario) {
       producto.producto,
       producto.cantidad,
       producto.unidad,
-      producto.precioCompra,
+      producto.precioVenta,
       producto.descuento,
       producto.total,
     ];
@@ -456,8 +469,14 @@ function restaurarCopiaSeguridadVenta(formulario) {
           nuevaCelda.textContent = columna;
           break;
         case 2:
+          nuevaCelda.setAttribute("ondblclick", "seleccionarCelda(this)");
           nuevaCelda.classList.add("textcenter");
           nuevaCelda.textContent = columna;
+          break;
+        case 4:
+          nuevaCelda.setAttribute("ondblclick", "seleccionarCelda(this)");
+          nuevaCelda.textContent = columna;
+          nuevaCelda.classList.add("textright");
           break;
         default:
           nuevaCelda.textContent = columna;
@@ -505,35 +524,50 @@ function restaurarCopiaSeguridadVenta(formulario) {
       .classList.remove("order__btn--inactive");
   }
 }
-// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-// FALTA ARREGLAR ESTA FUNCIÓN HASTA TENER LOS DATOS
-// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-// Función para pasar los datos obtenidos de la lista de compras al formulario de compras
-function rellenarFormularioVenta(datosCompra, datosProductos, datosProveedor) {
-  const proveedorInput = document.getElementById("proveedor");
+// Función para pasar los datos obtenidos de la lista de ventas al formulario de ventas
+function rellenarFormularioVenta(datosVenta, datosProductos, datosCliente) {
+  const clienteInput = document.getElementById("cliente");
   const direccionInput = document.getElementById("direccion");
   const sucursalSelect = document.getElementById("sucursal");
   const monedaSelect = document.getElementById("moneda");
   const almacenSelect = document.getElementById("almacen");
   const tipoPagoSelect = document.getElementById("tipoPago");
   const fechaInput = document.getElementById("fecha");
-  const igvCheckbox = document.getElementById("igv");
-  const descripcionTextarea = document.getElementById("descripcion");
-  const idCompraInput = document.getElementById("idCompra");
+  const idVentaInput = document.getElementById("idVenta");
+  const serieDocumentoInput = document.getElementById("serieDocumento");
+  const rucDni = document.getElementById("rucDni");
+  const inicialInput = document.getElementById("inicial");
+  const cuotasInput = document.getElementById("cuotas");
+  const montofinInput = document.getElementById("montofin");
+  const montocuoInput = document.getElementById("montocuo");
+  const personalInput = document.getElementById("vendedor");
+  const tipoDocumentoInput = document.getElementById("tipoDocumento");
 
   //Rellenar Formulario
-  proveedorInput.value = datosProveedor.razon_social;
-  direccionInput.value = datosProveedor.direccion;
+  console.log(datosVenta[0]);
+  serieDocumentoInput.value = datosVenta[0].serie_documento;
+  idVentaInput.value = datosVenta[0].id_venta;
+  clienteInput.value = datosCliente.razon_social;
+
+  if (datosCliente.tipo_cliente === "N") {
+    rucDni.value = datosCliente.dni;
+  } else if (datosCliente.tipo_cliente === "J") {
+    rucDni.value = datosCliente.ruc;
+  }
+
+  direccionInput.value = datosCliente.direccion;
   sucursalSelect.value = "1";
-  monedaSelect.value = datosCompra.id_moneda;
-  almacenSelect.value = datosCompra.id_almacen;
-  tipoPagoSelect.value = datosCompra.tipo_pago;
-  fechaInput.value = datosCompra.fecha_compra;
-  igvCheckbox.checked = true;
-  descripcionTextarea.value =
-    datosCompra.descripcion !== undefined ? datosCompra.descripcion : "";
-  idCompraInput.value = "00" + datosCompra.id_compra;
+  monedaSelect.value = datosVenta[0].id_moneda;
+  tipoPagoSelect.value = datosVenta[0].tipo_pago;
+  inicialInput.value = parseFloat(datosVenta[0].pago_inicial).toFixed(0);
+  cuotasInput.value = parseFloat(datosVenta[0].nro_cuotas).toFixed(0);
+  montofinInput.value = parseFloat(datosVenta[0].monto_financiado).toFixed(0);
+  montocuoInput.value = parseFloat(datosVenta[0].monto_cuota).toFixed(0);
+  personalInput.value = datosVenta[0].id_personal;
+  almacenSelect.value = datosVenta[0].id_almacen;
+  fechaInput.value = datosVenta[0].fecha_emision;
+  tipoDocumentoInput.value = datosVenta[0].id_tipodocumento;
 
   // Rellenar Productos
   const tablaProductos = document.getElementById("ordertable");
@@ -546,10 +580,10 @@ function rellenarFormularioVenta(datosCompra, datosProductos, datosProveedor) {
     row.innerHTML = `
         <td style="display: none;">${producto.id_producto}</td>
         <td colspan="1">${producto.nombre_producto}</td>
-        <td class="textright">${producto.cantidad}</td>
+        <td class="textright" ondblclick="seleccionarCelda(this)">${producto.cantidad}</td>
         <td class="textright">${producto.abreviatura}</td>
-        <td class="textright">${producto.precio_compra}</td>
-        <td class="textright">${producto.descuento}</td>
+        <td class="textright" ondblclick="seleccionarCelda(this)">${producto.precio_venta}</td>
+        <td class="textright">-</td>
         <td class="textright">${producto.Sub_Total}</td>`;
     tablaProductos.querySelector("tbody").appendChild(row);
   });
@@ -561,15 +595,13 @@ function rellenarFormularioVenta(datosCompra, datosProductos, datosProveedor) {
   const productTotalCell = document.getElementById("productTotal");
   const productDescuento = document.getElementById("productDescuento");
 
-  // Asignar valores a las celdas de la tabla con los datos de la compra
-  productSubtotal1.textContent = datosCompra.subtotal;
-  productSubtotal2.textContent = datosCompra.subtotal;
-  productIgvCell.textContent = datosCompra.igv;
-  productTotalCell.textContent = datosCompra.total;
+  // Asignar valores a las celdas de la tabla con los datos de la venta
+  productSubtotal1.textContent = datosVenta[0].subtotal;
+  productSubtotal2.textContent = datosVenta[0].subtotal;
+  productIgvCell.textContent = datosVenta[0].igv;
+  productTotalCell.textContent = datosVenta[0].total;
   productDescuento.textContent = 0;
 }
-
-// Añadir nueva fila en la tabla de órdenes de venta/compra
 
 function mostrarFacturacion(tbodyId) {
   console.log(tbodyId.value);
@@ -628,45 +660,74 @@ document
       const xhr = new XMLHttpRequest();
       const url = "/Alvaplast-project/Controller/ventas/VentaController.php"; // Ruta del controlador PHP
 
-    // Configurar la solicitud
-    xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    console.log(metodo, fecha, tipoPago);
-    if (idAlmacen) {
-      // Enviar los datos del formulario incluyendo descripcion y abreviatura
-      xhr.send("idVenta=" + idVenta + "&fecha=" + fecha + "&total=" + total + "&subtotal=" + subtotal + "&igv=" + igv + "&idMoneda=" + idMoneda + "&numeroDocumento=" + numeroDocumento + "&serieDocumento=" + serieDocumento + "&idCliente=" + idCliente + "&idAlmacen=" + idAlmacen + "&tipoPago=" + tipoPago + "&idPersonal=" + idPersonal + "&metodo=" + metodo + "&idDocumento=" + idDocumento + "&pagoInicial=" + pagoInicial);
-
-    } else {
-      alert("faltan datos")
-    }
-    // Manejar la respuesta del servidor
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === XMLHttpRequest.DONE) {
-        if (xhr.status === 200) {
-          // La solicitud se completó correctamente
-          // Puedes manejar la respuesta del servidor aquí
-          //Envio de los datos de CompraProducto
-          if (metodo == "Eliminar") {
-            alert("venta eliminada");
-            loadContent("views/ventas/ordenVenta.php");
-          } else if (metodo == "modificar") {
-            alert("venta modificada . id " + xhr.responseText)
-            RegistrarDatosTabla(xhr.responseText, metodo);
-          } else if (metodo == "Grabar") {
-            alert("venta nueva creada . id :" + xhr.responseText);
-            RegistrarDatosTabla(xhr.responseText, metodo);
-          }
-
-        } else {
-          // Hubo un error en la solicitud
-          console.error('Error en la solicitud.');
-        }
+      // Configurar la solicitud
+      xhr.open("POST", url, true);
+      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+      console.log(metodo, fecha, tipoPago);
+      if (idAlmacen) {
+        // Enviar los datos del formulario incluyendo descripcion y abreviatura
+        xhr.send(
+          "idVenta=" +
+            idVenta +
+            "&fecha=" +
+            fecha +
+            "&total=" +
+            total +
+            "&subtotal=" +
+            subtotal +
+            "&igv=" +
+            igv +
+            "&idMoneda=" +
+            idMoneda +
+            "&numeroDocumento=" +
+            numeroDocumento +
+            "&serieDocumento=" +
+            serieDocumento +
+            "&idCliente=" +
+            idCliente +
+            "&idAlmacen=" +
+            idAlmacen +
+            "&tipoPago=" +
+            tipoPago +
+            "&idPersonal=" +
+            idPersonal +
+            "&metodo=" +
+            metodo +
+            "&idDocumento=" +
+            idDocumento +
+            "&pagoInicial=" +
+            pagoInicial
+        );
+      } else {
+        alert("faltan datos");
       }
-    };
-  }
-});
+      // Manejar la respuesta del servidor
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            // La solicitud se completó correctamente
+            // Puedes manejar la respuesta del servidor aquí
+            //Envio de los datos de VentaProducto
+            if (metodo == "Eliminar") {
+              alert("venta eliminada");
+              loadContent("views/ventas/ordenVenta.php");
+            } else if (metodo == "modificar") {
+              alert("venta modificada . id " + xhr.responseText);
+              RegistrarDatosTablaVenta(xhr.responseText, metodo);
+            } else if (metodo == "Grabar") {
+              alert("venta nueva creada . id :" + xhr.responseText);
+              RegistrarDatosTablaVenta(xhr.responseText, metodo);
+            }
+          } else {
+            // Hubo un error en la solicitud
+            console.error("Error en la solicitud.");
+          }
+        }
+      };
+    }
+  });
 
-function RegistrarDatosTabla(idVenta, metodo) {
+function RegistrarDatosTablaVenta(idVenta, metodo) {
   const tabla = document.getElementById("ordertable");
   const filas = tabla.querySelectorAll("tbody tr");
 
@@ -675,8 +736,8 @@ function RegistrarDatosTabla(idVenta, metodo) {
     //Asignar los datos para mandar a la casa
     const idProducto = columnas[0].textContent.trim();
     const cantidad = columnas[2].textContent.trim();
-    const precioCompra = columnas[4].textContent.trim();
-    const descuento = columnas[5].textContent.trim();
+    const precioVenta = columnas[4].textContent.trim();
+    const descuento = 0;
     const subTotal = columnas[6].textContent.trim();
     // comenzamos con el protocolo http
     const http = new XMLHttpRequest();
@@ -685,17 +746,17 @@ function RegistrarDatosTabla(idVenta, metodo) {
     //configuración de la solicitud
     http.open("POST", url, true);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    if (precioCompra && subTotal) {
+    if (precioVenta && subTotal) {
       //Enviamos los datos al controlador
       http.send(
-        "idCompra=" +
-          idCompra +
+        "idVenta=" +
+          idVenta +
           "&idProducto=" +
           idProducto +
           "&cantidad=" +
           cantidad +
-          "&precioCompra=" +
-          precioCompra +
+          "&precioVenta=" +
+          precioVenta +
           "&descuento=" +
           descuento +
           "&subtotal=" +
@@ -716,7 +777,7 @@ function RegistrarDatosTabla(idVenta, metodo) {
 
           // Envío a Kardex
           if (metodo === "Grabar") {
-            loadContent('views/ventas/OrdenVenta.php');
+            loadContent("views/ventas/OrdenVenta.php");
           }
         } else {
           // Hubo un error en la solicitud
@@ -743,7 +804,7 @@ function añadirProductoOrdenVenta() {
   const unidad = document.getElementById("productunit").selectedOptions[0].text;
   // descuento = isNaN(descuento) ? 0 : descuento;
   // const descuentoAplicado =
-    // // // // isNaN(descuento) || descuento < 0 || descuento > 100 ? 0 : descuento;
+  // // // // isNaN(descuento) || descuento < 0 || descuento > 100 ? 0 : descuento;
 
   const rowData = window.clickedRowData;
 
@@ -788,9 +849,7 @@ function añadirProductoOrdenVenta() {
           unidad,
           precioUnitario,
           precioReal,
-          (cantidad * precioUnitario * (1 - 0 / 100)).toFixed(
-            2
-          ),
+          (cantidad * precioUnitario * (1 - 0 / 100)).toFixed(2),
         ];
 
         const tablaExterna = document
@@ -813,12 +872,18 @@ function añadirProductoOrdenVenta() {
               celda.textContent = contenido;
               break;
             case 2:
+              celda.setAttribute("ondblclick", "seleccionarCelda(this)");
               celda.classList.add("textcenter");
               celda.textContent = contenido;
               break;
             case 3:
               celda.classList.add("textcenter");
               celda.textContent = contenido;
+              break;
+            case 4:
+              celda.setAttribute("ondblclick", "seleccionarCelda(this)");
+              celda.textContent = contenido;
+              celda.classList.add("textright");
               break;
             default:
               celda.textContent = contenido;
@@ -856,5 +921,22 @@ function CancelarYRestaurarVenta() {
   loadContent("views/ventas/OrdenVenta.php").then(() => {
     restaurarCopiaSeguridadVenta(copiaSeguridadFormulario);
     activarInputs();
+  });
+}
+
+// Función para filtrar los clientes por el input
+function filtrarClienteVenta(filtro) {
+  const filasclientes = document.querySelectorAll("#clienttable tbody tr");
+  filasclientes.forEach((fila) => {
+    const nombreProducto = fila
+      .querySelector("td:nth-child(2)")
+      .textContent.toLowerCase()
+      .trim();
+
+    if (nombreProducto.includes(filtro)) {
+      fila.style.display = "table-row";
+    } else {
+      fila.style.display = "none";
+    }
   });
 }

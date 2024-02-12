@@ -45,8 +45,14 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
     }
     echo $message;
 } else if ($_SERVER["REQUEST_METHOD"] === "GET") {
+    if (isset($_GET['serieDocumento'])) {
+        $serieDocumento = (int) $_GET["serieDocumento"];
+        $data = Venta::obtenerVentaXDocumento($serieDocumento);
+        echo json_encode($data);
+    }
     if (isset($_GET["idVenta"]) && $_GET["idVenta"] !== 999999999) {
         $idVenta = (int) $_GET["idVenta"];
         $data = Venta::getVentaXId($idVenta);
+        echo json_encode($data);
     }
 }

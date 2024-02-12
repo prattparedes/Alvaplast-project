@@ -8,7 +8,7 @@ use PDOException;
 
 class Venta
 {
-    public static function getIdVenta()
+    public static function getSerieVenta()
     {
         $con = Connection::Conectar();
         $tsmt = $con->prepare('exec sp_BuscarIdVenta ?');

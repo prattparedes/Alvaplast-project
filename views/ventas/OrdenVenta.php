@@ -12,6 +12,7 @@
         use Models\maintenance_models\Almacen;
         use Models\maintenance_models\Moneda;
         use Models\maintenance_models\Unidad;
+        use Models\maintenance_models\Personal;
         use Models\ventas\Venta; ?>
 
         <div class="kardex__movement">
@@ -32,7 +33,7 @@
                         <div class="numero_documento" style="width: 160px;">
                             <!-- <label for="number" class="col-form-label">Codigo</label> -->
                             <fieldset disabled>
-                                <input type="text" class="form-control" id="serieDocumento" aria-describedby="passwordHelpInline" value=<?= Venta::getIdVenta(); ?>>
+                                <input type="text" class="form-control" id="serieDocumento" aria-describedby="passwordHelpInline" value=<?= Venta::getSerieVenta(); ?>>
                                 <input type="hidden" id="metodo" value="">
                             </fieldset>
                         </div>
@@ -93,7 +94,7 @@
                         <label for="inputPassword6" class="col-form-label">Tipo de Pago</label>
                         <select id="tipoPago" class="form-select" disabled>
                             <option value="">Elija una opción</option>
-                            <option value="E">EFECTIVO</option>
+                            <option value="E" selected>EFECTIVO</option>
                             <option value="C">CREDITO</option>
                         </select>
                     </div>
@@ -135,8 +136,14 @@
                     <div class="col-md-12">
                         <label for="inputPassword6" class="col-form-label">Vendedor</label>
                         <select id="vendedor" class="form-select" disabled>
-                            <option>Susan Paredes Villanueva</option>
-                            <option>Extranjera</option>
+                            <?php
+                            $data = Personal::getPersonal();
+                            foreach ($data as $pers) {
+                            ?>
+                                <option value="<?= $pers->id_personal ?>">
+                                    <?= $pers->nombres . ' ' . $pers->ap_paterno . ' ' . $pers->ap_materno ?>
+                                </option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>

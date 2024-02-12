@@ -124,20 +124,36 @@ function actualizarTablaPrecios() {
 }
 
 function seleccionarFila(fila) {
-  // Obtener todas las filas de la tabla
-  const filas = fila.parentElement.querySelectorAll("tr");
+  // Convertir la lista estática en un array
+  const columnas = Array.from(fila.querySelectorAll("td"));
 
-  // Deseleccionar todas las filas
-  filas.forEach((fila) => {
-    fila.querySelectorAll("td").forEach((columna) => {
+  // Verificar si alguna columna está seleccionada
+  const estaSeleccionada = columnas.some((columna) => {
+    return columna.classList.contains("columna__seleccionada");
+  });
+
+  // Si la fila está seleccionada, deseleccionarla
+  if (estaSeleccionada) {
+    columnas.forEach((columna) => {
       columna.classList.remove("columna__seleccionada");
     });
-  });
+  } else {
+    // Si la fila no está seleccionada, seleccionarla
+    // Obtener todas las filas de la tabla
+    const filas = fila.parentElement.querySelectorAll("tr");
 
-  // Seleccionar la fila deseada
-  fila.querySelectorAll("td").forEach((columna) => {
-    columna.classList.add("columna__seleccionada");
-  });
+    // Deseleccionar todas las filas
+    filas.forEach((fila) => {
+      fila.querySelectorAll("td").forEach((columna) => {
+        columna.classList.remove("columna__seleccionada");
+      });
+    });
+
+    // Seleccionar la fila deseada
+    columnas.forEach((columna) => {
+      columna.classList.add("columna__seleccionada");
+    });
+  }
 }
 
 function eliminarFilas() {
@@ -161,4 +177,14 @@ function eliminarFilas() {
   if (filasactualizadas.length === 0) {
       document.getElementById("moneda").removeAttribute("disabled");
   }
+}
+
+// Función para modificar cantidad
+let celdaSeleccionada;
+function seleccionarCelda(celda) {
+  if (document.getElementById('productname').disabled){
+    return
+  }
+  celdaSeleccionada = celda;
+  openAlertModal();
 }

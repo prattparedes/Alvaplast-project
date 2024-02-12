@@ -27,19 +27,6 @@
                             <label for="inputPassword6" class="col-form-label">Nombre</label>
                             <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" onkeyup="filtrarProductosVenta(this.value)">
                         </div>
-
-                        <div class="col-md-4" style="width: 400px;">
-                            <label for="inputPassword6" class="col-form-label">Codigo Producto</label>
-                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                        </div>
-
-                        <div class="col-md-4" style="width: 400px;">
-                            <label for="inputPassword6" class="col-form-label">Procedencia</label>
-                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                        </div>
-
-
-
                     </div>
 
                     <div class="col-md-12">

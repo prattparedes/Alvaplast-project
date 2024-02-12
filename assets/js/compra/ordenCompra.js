@@ -197,6 +197,10 @@ async function seleccionarOrdenCompra(fila) {
       document
         .getElementById("btnDelete")
         .classList.remove("order__btn--inactive");
+      if (datosCompra.id_moneda === "2") {
+        document.getElementById("descuento--div").style.opacity = "1";
+        document.getElementById("productdiscount").style.display = "block";
+      }
     });
   } catch (error) {
     console.error(error);
@@ -243,7 +247,7 @@ function modificarCompra() {
     return;
   }
 
-  if (botonModificar.innerHTML === "Modificar") {
+  if (botonModificar.innerHTML === "Editar") {
     guardarCopiaSeguridadCompra(copiaSeguridadFormularioInicial);
     activarInputs();
     document.getElementById("metodo").value = "modificar";
@@ -261,7 +265,7 @@ function modificarCompra() {
     desactivarInputs();
     cambiarMoneda(copiaSeguridadFormularioInicial.moneda);
     document.getElementById("metodo").value = "0";
-    botonModificar.innerHTML = "Modificar";
+    botonModificar.innerHTML = "Editar";
     botonModificar.style.backgroundColor = "#ffc107";
     botonModificar.style.borderColor = "#ffc107";
     document
@@ -418,8 +422,14 @@ function restaurarCopiaSeguridadCompra(formulario) {
           nuevaCelda.textContent = columna;
           break;
         case 2:
+          nuevaCelda.setAttribute('ondblclick', 'seleccionarCelda(this)')
           nuevaCelda.classList.add("textcenter");
           nuevaCelda.textContent = columna;
+          break;
+        case 4:
+          nuevaCelda.setAttribute('ondblclick', 'seleccionarCelda(this)')
+          nuevaCelda.textContent = columna;
+          nuevaCelda.classList.add("textright");
           break;
         default:
           nuevaCelda.textContent = columna;
@@ -499,9 +509,9 @@ function rellenarFormularioCompra(datosCompra, datosProductos, datosProveedor) {
     row.innerHTML = `
         <td style="display: none;">${producto.id_producto}</td>
         <td colspan="1">${producto.nombre_producto}</td>
-        <td class="textright">${producto.cantidad}</td>
+        <td class="textright" ondblclick="seleccionarCelda(this)">${producto.cantidad}</td>
         <td class="textright">${producto.abreviatura}</td>
-        <td class="textright">${producto.precio_compra}</td>
+        <td class="textright" ondblclick="seleccionarCelda(this)">${producto.precio_compra}</td>
         <td class="textright">${producto.descuento}</td>
         <td class="textright">${producto.Sub_Total}</td>`;
     tablaProductos.querySelector("tbody").appendChild(row);
@@ -633,7 +643,38 @@ function añadirProductoOrdenCompra() {
 
         const tablaExterna = document
           .getElementById("ordertable")
-          .getElementsByTagName("tbody")[0];
+          .getElementsByTagName("tbody")[0];function seleccionarFila(fila) {
+            // Convertir la lista estática en un array
+            const columnas = Array.from(fila.querySelectorAll("td"));
+          
+            // Verificar si alguna columna está seleccionada
+            const estaSeleccionada = columnas.some((columna) => {
+              return columna.classList.contains("columna__seleccionada");
+            });
+          
+            // Si la fila está seleccionada, deseleccionarla
+            if (estaSeleccionada) {
+              columnas.forEach((columna) => {
+                columna.classList.remove("columna__seleccionada");
+              });
+            } else {
+              // Si la fila no está seleccionada, seleccionarla
+              // Obtener todas las filas de la tabla
+              const filas = fila.parentElement.querySelectorAll("tr");
+          
+              // Deseleccionar todas las filas
+              filas.forEach((fila) => {
+                fila.querySelectorAll("td").forEach((columna) => {
+                  columna.classList.remove("columna__seleccionada");
+                });
+              });
+          
+              // Seleccionar la fila deseada
+              columnas.forEach((columna) => {
+                columna.classList.add("columna__seleccionada");
+              });
+            }
+          }
 
         const nuevaFila = tablaExterna.insertRow();
         nuevaFila.setAttribute("onclick", "seleccionarFila(this)");
@@ -976,11 +1017,4 @@ function cambiarMoneda(moneda) {
     igvTd.textContent = "IGV $";
     totalTd.textContent = "Total $";
   }
-}
-
-// Función para modificar cantidad
-let celdaSeleccionada;
-function seleccionarCelda(celda) {
-  celdaSeleccionada = celda;
-  openAlertModal();
 }
