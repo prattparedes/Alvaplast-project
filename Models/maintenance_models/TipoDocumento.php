@@ -91,10 +91,12 @@ class TipoDocumento
     {
         $con = Connection::Conectar();
         $stmt = $con->query("SELECT isNull(cast(max(serie_documento) as integer),0) 'serie' FROM Movimiento 
-		where id_tipodocumento = $idDocumento AND numero_documento = $numeroDocumento ");
+		where id_tipodocumento = $idDocumento AND numero_documento = $numeroDocumento  AND tipo_movimiento IN ('E','L') AND fecha_movimiento IN 
+		(SELECT isNull(max(fecha_movimiento),'01/01/2010') 'serie' FROM Movimiento where 
+		id_tipodocumento =$idDocumento AND numero_documento =$numeroDocumento)");
         $data = $stmt->fetch(PDO::FETCH_OBJ);
         $longitud = 7;
-        $document_number = str_pad($data->serie, $longitud, "0", STR_PAD_LEFT);
+        $document_number = str_pad($data->serie + 1, $longitud, "0", STR_PAD_LEFT);
         return $document_number;
     }
 }
