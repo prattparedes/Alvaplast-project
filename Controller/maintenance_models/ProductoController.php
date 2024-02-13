@@ -5,6 +5,15 @@ use Models\maintenance_models\Almacen;
 use Models\maintenance_models\Producto;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if(isset($_POST["idAlmacen"])) {
+        $idalmacen = (int)$_POST["idAlmacen"];
+        $result = Producto::getProductosByAlmacen($idalmacen);
+        echo json_encode($result);
+        return;
+    }
+}
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $idProducto = isset($_POST["idProducto"]) && $_POST["idProducto"] !== "" ?  (int)$_POST["idProducto"] : 1;
     $idLinea = (int) $_POST["idLinea"];
     $idMarca = (int) $_POST["idMarca"];

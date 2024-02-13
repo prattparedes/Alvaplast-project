@@ -7,6 +7,8 @@
 
 
         use Models\maintenance_models\Producto;
+        use Models\maintenance_models\TipoCambio;
+
         ?>
 
         <div class="kardex__movement">
@@ -25,19 +27,6 @@
                             <label for="inputPassword6" class="col-form-label">Nombre</label>
                             <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" onkeyup="filtrarProductosVenta(this.value)">
                         </div>
-
-                        <div class="col-md-4" style="width: 400px;">
-                            <label for="inputPassword6" class="col-form-label">Codigo Producto</label>
-                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                        </div>
-
-                        <div class="col-md-4" style="width: 400px;">
-                            <label for="inputPassword6" class="col-form-label">Procedencia</label>
-                            <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
-                        </div>
-
-
-
                     </div>
 
                     <div class="col-md-12">
@@ -79,6 +68,8 @@
 
                                     <tbody>
                                         <?php
+                                        $TipoCambioFila = TipoCambio::obtenerTC();
+                                        $cambio = $TipoCambioFila->cambio_venta;
                                         if (isset($_GET["idAlmacen"]) && isset($_GET["idCliente"])) {
                                             $cliente = (int) $_GET["idCliente"];
                                             $almacen = (int) $_GET["idAlmacen"];
@@ -89,7 +80,7 @@
                                                     <td><?= $product->id_producto ?></td>
                                                     <td><?= $product->nombre_producto ?></td>
                                                     <td><?= $product->procedencia ?></td>
-                                                    <td><?= number_format($product->precio_compra, 2) ?></td>
+                                                    <td><?= number_format($product->precio_compra, 2)*$cambio ?></td>
                                                     <td><?= number_format($product->precio_venta, 2) ?></td>
                                                     <td style="display:none;"><?= $product->id_unidad ?></td>
                                                     <td><?= $product->stock ?></td>

@@ -29,7 +29,6 @@
                     <span style="display:inline-block; width:80px;">Filtro:</span>
                     <input type="text" id="filtroProductos" class="form-control" onkeyup="FiltrarListaProductosKardex()">
 
-
                 </div>
                 <hr>
                 <div class="table--container" id="productosKardex">
@@ -64,7 +63,7 @@
                         <p id="productoSeleccionadoKardex" style="font-weight:700;">-</p>
 
                         <div class="col-md-8">
-                            Stock Físico Final: <span id="stockfinal" style="font-weight:700;">-</span>
+                            Stock Físico Final:
                             <fieldset disabled>
                             <input type="text" id="stockfinal" style="margin-top: 10px;" class="form-control" aria-describedby="passwordHelpInline">
                         </div>

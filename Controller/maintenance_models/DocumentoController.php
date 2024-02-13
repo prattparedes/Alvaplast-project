@@ -18,4 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $message = ($response) ? "eliminado correctamente" : "error al eliminar";
     }
     echo $message;
+} else if ($_SERVER['REQUEST_METHOD'] === "GET") {
+    if (isset($_GET["id_documento"]) && isset($_GET["numero_documento"])) {
+        $data = TipoDocumento::obtenerserieDocumentoFacturacion($_GET["id_documento"], $_GET["numero_documento"]);
+        echo $data;
+    }
 }

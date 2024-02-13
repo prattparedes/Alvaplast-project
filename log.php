@@ -18,6 +18,26 @@
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
 
+  <!-- JavaScript -->
+  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+  <!-- Default theme -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+  <!-- Semantic UI theme -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+  <!-- Bootstrap theme -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+
+
+
+
+
+
+
+
+
   <!-- <script>
 $(function(){
         $("#btnRegister").attr("disabled","true");
@@ -54,7 +74,7 @@ $(function(){
 
 
               <li style="font-size: 13px;" class="nav-item">
-                <a style="width: 105px;" class="nav-link text-white btn btn-secondary" onclick="loadContent('views/compras/ordencompra.php')">
+                <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/compras/ordencompra.php')">
                   <i class="bi bi-grid"></i>
                   COMPRAS
                 </a>
@@ -63,7 +83,7 @@ $(function(){
 
               <li class="nav-item">
                 <div class="dropdown">
-                  <button style="font-size: 13px;width:100px;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                  <button style="font-size: 13px;" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-table"></i>
                     VENTAS
                   </button>
@@ -130,7 +150,7 @@ $(function(){
 
               <li class="nav-item">
                 <div class="dropdown">
-                  <button style="font-size: 13px;width:155px;" class="btn btn-secondary dropdown-toggle" type="button" id="inventoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                  <button style="font-size: 13px;" class="btn btn-secondary dropdown-toggle" type="button" id="inventoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-table"></i>
                     MANTENIMIENTOS
                   </button>
@@ -151,11 +171,11 @@ $(function(){
               <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/productosmarcaModel.php')">Marcas</a></li>
               <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/productounidadModel.php')">Unidad</a></li>
               <hr class="dropdown-divider">
-              <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/monedaModel.php')">Monedasss</a></li>
-              <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/sucursalModel.php')">Sucursalss</a></li>
+              <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/monedaModel.php')">Monedas</a></li>
+              <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/sucursalModel.php')">Sucursal</a></li>
               <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/almacenModel.php')">Almacen</a></li>
               <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/conceptoModel.php')">Concepto</a></li>
-              <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/vehiculoModel.php')">Vehiculoss</a></li>
+              <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/vehiculoModel.php')">Vehiculos</a></li>
               <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/documentoModel.php')">Documentos</a></li>
               <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/transportistaModel.php')">Transportista</a></li>
               <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/modals/maintenance_modals/tipocambioModel.php')">Tipo de cambio</a></li>
@@ -223,6 +243,8 @@ $(function(){
   <script src="assets/js/ventas/facturacion.js"></script>
   <script src="assets/js/alerts/alertmodal.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js"></script>
+  <script src="assets/js/reportes/reporteVentas.js"></script>
+  <script src="assets/js/ventas/EstadoCuenta.js"></script>
   </body>
 
 </html>

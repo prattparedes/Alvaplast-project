@@ -12,35 +12,38 @@
         use Models\maintenance_models\Almacen;
         use Models\maintenance_models\Moneda;
         use Models\maintenance_models\Unidad;
+        use Models\maintenance_models\Personal;
         use Models\ventas\Venta; ?>
 
         <div class="kardex__movement">
             <div class="kardex__left">
-                <!-- <h5 style="background: black; color: white; text-align:center;">ORDEN DE VENTA</h5> -->
-
-                <div class="row">
+                <div class="row numero_documento--title">
                     <h5 style="background: Black; color: white; text-align:center;" class="titulo" id="titulo">ORDEN DE VENTA</h5>
-                    <div class="" style="width: 188px;">
-                        <!-- <label for="number" class="col-form-label">Codigo</label> -->
-                        <fieldset disabled>
-                            <input type="number" id="numeroDocumento" class="form-control" aria-describedby="passwordHelpInline" value="001">
-                            <input type="hidden" id="idVenta" value="">
-                        </fieldset>
-                    </div>
-                    -
-                    <div class="" style="width: 188px;">
-                        <!-- <label for="number" class="col-form-label">Codigo</label> -->
-                        <fieldset disabled>
-                            <input type="text" class="form-control" id="serieDocumento" aria-describedby="passwordHelpInline" value=<?= Venta::getIdVenta(); ?>>
-                            <input type="hidden" id="metodo" value="">
-                        </fieldset>
+                    <div class="row" style="margin-top: 7px; display:flex; justify-content:center;">
+                        <div class="numero_documento" style="width: 160px;">
+                            <fieldset disabled>
+                                <input type="number" id="numeroDocumento" class="form-control" aria-describedby="passwordHelpInline" value="001">
+                                <input type="hidden" id="idVenta" value="">
+                            </fieldset>
+                        </div>
+                        -
+                        <div class="numero_documento" style="width: 160px;">
+                            <fieldset disabled>
+                                <input type="text" class="form-control" id="serieDocumento" aria-describedby="passwordHelpInline" value=<?= Venta::getSerieVenta(); ?>>
+                                <input type="hidden" id="metodo" value="">
+                            </fieldset>
+                        </div>
                     </div>
                 </div>
                 <hr>
-                <!--Buttoms  -->
-                <!-- <span style="margin-top: -5px;" class="d-block p-1 col-md-12 bg-danger text-white">Datos del Proveedor</span> -->
-
-
+                <div class="col-md-12" style="margin-top: -5px; display:flex; justify-content:center;">
+                    <a style="width: 75px; margin: 0 3px;" name="" id="btnNuevo" class="btn btn-primary" role="button" onclick="nuevaOrdenVenta()">Nuevo</a>
+                    <a style="width: 75px; margin: 0 3px;" name="" id="btnRegister" class="btn btn-success order__btn--inactive sell_submit" role="button">Grabar</a>
+                    <a style="width: 75px; margin: 0 3px;" name="" id="btnModify" class="btn btn-warning order__btn--inactive" onclick="modificarVenta()">Editar</a>
+                    <a style="width: 75px; margin: 0 3px;" name="" id="btnDelete" class="btn btn-danger order__btn--inactive sell_submit" role="button">Eliminar</a>
+                    <button style="width: 75px; margin: 0 3px;" class="btn btn-secondary" id="btnSearch" onclick="abrirListadoVentas()">Buscar</button>
+                </div>
+                <hr>
                 <div class="row">
                     <b>
                         <!-- <h6>Datos del Cliente</h6> -->
@@ -72,7 +75,6 @@
                     <div class="col-md-6">
                         <label for="inputPassword6" class="col-form-label">Moneda</label>
                         <select id="moneda" class="form-select" disabled>
-                            <option value="">Seleccione moneda</option>
                             <?php
                             $monedas = Moneda::getMonedas();
                             foreach ($monedas as $moneda) { ?>
@@ -85,7 +87,7 @@
                         <label for="inputPassword6" class="col-form-label">Tipo de Pago</label>
                         <select id="tipoPago" class="form-select" disabled>
                             <option value="">Elija una opción</option>
-                            <option value="E">EFECTIVO</option>
+                            <option value="E" selected>EFECTIVO</option>
                             <option value="C">CREDITO</option>
                         </select>
                     </div>
@@ -127,8 +129,14 @@
                     <div class="col-md-12">
                         <label for="inputPassword6" class="col-form-label">Vendedor</label>
                         <select id="vendedor" class="form-select" disabled>
-                            <option>Susan Paredes Villanueva</option>
-                            <option>Extranjera</option>
+                            <?php
+                            $data = Personal::getPersonal();
+                            foreach ($data as $pers) {
+                            ?>
+                                <option value="<?= $pers->id_personal ?>">
+                                    <?= $pers->nombres . ' ' . $pers->ap_paterno . ' ' . $pers->ap_materno ?>
+                                </option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>
@@ -169,12 +177,6 @@
                         <input type="datetime-local" id="fecha" class="form-control" disabled>
                     </div>
 
-                    <div class="" style="width: 200px;">
-                        <label for="inputPassword6" class="col-form-label"></label>
-
-                    </div>
-
-
                     <div class="col-md-12">
                         <label for="inputPassword6" class="col-form-label">Tipo de documento</label>
                         <select name="" id="tipoDocumento" class="form-select" disabled>
@@ -199,24 +201,6 @@
             <div class="kardex__right">
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:4px">
-
-
-                        <div class="col-md-12" style="margin-top: -5px;">
-                            <!-- <a style="width: 80px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="nuevaOrdenVenta()">Nuevo</a>
-                            <a style="width: 75px;" name="" id="" class="btn btn-success" href="#" role="button">Grabar</a>
-                            <a style="width: 75px;" name="" id="" class="btn btn-warning" href="#" role="button">Editar</a>
-                            <a style="width: 78px;" name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a> -->
-
-                            <a style="width: 90px;" name="" id="btnNuevo" class="btn btn-primary" role="button" onclick="nuevaOrdenVenta()">Nuevo</a>
-                            <a style="width: 90px;" name="" id="btnRegister" class="btn btn-success order__btn--inactive sell_submit" role="button">Grabar</a>
-                            <a style="width: 90px;" name="" id="btnModify" class="btn btn-warning order__btn--inactive">Editar</a>
-                            <a style="width: 90px;" name="" id="btnDelete" class="btn btn-danger order__btn--inactive sell_submit" role="button">Eliminar</a>
-
-
-
-
-                            <button style="width: 90px;" class="btn btn-secondary" onclick="loadContent('views/modals/listaordenventa.php')">Buscar</button>
-                        </div>
                         <br>
                         <hr style="margin-top: -15px;">
                         <b>
@@ -235,7 +219,7 @@
                         </div>
                         <div><br></div>
 
-                        <div class="row" style="margin-top: -15px;">
+                        <div class="row product__details" style="margin-top: -15px; flex-wrap:nowrap;">
                             <div class="" style="width: 170px;">
                                 <label for="disabledSelect" class="form-label">Unidad</label>
                                 <select id="productunit" class="form-select" disabled>
@@ -257,10 +241,10 @@
                                 <input type="text" id="productprice" class="form-control" aria-describedby="passwordHelpInline" disabled>
                             </div>
 
-                            <div class="col-md-2" style="width: 110px;margin-top:-5px">
+                            <!-- <div class="col-md-2" style="width: 110px;margin-top:-5px; opacity:0;">
                                 <label for="inputPassword6" class="col-form-label">Descuento</label>
                                 <input type="text" id="productdiscount" class="form-control" aria-describedby="passwordHelpInline" disabled>
-                            </div>
+                            </div> -->
 
                             <div class="" style="width: 95px;margin-top:-5px">
                                 <label for="inputPassword6" class="col-form-label">Stock</label>
@@ -269,10 +253,9 @@
 
 
                         </div>
-                        <div class="col-md-4" style="margin-top: 10px;">
+                        <div style="margin-top: 20px;">
                             <a name="" id="" class="btn btn-primary" href="#" role="button" onclick="añadirProductoOrdenVenta()">Agregar</a>
-                            <a name="" id="" class="btn btn-warning" href="#" role="button">Cancelar</a>
-
+                            <a name="" id="" class="btn btn-warning" href="#" role="button" onclick="eliminarFilas()">Cancelar</a>
                         </div>
 
 
@@ -290,7 +273,7 @@
                                         <th width="70">Cantidad</th>
                                         <th class="textcenter" width="120">Unidad</th>
                                         <th class="textcenter" width="120">PreVenta</th>
-                                        <th class="textcenter" width="120">PreReal</th>
+                                        <th class="textcenter" width="120">CostoVenta</th>
                                         <th class="textcenter" width="120">Total</th>
                                     </tr>
                                 </thead>

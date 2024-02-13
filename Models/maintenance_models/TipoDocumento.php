@@ -86,4 +86,15 @@ class TipoDocumento
             }
         }
     }
+
+    public static function obtenerserieDocumentoFacturacion(string $idDocumento, string $numeroDocumento)
+    {
+        $con = Connection::Conectar();
+        $stmt = $con->query("SELECT isNull(cast(max(serie_documento) as integer),0) 'serie' FROM Movimiento 
+		where id_tipodocumento = $idDocumento AND numero_documento = $numeroDocumento ");
+        $data = $stmt->fetch(PDO::FETCH_OBJ);
+        $longitud = 7;
+        $document_number = str_pad($data->serie, $longitud, "0", STR_PAD_LEFT);
+        return $document_number;
+    }
 }

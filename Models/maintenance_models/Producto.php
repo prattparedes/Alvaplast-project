@@ -29,7 +29,7 @@ class Producto
         $con = Connection::Conectar();
 
         // Se utiliza una consulta preparada para obtener productos filtrados por un ID de almacén.
-        $stmt = $con->prepare("exec sp_ListarProducto_AlmacenXAlmacen :almacen");
+        $stmt = $con->prepare("exec sp_ListarProducto_AlmacenXAlmacenSinLinea :idalmacen");
         $stmt->bindParam(":idalmacen", $idAlmacen, PDO::PARAM_INT);
         $stmt->execute();
 
