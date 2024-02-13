@@ -123,7 +123,7 @@
                         <div class="col-md-12">
                             <a style="width: 90px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="">Nuevo</a>
                             <a style="width: 90px;" name="" id="" class="btn btn-success kardex_submit" href="#" role="button">Grabar</a>
-                            <a style="width: 90px;" name="" id="" class="btn btn-warning" href="#" role="button">Exportar</a>
+                            <a style="width: 90px;" name="" id="exportarBtn" class="btn btn-warning" href="#" role="button">Exportar</a>
                             <a style="width: 90px;margin-top:1px" name="" id="" class="btn btn-danger  buy_submit" href="#" role="button">Salir</a>
 
                             <button style="width: 90px;" class="btn btn-secondary" onclick="loadContent('views/modals/listaordenventa.php')">Buscar</button>

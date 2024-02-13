@@ -14,9 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $descuento = (float) $_POST["descuento"];
     $subtotal = (float) $_POST["subtotal"];
     $nombreProducto = $_POST["nombreProducto"];
-    echo $nombreProducto . "//";
     $nombreAlmacen = $_POST["nombreAlmacen"];
-    echo $nombreAlmacen . "//";
 
     $message = "";
     if ($_POST["metodo"] == "Grabar") {

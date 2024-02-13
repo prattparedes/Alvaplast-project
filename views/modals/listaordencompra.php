@@ -42,57 +42,58 @@
             </form>
 
 
-        <button style="width: 150px;" class="btn btn-danger" onclick="CancelarYRestaurarCompra()" type="button" id="">Cancelar</button> 
+            <button style="width: 150px;" class="btn btn-danger" onclick="CancelarYRestaurarCompra()" type="button" id="">Cancelar</button>
 
 
-                <h1>Proveedores</h1>
-                <b> <span class="d-block p-2 col-9 bg-info text-white">Listado de ordenes de compra</span></b>
+            <h1>Proveedores</h1>
+            <b> <span class="d-block p-2 col-9 bg-info text-white">Listado de ordenes de compra</span></b>
 
-                <br>
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="table-responsive">
-                            <table class="table border=1" id="buyorderlist">
-                                <thead>
-                                    <tr>
-                                        <th scope="col-md-1">Proveedor</th>
-                                        <th scope="col-md-1">Orden</th>
-                                        <th scope="col-1">Fecha Emisión</th>
-                                        <th scope="col-1">Moneda</th>
-                                        <th scope="col-1">Importe</th>
-                                        <th scope="col-1">Personal</th>
+            <br>
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="table-responsive">
+                        <table class="table border=1" id="buyorderlist">
+                            <thead>
+                                <tr>
+                                    <th scope="col-md-1">Proveedor</th>
+                                    <th scope="col-md-1">Orden</th>
+                                    <th scope="col-1">Fecha Emisión</th>
+                                    <th scope="col-1">Moneda</th>
+                                    <th scope="col-1">Importe</th>
+                                    <th scope="col-1">Personal</th>
 
 
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <?php
+
+                                $compras = Compra::getCompras();
+                                foreach ($compras as $compra) {
+                                ?>
+                                    <tr onclick="seleccionarOrdenCompra(this)">
+                                        <td><?= $compra->razon_social ?></td>
+                                        <td><?= $compra->numero_documento . $compra->serie_documento ?></td>
+                                        <td><?= explode(' ', $compra->fecha_compra)[0] ?></td>
+                                        <td><?= $compra->Moneda ?></td>
+                                        <td><?= $compra->total ?></td>
+                                        <td><?= $compra->Personal ?></td>
+                                        <td style="display:none"><?= $compra->id_compra ?></td>
                                     </tr>
-                                </thead>
+                                <?php } ?>
 
-                                <tbody>
-                                    <?php
-
-                                    $compras = Compra::getCompras();
-                                    foreach ($compras as $compra) {
-                                    ?>
-                                        <tr onclick="seleccionarOrdenCompra(this)">
-                                            <td><?= $compra->razon_social ?></td>
-                                            <td><?= $compra->numero_documento . $compra->serie_documento ?></td>
-                                            <td><?= explode(' ', $compra->fecha_compra)[0] ?></td>
-                                            <td><?= $compra->Moneda ?></td>
-                                            <td><?= $compra->total ?></td>
-                                            <td><?= $compra->Personal ?></td>
-                                        </tr>
-                                    <?php } ?>
-
-                                </tbody>
-                            </table>
-
-                        </div>
+                            </tbody>
+                        </table>
 
                     </div>
 
-
-
-
                 </div>
+
+
+
+
+            </div>
 
 
 

@@ -222,7 +222,10 @@ class Producto
         }
     }
 
-    public static function eliminarProductoAlmacen(int $idAlmacen)
+    public static function buscarstock(int $idProducto, int $idAlmacen)
     {
+        $con = Connection::Conectar();
+        $stmt = $con->query("select stock from Producto_Almacen where id_producto = $idProducto and id_almacen = $idAlmacen");
+        return $stmt->fetch(PDO::FETCH_OBJ);
     }
 }

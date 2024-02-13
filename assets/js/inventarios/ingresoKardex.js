@@ -182,9 +182,9 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         const monto = document.getElementById("inicial").value
         const fecha = document.getElementById("fecha2").value
         const metodo = event.target.innerHTML
-
+        const ruc = document.getElementById("rucDni").value
         const xhr = new XMLHttpRequest();
-        const url = "/Alvaplast-project/Controller/inventario/KardexController.php";
+        const url = "/Alvaplast-project/Controller/movimientos/MovimientoController.php";
 
         xhr.open("POST", url, true)
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -203,8 +203,8 @@ document.querySelector(".main__content").addEventListener("click", function (eve
                     // Puedes manejar la respuesta del servidor aquí
                     console.log(xhr.responseText);
                     //Envio de los datos de CompraProducto
-
-                    //RegistrarDatosTabla(idCompra, metodo);
+                    var idMovimiento = xhr.responseText;
+                    mandarDatosKardex(fecha, numeroDocumento, serieDocumento, idDocumento, idAlmacen, idMovimiento, monto, ruc, metodo)
                 } else {
                     // Hubo un error en la solicitud
                     console.error('Error en la solicitud.');
@@ -213,3 +213,51 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         };
     }
 });
+
+
+function mandarDatosKardex(fecha, numeroDocumento, serieDocumento, idDocumento, idAlmacen, idMovimiento, total, rucDni, metodo) {
+    const tabla = document.getElementById("ordertable");
+    const filas = tabla.querySelectorAll("tbody tr");
+
+    filas.forEach((fila) => {
+        const columnas = fila.querySelectorAll("td");
+        //Asignar los datos para mandar a la casa
+        const idProducto = columnas[0].textContent.trim();
+        const nombreProducto = columnas[1].textContent.trim();
+        const cantidad = columnas[2].textContent.trim();
+        const precioCompra = columnas[4].textContent.trim();
+        const descuento = columnas[5].textContent.trim();
+        var tipo = "C"
+        // comenzamos con el protocolo http
+        const http = new XMLHttpRequest();
+        const url =
+            "/Alvaplast-project/Controller/inventario/KardexController.php";
+        //configuración de la solicitud
+        http.open("POST", url, true);
+        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        if (precioCompra) {
+            //Enviamos los datos al controlador
+            http.send("fecha=" + fecha + "&numeroDocumento=" + numeroDocumento + "&serieDocumento=" + serieDocumento + "&idDocumento=" + idDocumento + "&idProducto=" + idProducto + "&idAlmacen=" + idAlmacen + "&idMovimiento=" + idMovimiento + "&cantidad=" + cantidad + "&precio=" + precioCompra + "&descuento=" + descuento + "&tipo=" + tipo + "&total=" + total + "&ruc=" + rucDni + "&nombre=" + nombreProducto + "&metodo=" + metodo);
+        } else {
+            alert("faltan datos");
+        }
+
+        http.onreadystatechange = function () {
+            if (http.readyState === XMLHttpRequest.DONE) {
+                if (http.status === 200) {
+                    // La solicitud se completó correctamente
+                    // Puedes manejar la respuesta del servidor aquí
+                    console.log(http.responseText);
+
+
+                } else {
+                    // Hubo un error en la solicitud
+                    console.error("Error en la insercion de los datos");
+                }
+            }
+        };
+    });
+}
+
+
+

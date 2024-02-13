@@ -733,7 +733,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
           if (metodo == "Eliminar") {
             loadContent("views/compras/ordenCompra.php");
           }
-          RegistrarDatosTabla(idCompra, metodo, idAlmacen, nombreAlmacen);
+          RegistrarDatosTablaCompra(idCompra, metodo, idAlmacen, nombreAlmacen);
           //RegistrarDatosTabla(idCompra, metodo);
         } else {
           // Hubo un error en la solicitud
@@ -749,7 +749,7 @@ async function registrarCompraKardex() {
   obtenerDatosOCKardex(idCompra);
 }
 
-function RegistrarDatosTabla(idCompra, metodo, idalmacen, almacen) {
+function RegistrarDatosTablaCompra(idCompra, metodo, idalmacen, almacen) {
   const tabla = document.getElementById("ordertable");
   const filas = tabla.querySelectorAll("tbody tr");
 
@@ -771,7 +771,7 @@ function RegistrarDatosTabla(idCompra, metodo, idalmacen, almacen) {
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     if (precioCompra && subTotal) {
       //Enviamos los datos al controlador
-      http.send("idCompra=" + idCompra + "&idProducto=" + idProducto + "&cantidad=" + cantidad + "&precioCompra=" + precioCompra + "&descuento=" + descuento + "&subtotal=" + subTotal + "&metodo=" + metodo + "&idAlmacen=" + idalmacen + "&nombreProducto=" + nombreProducto + "&nombreAlmacen=" + almacen);
+      http.send("idCompra=" + idCompra + "&idProducto=" + idProducto + "&cantidad=" + cantidad + "&precioCompra=" + precioCompra + "&descuento=" + descuento + "&subtotal=" + subTotal + " &metodo=" + metodo + "&idAlmacen=" + idalmacen + "&nombreProducto=" + nombreProducto + "&nombreAlmacen=" + almacen);
     } else {
       alert("faltan datos");
     }
@@ -785,7 +785,7 @@ function RegistrarDatosTabla(idCompra, metodo, idalmacen, almacen) {
 
           // Envío a Kardex
           if (metodo === "Grabar") {
-            openAlertModal();
+            // openAlertModal();
           }
         } else {
           // Hubo un error en la solicitud

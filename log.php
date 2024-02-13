@@ -222,6 +222,7 @@ $(function(){
   <script src="assets/js/habilitar.js"></script>
   <script src="assets/js/ventas/facturacion.js"></script>
   <script src="assets/js/alerts/alertmodal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js"></script>
   </body>
 
 </html>
