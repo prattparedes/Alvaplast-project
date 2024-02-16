@@ -102,7 +102,7 @@ function rellenarFormularioFacturación(
   const montocuoInput = document.getElementById("montocuo");
   const personalInput = document.getElementById("vendedor");
   const tipoDocumentoInput = document.getElementById("tipoDocumento");
-
+  activarInputs();
   //Rellenar Formulario
   console.log(datosVenta[0]);
   ordenVentaInput.value =
@@ -146,7 +146,7 @@ function rellenarFormularioFacturación(
         <td class="textright">${producto.cantidad}</td>
         <td class="textright">${producto.abreviatura}</td>
         <td class="textright">${producto.precio_venta}</td>
-        <td class="textright">-</td>
+        <td class="textright">${producto.descuento}</td>
         <td class="textright">${producto.Sub_Total}</td>`;
     tablaProductos.querySelector("tbody").appendChild(row);
   });
@@ -159,6 +159,7 @@ function rellenarFormularioFacturación(
   const productDescuento = document.getElementById("productDescuento");
 
   // Asignar valores a las celdas de la tabla con los datos de la venta
+  seleccionarTipoDocumentoFacturacion("001");
   productSubtotal1.textContent = datosVenta[0].subtotal;
   productSubtotal2.textContent = datosVenta[0].subtotal;
   productIgvCell.textContent = datosVenta[0].igv;
@@ -189,6 +190,25 @@ function limpiarFormularioFacturación() {
 }
 
 function seleccionarTipoDocumentoFacturacion(idTipoDocumento) {
+
+  const url = `http://localhost/Alvaplast-project/Controller/maintenance_models/DocumentoController.php?id_documento=${idTipoDocumento}&numero_documento=001`;
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Error en la solicitud: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Hacer algo con los datos obtenidos
+      console.log(data);
+      document.getElementById("serieDocumento").value = data;
+    })
+    .catch(error => {
+      // Manejar errores
+      console.error(`Error en la solicitud: ${error.message}`);
+    });
+
   console.log(idTipoDocumento)
 }
 

@@ -21,7 +21,7 @@
                     <div class="row" style="margin-top: 7px; display:flex; justify-content:center;">
                         <div class="" style="width: 230px;">
                             <select name="" id="tipoDocumento" style="width:210px !important; font-size:14px;margin-right:20px;" class="form-select" disabled onchange="seleccionarTipoDocumentoFacturacion(this.value)">
-                                <option value=""></option>
+                                <option value="0">Seleccionar documento</option>
                                 <option value="001">NOTA DE COBRANZA - A</option>
                                 <option value="002">NOTA DE COBRANZA - B</option>
                                 <option value="003">NOTA DE COBRANZA - C</option>
@@ -38,9 +38,9 @@
                             </fieldset>
                         </div>
 
-                        <div class="" style="width: 108px;margin-left:-20px">
+                        <div class="" style="width: 110px;margin-left:-20px">
                             <fieldset disabled>
-                                <input type="number" id="serieDocumento" placeholder="0000000" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                                <input type="text" id="serieDocumento" placeholder="0000000" class="form-control" disabled>
                             </fieldset>
                         </div>
                     </div>
