@@ -33,7 +33,7 @@
 
                         <div class="" style="width: 90px; margin-left:-20px">
                             <fieldset disabled>
-                                <input type="number" id="numeroDocumento" placeholder="001" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                                <input type="number" id="numeroDocumento" value="001" class="form-control" aria-describedby="passwordHelpInline" disabled>
                                 <input type="hidden" id="tipoOperacion" value="E">
                             </fieldset>
                         </div>

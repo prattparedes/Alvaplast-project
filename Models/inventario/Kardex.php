@@ -73,4 +73,32 @@ class Kardex
             echo $err->getMessage();
         }
     }
+
+
+    public static function eliminarKardex(int $idKardex, int $idProducto, int $idAlmacen)
+    {
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare("exec sp_Eliminarkardex :idKardex, :idProducto, :idAlmacen");
+            $stmt->bindParam(":idKardex", $idKardex, PDO::PARAM_INT);
+            $stmt->bindParam(":idProducto", $idProducto, PDO::PARAM_INT);
+            $stmt->bindParam(":idAlmacen", $idAlmacen, PDO::PARAM_INT);
+            $stmt->execute();
+
+            $result = ($stmt->rowCount() > 0);
+            return $result;
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+        }
+    }
+
+
+    public static function listaridKardexMovimiento(int $idMovimiento)
+    {
+        $con = Connection::Conectar();
+        $stmt = $con->query("select id_kardex from Kardex where id_movimiento = $idMovimiento ");
+        $data = $stmt->fetch(PDO::FETCH_OBJ);
+        $id = $data->id_kardex;
+        return $id;
+    }
 }

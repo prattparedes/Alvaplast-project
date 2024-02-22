@@ -1,6 +1,7 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
 
+use Models\facturas\Facturacion;
 use Models\inventario\Kardex;
 use Models\maintenance_models\Producto;
 use Models\movimientos\Movimiento;
@@ -45,5 +46,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response = Kardex::regularizarKardexFecha($idProducto, $idAlmacen, $fechaFormateada);
         $message = ($response) ? "todo correcto kbron" : "todo mal chabon";
         echo $message;
+    } else if ($_POST["metodo"] === "Anular" || $_POST["metodo"] === "Eliminar") {
+        $result = Kardex::eliminarKardex($idKardex, $idProducto, $idAlmacen);
+        //$fechaK = Facturacion::obtenerFecha($idKardex, $idProducto, $idAlmacen);
+        //Kardex::regularizarKardexFecha($idProducto, $idAlmacen, $fechaK);
     }
+} else if ($_SERVER['REQUEST_METHOD'] === "GET") {
+    $idMovimiento = $_GET["idMovimiento"];
+    $id = Kardex::listaridKardexMovimiento($idMovimiento);
+    echo json_encode($id);
 }

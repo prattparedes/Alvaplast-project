@@ -2,7 +2,7 @@
 //Función para recuperar datos de la tabla órdenes compra/venta y mandarlos al backend
 
 
-function RegistrarDatosTabla() {
+/*function RegistrarDatosTabla() {
     const tabla = document.getElementById("ordertable");
     const filas = tabla.querySelectorAll("tbody tr");
     const datos = [];
@@ -22,4 +22,25 @@ function RegistrarDatosTabla() {
     });
 
     return datos;
+}*/
+
+
+const facturaData = {
+    numero: Number,
+    producto: String,
+    cantidad: Number,
+    precio: Number,
+    fecha: Date,
+    cliente: String,
+    total: Number
+}
+
+
+let factura = {
+
+}
+
+const generarPDF = () => {
+    const pdf = new JsPDF();
+
 }

@@ -3,6 +3,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
 
 
 use Models\movimientos\Movimiento;
+use Models\facturas\Facturacion;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtener los datos enviados desde el frontend
@@ -29,5 +30,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = Movimiento::obtenerUltimaOperacion();
             echo $data->id_movimiento;
         }
+    }
+} else if ($_SERVER['REQUEST_METHOD'] === "GET") {
+    if (isset($_GET["fechaIni"]) && isset($_GET["fechaFin"])) {
+        $fecha = date("Y-m-d H:i:s", strtotime(str_replace('/', '-', $_GET["fechaIni"])));
+        $fechaIni = str_replace(' ', 'T', $fecha);
+        $fecha2 = date("Y-m-d H:i:s", strtotime(str_replace('/', '-', $_GET["fechaFin"])));
+        $fechaFin = str_replace(' ', 'T', $fecha2);
+
+        $data = Facturacion::listarFacturacionXFecha($fechaIni, $fechaFin);
+        echo json_encode($data);
     }
 }
