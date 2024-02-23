@@ -56,7 +56,7 @@ function ListarRegistroFacturacion() {
 
 
           // Obtener la referencia del cuerpo de la tabla
-          const tbody = document.getElementById("estadofacturacion--table");
+          const tbody = document.getElementById("detalle_venta");
 
 
            // Iterar sobre los datos y agregar filas a la tabla

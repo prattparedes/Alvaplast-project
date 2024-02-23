@@ -58,7 +58,7 @@
                         <div class="row">
                             <div class="" style="width: 370px;">
                                 <label for="inputFilter" class="col-form-label">Filtrar por:</label>
-                                <input type="text" id="filtroProductos" class="form-control" aria-describedby="passwordHelpInline" onkeyup="filtrarFacturacion(this.value)">
+                                <input type="text" id="filtroProductos" class="form-control" aria-describedby="passwordHelpInline" onkeyup="filtrarRegistroFacturacion(this.value)">
                             </div>
                             <button style="width: 90px; height:34px;margin-top:38px" class="btn btn-success" type="button">Buscar</button>
                         </div>
