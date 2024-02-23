@@ -41,4 +41,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $data = Facturacion::listarFacturacionXFecha($fechaIni, $fechaFin);
         echo json_encode($data);
     }
+    if (isset($_GET["idVenta"])) {
+        $id = $_GET["idVenta"];
+        $data = Facturacion::listarVentaXidVenta($id);
+        echo json_encode($data);
+    }
 }
