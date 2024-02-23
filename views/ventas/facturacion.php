@@ -41,6 +41,8 @@
                         <div class="" style="width: 110px;margin-left:-20px">
                             <fieldset disabled>
                                 <input type="text" id="serieDocumento" placeholder="0000000" class="form-control" disabled>
+                                <input type="hidden" id="idMovimiento">
+                                <input type="hidden" id="idKardex">
                             </fieldset>
                         </div>
                     </div>

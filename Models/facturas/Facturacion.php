@@ -39,4 +39,13 @@ class Facturacion
         $data = $stmt->fetch(PDO::FETCH_OBJ);
         return $data->fecha;
     }
+
+    public static function listarVentaXidVenta(int $idVenta)
+    {
+        $con = Connection::Conectar();
+        $stmt = $con->prepare("EXEC sp_ListarVentaconFacturaXID :idVenta");
+        $stmt->bindParam(":idVenta", $idVenta, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_OBJ);
+    }
 }

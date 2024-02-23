@@ -52,7 +52,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         //Kardex::regularizarKardexFecha($idProducto, $idAlmacen, $fechaK);
     }
 } else if ($_SERVER['REQUEST_METHOD'] === "GET") {
-    $idMovimiento = $_GET["idMovimiento"];
-    $id = Kardex::listaridKardexMovimiento($idMovimiento);
-    echo json_encode($id);
+    if (isset($_GET["idMovimiento"])) {
+        $idMovimiento = $_GET["idMovimiento"];
+        $id = Kardex::listaridKardexMovimiento($idMovimiento);
+        echo json_encode($id);
+    }
 }

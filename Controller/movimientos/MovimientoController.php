@@ -32,13 +32,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 } else if ($_SERVER['REQUEST_METHOD'] === "GET") {
-
-        $fecha = date("Y-m-d H:i:s", strtotime(str_replace('/', '-', $_GET["fechaIni"])));
-        $fechaIni = str_replace(' ', 'T', $fecha);
-        $fecha2 = date("Y-m-d H:i:s", strtotime(str_replace('/', '-', $_GET["fechaFin"])));
-        $fechaFin = str_replace(' ', 'T', $fecha2);
-
-        $data = Facturacion::listarFacturacionXFecha($fechaIni, $fechaFin);
+    if (isset($_GET["idVenta"])) {
+        $id = $_GET["idVenta"];
+        $data = Facturacion::listarVentaXidVenta($id);
         echo json_encode($data);
-    
+        return;
+    }
+    $fecha = date("Y-m-d H:i:s", strtotime(str_replace('/', '-', $_GET["fechaIni"])));
+    $fechaIni = str_replace(' ', 'T', $fecha);
+    $fecha2 = date("Y-m-d H:i:s", strtotime(str_replace('/', '-', $_GET["fechaFin"])));
+    $fechaFin = str_replace(' ', 'T', $fecha2);
+
+    $data = Facturacion::listarFacturacionXFecha($fechaIni, $fechaFin);
+    echo json_encode($data);
 }
+

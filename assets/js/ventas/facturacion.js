@@ -65,7 +65,8 @@ async function seleccionarOrdenVentaFacturación(fila) {
       rellenarFormularioFacturación(
         datosVenta,
         datosVentaProducto,
-        datosCliente
+        datosCliente,
+        null
       );
     });
   } catch (error) {
@@ -83,7 +84,8 @@ function mostrarFacturacion(tbodyId) {
 function rellenarFormularioFacturación(
   datosVenta,
   datosProductos,
-  datosCliente
+  datosCliente,
+  datosMovimiento
 ) {
   const ordenVentaInput = document.getElementById("ordenVenta");
   const clienteInput = document.getElementById("cliente");
@@ -159,12 +161,21 @@ function rellenarFormularioFacturación(
   const productDescuento = document.getElementById("productDescuento");
 
   // Asignar valores a las celdas de la tabla con los datos de la venta
-  seleccionarTipoDocumentoFacturacion("001");
+  // seleccionarTipoDocumentoFacturacion("001");
   productSubtotal1.textContent = datosVenta[0].subtotal;
   productSubtotal2.textContent = datosVenta[0].subtotal;
   productIgvCell.textContent = datosVenta[0].igv;
   productTotalCell.textContent = datosVenta[0].total;
   productDescuento.textContent = 0;
+
+  console.log('datos movimiento: ' + datosMovimiento)
+  if (datosMovimiento) {
+    console.log('se está activando esto');
+    document.getElementById('idMovimiento').value = datosMovimiento.id_movimiento;
+    document.getElementById('caja').value = datosMovimiento.id_caja;
+    document.getElementById('numeroDocumento').value = datosMovimiento.numero_documento;
+    document.getElementById('serieDocumento').value = datosMovimiento.serie_documento;
+  }
 }
 
 function limpiarFormularioFacturación() {
@@ -423,4 +434,74 @@ function filtrarRegistroFacturacion(filtro) {
       // Mostrar u ocultar la fila según si se encontró una coincidencia con el filtro
       row.style.display = matchFound ? '' : 'none';
   });
+}
+
+async function seleccionarFactura(fila) {
+  var idVenta = fila.getElementsByTagName('td')[10].textContent.trim();
+
+  // URLs dinámicas basadas en los valores extraídos
+  const urlVenta = `http://localhost/Alvaplast-project/Controller/ventas/VentaController.php?idVenta=${idVenta}`;
+  const urlVentaProducto = `http://localhost/Alvaplast-project/Controller/ventas/VentaProductoController.php?idVenta=${idVenta}`;
+  const urlMovimiento = `/Alvaplast-project/Controller/movimientos/MovimientoController.php?idVenta=${idVenta}`;
+
+  try {
+    // Realizar las solicitudes fetch para obtener los datos de Venta, Venta Producto y Movimiento
+    const [responseVenta, responseVentaProducto, responseMovimiento] = await Promise.all([
+      fetch(urlVenta),
+      fetch(urlVentaProducto),
+      fetch(urlMovimiento),
+    ]);
+
+    if (!responseVenta.ok || !responseVentaProducto.ok || !responseMovimiento.ok) {
+      throw new Error("Error al obtener los datos.");
+    }
+
+    const [datosVenta, datosVentaProducto, datosMovimiento] = await Promise.all([
+      responseVenta.json(),
+      responseVentaProducto.json(),
+      responseMovimiento.json(),
+    ]);
+
+    // Obtener la dirección del cliente
+    const idCliente = datosVenta[0].id_cliente;
+    const urlCliente = `http://localhost/Alvaplast-project/Controller/maintenance_models/ClienteController.php?idCliente=${idCliente}`;
+    const responseCliente = await fetch(urlCliente);
+
+    if (!responseCliente.ok) {
+      throw new Error("Error al obtener los datos del cliente.");
+    }
+
+    const datosCliente = await responseCliente.json();
+
+    //Obtener idKardex
+    const idMovimiento = datosMovimiento.id_movimiento;
+    const idKardexUrl = `http://localhost/Alvaplast-project/Controller/inventario/KardexController.php?idMovimiento=${idMovimiento}`;
+    const responseIdKardex = await fetch(idKardexUrl);
+
+    if (!responseIdKardex.ok) {
+      throw new Error("Error al obtener el idKardex.");
+    }
+
+    const idKardex = await responseIdKardex.json();
+
+    // Regresar al formulario y llenarlo con los datos obtenidos
+    loadContent("views/ventas/facturacion.php").then(() => {
+      rellenarFormularioFacturación(
+        datosVenta,
+        datosVentaProducto,
+        datosCliente,
+        datosMovimiento
+      );
+      console.log(datosMovimiento);
+      document.getElementById('tipoDocumento').setAttribute('disabled', 'disabled');
+      document.getElementById('vendedor').setAttribute('disabled', 'disabled');
+      document.getElementById('almacen').setAttribute('disabled', 'disabled');
+      document.getElementById('ordenVenta').setAttribute('disabled', 'disabled');
+      document.getElementById('fecha').setAttribute('disabled', 'disabled');
+      document.getElementById('caja').setAttribute('disabled', 'disabled');
+      document.getElementById('idKardex').value = idKardex;
+    });
+  } catch (error) {
+    console.error(error);
+  }
 }

@@ -62,6 +62,7 @@ function ListarRegistroFacturacion() {
            // Iterar sobre los datos y agregar filas a la tabla
             dataFromServer.forEach((item) => {
             const row = document.createElement("tr");
+            row.setAttribute('onclick', 'seleccionarFactura(this)');
 
             // Crear celdas para cada propiedad del objeto
             const numero_documento = document.createElement("td");
@@ -100,6 +101,16 @@ function ListarRegistroFacturacion() {
               const estado = document.createElement("td");
               estado.textContent = item.Estado;
               row.appendChild(estado);
+
+              const idmovimiento = document.createElement("td");
+              idmovimiento.textContent = item.id_movimiento;
+              idmovimiento.style.display = 'none'; // Ocultar la celda
+              row.appendChild(idmovimiento);
+
+              const idventa = document.createElement("td");
+              idventa.textContent = item.id_venta;
+              idventa.style.display = 'none'; // Ocultar la celda
+              row.appendChild(idventa);
 
 
             // Agregar la fila a la tabla
