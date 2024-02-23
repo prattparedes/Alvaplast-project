@@ -23,8 +23,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 echo json_encode($result);
                 break;
             case "Documento":
+                $idAlmacen = (int) $_POST["tipodoc"];
+                $fechaIni = $_POST["fechaIni"];
+                $fechaFin = $_POST["fechaFin"];
+                $result = Reporte::listarReportexDocumento($fechaIni, $fechaFin, $tipodoc);
+                echo json_encode($result);
                 break;
+                
             case "Fecha":
+                $fechaIni = $_POST["fechaIni"];
+                $fechaFin = $_POST["fechaFin"];
+                $result = Reporte::listarReportexFechas($fechaIni, $fechaFin);
+                echo json_encode($result);
                 break;
             case "Cliente":
                 break;
@@ -33,6 +43,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             case "Marca":
                 break;
             case "Serie":
+                $fechaIni = $_POST["fechaIni"];
+                $fechaFin = $_POST["fechaFin"];
+                $result = Reporte::listarReportexSerie($fechaIni, $fechaFin);
+                echo json_encode($result);
+
                 break;
             case "Costo":
                 break;

@@ -283,9 +283,10 @@ function exportarPDF() {
 
   // Título del documento
   doc.text(
+    
     "Movimientos de " +
       productoSeleccionado +
-      " (Almacén " +
+      " (Almacen " +
       AlmacenSeleccionado +
       ")",
     14,

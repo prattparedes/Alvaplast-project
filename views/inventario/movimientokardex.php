@@ -115,28 +115,7 @@
                             </tr>
                         </thead>
                         <tbody id="detalle_venta">
-                            <!-- <tr>
-                        <td>07/12/2023 19:24:00</td>
-                        <td>Proveedor 1</td>
-                        <td>Compra</td>
-                        <td>NC-A/001-000001</td>
-                        <td>10.00</td>
-                        <td>5.00</td>
-                        <td>2.00</td>
-                        <td>0</td>
-                        <td>3.00</td>
-                    </tr>
-                    <tr>
-                        <td>06/11/2023 14:49:00</td>
-                        <td>Cliente A</td>
-                        <td>Venta</td>
-                        <td>NC-A/001-000001</td>
-                        <td>10.00</td>
-                        <td>5.00</td>
-                        <td>2.00</td>
-                        <td>0</td>
-                        <td>3.00</td>
-                    </tr> -->
+                      
                         </tbody>
                     </table>
                 </div>

@@ -2,7 +2,7 @@ function NuevaFacturación() {
   limpiarFormularioFacturación();
   document.getElementById("fecha").value = establecerFechaHora();
   document.getElementById("vendedor").value = "1";
-  document.getElementById("almacen").value = "1";
+  document.getElementById("almacen").value = "0";
   document.getElementById("placaVehiculo").value = "2";
   document.getElementById("moneda").value = "1";
   document.getElementById("marcaVehiculo").value = "Hiunday";

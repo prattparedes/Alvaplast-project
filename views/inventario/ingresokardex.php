@@ -5,13 +5,9 @@
         <?php
         require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
 
-        use Models\maintenance_models\Sucursal;
-        use Models\maintenance_models\Almacen;
-        use Models\maintenance_models\Caja;
-        use Models\maintenance_models\Moneda;
+
         use Models\maintenance_models\TipoDocumento;
-        use Models\maintenance_models\Unidad;
-        use Models\ventas\Venta;
+
 
 
         ?>
@@ -29,7 +25,13 @@
                         <input type="hidden" id="idOperacion" value="">
                         <input type="hidden" id="tipoOperacion" value="S">
                     </div>
-
+                    <br>
+                    <div class="col-md-12">
+                        <a style="width: 90px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="NuevoIngreso()">Nuevo</a>
+                        <a style="width: 90px;" name="" id="" class="btn btn-success kardex_submit" href="#" role="button">Grabar</a>
+                        <a style="width: 90px;" name="" id="" class="btn btn-warning" href="#" role="button">Exportar</a>
+                        <a style="width: 90px;margin-top:1px" name="" id="" class="btn btn-danger " href="#" role="button" onclick="loadContent('views/home.php')">Salir</a>
+                    </div>
 
                     <hr>
 
@@ -120,12 +122,7 @@
                     <div style="display:flex; flex-direction:column; margin-top:4px">
 
 
-                        <div class="col-md-12">
-                            <a style="width: 90px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="NuevoIngreso()">Nuevo</a>
-                            <a style="width: 90px;" name="" id="" class="btn btn-success kardex_submit" href="#" role="button">Grabar</a>
-                            <a style="width: 90px;" name="" id="" class="btn btn-warning" href="#" role="button">Exportar</a>
-                            <a style="width: 90px;margin-top:1px" name="" id="" class="btn btn-danger " href="#" role="button" onclick="loadContent('views/home.php')">Salir</a>
-                        </div>
+
 
                         <b>
                             <hr>

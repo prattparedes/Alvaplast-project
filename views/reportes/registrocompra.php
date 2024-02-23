@@ -18,6 +18,15 @@
 
 
                 <h5 style="background: black; color: white; text-align:center;">REGISTRO DE COMPRAS</h5>
+                <div class="col-md-12" style="margin-top: -15px;">
+                            <br>
+                            <button style="width: 90px;" class="btn btn-success" type="button" onclick="consultarReporteCompras()">Consultar</button>
+                            <button style="width: 90px;" class="btn btn-primary" type="button">Exportar</button>
+                            <button style="width: 90px;" class="btn btn-warning" type="button">Imprimir</button>
+                            <button style="width: 90px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
+                            <br><br>
+                        </div>
+
 
                 <div class="row">
 
@@ -85,15 +94,7 @@
                         <!-- <h6>REPORTE DE COMPRAS</h6> -->
 
 
-                        <div class="col-md-12" style="margin-top: -15px;">
-                            <br>
-                            <button style="width: 90px;" class="btn btn-success" type="button" onclick="consultarReporteCompras()">Consultar</button>
-                            <button style="width: 90px;" class="btn btn-primary" type="button">Exportar</button>
-                            <button style="width: 90px;" class="btn btn-warning" type="button">Imprimir</button>
-                            <button style="width: 90px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
-                            <br><br>
-                        </div>
-
+                       
 
                         <h5 style="background: teal; color: white; text-align:left;" class="titulo">REPORTE DE COMPRAS</h5>
                         <hr style="margin-top: -7px;">

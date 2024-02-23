@@ -42,4 +42,55 @@ class Reporte
             return false;
         }
     }
+
+    public static function listarReportexDocumento($fechaIni, $fechaFin, $idAlmacen)
+    {
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare("exec sp_ReporteVentasXTipoDoc :fechaIni, :fechaFin,:tipodoc");
+            $stmt->bindParam(":fechaIni", $fechaIni, PDO::PARAM_STR);
+            $stmt->bindParam(":fechaFin", $fechaFin, PDO::PARAM_STR);
+            $stmt->bindParam(":tipodoc", $tipodoc, PDO::PARAM_STR);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+            return false;
+        }
+    }
+
+    public static function listarReportexFechas($fechaIni, $fechaFin)
+    {
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare("exec sp_ReporteVentasFecha :fechaIni, :fechaFin");
+            $stmt->bindParam(":fechaIni", $fechaIni, PDO::PARAM_STR);
+            $stmt->bindParam(":fechaFin", $fechaFin, PDO::PARAM_STR);
+
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+            return false;
+        }
+    }
+
+    public static function listarReportexSerie($fechaIni, $fechaFin)
+    {
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare("exec sp_ReporteVentasFecha :fechaIni, :fechaFin");
+            $stmt->bindParam(":fechaIni", $fechaIni, PDO::PARAM_STR);
+            $stmt->bindParam(":fechaFin", $fechaFin, PDO::PARAM_STR);
+
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+            return false;
+        }
+    }
 }

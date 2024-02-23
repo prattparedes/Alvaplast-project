@@ -4,14 +4,8 @@
     <header>
         <?php
         require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
-
-        use Models\maintenance_models\Sucursal;
-        use Models\maintenance_models\Almacen;
-        use Models\maintenance_models\Moneda;
         use Models\maintenance_models\Unidad;
         use Models\compras\Compra;
-
-
         ?>
 
         <div class="kardex__movement">
@@ -20,7 +14,10 @@
 
 
                 <div class="row">
-
+                <?php
+                    date_default_timezone_set('America/Lima'); // Establecer la zona horaria de Perú
+                    $currentDateTime = date('Y-m-d H:i');
+                    ?>
                     <h5 style="background: black; color: white; text-align:center;" class="titulo">REPORTE DE VENTAS POR SERIE</h5>
 
                     <div class="row">
@@ -32,15 +29,15 @@
                         </div>
 
                     
-                            <div class="col-md-6" style="margin-top: 10px;">
-                                <label for="inputEndDate" class="col-form-label">Fecha de Inicio:</label>
-                                <input type="date" id="inputEndDate" class="form-control" aria-describedby="passwordHelpInline">
-                            </div>
+                        <div class="col-md-6">
+                            <label for="inputEndDate" class="col-form-label">Fecha de Inicio:</label>
+                            <input type="datetime-local" id="fecha1" class="form-control" aria-describedby="passwordHelpInline" value="<?php echo $currentDateTime; ?>">
+                        </div>
 
-                            <div class="col-md-6">
-                                <label for="inputFilter" class="col-form-label">Fecha Fin:</label>
-                                <input type="date" id="inputFilter" class="form-control" aria-describedby="passwordHelpInline">
-                            </div>
+                        <div class="col-md-6">
+                            <label for="inputFilter" class="col-form-label">Fecha Fin:</label>
+                            <input type="datetime-local" id="fecha2" class="form-control" aria-describedby="passwordHelpInline" value="<?php echo $currentDateTime; ?>">
+                        </div>
                         </div>
                   
                     <div class="col-md-12" style="margin-top: 30px;">
@@ -59,7 +56,7 @@
 
                     <div class="col-md-12"style="margin-top: -15px;">
                             <br>
-                            <button style="width: 90px;" class="btn btn-success" type="button">Consultar</button>
+                            <button style="width: 90px;" class="btn btn-success" type="button" onclick="consultarReportexSerie()">Consultar</button>
                             <button style="width: 90px;" class="btn btn-warning" type="button">Imprimir</button>
                             <button style="width: 90px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
                             <br><br>
@@ -80,12 +77,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="detalle_venta">
-                                    <tr class="">
-                                        <td scope="row" style="text-align: center;">A01</td>
-                                        <td scope="row">Bolsa de Plastico Rey</td>
-                                        <td scope="row">F</td>
-                                        <td scope="row">Bolsas</td>
-                                    </tr>
+                                   
                                 </tbody>
                             </table>
                         </div>

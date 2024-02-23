@@ -15,7 +15,15 @@
                 <div class="row">
 
                     <h5 style="background: black; color: white; text-align:center;" class="titulo">MANTENIMIENTO DE VEHICULOS</h5>
-
+                    <div class="col-md-12">
+                        <br>
+                        <button style="width: 80px;" id="btnNuevo" class="btn btn-primary" type="button" onclick="botónNuevoMantenimiento()">Nuevo</button>
+                        <button style="width: 80px;" id="btnGrabar" class="btn btn-success order__btn--inactive vehicle_submit" type="button" onclick="botónGrabarMantenimiento('1')">Grabar</button>
+                        <button style="width: 80px;" id="btnEditar" class="btn btn-warning order__btn--inactive" type="button" onclick="botónEditarMantenimiento()">Editar</button>
+                        <button style="width: 80px;" id="btnEliminar" class="btn btn-danger order__btn--inactive vehicle_submit" type="button" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
+                        <!-- <button style="width: 40px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">X</button> -->
+                        <br><br>
+                    </div>
                     <div class="row">
                         <div class="col-md-4" style="width: 400px;">
                             <label for="inputPassword6" class="col-form-label">Codigo</label>
@@ -24,6 +32,7 @@
                                 <input type="hidden" id="metodo" value="">
                             </fieldset>
                         </div>
+                        
 
                         <div class="col-md-4" style="width: 400px;">
                             <label for="placa" class="col-form-label">Placa</label>
@@ -64,15 +73,7 @@
 
                     <!-- <div class="col-md-12" style="margin-top: 30px;"> -->
 
-                    <div class="col-md-12">
-                        <br>
-                        <button style="width: 80px;" id="btnNuevo" class="btn btn-primary" type="button" onclick="botónNuevoMantenimiento()">Nuevo</button>
-                        <button style="width: 80px;" id="btnGrabar" class="btn btn-success order__btn--inactive vehicle_submit" type="button" onclick="botónGrabarMantenimiento('1')">Grabar</button>
-                        <button style="width: 80px;" id="btnEditar" class="btn btn-warning order__btn--inactive" type="button" onclick="botónEditarMantenimiento()">Editar</button>
-                        <button style="width: 80px;" id="btnEliminar" class="btn btn-danger order__btn--inactive vehicle_submit" type="button" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
-                        <!-- <button style="width: 40px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">X</button> -->
-                        <br><br>
-                    </div>
+                   
                     <!-- </div> -->
                 </div>
 

@@ -794,7 +794,7 @@ function CancelarYRestaurarVenta() {
     activarInputs();
   });
 }
-
+// Añadir nueva fila en la tabla de órdenes de venta/
 function añadirProductoOrdenVenta() {
   const cantidad = parseFloat(document.getElementById("productquantity").value);
   const precioUnitario = parseFloat(

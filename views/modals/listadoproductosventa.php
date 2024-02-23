@@ -43,7 +43,7 @@
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:5px">
 
-                        <h6 style="margin-top: -5ox;">LISTADO DE PRODUCTOS</h6>
+                        <h6 style="margin-top: -5ox;">LISTADO DE PRODUCTOS - VENTA</h6>
                         <hr style="margin-top: -7px;">
 
 
@@ -52,7 +52,7 @@
                         <br>
                         <div class="table--container" style="margin-top: -15px;">
                             <div class="table-responsive">
-                                <table class="table border=1">
+                                <table class="table border=1" id="listaProductosVenta">
                                     <thead>
                                         <tr>
                                             <th scope="col-md-1">Codigo</th>
@@ -77,9 +77,10 @@
                                             foreach ($productos as $product) {
                                         ?>
                                                 <tr onclick="seleccionarProductoVenta(this)">
-                                                    <td><?= $product->id_producto ?></td>
-                                                    <td><?= $product->nombre_producto ?></td>
-                                                    <td><?= $product->procedencia ?></td>
+                                                    <td><?= $product->id_producto?></td>
+                                                    <td><?= $product->nombre_producto?></td>
+                                                    
+                                                    <td><?= $product->procedencia?></td>
                                                     <td><?= number_format($product->precio_compra, 2)*$cambio ?></td>
                                                     <td><?= number_format($product->precio_venta, 2) ?></td>
                                                     <td style="display:none;"><?= $product->id_unidad ?></td>

@@ -10,6 +10,9 @@
         use Models\maintenance_models\Moneda;
         use Models\maintenance_models\Unidad;
         use Models\compras\Compra;
+       
+        use Models\ventas\estadoCuenta;
+
 
 
         ?>
@@ -96,16 +99,7 @@
                         </thead>
 
                         <tbody id="detalle_venta">
-                            <!-- <tr>
-                                <td class="textcenter">04-01-2024</td>
-                                <td class="textcenter">2030405060</td>
-                                <td class="textcenter">Los Caballeos de Fortaleza</td>
-                                <td class="textcenter">Jose Perales</td>
-                                <td class="textcenter">Pendiente</td>
-                                <td class="textcenter">150,200</td>
-                                <td class="textcenter">0.0</td>
-                                <td class="textright">1250.000</td>
-                            </tr> -->
+                           
                         </tbody>
 
                         <tfoot class="footer">

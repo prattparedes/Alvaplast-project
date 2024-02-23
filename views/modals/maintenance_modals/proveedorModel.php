@@ -11,7 +11,14 @@
         <div class="kardex__movement">
             <div class="kardex__left">
                 <h5 style="background: black; color: white; text-align:center;" class="titulo">MANTENIMIENTO DE PROVEEDORES</h5>
-                <hr style="margin-top: -3px;">
+                <div class="col-md-12" style="margin-top: -10px;">
+                    <br>
+                    <button style="width: 80px;" id="btnNuevo" class="btn btn-primary " type="button" onclick="botónNuevoMantenimiento()">Nuevo</button>
+                    <button style="width: 80px;" id="btnGrabar" class="btn btn-success order__btn--inactive provider_submit" type="button" onclick="botónGrabarMantenimiento('1')">Grabar</button>
+                    <button style="width: 80px;" id="btnEditar" class="btn btn-warning order__btn--inactive" type="button" onclick="botónEditarMantenimiento()">Editar</button>
+                    <button style="width: 80px;" id="btnEliminar" class="btn btn-danger order__btn--inactive provider_submit" type="button" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
+                </div>
+                <hr style="margin-top: 5px;">
                 <b>
                     <!-- <h6>Datos del Proveedor</h6> -->
                     <h5 style="background: teal; color: white; text-align:left;" class="titulo">DATOS DEL PROVEEDOR</h5>
@@ -108,13 +115,7 @@
 
 
 
-                <div class="col-md-12" style="margin-top: -10px;">
-                    <br>
-                    <button style="width: 80px;" id="btnNuevo" class="btn btn-primary " type="button" onclick="botónNuevoMantenimiento()">Nuevo</button>
-                    <button style="width: 80px;" id="btnGrabar" class="btn btn-success order__btn--inactive provider_submit" type="button" onclick="botónGrabarMantenimiento('1')">Grabar</button>
-                    <button style="width: 80px;" id="btnEditar" class="btn btn-warning order__btn--inactive" type="button" onclick="botónEditarMantenimiento()">Editar</button>
-                    <button style="width: 80px;" id="btnEliminar" class="btn btn-danger order__btn--inactive provider_submit" type="button" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
-                </div>
+               
              
             </div>
             <div class="kardex__right">

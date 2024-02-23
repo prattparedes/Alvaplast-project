@@ -1,4 +1,4 @@
-function listarEstadoCuenta() {
+function ListarDocumentosVentas() {
   let fecha1Value = document.getElementById("fecha1").value;
   let fecha2Value = document.getElementById("fecha2").value;
 
@@ -33,7 +33,7 @@ function listarEstadoCuenta() {
 
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/ventas/EstadoCuentaController.php"; // Ruta del controlador PHP
+  const url = "/Alvaplast-project/Controller/ventas/regulardocumentoController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);
@@ -56,7 +56,7 @@ function listarEstadoCuenta() {
 
 
           // Obtener la referencia del cuerpo de la tabla
-          const tbody = document.getElementById("estadoCuenta--table");
+          const tbody = document.getElementById("regulardocumento--table");
 
 
            // Iterar sobre los datos y agregar filas a la tabla
@@ -67,43 +67,29 @@ function listarEstadoCuenta() {
             // Crear celdas para cada propiedad del objeto
             
 
-            const fechaVenta = document.createElement("td");
-            fechaVenta.textContent = item.FechaVenta;
-            row.appendChild(fechaVenta);
-
-            const numeroDocumento = document.createElement("td");
-            numeroDocumento.textContent = item.NumeroDoc;
-            row.appendChild(numeroDocumento);
-
-            const razonSocial = document.createElement("td");
-            razonSocial.textContent = item.Razon_Social;
-            row.appendChild(razonSocial);
-
-            const vendedor = document.createElement("td");
-            vendedor.textContent = item.Vendedor;
-            row.appendChild(vendedor);
-
-            const estado = document.createElement("td");
-            estado.textContent = item.Estado;
-            row.appendChild(estado);
-
-            const total = document.createElement("td");
-            total.textContent = formatNumber(item.Total);
-            total.style.backgroundColor="#e1fdca";
-            row.appendChild(total);
-
-            const debe = document.createElement("td");
-            debe.textContent = formatNumber(item.Debe);
-            debe.style.backgroundColor="#fdcae1";
-            row.appendChild(debe);
-
-            const acuenta = document.createElement("td");
-            acuenta.textContent = formatNumber(item.A_Cuenta);
-            acuenta.style.textAlign = 'center';
-            acuenta.style.backgroundColor="#caf5fd";
+              const Movimiento = document.createElement("td");
+               Movimiento.textContent = item.Movimiento;
+               Movimiento.style.textAlign = 'center';
+               row.appendChild(Movimiento);
+  
+               const Documento = document.createElement("td");
+               Documento.textContent = item.Documento;
+               Documento.style.textAlign = 'center';
+               row.appendChild(Documento);
+  
+               const Correlativo = document.createElement("td");
+               Correlativo.textContent = item.Correlativo;
+               row.appendChild(Correlativo);
 
 
-            row.appendChild(acuenta);
+               const razonSocial = document.createElement("td");
+               razonSocial.textContent = item.razon_social;
+               row.appendChild(razonSocial);
+  
+               const monto = document.createElement("td");
+               monto.textContent = item.monto;
+               monto.style.textAlign = 'center';
+               row.appendChild(monto);
 
 
             // Agregar la fila a la tabla
@@ -145,7 +131,7 @@ function listarEstadoCuenta() {
 
 // Función para exportar la tabla a PDF
 window.jsPDF = window.jspdf.jsPDF;
-function exportarPDFE() {
+function exportarPDFD() {
 
   const fecha1 = new Date(document.getElementById("fecha1").value);
   const fecha2 = new Date(document.getElementById("fecha2").value);

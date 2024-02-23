@@ -7,8 +7,7 @@
 
         use Models\maintenance_models\Sucursal;
         use Models\maintenance_models\Almacen;
-        use Models\maintenance_models\Moneda;
-        use Models\maintenance_models\Unidad;
+      
         use Models\compras\Compra;
 
 
@@ -21,7 +20,14 @@
                 <div class="row">
 
                     <h5 style="background: black; color: white; text-align:center;" class="titulo">REGISTRO DE VENTAS</h5>
-
+                    <div class="col-md-12" style="margin-top: -15px;">
+                            <br>
+                            <button style="width: 90px;" class="btn btn-success" type="button" onclick="consultarReporteVentas()">Consultar</button>
+                            <button style="width: 90px;" class="btn btn-primary" type="button">Exportar</button>
+                            <button style="width: 90px;" class="btn btn-warning" type="button">Imprimir</button>
+                            <button style="width: 90px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
+                            <br><br>
+                        </div>
                     <div class="row">
                         <div class="col-md-12">
                             <label for="inputPassword6" class="col-form-label">Sucursal</label>
@@ -77,14 +83,7 @@
                         <!-- <h6>REPORTE DE VENTAS</h6> -->
 
 
-                        <div class="col-md-12" style="margin-top: -15px;">
-                            <br>
-                            <button style="width: 90px;" class="btn btn-success" type="button" onclick="consultarReporteVentas()">Consultar</button>
-                            <button style="width: 90px;" class="btn btn-primary" type="button">Exportar</button>
-                            <button style="width: 90px;" class="btn btn-warning" type="button">Imprimir</button>
-                            <button style="width: 90px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
-                            <br><br>
-                        </div>
+                       
 
                         <h5 style="background: teal; color: white; text-align:left;" class="titulo">REPORTE DE VENTAS</h5>
                         <hr style="margin-top: -7px;">
@@ -103,15 +102,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="detalle_venta">
-                                    <!-- <tr class="">
-                                        <td class="textcenter" scope="row">25-02-2023</td>
-                                        <td class="textcenter" scope="row">10251545</td>
-                                        <td class="textcenter" scope="row">10205565789</td>
-                                        <td class="textleft" scope="row">Jose torre de la cruz toro </td>
-                                        <td class="textcenter" scope="row">0.0</td>
-                                        <td class="textcenter" scope="row">Alfa</td>
-                                        <td class="textcenter" scope="row">0.0</td>
-                                    </tr> -->
+                                 
                                 </tbody>
                             </table>
                         </div>

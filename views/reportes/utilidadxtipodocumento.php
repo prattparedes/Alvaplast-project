@@ -22,7 +22,14 @@
                 <div class="row">
                     
                     <h5 style="background: black; color: white; text-align:center;" class="titulo">UTILIDAD POR TIPO DE DOCUMENTO</h5>
-                  
+                    <div class="col-md-12" style="margin-top: -20px;">
+                            <br>
+                            <button style="width: 90px;" class="btn btn-success" type="button">Consultar</button>
+                            <button style="width: 90px;" class="btn btn-primary" type="button">Exportar</button>
+                            <button style="width: 90px;" class="btn btn-warning" type="button">Imprimir</button>
+                            <button style="width: 90px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
+                            <br><br>
+                        </div>
                     <div class="row">
                         <div class="col-md-12">
                             <label for="almacen" class="col-form-label">Documento:</label>
@@ -59,14 +66,7 @@
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:5px">
 
-                    <div class="col-md-12" style="margin-top: -20px;">
-                            <br>
-                            <button style="width: 90px;" class="btn btn-success" type="button">Consultar</button>
-                            <button style="width: 90px;" class="btn btn-primary" type="button">Exportar</button>
-                            <button style="width: 90px;" class="btn btn-warning" type="button">Imprimir</button>
-                            <button style="width: 90px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
-                            <br><br>
-                        </div>
+                  
                     <!-- <h6>REPORTE DE VENTAS</h6> -->
                     <h5 style="background: teal; color: white; text-align:left;" class="titulo">REPORTE DE VENTAS</h5>
                         <hr style="margin-top: -7px;">

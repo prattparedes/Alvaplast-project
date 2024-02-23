@@ -46,14 +46,104 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-md-12">
                         <label for="ruc" class="col-form-label">RUC</label>
                         <input type="text" id="ruc" class="form-control" aria-describedby="passwordHelpInline" disabled>
                     </div>
 
-                    <div class="col-md-5">
+                    <div class="col-md-12">
+                        <!-- Botón para activar el primer modal -->
+                        <button type="button" class="btn btn-success col-md-12" data-bs-toggle="modal" data-bs-target="#exampleModal1" style="margin-top:5px">
+                            Verificar RUC
+                        </button>
+
+                        <!-- Primer Modal -->
+                        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <hr>
+
+                                    <div class="container">
+                                        <label style="color: purple;">SUNAT (Superintendencia Nacional de Aduanas y de Administración Tributaria)</label>
+                                        <div class="col-md-6">
+                                            <label for="" class="form-label" style="margin-top: 5px;">Ingrese RUC a consultar</label>
+                                            <input type="text" autocomplete="off" id="ruc" name="ruc" class="form-control" placeholder="">
+                                            <br>
+                                            <button id="pruebaruc" class="btn btn-primary">Consultar Información</button>
+                                            <br><br>
+
+                                            <h6 style="background: teal; color: white; text-align:left;" class="titulo" id="titulo">DETALLE DE LA INFORMACIÓN</h6>
+                                            <hr>
+                                            <div>RUC: <label id="rucNumero"> </label></div>
+                                            <div>Nombre o Razón social: <label id="razonsocial"> </label></div>
+                                            <div> Estado: <label id="estado"> </label> </div>
+                                            <div> Dirección: <label id="direccion"> </label> </div>
+                                            <div> Departamento: <label id="departamento"> </label> </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+
+
+
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
                         <label for="dni" class="col-form-label">DNI</label>
                         <input type="text" id="dni" class="form-control" aria-describedby="passwordHelpInline" disabled>
+
+                        <div class="col-md-12">
+
+                            <!-- Botón para activar el segundo modal -->
+                            <button type="button" class="btn btn-success col-md-12" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                Verificar DNI
+                            </button>
+                         </div>
+                         <!-- Segundo Modal -->
+                        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <hr>
+
+                                    <div class="container">
+                                        <!-- <a name="" id="" class="btn btn-success" href="#" role="button" disabled>Consulta RUC</a> -->
+                                        <label style="color: purple;">RENIEC (Registro Nacional de Identificación y Estado Civil)</label>
+                                        <br>
+                                        <div class="col-md-6">
+                                            <label for="" class="form-label" style="margin-top: 5px;">Ingrese DNI a consultar</label>
+                                            <input type="text" id="dni" autocomplete="off" name="dni" class="form-control">
+                                            <br>
+                                            <button id="prueba" class="btn btn-primary">Consultar Información</button>
+
+                                            <br>
+                                            <br>
+
+                                            <h6 style="background: teal; color: white; text-align:left;" class="titulo" id="titulo">DETALLE DE LA INFORMACIÓN</h6>
+                                            <hr>
+                                            <div>Nombres:<label id="nombre"> </label></div>
+                                            <div>Apellido Paterno:<label id="apellidop"> </label></div>
+                                            <div>Apellido Materno:<label id="apellidom"> </label></div>
+                                            <div>Direccion:<label id="direccion"> </label></div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
 

@@ -14,7 +14,7 @@
         <div class="kardex__movement">
             <div class="kardex__left">
                 <h5 style="background: black; color: white; text-align:center;">MANTENIMIENTO DE PERSONAL</h5>
-
+               
                 <div class="row">
                     <div class="col-md-6">
                         <label for="number" class="col-form-label">Codigo</label>
@@ -22,6 +22,13 @@
                             <input type="number" id="codigo" class="form-control" aria-describedby="passwordHelpInline" disabled>
                         </fieldset>
                     </div>
+                    <br>
+                    <div class="col-md-12" style="margin-top: 10px;" >
+                    <button id="btnNuevo" class="btn btn-primary" type="button" onclick="botónNuevoMantenimiento()">Nuevo</button>
+                    <button id="btnGrabar" class="btn btn-success order__btn--inactive" type="button" onclick="botónGrabarMantenimiento('1')">Grabar</button>
+                    <button id="btnEditar" class="btn btn-warning order__btn--inactive" type="button" onclick="botónEditarMantenimiento()">Editar</button>
+                    <button id="btnEliminar" class="btn btn-danger order__btn--inactive" type="button" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
+                </div>
                 </div>
                 <hr>
                 <!--Buttoms  -->
@@ -114,16 +121,8 @@
                     <label for="inputPassword6" class="col-form-label">Repetir contraseña</label>
                     <input type="text" id="clave2" class="form-control" aria-describedby="passwordHelpInline" disabled>
                 </div>
-                <br>
-                <button style="width: 180px; height:35px" type="button" class="btn btn-secondary" onclick="cargarPermisosPersonal()"><i class="bi bi-person-vcard"></i><span>Permisos de Almacén</span></button>
-
-                <br>
-                <div class="col-md-12">
-                    <button id="btnNuevo" class="btn btn-primary" type="button" onclick="botónNuevoMantenimiento()">Nuevo</button>
-                    <button id="btnGrabar" class="btn btn-success order__btn--inactive" type="button" onclick="botónGrabarMantenimiento('1')">Grabar</button>
-                    <button id="btnEditar" class="btn btn-warning order__btn--inactive" type="button" onclick="botónEditarMantenimiento()">Editar</button>
-                    <button id="btnEliminar" class="btn btn-danger order__btn--inactive" type="button" onclick="botónEliminarMantenimiento('2')">Eliminar</button>
-                </div>
+              
+              
                 <hr>
 
             </div>
@@ -135,6 +134,10 @@
                         <b>
                             <!-- <h6>LISTADO DE PERSONAL</h6> -->
                             <h5 style="background: teal; color: white; text-align:left;" class="titulo">LISTADO DE PERSONAL</h5>
+                            <br>
+                <button style="width: 180px; height:35px" type="button" class="btn btn-secondary" onclick="cargarPermisosPersonal()"><i class="bi bi-person-vcard"></i><span>Permisos de Almacén</span></button>
+
+                <br>
                         </b>
                         <hr>
 
