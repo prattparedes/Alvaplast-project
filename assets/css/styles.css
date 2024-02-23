@@ -657,3 +657,7 @@ Alert
 .blue-text {
   color: blue !important;
 }
+
+#facturacionTable td {
+  text-align: center;
+}

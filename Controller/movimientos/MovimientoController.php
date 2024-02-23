@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 } else if ($_SERVER['REQUEST_METHOD'] === "GET") {
-    if (isset($_GET["fechaIni"]) && isset($_GET["fechaFin"])) {
+
         $fecha = date("Y-m-d H:i:s", strtotime(str_replace('/', '-', $_GET["fechaIni"])));
         $fechaIni = str_replace(' ', 'T', $fecha);
         $fecha2 = date("Y-m-d H:i:s", strtotime(str_replace('/', '-', $_GET["fechaFin"])));
@@ -40,5 +40,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $data = Facturacion::listarFacturacionXFecha($fechaIni, $fechaFin);
         echo json_encode($data);
-    }
+    
 }

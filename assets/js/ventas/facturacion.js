@@ -332,3 +332,95 @@ function mandarDatosKardexFact(fecha, numeroDocumento, serieDocumento, idDocumen
     };
   });
 }
+
+function buscarFacturasPorFechas() {
+  let fecha1Value = document.getElementById("fecha1").value;
+  let fecha2Value = document.getElementById("fecha2").value;
+
+  // Convertir las cadenas de fecha en objetos Date
+  let fecha1 = new Date(fecha1Value);
+  let fecha2 = new Date(fecha2Value);
+
+  // Extraer año, mes y día de las fechas
+  let formattedFecha1 =
+    fecha1.getFullYear() +
+    "-" +
+    ("0" + (fecha1.getMonth() + 1)).slice(-2) +
+    "-" +
+    ("0" + fecha1.getDate()).slice(-2);
+  let formattedFecha2 =
+    fecha2.getFullYear() +
+    "-" +
+    ("0" + (fecha2.getMonth() + 1)).slice(-2) +
+    "-" +
+    ("0" + fecha2.getDate()).slice(-2);
+
+    const xhr = new XMLHttpRequest();
+    const url = "/Alvaplast-project/Controller/movimientos/MovimientoController.php"; // Ruta del controlador PHP
+    const fullUrl = url + "?fechaIni=" + formattedFecha1 + "&fechaFin=" + formattedFecha2;
+    
+    xhr.open("GET", fullUrl, true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send();
+    
+    // Manejar la respuesta del servidor
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          ListarFacturasXFecha(JSON.parse(xhr.responseText));
+        } else {
+          console.error("Error en la solicitud.");
+        }
+      }
+    };
+}
+
+function ListarFacturasXFecha(data) {
+  var tableBody = document.querySelector('#facturacionTable tbody');
+  tableBody.innerHTML = '';
+  
+  data.forEach(function(item) {
+      var row = document.createElement('tr');
+      
+      row.innerHTML = `
+          <td>${item.id_movimiento}</td>
+          <td>${item.fecha_movimiento}</td>
+          <td>${item.Numero_Documento}</td>
+          <td>${item.Documento_Cliente}</td>
+          <td>${item.Cliente}</td>
+          <td>${item.monto}</td>
+          <td>${item.Moneda}</td>
+          <td>${item.Estado}</td>
+      `;
+      
+      tableBody.appendChild(row);
+  });
+}
+
+function filtrarRegistroFacturacion(filtro) {
+  filtro = filtro.toLowerCase();
+
+  var rows = document.querySelectorAll('#facturacionTable tbody tr');
+
+  rows.forEach(function(row) {
+      var cells = row.querySelectorAll('td');
+
+      // Inicializar una variable para rastrear si el filtro coincide con alguna celda de la fila
+      var matchFound = false;
+
+      // Iterar sobre cada celda de la fila
+      cells.forEach(function(cell) {
+          // Convertir el contenido de la celda a minúsculas para la comparación insensible a mayúsculas y minúsculas
+          var cellContent = cell.textContent.toLowerCase();
+
+          // Verificar si el filtro está contenido en el contenido de la celda
+          if (cellContent.includes(filtro)) {
+              // Si se encuentra una coincidencia, marcar que se ha encontrado una coincidencia
+              matchFound = true;
+          }
+      });
+
+      // Mostrar u ocultar la fila según si se encontró una coincidencia con el filtro
+      row.style.display = matchFound ? '' : 'none';
+  });
+}
