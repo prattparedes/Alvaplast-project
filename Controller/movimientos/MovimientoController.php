@@ -7,7 +7,7 @@ use Models\facturas\Facturacion;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Obtener los datos enviados desde el frontend
-    $idMovimiento =  isset($_POST["idMovmiento"]) && $_POST["idMovmiento"] !== "" ? $_POST["idMovmiento"] : 1;
+    $idMovimiento =  isset($_POST["idMovimiento"]) && $_POST["idMovimiento"] !== "" ? $_POST["idMovimiento"] : 1;
     $idCaja = (int) $_POST["idCaja"];
     $idOperacion = (int) $_POST["idOperacion"];
     $idAlmacen = (int) $_POST["idAlmacen"];
@@ -18,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $monto = (float) $_POST["monto"];
     $fecha = date("Y-m-d H:i:s", strtotime(str_replace('/', '-', $_POST["fecha"])));
     $fechaFormateada = str_replace(' ', 'T', $fecha);
-
     if ($_POST["metodo"] === "Grabar") {
         $response = Movimiento::registrarMovimiento($idMovimiento, $idCaja, $idOperacion, $idAlmacen, $idDocumento, $numeroDocumento, $serieDocumento, $tipoMovimiento, $monto, $fechaFormateada);
         if ($tipoMovimiento == "S") {
@@ -30,20 +29,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $data = Movimiento::obtenerUltimaOperacion();
             echo $data->id_movimiento;
         }
+    } else if ($_POST["metodo"] === "Anular" || $_POST["Eliminar"]) {
+        Movimiento::eliminarFactura($idMovimiento);
+        echo $idMovimiento;
     }
-} else if ($_SERVER['REQUEST_METHOD'] === "GET") {
+}
+if ($_SERVER['REQUEST_METHOD'] === "GET") {
     if (isset($_GET["idVenta"])) {
         $id = $_GET["idVenta"];
         $data = Facturacion::listarVentaXidVenta($id);
         echo json_encode($data);
         return;
     }
-    $fecha = date("Y-m-d H:i:s", strtotime(str_replace('/', '-', $_GET["fechaIni"])));
-    $fechaIni = str_replace(' ', 'T', $fecha);
-    $fecha2 = date("Y-m-d H:i:s", strtotime(str_replace('/', '-', $_GET["fechaFin"])));
-    $fechaFin = str_replace(' ', 'T', $fecha2);
-
-    $data = Facturacion::listarFacturacionXFecha($fechaIni, $fechaFin);
-    echo json_encode($data);
 }
-

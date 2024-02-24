@@ -19,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo json_encode($movimientos);
         return;
     }
-    print_r($_POST);
 
     $idKardex = isset($_POST["idKardex"]) && $_POST["idKardex"] !== "" ? $_POST["idKardex"] : 1;
     $fecha = date("Y-m-d H:i:s", strtotime(str_replace('/', '-', $_POST["fecha"])));
@@ -39,7 +38,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['nombre'];
     $data = Producto::buscarstock($idProducto, $idAlmacen);
     $stock = $data->stock;
-
+    echo $idKardex . "/";
+    echo $idProducto . "/";
+    echo $idAlmacen . "/";
 
     if ($_POST["metodo"] === "Grabar") {
         $response1 = Kardex::registrarKardex($idKardex, $fechaFormateada, $numeroDocumento, $serieDocumento, $idDocumento, $idProducto, $idAlmacen, $idMovimiento, $stock, $cantidad, $precio, $descuento, $tipo, $total, $ruc, $nombre);
@@ -47,9 +48,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $message = ($response) ? "todo correcto kbron" : "todo mal chabon";
         echo $message;
     } else if ($_POST["metodo"] === "Anular" || $_POST["metodo"] === "Eliminar") {
+        $fechaK = Facturacion::obtenerFecha($idKardex, $idProducto, $idAlmacen);
         $result = Kardex::eliminarKardex($idKardex, $idProducto, $idAlmacen);
-        //$fechaK = Facturacion::obtenerFecha($idKardex, $idProducto, $idAlmacen);
-        //Kardex::regularizarKardexFecha($idProducto, $idAlmacen, $fechaK);
+        if ($result) {
+            Kardex::regularizarKardexFecha($idProducto, $idAlmacen, $fechaK);
+            echo "logrado el eliminado";
+        }
     }
 } else if ($_SERVER['REQUEST_METHOD'] === "GET") {
     if (isset($_GET["idMovimiento"])) {

@@ -67,4 +67,16 @@ class Movimiento
             echo $err->getMessage();
         }
     }
+
+    public static function eliminarFactura(int $idMovimiento)
+    {
+        try {
+            $con = Connection::Conectar();
+            $stmt = $con->prepare(" update Movimiento set estado = 0 where id_movimiento = :idMovimiento ");
+            $stmt->bindParam(":idMovimiento", $idMovimiento, PDO::PARAM_INT);
+            $stmt->execute();
+        } catch (PDOException $err) {
+            echo $err->getMessage();
+        }
+    }
 }

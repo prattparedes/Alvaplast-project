@@ -33,7 +33,7 @@
 
                         <div class="" style="width: 90px; margin-left:-15px">
                             <fieldset disabled>
-                                <input type="number" id="numeroDocumento" placeholder="001" class="form-control" aria-describedby="passwordHelpInline" disabled>
+                                <input type="number" id="numeroDocumento" value="001" class="form-control" aria-describedby="passwordHelpInline" disabled>
                                 <input type="hidden" id="tipoOperacion" value="E">
                             </fieldset>
                         </div>
@@ -48,13 +48,13 @@
                     </div>
                 </div>
                 <div class="col-md-12" style="margin-top: 7px;">
-                            <a style="width: 80px;" id="" class="btn btn-primary me-2" href="#" role="button" onclick="NuevaFacturación()">Nuevo</a>
-                            <a style="width: 75px;margin-left:-10px;" type="button" class="btn btn-success me-2 bill_submit">Grabar</a>
-                            <a style="width: 70px;margin-left:-10px;" name="" id="" class="btn btn-warning me-2" href="#" role="button">Anular</a>
-                            <a style="width: 80px;margin-left:-10px;" name="" id="" class="btn btn-danger" href="#" role="button">Eliminar</a>
-                            <a style="width: 80px;margin-left:-3px;" name="" id="" class="btn btn-info" href="#" role="button">Imprimir</a>
-                            <a style="width: 80px;" style="margin-left:8px" class="btn btn-secondary me-2" href="#" onclick="loadContent('views/modals/filtroregistrofacturacion.php')" role="button">Buscar</a>
-                        </div>
+                    <a style="width: 80px;" id="" class="btn btn-primary me-2" href="#" role="button" onclick="NuevaFacturación()">Nuevo</a>
+                    <a style="width: 75px;margin-left:-10px;" type="button" class="btn btn-success me-2 bill_submit">Grabar</a>
+                    <a style="width: 70px;margin-left:-10px;" name="" id="" class="btn btn-warning me-2 bill_submit" href="#" role="button">Anular</a>
+                    <a style="width: 80px;margin-left:-10px;" name="" id="" class="btn btn-danger bill_submit" href="#" role="button">Eliminar</a>
+                    <a style="width: 80px;margin-left:-3px;" name="" id="" class="btn btn-info" href="#" role="button">Imprimir</a>
+                    <a style="width: 80px;" style="margin-left:8px" class="btn btn-secondary me-2" href="#" onclick="loadContent('views/modals/filtroregistrofacturacion.php')" role="button">Buscar</a>
+                </div>
 
 
                 <hr style="margin-top: 12px;">
@@ -72,7 +72,7 @@
                     <div class="col-md-12">
                         <label for="inputPassword6" class="col-form-label">Almacen</label>
                         <select id="almacen" class="form-select" disabled>
-                           
+
                             <?php
                             $almacenes = Almacen::getAlmacenes();
                             foreach ($almacenes as $almacen) { ?>
@@ -225,7 +225,7 @@
                             $transportistas = Transportistas::getTransportistas();
                             foreach ($transportistas as $transportista) { ?>
                                 <option value="<?= $transportista->id_transportista ?>" data-ruc="<?= $transportista->ruc ?>" data-dni="<?= $transportista->dni ?>"><?= $transportista->nombres . " " . $transportista->ap_paterno . " " . $transportista->ap_materno ?></option>
-                                
+
                             <?php } ?>
                         </select>
                     </div>
@@ -287,7 +287,7 @@
                     <div style="display:flex; flex-direction:column; margin-top:4px">
 
 
-                       
+
                         <hr>
                     </div>
                 </div>

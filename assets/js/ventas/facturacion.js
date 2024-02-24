@@ -134,7 +134,7 @@ function rellenarFormularioFacturación(
   almacenSelect.value = datosVenta[0].id_almacen;
   fechaInput.value = datosVenta[0].fecha_emision;
   tipoDocumentoInput.value = datosVenta[0].id_tipodocumento;
-
+  seleccionarTipoDocumentoFacturacion("001");
   // Rellenar Productos
   const tablaProductos = document.getElementById("ordertable");
   tablaProductos.querySelector("tbody").innerHTML = "";
@@ -262,6 +262,8 @@ function selectChofer() {
 document.querySelector(".main__content").addEventListener("click", function (event) {
   if (event.target.classList.contains("bill_submit")) {
     event.preventDefault();
+    const idKardex = document.getElementById("idKardex").value
+    var idMovimiento = document.getElementById("idMovimiento").value
     const idCaja = document.getElementById("caja").value
     const idOperacion = document.getElementById("idVenta").value
     const idAlmacen = document.getElementById("almacen").value
@@ -273,12 +275,13 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     const fecha = document.getElementById("fecha").value
     const metodo = event.target.innerHTML
     const ruc = document.getElementById("rucDni").value
+    console.log(idKardex);
     const xhr = new XMLHttpRequest();
     const url = "/Alvaplast-project/Controller/movimientos/MovimientoController.php";
     xhr.open("POST", url, true)
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     if (idCaja, idOperacion) {
-      xhr.send("idCaja=" + idCaja + "&idOperacion=" + idOperacion + "&idAlmacen=" + idAlmacen + "&idDocumento=" + idDocumento + "&numeroDocumento=" + numeroDocumento + "&serieDocumento=" + serieDocumento + "&tipoMovimiento=" + tipoMovimiento + "&monto=" + monto + "&fecha=" + fecha + "&metodo=" + metodo);
+      xhr.send("idCaja=" + idCaja + "&idOperacion=" + idOperacion + "&idAlmacen=" + idAlmacen + "&idDocumento=" + idDocumento + "&numeroDocumento=" + numeroDocumento + "&serieDocumento=" + serieDocumento + "&tipoMovimiento=" + tipoMovimiento + "&monto=" + monto + "&fecha=" + fecha + "&metodo=" + metodo + "&idMovimiento=" + idMovimiento);
     } else {
       alert("faltan datos")
     }
@@ -290,7 +293,13 @@ document.querySelector(".main__content").addEventListener("click", function (eve
           console.log(xhr.responseText);
           //Envio de los datos de CompraProducto
           var idMovimiento = xhr.responseText;
-          mandarDatosKardexFact(fecha, numeroDocumento, serieDocumento, idDocumento, idAlmacen, idMovimiento, monto, ruc, metodo)
+          if (metodo == "Grabar") {
+            mandarDatosKardexFact(1, fecha, numeroDocumento, serieDocumento, idDocumento, idAlmacen, idMovimiento, monto, ruc, metodo)
+            alert("Se grabo correctamente la factura")
+          } else if (metodo == "Anular " || "Eliminar") {
+            mandarDatosKardexFact(idKardex, fecha, numeroDocumento, serieDocumento, idDocumento, idAlmacen, idMovimiento, monto, ruc, metodo)
+            alert("Se elimino la factura hecha")
+          }
         } else {
           // Hubo un error en la solicitud
           console.error('Error en la solicitud.');
@@ -300,7 +309,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
   }
 });
 
-function mandarDatosKardexFact(fecha, numeroDocumento, serieDocumento, idDocumento, idAlmacen, idMovimiento, total, rucDni, metodo) {
+function mandarDatosKardexFact(idKardex, fecha, numeroDocumento, serieDocumento, idDocumento, idAlmacen, idMovimiento, total, rucDni, metodo) {
   const tabla = document.getElementById("ordertable");
   const filas = tabla.querySelectorAll("tbody tr");
 
@@ -322,7 +331,7 @@ function mandarDatosKardexFact(fecha, numeroDocumento, serieDocumento, idDocumen
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     if (precioCompra) {
       //Enviamos los datos al controlador
-      http.send("fecha=" + fecha + "&numeroDocumento=" + numeroDocumento + "&serieDocumento=" + serieDocumento + "&idDocumento=" + idDocumento + "&idProducto=" + idProducto + "&idAlmacen=" + idAlmacen + "&idMovimiento=" + idMovimiento + "&cantidad=" + cantidad + "&precio=" + precioCompra + "&descuento=" + descuento + "&tipo=" + tipo + "&total=" + total + "&ruc=" + rucDni + "&nombre=" + nombreProducto + "&metodo=" + metodo);
+      http.send("fecha=" + fecha + "&numeroDocumento=" + numeroDocumento + "&serieDocumento=" + serieDocumento + "&idDocumento=" + idDocumento + "&idProducto=" + idProducto + "&idAlmacen=" + idAlmacen + "&idMovimiento=" + idMovimiento + "&cantidad=" + cantidad + "&precio=" + precioCompra + "&descuento=" + descuento + "&tipo=" + tipo + "&total=" + total + "&ruc=" + rucDni + "&nombre=" + nombreProducto + "&metodo=" + metodo + "&idKardex=" + idKardex);
     } else {
       alert("faltan datos");
     }
@@ -369,11 +378,11 @@ function mandarDatosKardexFact(fecha, numeroDocumento, serieDocumento, idDocumen
 //     const xhr = new XMLHttpRequest();
 //     const url = "/Alvaplast-project/Controller/movimientos/MovimientoController.php"; // Ruta del controlador PHP
 //     const fullUrl = url + "?fechaIni=" + formattedFecha1 + "&fechaFin=" + formattedFecha2;
-    
+
 //     xhr.open("GET", fullUrl, true);
 //     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 //     xhr.send();
-    
+
 //     // Manejar la respuesta del servidor
 //     xhr.onreadystatechange = function () {
 //       if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -389,10 +398,10 @@ function mandarDatosKardexFact(fecha, numeroDocumento, serieDocumento, idDocumen
 // function ListarFacturasXFecha(data) {
 //   var tableBody = document.querySelector('#facturacionTable tbody');
 //   tableBody.innerHTML = '';
-  
+
 //   data.forEach(function(item) {
 //       var row = document.createElement('tr');
-      
+
 //       row.innerHTML = `
 //           <td>${item.id_movimiento}</td>
 //           <td>${item.fecha_movimiento}</td>
@@ -403,7 +412,7 @@ function mandarDatosKardexFact(fecha, numeroDocumento, serieDocumento, idDocumen
 //           <td>${item.Moneda}</td>
 //           <td>${item.Estado}</td>
 //       `;
-      
+
 //       tableBody.appendChild(row);
 //   });
 // }
@@ -413,26 +422,26 @@ function filtrarRegistroFacturacion(filtro) {
 
   var rows = document.querySelectorAll('#detalle_venta tr');
 
-  rows.forEach(function(row) {
-      var cells = row.querySelectorAll('td');
+  rows.forEach(function (row) {
+    var cells = row.querySelectorAll('td');
 
-      // Inicializar una variable para rastrear si el filtro coincide con alguna celda de la fila
-      var matchFound = false;
+    // Inicializar una variable para rastrear si el filtro coincide con alguna celda de la fila
+    var matchFound = false;
 
-      // Iterar sobre cada celda de la fila
-      cells.forEach(function(cell) {
-          // Convertir el contenido de la celda a minúsculas para la comparación insensible a mayúsculas y minúsculas
-          var cellContent = cell.textContent.toLowerCase();
+    // Iterar sobre cada celda de la fila
+    cells.forEach(function (cell) {
+      // Convertir el contenido de la celda a minúsculas para la comparación insensible a mayúsculas y minúsculas
+      var cellContent = cell.textContent.toLowerCase();
 
-          // Verificar si el filtro está contenido en el contenido de la celda
-          if (cellContent.includes(filtro)) {
-              // Si se encuentra una coincidencia, marcar que se ha encontrado una coincidencia
-              matchFound = true;
-          }
-      });
+      // Verificar si el filtro está contenido en el contenido de la celda
+      if (cellContent.includes(filtro)) {
+        // Si se encuentra una coincidencia, marcar que se ha encontrado una coincidencia
+        matchFound = true;
+      }
+    });
 
-      // Mostrar u ocultar la fila según si se encontró una coincidencia con el filtro
-      row.style.display = matchFound ? '' : 'none';
+    // Mostrar u ocultar la fila según si se encontró una coincidencia con el filtro
+    row.style.display = matchFound ? '' : 'none';
   });
 }
 
@@ -442,7 +451,7 @@ async function seleccionarFactura(fila) {
   // URLs dinámicas basadas en los valores extraídos
   const urlVenta = `http://localhost/Alvaplast-project/Controller/ventas/VentaController.php?idVenta=${idVenta}`;
   const urlVentaProducto = `http://localhost/Alvaplast-project/Controller/ventas/VentaProductoController.php?idVenta=${idVenta}`;
-  const urlMovimiento = `/Alvaplast-project/Controller/movimientos/MovimientoController.php?idVenta=${idVenta}`;
+  const urlMovimiento = `http://localhost/Alvaplast-project/Controller/movimientos/MovimientoController.php?idVenta=${idVenta}`;
 
   try {
     // Realizar las solicitudes fetch para obtener los datos de Venta, Venta Producto y Movimiento

@@ -79,13 +79,12 @@ class Kardex
     {
         try {
             $con = Connection::Conectar();
-            $stmt = $con->prepare("exec sp_Eliminarkardex :idKardex, :idProducto, :idAlmacen");
+            $stmt = $con->prepare("DELETE FROM Kardex WHERE id_kardex= :idKardex AND id_producto=:idProducto AND id_almacen=:idAlmacen");
             $stmt->bindParam(":idKardex", $idKardex, PDO::PARAM_INT);
             $stmt->bindParam(":idProducto", $idProducto, PDO::PARAM_INT);
             $stmt->bindParam(":idAlmacen", $idAlmacen, PDO::PARAM_INT);
             $stmt->execute();
-
-            $result = ($stmt->rowCount() > 0);
+            $result = ($stmt->rowCount() > 0) ? true : false;
             return $result;
         } catch (PDOException $err) {
             echo $err->getMessage();

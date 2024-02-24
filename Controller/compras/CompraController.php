@@ -1,4 +1,4 @@
-    <?php
+<?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
 
 use Models\compras\Compra;
@@ -43,8 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
     echo $message;
-}
-if ($_SERVER["REQUEST_METHOD"] === "GET") {
+} elseif ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (isset($_GET["idCompra"]) && $_GET["idCompra"] !== 999999999) {
         $idCompra = $_GET["idCompra"];
         $data = Compra::ListarCompraXid($idCompra);

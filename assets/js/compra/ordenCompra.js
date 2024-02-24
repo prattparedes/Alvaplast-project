@@ -25,6 +25,7 @@ function nuevaOrdenCompra() {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
         // Puedes manejar la respuesta del servidor aquí
+        console.log(xhr.responseText);
         document.getElementById("idCompra").value = xhr.responseText.replace(
           /^"|"$/g,
           ""
