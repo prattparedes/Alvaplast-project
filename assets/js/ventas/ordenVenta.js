@@ -528,6 +528,7 @@ function restaurarCopiaSeguridadVenta(formulario) {
 // Función para pasar los datos obtenidos de la lista de ventas al formulario de ventas
 function rellenarFormularioVenta(datosVenta, datosProductos, datosCliente) {
   const clienteInput = document.getElementById("cliente");
+  const idClienteInput = document.getElementById("idcliente");
   const direccionInput = document.getElementById("direccion");
   const sucursalSelect = document.getElementById("sucursal");
   const monedaSelect = document.getElementById("moneda");
@@ -545,10 +546,11 @@ function rellenarFormularioVenta(datosVenta, datosProductos, datosCliente) {
   const tipoDocumentoInput = document.getElementById("tipoDocumento");
 
   //Rellenar Formulario
-  console.log(datosVenta[0]);
+  console.log(datosCliente);
   serieDocumentoInput.value = datosVenta[0].serie_documento;
   idVentaInput.value = datosVenta[0].id_venta;
   clienteInput.value = datosCliente.razon_social;
+  idClienteInput.value = datosCliente.id_cliente;
 
   if (datosCliente.tipo_cliente === "N") {
     rucDni.value = datosCliente.dni;

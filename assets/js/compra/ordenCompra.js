@@ -5,6 +5,7 @@ function nuevaOrdenCompra() {
   document.getElementById("moneda").value = "1";
   document.getElementById("sucursal").value = "1";
   document.getElementById("almacen").value = "1";
+  document.getElementById("tipoPago").value = "E";
 
   activarInputs();
   document
@@ -35,6 +36,9 @@ function nuevaOrdenCompra() {
       }
     }
   };
+
+  document.getElementById("overlay").style.display = "none";
+  document.getElementById("alertModal").style.display = "none";
 }
 
 // Función para ir al listado de proveedores
@@ -423,12 +427,12 @@ function restaurarCopiaSeguridadCompra(formulario) {
           nuevaCelda.textContent = columna;
           break;
         case 2:
-          nuevaCelda.setAttribute('ondblclick', 'seleccionarCelda(this)')
+          nuevaCelda.setAttribute("ondblclick", "seleccionarCelda(this)");
           nuevaCelda.classList.add("textcenter");
           nuevaCelda.textContent = columna;
           break;
         case 4:
-          nuevaCelda.setAttribute('ondblclick', 'seleccionarCelda(this)')
+          nuevaCelda.setAttribute("ondblclick", "seleccionarCelda(this)");
           nuevaCelda.textContent = columna;
           nuevaCelda.classList.add("textright");
           break;
@@ -644,38 +648,39 @@ function añadirProductoOrdenCompra() {
 
         const tablaExterna = document
           .getElementById("ordertable")
-          .getElementsByTagName("tbody")[0]; function seleccionarFila(fila) {
-            // Convertir la lista estática en un array
-            const columnas = Array.from(fila.querySelectorAll("td"));
+          .getElementsByTagName("tbody")[0];
+        function seleccionarFila(fila) {
+          // Convertir la lista estática en un array
+          const columnas = Array.from(fila.querySelectorAll("td"));
 
-            // Verificar si alguna columna está seleccionada
-            const estaSeleccionada = columnas.some((columna) => {
-              return columna.classList.contains("columna__seleccionada");
+          // Verificar si alguna columna está seleccionada
+          const estaSeleccionada = columnas.some((columna) => {
+            return columna.classList.contains("columna__seleccionada");
+          });
+
+          // Si la fila está seleccionada, deseleccionarla
+          if (estaSeleccionada) {
+            columnas.forEach((columna) => {
+              columna.classList.remove("columna__seleccionada");
             });
+          } else {
+            // Si la fila no está seleccionada, seleccionarla
+            // Obtener todas las filas de la tabla
+            const filas = fila.parentElement.querySelectorAll("tr");
 
-            // Si la fila está seleccionada, deseleccionarla
-            if (estaSeleccionada) {
-              columnas.forEach((columna) => {
+            // Deseleccionar todas las filas
+            filas.forEach((fila) => {
+              fila.querySelectorAll("td").forEach((columna) => {
                 columna.classList.remove("columna__seleccionada");
               });
-            } else {
-              // Si la fila no está seleccionada, seleccionarla
-              // Obtener todas las filas de la tabla
-              const filas = fila.parentElement.querySelectorAll("tr");
+            });
 
-              // Deseleccionar todas las filas
-              filas.forEach((fila) => {
-                fila.querySelectorAll("td").forEach((columna) => {
-                  columna.classList.remove("columna__seleccionada");
-                });
-              });
-
-              // Seleccionar la fila deseada
-              columnas.forEach((columna) => {
-                columna.classList.add("columna__seleccionada");
-              });
-            }
+            // Seleccionar la fila deseada
+            columnas.forEach((columna) => {
+              columna.classList.add("columna__seleccionada");
+            });
           }
+        }
 
         const nuevaFila = tablaExterna.insertRow();
         nuevaFila.setAttribute("onclick", "seleccionarFila(this)");
@@ -695,11 +700,11 @@ function añadirProductoOrdenCompra() {
               break;
             case 2:
               celda.classList.add("textcenter");
-              celda.setAttribute('ondblclick', 'seleccionarCelda(this)')
+              celda.setAttribute("ondblclick", "seleccionarCelda(this)");
               celda.textContent = contenido;
               break;
             case 4:
-              celda.setAttribute('ondblclick', 'seleccionarCelda(this)')
+              celda.setAttribute("ondblclick", "seleccionarCelda(this)");
               celda.textContent = contenido;
               celda.classList.add("textright");
               break;
@@ -847,10 +852,36 @@ document
       console.log(metodo, fecha, tipoPago);
       if (idCompra && idAlmacen) {
         // Enviar los datos del formulario incluyendo descripcion y abreviatura
-        xhr.send("idCompra=" + idCompra + "&fecha=" + fecha + "&total=" + total + "&subtotal=" + subtotal + "&igv=" + igv + "&idMoneda=" + idMoneda + "&numeroDocumento=" + numeroDocumento + "&serieDocumento=" + serieDocumento + "&idProveedor=" + idProveedor + "&idAlmacen=" + idAlmacen + "&tipoPago=" + tipoPago + "&idPersonal=" + idPersonal + "&metodo=" + metodo);
-
+        xhr.send(
+          "idCompra=" +
+            idCompra +
+            "&fecha=" +
+            fecha +
+            "&total=" +
+            total +
+            "&subtotal=" +
+            subtotal +
+            "&igv=" +
+            igv +
+            "&idMoneda=" +
+            idMoneda +
+            "&numeroDocumento=" +
+            numeroDocumento +
+            "&serieDocumento=" +
+            serieDocumento +
+            "&idProveedor=" +
+            idProveedor +
+            "&idAlmacen=" +
+            idAlmacen +
+            "&tipoPago=" +
+            tipoPago +
+            "&idPersonal=" +
+            idPersonal +
+            "&metodo=" +
+            metodo
+        );
       } else {
-        alert("faltan datos")
+        alert("faltan datos");
       }
       // Manejar la respuesta del servidor
       xhr.onreadystatechange = function () {
@@ -863,11 +894,15 @@ document
             if (metodo == "Eliminar") {
               loadContent("views/compras/ordenCompra.php");
             }
-            RegistrarDatosTablaCompra(idCompra, metodo, idAlmacen, nombreAlmacen);
-            //RegistrarDatosTabla(idCompra, metodo);
+            RegistrarDatosTablaCompra(
+              idCompra,
+              metodo,
+              idAlmacen,
+              nombreAlmacen
+            );
           } else {
             // Hubo un error en la solicitud
-            console.error('Error en la solicitud.');
+            console.error("Error en la solicitud.");
           }
         }
       };
@@ -875,8 +910,13 @@ document
   });
 
 async function registrarCompraKardex() {
+  // Cerramos el alert
+  document.getElementById("overlay").style.display = "none";
+  document.getElementById("alertModal").style.display = "none";
+
   let idCompra = document.getElementById("idCompra").value;
-  obtenerDatosOCKardex(idCompra);
+  // Esperar a que se complete obtenerDatosOCKardex
+  await obtenerDatosOCKardex(idCompra);
 }
 
 function RegistrarDatosTablaCompra(idCompra, metodo, idalmacen, almacen) {
@@ -901,7 +941,28 @@ function RegistrarDatosTablaCompra(idCompra, metodo, idalmacen, almacen) {
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     if (precioCompra && subTotal) {
       //Enviamos los datos al controlador
-      http.send("idCompra=" + idCompra + "&idProducto=" + idProducto + "&cantidad=" + cantidad + "&precioCompra=" + precioCompra + "&descuento=" + descuento + "&subtotal=" + subTotal + " &metodo=" + metodo + "&idAlmacen=" + idalmacen + "&nombreProducto=" + nombreProducto + "&nombreAlmacen=" + almacen);
+      http.send(
+        "idCompra=" +
+          idCompra +
+          "&idProducto=" +
+          idProducto +
+          "&cantidad=" +
+          cantidad +
+          "&precioCompra=" +
+          precioCompra +
+          "&descuento=" +
+          descuento +
+          "&subtotal=" +
+          subTotal +
+          " &metodo=" +
+          metodo +
+          "&idAlmacen=" +
+          idalmacen +
+          "&nombreProducto=" +
+          nombreProducto +
+          "&nombreAlmacen=" +
+          almacen
+      );
     } else {
       alert("faltan datos");
     }
@@ -915,7 +976,7 @@ function RegistrarDatosTablaCompra(idCompra, metodo, idalmacen, almacen) {
 
           // Envío a Kardex
           if (metodo === "Grabar") {
-
+            abrirAlertaConfirmación("Deseas registrar la compra en Kardex?", registrarCompraKardex, nuevaOrdenCompra);
           }
         } else {
           // Hubo un error en la solicitud
@@ -971,4 +1032,109 @@ function cambiarMoneda(moneda) {
     igvTd.textContent = "IGV $";
     totalTd.textContent = "Total $";
   }
+}
+
+//Repote compras---------------------------
+function exportarTablaExcelorden() {
+  // Obtener la fecha y hora del sistema
+  var fechaHora = new Date().toLocaleString();
+
+  // Crear una hoja de cálculo nueva
+  var workbook = XLSX.utils.book_new();
+
+  // Obtener los datos de la tabla
+  var tbody = document.getElementById("ordertable").getElementsByTagName("tbody")[0];
+  var tfoot = document.getElementById("ordertable").getElementsByTagName("tfoot")[0];
+  var data = [];
+
+  // Agregar título y dirección
+  var titleRow = ["AlvaPlastic"];
+  data.push(titleRow);
+  var contenido = "AV. CANTO GRANDE Nº 3546-3548 S.J.L - Telf. 2787802 / 947316259";
+  var direccion = [contenido];
+  data.push(direccion);
+
+  // Agregar proveedor y autorizado
+  var proveedor = ["PROVEEDOR:"];
+  data.push(proveedor);
+  var autorizado = ["AUTORIZADO: SUSAN PAREDES VILLANUEVA"];
+  data.push(autorizado);
+
+  // Agregar espacio vacío
+  var vac = [""];
+  data.push(vac);
+
+  // Agregar fecha y hora del sistema
+  var fechaHoraRow = ["Fecha/Hora:", fechaHora];
+  data.push(fechaHoraRow);
+
+  // Agregar fila de encabezados
+  var encabezados = ["Producto", "Cantidad", "Unidad", "PreCompra", "Descuento", "Total"];
+  data.push(encabezados);
+
+  // Iterar sobre las filas de la tabla (tbody)
+  for (var i = 0; i < tbody.rows.length; i++) {
+      var rowData = [];
+      var cells = tbody.rows[i].cells;
+
+      // Iterar sobre las celdas de cada fila, comenzando desde la segunda celda
+      for (var j = 1; j < cells.length; j++) {
+          rowData.push(cells[j].textContent);
+      }
+
+      // Agregar los datos de la fila al conjunto de datos
+      data.push(rowData);
+  }
+
+  // Iterar sobre las filas del tfoot
+  for (var i = 0; i < tfoot.rows.length; i++) {
+      var rowData = [];
+      var cells = tfoot.rows[i].cells;
+
+      // Agregar celdas en blanco antes de las celdas con contenido
+      for (var k = 0; k < 4; k++) {
+          rowData.push("");
+      }
+
+      // Iterar sobre las celdas de cada fila
+      for (var j = 0; j < cells.length; j++) {
+          rowData.push(cells[j].textContent);
+      }
+
+      // Agregar los datos de la fila al conjunto de datos
+      data.push(rowData);
+  }
+
+  // Convertir los datos a un formato de hoja de cálculo
+  var worksheet = XLSX.utils.aoa_to_sheet(data);
+
+  // Ajustar automáticamente el ancho de las columnas
+  var columnWidths = getColumnWidths(data);
+  worksheet['!cols'] = columnWidths;
+
+  // Agregar la hoja al libro de trabajo
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Datos");
+
+  // Generar el archivo Excel y guardarlo en el cliente
+  XLSX.writeFile(workbook, "OrdenCompra" + ".xlsx");
+}
+
+
+//-------------------------------------------------------------------
+
+// Función para calcular el ancho de las columnas basado en el contenido
+function getColumnWidths(data) {
+  var widths = [];
+  for (var i = 0; i < data[0].length; i++) {
+      var maxLength = 0;
+      for (var j = 0; j < data.length; j++) {
+          var length = data[j][i] ? data[j][i].toString().length : 0;
+          if (length > maxLength) {
+              maxLength = length;
+          }
+      }
+      var width = { wch: maxLength + 2 }; // Add extra padding
+      widths.push(width);
+  }
+  return widths;
 }

@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else if ($_POST["metodo"] === "modificar") {
         $result = Compra::ModificarCompra($idCompra, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $idProveedor, $idAlmacen, $tipoPago, $idPersonal);
         CompraProducto::EliminarProductoXcompra($idCompra);
-        $message = ($result) ? "Compra editada" : "error en la compra chaval";
+        $message = ($result) ? "Compra editada" : "error al editar compra";
     } else if ($_POST["metodo"] == "Eliminar") {
         $result = Compra::EliminarCompra($idCompra, $idPersonal);
         $message = ($result) ? "Compra eliminada" : "error al eliminar compra";

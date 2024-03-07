@@ -104,150 +104,20 @@ function ListarDocumentosVentas() {
   };
 }
 
-
-//-----
-//----
-
-//--
-// function filtrarFacturacion() {
-//   const filtroInput = document.getElementById("filtroProductos");
-//   const filtro = filtroInput.value.toLowerCase().trim();
-
-//   const filasProductos = document.querySelectorAll("#estadofacturacion--table tbody tr");
-
-//   filasProductos.forEach((fila) => {
-//     const nombreProducto = fila
-//       .querySelector("td:nth-child(2)")
-//       .textContent.toLowerCase()
-//       .trim();
-
-//     if (nombreProducto.includes(filtro)) {
-//       fila.style.display = "table-row";
-//     } else {
-//       fila.style.display = "none";
-//     }
-//   });
-// }
+//----------------------------------------------------------------------------
+// window.jsPDF = window.jspdf.jsPDF;
 
 // Función para exportar la tabla a PDF
-window.jsPDF = window.jspdf.jsPDF;
-function exportarPDFD() {
 
-  const fecha1 = new Date(document.getElementById("fecha1").value);
-  const fecha2 = new Date(document.getElementById("fecha2").value);
-
-  // Ajustar la zona horaria sumando 5 horas (GMT-0500)
-  const ajusteHorario = 5 * 60 * 60 * 1000; // 5 horas en milisegundos
-  const fecha1Ajustada = new Date(fecha1.getTime() + ajusteHorario);
-  const fecha2Ajustada = new Date(fecha2.getTime() + ajusteHorario);
-
-  //Fecha por día mes y año
-  const fechaFormateada1 = fecha1Ajustada.toLocaleDateString("es-ES", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-  const fechaFormateada2 = fecha2Ajustada.toLocaleDateString("es-ES", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  });
-
-  // Crear un objeto jsPDF
-  const doc = new jsPDF();
-
-  // Título del documento
-  // doc.text(
-  //   "Movimientos de " +
-  //     productoSeleccionado +
-  //     " (Almacén " +
-  //     AlmacenSeleccionado +
-  //     ")",
-  //   14,
-  //   10
-  // ); // Texto y posición
-  if (
-    !(
-      fechaFormateada1 === "Invalid Date" || fechaFormateada2 === "Invalid Date"
-    )
-  ) {
-    doc.text(
-      "Desde: " + fechaFormateada1 + " Hasta: " + fechaFormateada2,
-      14,
-      20
-    ); // Texto y posición
-  }
-
-  // Encabezados de la tabla
-  const headers = [
-    "Movimiento",
-    "Documento",
-    "Correlativo",
-    "Razón Social",
-    "Monto",
-    
-  ];
-
-  // Obtener todas las filas de la tabla
-  const filas = document.querySelectorAll("#regulardocumento--table tbody tr");
-  console.log(filas)
-  // Crear un array de datos de las filas visibles
-  const datosFilas = [];
-  filas.forEach((fila) => {
-    if (window.getComputedStyle(fila).display !== "none") {
-      const contenido = fila.innerText || fila.textContent;
-      datosFilas.push(contenido.split("\t")); // Usar solo split("\t")
-    }
-  });
-
-  console.log(datosFilas);
-  // Configurar tamaño de fuente para las filas
-  const fontSize = 10; // Tamaño de fuente para las filas
-  doc.setFontSize(fontSize);
-
-  if (
-    !(
-      fechaFormateada1 === "Invalid Date" || fechaFormateada2 === "Invalid Date"
-    )
-  ) {
-    // Agregar las filas al PDF usando autoTable
-    doc.autoTable({
-      head: [headers], // Encabezados de la tabla
-      body: datosFilas, // Datos de las filas visibles
-      margin: { top: 25 }, // Margen superior para dejar espacio para el título
-      styles: {
-        fontSize: 7, // Tamaño de fuente para las filas
-        overflow: "ellipsize", // Controlar el desbordamiento de texto
-      },
-    });
-  } else {
-    // Agregar las filas al PDF usando autoTable
-    doc.autoTable({
-      head: [headers], // Encabezados de la tabla
-      body: datosFilas, // Datos de las filas visibles
-      margin: { top: 15 }, // Margen superior para dejar espacio para el título
-      styles: {
-        fontSize: 7, // Tamaño de fuente para las filas
-        overflow: "ellipsize", // Controlar el desbordamiento de texto
-      },
-      columnStyles: {
-        // Establecer estilos específicos para ciertas columnas si es necesario
-        0: { fontStyle: "bold" },
-        // ... otras columnas si es necesario
-      },
-    });
-  }
-
-  // Guardar el PDF como una cadena de datos (blob)
-  const pdfData = doc.output();
-
-  // Crear un objeto blob con los datos del PDF
-  const blob = new Blob([pdfData], { type: "application/pdf" });
-
-  // Crear una URL para el objeto blob
-  const url = URL.createObjectURL(blob);
-
-  // Abrir la URL en una nueva ventana del navegador
-  window.open(url);
+function exportarRegularPDF() {
+  var doc = new jsPDF();
+  var tabla = document.getElementById('regulardocumento--table');
+  doc.autoTable({ html: tabla });
+  
+  // Mostrar el PDF en una nueva ventana emergente
+  doc.output('dataurlnewwindow');
+  
+  // Guardar el PDF en un archivo
+  // doc.save('tabla.pdf');
 }
 

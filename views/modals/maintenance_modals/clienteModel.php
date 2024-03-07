@@ -72,7 +72,7 @@
                                             <button id="pruebaruc" class="btn btn-primary">Consultar Información</button>
                                             <br><br>
 
-                                            <h6 style="background: teal; color: white; text-align:left;" class="titulo" id="titulo">DETALLE DE LA INFORMACIÓN</h6>
+                                            <h6 style="background: teal; color: white; text-align: center; height: 30px; line-height: 30px;" class="titulo" id="titulo">DETALLE DE LA INFORMACIÓN</h6>
                                             <hr>
                                             <div>RUC: <label id="rucNumero"> </label></div>
                                             <div>Nombre o Razón social: <label id="razonsocial"> </label></div>
@@ -88,7 +88,7 @@
 
 
 
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -106,8 +106,11 @@
                             <button type="button" class="btn btn-success col-md-12" style="margin-top:5px" data-bs-toggle="modal" data-bs-target="#exampleModal2">
                                 Verificar DNI
                             </button>
-                         </div>
-                         <!-- Segundo Modal -->
+                            <a href="./views/modals/dni.php" type="button" class="btn btn-primary col-md-12"  style="margin-top:5px">Verificar Datos
+                            </a>
+                            
+                        </div>
+                        <!-- Segundo Modal -->
                         <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel2" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
@@ -116,23 +119,29 @@
                                     <div class="container">
                                         <!-- <a name="" id="" class="btn btn-success" href="#" role="button" disabled>Consulta RUC</a> -->
                                         <label style="color: purple;">RENIEC (Registro Nacional de Identificación y Estado Civil)</label>
+
                                         <br>
-                                        <div class="col-md-6">
+                                        <div class="col-md-8">
                                             <label for="" class="form-label" style="margin-top: 5px;">Ingrese DNI a consultar</label>
                                             <input type="text" id="dni" autocomplete="off" name="dni" class="form-control">
                                             <br>
-                                            <button id="prueba" class="btn btn-primary">Consultar Información</button>
+                                            
+                                            <a name="" id="" class="btn btn-primary"href="dni.php"role="button">Consultar Información</a>
+                                            
+
 
                                             <br>
                                             <br>
 
-                                            <h6 style="background: teal; color: white; text-align:left;" class="titulo" id="titulo">DETALLE DE LA INFORMACIÓN</h6>
+                                            <h6 style="background: teal; color: white; text-align: center; height: 30px; line-height: 30px;" class="titulo" id="titulo">DETALLE DE LA INFORMACIÓN</h6>
                                             <hr>
                                             <div>Nombres:<label id="nombre"> </label></div>
                                             <div>Apellido Paterno:<label id="apellidop"> </label></div>
                                             <div>Apellido Materno:<label id="apellidom"> </label></div>
-                                            <div>Direccion:<label id="direccion"> </label></div>
+
+
                                         </div>
+
                                     </div>
 
 

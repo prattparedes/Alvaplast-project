@@ -29,26 +29,7 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
   <!-- Bootstrap theme -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
-
-
-
-
-
-
-
-
-
-  <!-- <script>
-$(function(){
-        $("#btnRegister").attr("disabled","true");
-
-        $("#des").keyup(function(){
-          if($("#des").val()!="")
-          $("#btnRegister").removeAttr("disabled");
-        });
-      });
-    </script>   -->
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.0/xlsx.full.min.js"></script>
 </head>
 
 <body">
@@ -65,13 +46,6 @@ $(function(){
           </button>
           <div class="collapse navbar-collapse" id="navbarNav" style="justify-content:center; align-items:center;">
             <ul class="navbar-nav">
-
-              <!-- <li style="font-size: 13px;" class="nav-item">
-                <i class="bi bi-house-door"></i>
-                INICIO
-                </a>
-              </li> -->
-
 
               <li style="font-size: 13px;" class="nav-item">
                 <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/compras/ordencompra.php')">
@@ -139,7 +113,8 @@ $(function(){
                     <a class="dropdown-item" href="#" onclick="loadContent('views/reportes/ventasxmarca.php')">Ventas por Marca</a>
                     <a style="font-size: 13px;" class="dropdown-item" href="#" onclick="loadContent('views/reportes/ventasxserie.php')">Ventas por Serie</a>
                     <hr class="dropdown-divider">
-                    <a style="font-size: 13px;" class="dropdown-item" href="#" onclick="loadContent('views/reportes/utilidadxtipodocumento.php')">Ventas por Utilidades</a>
+                    <a style="font-size: 13px;" class="dropdown-item" href="#" onclick="loadContent('views/reportes/utilidadxtipodocumento.php')">Utilidades x Tipo Documento</a>
+                    <a style="font-size: 13px;" class="dropdown-item" href="#" onclick="loadContent('views/reportes/ventavscosto.php')">Ventas vs Costo</a>
                   </ul>
                 </div>
               </li>
@@ -202,14 +177,9 @@ $(function(){
 
               </ul>
             </div>
-          </li>
 
-          <!-- <li style="font-size: 13px;width:130px;" class="nav-item">
-            <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/usarios.php')">
-              <i class="bi bi-people"></i>
-              USUARIOS
-            </a>
-          </li> -->
+          </li>
+          
           </ul>
         </div>
     </div>
@@ -229,6 +199,7 @@ $(function(){
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
   </script>
   <script src="assets/js/loadcontent.js"></script>
+ 
   <script src="assets/js/modals.js"></script>
   <script src="assets/js/orders.js"></script>
   <script src="assets/js/formController.js"></script>
@@ -247,7 +218,7 @@ $(function(){
   <script src="assets/js/ventas/registrofacturacion.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js"></script>
   <script src="assets/js/reportes/reporteVentas.js"></script>
-  
+
   </body>
 
 </html>

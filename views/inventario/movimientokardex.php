@@ -15,6 +15,7 @@
                 <div class="col-md-8">
                     <span style="display:inline-block; width:40px; margin-bottom:8px;">Codigo</span>
                     <select name="almacen" id="almacenSelect" class="form-select">
+                    <option value="1" selected>ALMACEN 1</option>
                         <?php
                         $almacenes = Almacen::getAlmacenes();
                         foreach ($almacenes as $almac) {
@@ -57,10 +58,20 @@
             </div>
             <div class="kardex__right">
             <!-- <b><p>SISTEMA DE VENTAS</p></b> -->
+            <?php
+                date_default_timezone_set('America/Lima'); // Establecer la zona horaria de Perú
+                ?>
+                <b>
+                    <p style="font-size: 32px;color:brown;margin-top:10px">AlvaPlastic</p>
+                </b>
+                <h5>Fecha: <?= date('d/m/Y g:ia'); ?></h5>
+                <h5 style="background: teal; color: white; text-align:left;" class="titulo">MOVIMIENTO</h5>
                 <div style="display:flex; align-items:center;">
+                
                     <div style="display:flex; flex-direction:column; margin-top:-40px">
                     
-                        <p id="productoSeleccionadoKardex" style="font-weight:700;">-</p>
+                    
+                        <p id="productoSeleccionadoKardex" style="font-weight:700;">--</p>
 
                         <div class="col-md-8">
                             Stock Físico Final:

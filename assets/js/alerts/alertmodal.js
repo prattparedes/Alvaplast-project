@@ -1,7 +1,10 @@
 function openAlertModal() {
+  document.getElementById('alertModal').innerHTML = '<p id="alertText">Nuevo Valor: <input type="text" id="nuevoValor"></p>' +
+  '<button onclick="closeAlertModal(true)" id="btnSi">Sí</button>' +
+  '<button onclick="closeAlertModal(false)" id="btnNo">No</button>';
   document.getElementById("overlay").style.display = "block";
   document.getElementById("alertModal").style.display = "block";
-  document.getElementById('nuevoValor').value = celdaSeleccionada.textContent;
+  document.getElementById("nuevoValor").value = celdaSeleccionada.textContent;
 }
 
 function closeAlertModal(confirm) {
@@ -19,8 +22,8 @@ function closeAlertModal(confirm) {
     let celdaCantidad = celdas[2]; // Suponiendo que la celda de cantidad es la tercera celda (el índice 2)
     let celdaPrecio = celdas[4]; // Suponiendo que la celda de precio es la quinta celda (el índice 4)
 
-    console.log(celdas)
-    console.log(celdaTotal, celdaCantidad,celdaPrecio)
+    console.log(celdas);
+    console.log(celdaTotal, celdaCantidad, celdaPrecio);
 
     // Verificar si las celdas están definidas antes de acceder a su contenido
     if (celdaTotal && celdaCantidad && celdaPrecio) {
@@ -38,4 +41,12 @@ function closeAlertModal(confirm) {
       console.error("No se pudo acceder a las celdas necesarias.");
     }
   }
+}
+
+function abrirAlertaConfirmación(texto, funcion1, funcion2) {
+  document.getElementById("overlay").style.display = "block";
+  document.getElementById("alertModal").style.display = "block";
+  document.getElementById("alertText").innerHTML = texto;
+  document.getElementById("btnSi").onclick = funcion1;
+  document.getElementById("btnNo").onclick = funcion2;
 }

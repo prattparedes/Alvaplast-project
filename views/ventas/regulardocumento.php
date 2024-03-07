@@ -28,11 +28,13 @@
                         <?php
                         date_default_timezone_set('America/Lima'); // Establecer la zona horaria de Perú
                         $currentDateTime = date('Y-m-d H:i');
+                          // Restar un mes a la fecha actual
+                          $fechaAnterior = date('Y-m-d H:i', strtotime('-1 month', strtotime($currentDateTime)));
                         ?>
 
                         <div class="col-md-4" style="width: 400px;">
                             <label for="inputStartDate" class="col-form-label">Fecha de Inicio:</label>
-                            <input type="datetime-local" id="fecha1" class="form-control" aria-describedby="passwordHelpInline" value="<?php echo $currentDateTime; ?>">
+                            <input type="datetime-local" id="fecha1" class="form-control" aria-describedby="passwordHelpInline" value="<?php echo $fechaAnterior; ?>">
                         </div>
 
 
@@ -48,7 +50,7 @@
                     <div class="col-md-12">
                         <br>
                         <a style="width: 90px;" class="btn btn-primary" type="button" onclick="ListarDocumentosVentas()">Consultar</a>
-                        <a style="width: 120px;" class="btn btn-success" id="export-pdf-button" type="button" onclick="exportarPDFD()">Exportar PDF</a>
+                        <a style="width: 120px;" class="btn btn-success" id="export-pdf-button" type="button" onclick="exportarRegularPDF()">Exportar PDF</a>
                         
 
                         <!-- <a style="width: 90px;" class="btn btn-warning" type="button">Imprimir</a> -->
@@ -64,8 +66,14 @@
             </div>
             <div class="kardex__right">
                 <div style="display:flex; align-items:center;">
-                    <div style="display:flex; flex-direction:column; margin-top:5px">
-                   
+                    <div style="display:flex; flex-direction:column; margin-top:10px">
+                    <?php
+                date_default_timezone_set('America/Lima'); // Establecer la zona horaria de Perú
+                ?>
+                <b>
+                    <p style="font-size: 32px;color:brown;margin-top:-10px">AlvaPlastic</p>
+                </b>
+                <h5>Fecha: <?= date('d/m/Y g:ia'); ?></h5>
 
                     <div class="row">
                         <div class="" style="width: 270px;">

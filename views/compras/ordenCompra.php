@@ -39,11 +39,16 @@
                 <!-- <span style="margin-top: -5px;" class="d-block p-1 col-md-12 bg-danger text-white">Datos del Proveedor</span> -->
 
                 <div class="col-md-12" style="margin-top: -5px; display:flex; justify-content:center;">
-                    <a style="width: 75px; margin: 0 3px;" name="" id="btnNuevo" class="btn btn-primary " role="button" onclick="nuevaOrdenCompra()">Nuevo</a>
-                    <a style="width: 75px; margin: 0 3px;" name="" id="btnRegister" class="btn btn-success order__btn--inactive buy_submit" role="button">Grabar</a>
-                    <a style="width: 75px; margin: 0 3px;" name="" id="btnModify" class="btn btn-warning order__btn--inactive" onclick="modificarCompra()">Editar</a>
-                    <a style="width: 75px; margin: 0 3px;" name="" id="btnDelete" class="btn btn-danger order__btn--inactive buy_submit" role="button">Eliminar</a>
-                    <button style="width: 75px; margin: 0 3px;" class="btn btn-secondary" id="btnSearch" onclick="abrirListadoCompras()">Buscar</button>
+                    <button style="width: 110px; " name="" id="btnNuevo" class="btn btn-primary " role="button" onclick="nuevaOrdenCompra()">Nuevo</button>
+                    <a style="width: 95px; margin: 0 3px;" name="" id="btnRegister" class="btn btn-success order__btn--inactive buy_submit" role="button">Grabar</a>
+                    <a style="width: 85px; margin: 0 3px;" name="" id="btnModify" class="btn btn-warning order__btn--inactive" onclick="modificarCompra()">Editar</a>
+                    <a style="width: 85px; margin: 0 3px;" name="" id="btnDelete" class="btn btn-danger order__btn--inactive buy_submit" role="button">Eliminar</a>
+                   
+                 
+                </div>
+                <div class="">
+                <button style="width: 95px;" class="btn btn-secondary" id="btnSearch" onclick="abrirListadoCompras()">Buscar</button>
+                <button style="width: 120px;margin-top:2px" class="btn btn-success" id="btnSearch" onclick="exportarTablaExcelorden()">ExportarExcel</button>
                 </div>
                 <hr>
                 <div class="row">
@@ -131,7 +136,7 @@
                     <div class="col-md-6" style="margin-top: 5px;">
                         <label for="disabledSelect" class="form-label">Tipo de Pago</label>
                         <select id="tipoPago" class="form-select" disabled>
-                            <option value="E">EFECTIVO</option>
+                            <option value="E" selected>EFECTIVO</option>
                             <option value="C">CREDITO</option>
                         </select>
                     </div>
@@ -156,7 +161,13 @@
             <div class="kardex__right">
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:5px">
-
+                    <?php
+                date_default_timezone_set('America/Lima'); // Establecer la zona horaria de Perú
+                ?>
+                <b>
+                    <p style="font-size: 32px;color:brown;margin-top:-5px">AlvaPlastic</p>
+                </b>
+                <h5>Fecha: <?= date('d/m/Y g:ia'); ?></h5>
 
                     <hr style="margin-top: 10px;">
                     <h5 style="background: Teal; color: white; text-align:left;" class="titulo">DETALLE DE PRODUCTOS</h5>

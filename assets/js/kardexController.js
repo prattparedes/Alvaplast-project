@@ -283,12 +283,12 @@ function exportarPDF() {
 
   // Título del documento
   doc.text(
-    
+
     "Movimientos de " +
-      productoSeleccionado +
-      " (Almacen " +
-      AlmacenSeleccionado +
-      ")",
+    productoSeleccionado +
+    " (Almacen " +
+    AlmacenSeleccionado +
+    ")",
     14,
     10
   ); // Texto y posición
@@ -378,4 +378,79 @@ function exportarPDF() {
 
   // Abrir la URL en una nueva ventana del navegador
   window.open(url);
+}
+
+
+//-------------------------------------------------------------------------------------------------------------Pruebas
+
+function exportarKardexExcel() {
+  // Obtener la fecha y hora del sistema
+  var fechaHora = new Date().toLocaleString();
+
+  // Crear una hoja de cálculo nueva
+  var workbook = XLSX.utils.book_new();
+  
+  // Crear una hoja de cálculo nueva
+  var worksheet = XLSX.utils.aoa_to_sheet([]);
+
+  // Agregar título y dirección
+ var titulo = ["AlvaPlastic"];
+var direccion = "AV. CTO GRANDE Nº 3546 S.J.L";
+var telef=" Telf. 2787802 / 947316259";
+  
+var autorizado = ["AUTORIZADO: SUSAN PAREDES V."];
+
+  var additionalTitle = [['Fecha/hora:', fechaHora]]; // Modificar según sea necesario
+  var proveedor = ["PROVEEDOR:"];
+  var t = [""];
+  // Agregar el título y la fecha/hora del sistema al principio de la hoja
+  XLSX.utils.sheet_add_aoa(worksheet, [[titulo]], { origin: -1 }); // Insertar fila del título al principio de la hoja
+  XLSX.utils.sheet_add_aoa(worksheet, [[direccion]], { origin: -1 }); // Insertar fila del título al principio de la hoja
+  XLSX.utils.sheet_add_aoa(worksheet, [[proveedor]], { origin: -1 }); // Insertar fila del título al principio de la hoja
+  XLSX.utils.sheet_add_aoa(worksheet, [[autorizado]], { origin: -1 }); // Insertar fila del título al principio de la hoja
+  XLSX.utils.sheet_add_aoa(worksheet, [[telef]], { origin: -1 }); // Insertar fila del título al principio de la hoja
+  XLSX.utils.sheet_add_aoa(worksheet, additionalTitle, { origin: -1 }); // Insertar fila de fecha/hora al principio de la hoja
+  XLSX.utils.sheet_add_aoa(worksheet, [[t]], { origin: -1 }); // Insertar fila del título al principio de la hoja
+
+
+  // Obtener los datos de la tabla
+  var table = document.getElementById("ordertable");
+  var data = [];
+
+  // Iterar sobre las filas de la tabla
+  for (var i = 0; i < table.rows.length; i++) {
+    var rowData = [];
+    var cells = table.rows[i].cells;
+
+    // Iterar sobre las celdas de cada fila
+    for (var j = 0; j < cells.length; j++) {
+      rowData.push(cells[j].textContent);
+    }
+
+    // Agregar los datos de la fila al conjunto de datos
+    data.push(rowData);
+  }
+
+  // Convertir los datos a un formato de hoja de cálculo y agregarlos a la hoja
+  XLSX.utils.sheet_add_aoa(worksheet, data, { origin: -1 });
+
+  // Ajustar el ancho de las columnas al contenido
+  var range = XLSX.utils.decode_range(worksheet['!ref']);
+  for (var C = range.s.c; C <= range.e.c; ++C) {
+    var colWidth = 0;
+    for (var R = range.s.r; R <= range.e.r; ++R) {
+      var cell = worksheet[XLSX.utils.encode_cell({ c: C, r: R })];
+      if (!cell) continue;
+      var cellTextLength = cell.v ? String(cell.v).length : 0;
+      if (colWidth < cellTextLength) colWidth = cellTextLength;
+    }
+    if (!worksheet['!cols']) worksheet['!cols'] = [];
+    worksheet['!cols'][C] = { wch: colWidth }; // Establecer el ancho de la columna
+  }
+
+  // Agregar la hoja al libro de trabajo
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Datos');
+
+  // Generar el archivo Excel y guardarlo en el cliente
+  XLSX.writeFile(workbook, 'tabla_exportada_' + fechaHora + '.xlsx');
 }

@@ -14,27 +14,28 @@
                 <div class="row">
 
                     <h5 style="background: black; color: white; text-align:center;" class="titulo">REPORTE DE VENTAS POR CLIENTE</h5>
-                    <div class="col-md-12" style="margin-top: -15px;">
-                        <br>
-                        <button style="width: 90px;" class="btn btn-success" type="button">Consultar</button>
-                        <button style="width: 120px;" class="btn btn-primary" type="button">Exportar PDF</button>
-                        <!-- <button style="width: 90px;" class="btn btn-warning" type="button">Imprimir</button> -->
-                        <button style="width: 90px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
-                        <br><br>
-                    </div>
+                   
                     <div class="row">
                         <label for="inputPassword6" class="col-form-label">Cliente</label>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" style="width: 40px;height:35px" href="" onclick="loadContent('views/modals/listadoclientes.php')" type="button" id="button-addon2">....</button>
+                            <input type="text" class="form-control" id="cliente" placeholder="Seleccionar Cliente" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <input type="hidden" id="idCliente">
+                            <button class="btn btn-outline-secondary" style="width: 40px;height:35px" href="" onclick="loadContent('views/modals/listadoclientesReporte.php')" type="button" id="button-addon2">....</button>
                         </div>
                     </div>
-
-                    <div class="col-md-12" style="margin-top: 30px;">
-                    </div>
-                    <br><br>
+                   
+                  
+                    <br>
                 </div>
                 <hr>
+                <div class="col-md-12" style="margin-top: -15px;">
+                        <br>
+                        <button style="width: 100px;" class="btn btn-success" type="button" onclick="consultarReportexCliente()">Consultar</button>
+                        <button style="width: 115px;" class="btn btn-secondary" type="button" onclick="exportarVClientePDF()">ImprimirPDF</button>
+                        <!-- <button style="width: 90px;" class="btn btn-warning" type="button">Imprimir</button> -->
+                        <button style="width: 100px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
+                        <br><br>
+                    </div>
                 <div class="" id="">
 
                 </div>
@@ -50,7 +51,7 @@
 
 
                         <div class="table--container">
-                            <table class="tbl_venta" style="width: 850px;">
+                            <table class="tbl_venta" style="width: 850px;" id="ventaxcliente">
                                 <thead>
                                     <tr>
                                         <th scope="col">Producto</th>

@@ -96,6 +96,8 @@ function rellenarFormularioIngresoKardex(
   document.getElementById("inicial").value = datosCompra.total;
   document.getElementById("fecha1").value = datosCompra.fecha_compra;
   document.getElementById("fecha2").value = establecerFechaHora();
+  document.getElementById("numero1").value = datosCompra.numero_documento;
+  document.getElementById("numero2").value = datosCompra.serie_documento;
   document.getElementById("igv").checked = datosCompra.igv ? true : false;
   listarCajas(datosCompra.id_almacen)
   // Rellenar Productos
@@ -220,6 +222,7 @@ function FiltrarLineaProductosStockKardex(filtro) {
   });
 }
 
+
 function CumpleFiltroLineaStockKardex(fila, filtro) {
   const idLinea = fila
     .querySelector("td:nth-child(4)")
@@ -228,7 +231,7 @@ function CumpleFiltroLineaStockKardex(fila, filtro) {
   filtro = filtro.toLowerCase(); // Convertir a minúsculas
   return idLinea === filtro;
 }
-
+//----------------------------------------------------------------------------------
 function listarProductosStockXAlmacen(idAlmacen) {
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
@@ -397,4 +400,177 @@ function mandarDatosKardex(fecha, numeroDocumento, serieDocumento, idDocumento, 
       }
     };
   });
+}
+
+//--------------------------------------------------------------------------------------------------------------------------Prueba
+function exportarStockExcel() {
+  // Crear una hoja de cálculo nueva
+  var workbook = XLSX.utils.book_new();
+
+  // Obtener los datos de la tabla
+  var table = document.getElementById("stock__products--table");
+  var data = [];
+
+  // Agregar título
+  var titleRow = ["AlvaPlastic"];
+  data.push(titleRow);
+
+  var contenido = "AV. CANTO GRANDE Nº 3546-3548 S.J.L" + "                " + " - Telf. 2787802 / 947316259";
+  var fila = [contenido];
+  data.push(fila);
+  // var parrafo = ["AV. CANTO GRANDE Nº 3546-3548 S.J.L"];
+  // data.push(parrafo);
+
+  // var telef = [" Telf. 2787802 / 947316259"];
+  // data.push(telef);
+
+  var proveedor = ["PROVEEDOR:"];
+  data.push(proveedor);
+
+  var auto = ["AUTORIZADO: SUSAN PAREDES VILLANUEVA"];
+  data.push(auto);
+
+  var vac = [""];
+  data.push(vac);
+
+  // Iterar sobre las filas de la tabla
+  for (var i = 0; i < table.rows.length; i++) {
+    var rowData = [];
+    var cells = table.rows[i].cells;
+
+    // Iterar sobre las celdas de cada fila
+    for (var j = 0; j < cells.length; j++) {
+      rowData.push(cells[j].textContent);
+    }
+
+    // Agregar los datos de la fila al conjunto de datos
+    data.push(rowData);
+  }
+
+  // Convertir los datos a un formato de hoja de cálculo
+  var worksheet = XLSX.utils.aoa_to_sheet(data);
+
+  // Agregar la hoja al libro de trabajo
+  XLSX.utils.book_append_sheet(workbook, worksheet, 'Datos');
+
+  // Generar el archivo Excel y guardarlo en el cliente
+  XLSX.writeFile(workbook, 'documento_exportado_' + new Date().toISOString() + '.xlsx');
+}
+
+//-----------------------------------------ExportarPDF------------------------------------------
+function exportarStockPDF() {
+  var doc = new jsPDF();
+  var tabla = document.getElementById('stock__products--table');
+  doc.autoTable({ html: tabla });
+
+  // Mostrar el PDF en una nueva ventana emergente
+  doc.output('dataurlnewwindow');
+
+  // Guardar el PDF en un archivo
+  // doc.save('tabla.pdf');
+}
+//------------------------------------------
+
+
+//-------REPORTE X MARCA-----------------------------------
+
+
+
+ function FiltrarReportexMarca(filtro) {
+   console.log(filtro);
+   if (filtro === "0") {
+     filtroxMarcaProducto = null; // Limpiar el filtro de línea si el valor es "0"
+   } else {
+     filtroxMarcaProducto = filtro;
+   }
+
+   const filasProductos = document.querySelectorAll(
+     "#ventaxmarca tbody tr"
+   );
+   filasProductos.forEach((fila) => {
+     if (
+       !filtroxMarcaProducto ||
+       CumpleFiltroProductoxMarca(fila, filtroxMarcaProducto)
+     ) {
+       fila.style.display = "table-row";
+     } else {
+       fila.style.display = "none";
+     }
+   });
+ }
+
+
+function listarProductoxMarca() {
+  const xhr = new XMLHttpRequest();
+  const url = "/Alvaplast-project/Controller/maintenance_models/MarcaController.php";
+
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        if (xhr.responseText) {
+        //  const dataFromServer = JSON.parse(xhr.responseText);
+
+          const tbody = document.getElementById("ventaxmarca");
+          tbody.innerHTML = ""; // Limpiar contenido existente de la tabla
+
+       //   dataFromServer.forEach((item) => {
+            const row = document.createElement("tr");
+
+            // Crear celdas para cada propiedad del objeto
+            // const producto = document.createElement("td");
+            // producto.textContent = item.producto;
+
+            // const cliente = document.createElement("td");
+            // cliente.textContent = item.cliente;
+
+            // const marca = document.createElement("td");
+            // marca.textContent = item.marca;
+
+            // const unidad = document.createElement("td");
+            // unidad.textContent = item.Unidad;
+
+            // const cantidad = document.createElement("td");
+            // cantidad.textContent = item.cantidad;
+
+            // const moneda = document.createElement("td");
+            // moneda.textContent = item.moneda;
+
+            // const importe = document.createElement("td");
+            // importe.textContent = item.importe;
+
+            // const fecha = document.createElement("td");
+            // fecha.textContent = item.fecha;
+
+            // const almacen = document.createElement("td");
+            // almacen.textContent = item.almacen;
+
+            // const comprobante = document.createElement("td");
+            // comprobante.textContent = item.comprobante;
+
+            // Agregar las celdas a la fila
+            // row.appendChild(producto);
+            // row.appendChild(cliente);
+            // row.appendChild(marca);
+            // row.appendChild(unidad);
+            // row.appendChild(cantidad);
+            // row.appendChild(moneda);
+            // row.appendChild(importe);
+            // row.appendChild(fecha);
+            // row.appendChild(almacen);
+            // row.appendChild(comprobante);
+
+            // Agregar la fila a la tabla
+            tbody.appendChild(row);
+          
+        }
+      } else {
+        console.error("Error en la solicitud.");
+      }
+    }
+  };
+
+  xhr.send(); // Enviar solicitud
 }

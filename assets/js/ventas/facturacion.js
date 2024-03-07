@@ -283,7 +283,12 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     if (idCaja, idOperacion) {
       xhr.send("idCaja=" + idCaja + "&idOperacion=" + idOperacion + "&idAlmacen=" + idAlmacen + "&idDocumento=" + idDocumento + "&numeroDocumento=" + numeroDocumento + "&serieDocumento=" + serieDocumento + "&tipoMovimiento=" + tipoMovimiento + "&monto=" + monto + "&fecha=" + fecha + "&metodo=" + metodo + "&idMovimiento=" + idMovimiento);
     } else {
-      alert("faltan datos")
+      //alert("faltan datos")
+      alertify
+      .alert("Falta agregar datos.", function(){
+      //  alertify.error('Error');
+      });
+     
     }
     xhr.onreadystatechange = function () {
       if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -295,10 +300,21 @@ document.querySelector(".main__content").addEventListener("click", function (eve
           var idMovimiento = xhr.responseText;
           if (metodo == "Grabar") {
             mandarDatosKardexFact(1, fecha, numeroDocumento, serieDocumento, idDocumento, idAlmacen, idMovimiento, monto, ruc, metodo)
-            alert("Se grabo correctamente la factura")
+           // alert("Se grabo correctamente la factura")
+           alertify
+           .alert("Se grabo correctamente la factura.", function(){
+             alertify.message('OK');
+           });
           } else if (metodo == "Anular " || "Eliminar") {
             mandarDatosKardexFact(idKardex, fecha, numeroDocumento, serieDocumento, idDocumento, idAlmacen, idMovimiento, monto, ruc, metodo)
-            alert("Se elimino la factura hecha")
+           // alert("Se elimino la factura hecha")
+           alertify.confirm("Desea eliminar Factura.",
+          function(){
+          alertify.success('Ok');
+          },
+          function(){
+          alertify.error('Cancel');
+          });
           }
         } else {
           // Hubo un error en la solicitud
@@ -333,7 +349,12 @@ function mandarDatosKardexFact(idKardex, fecha, numeroDocumento, serieDocumento,
       //Enviamos los datos al controlador
       http.send("fecha=" + fecha + "&numeroDocumento=" + numeroDocumento + "&serieDocumento=" + serieDocumento + "&idDocumento=" + idDocumento + "&idProducto=" + idProducto + "&idAlmacen=" + idAlmacen + "&idMovimiento=" + idMovimiento + "&cantidad=" + cantidad + "&precio=" + precioCompra + "&descuento=" + descuento + "&tipo=" + tipo + "&total=" + total + "&ruc=" + rucDni + "&nombre=" + nombreProducto + "&metodo=" + metodo + "&idKardex=" + idKardex);
     } else {
-      alert("faltan datos");
+      //alert("faltan datos");
+      
+      alertify
+      .alert("Falta agregar datos.", function(){
+       // alertify.error('Error');
+      });
     }
 
     http.onreadystatechange = function () {
@@ -353,69 +374,6 @@ function mandarDatosKardexFact(idKardex, fecha, numeroDocumento, serieDocumento,
   });
 }
 
-// function buscarFacturasPorFechas() {
-//   let fecha1Value = document.getElementById("fecha1").value;
-//   let fecha2Value = document.getElementById("fecha2").value;
-
-//   // Convertir las cadenas de fecha en objetos Date
-//   let fecha1 = new Date(fecha1Value);
-//   let fecha2 = new Date(fecha2Value);
-
-//   // Extraer año, mes y día de las fechas
-//   let formattedFecha1 =
-//     fecha1.getFullYear() +
-//     "-" +
-//     ("0" + (fecha1.getMonth() + 1)).slice(-2) +
-//     "-" +
-//     ("0" + fecha1.getDate()).slice(-2);
-//   let formattedFecha2 =
-//     fecha2.getFullYear() +
-//     "-" +
-//     ("0" + (fecha2.getMonth() + 1)).slice(-2) +
-//     "-" +
-//     ("0" + fecha2.getDate()).slice(-2);
-
-//     const xhr = new XMLHttpRequest();
-//     const url = "/Alvaplast-project/Controller/movimientos/MovimientoController.php"; // Ruta del controlador PHP
-//     const fullUrl = url + "?fechaIni=" + formattedFecha1 + "&fechaFin=" + formattedFecha2;
-
-//     xhr.open("GET", fullUrl, true);
-//     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-//     xhr.send();
-
-//     // Manejar la respuesta del servidor
-//     xhr.onreadystatechange = function () {
-//       if (xhr.readyState === XMLHttpRequest.DONE) {
-//         if (xhr.status === 200) {
-//           ListarFacturasXFecha(JSON.parse(xhr.responseText));
-//         } else {
-//           console.error("Error en la solicitud.");
-//         }
-//       }
-//     };
-// }
-
-// function ListarFacturasXFecha(data) {
-//   var tableBody = document.querySelector('#facturacionTable tbody');
-//   tableBody.innerHTML = '';
-
-//   data.forEach(function(item) {
-//       var row = document.createElement('tr');
-
-//       row.innerHTML = `
-//           <td>${item.id_movimiento}</td>
-//           <td>${item.fecha_movimiento}</td>
-//           <td>${item.Numero_Documento}</td>
-//           <td>${item.Documento_Cliente}</td>
-//           <td>${item.Cliente}</td>
-//           <td>${item.monto}</td>
-//           <td>${item.Moneda}</td>
-//           <td>${item.Estado}</td>
-//       `;
-
-//       tableBody.appendChild(row);
-//   });
-// }
 
 function filtrarRegistroFacturacion(filtro) {
   filtro = filtro.toLowerCase();
@@ -513,4 +471,29 @@ async function seleccionarFactura(fila) {
   } catch (error) {
     console.error(error);
   }
+}
+
+//-----------------------------------------------------------------------Imprimir--Corregir
+// window.jsPDF = window.jspdf.jsPDF;
+function exportarFacturacionPDF() {
+  var doc = new jsPDF();
+  
+  // Agregar título al documento
+  var titulo = "Reporte de Factuación"; // Cambia "Reporte de Ventas" por el título que desees
+  doc.text(titulo, 20, 10);
+  
+  // Obtener fecha y hora actual
+  var fechaHoraActual = new Date().toLocaleString();
+  
+  // Agregar fecha y hora al documento
+  doc.text("Fecha y hora: " + fechaHoraActual, 20, 20);
+  
+  var tabla = document.getElementById('ordertable');
+  doc.autoTable({ html: tabla });
+  
+  // Mostrar el PDF en una nueva ventana emergente
+  doc.output('dataurlnewwindow');
+  
+  // Guardar el PDF en un archivo
+  // doc.save('tabla.pdf');
 }

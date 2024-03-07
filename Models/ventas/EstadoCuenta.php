@@ -10,11 +10,12 @@ class EstadoCuenta
 {
 
     //Metodo de registro de los productos de la venta
-    public static function listarEstadoCuenta($fechaIni, $fechaFin,)
+    public static function listarEstadoCuenta($fechaIni, $fechaFin)
     {
         try {
             $con = Connection::Conectar();
             $stmt = $con->prepare("sp_ListarEstadoCuenta :fechaIni,:fechaFin");
+        
             $stmt->bindParam(":fechaIni", $fechaIni, PDO::PARAM_STR);
             $stmt->bindParam(":fechaFin", $fechaFin, PDO::PARAM_STR);
             $stmt->execute();

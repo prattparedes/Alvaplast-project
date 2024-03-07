@@ -15,6 +15,8 @@ class Marca
         $data = $con->query("exec sp_ListarMarca");
         return $data->fetchAll(PDO::FETCH_OBJ);
     }
+
+    
     //Metodo para registrar una marca
     public static function registrarMarca(int $idMarca, string $descripcion)
     {
@@ -60,4 +62,15 @@ class Marca
             return false;
         }
     }
+
+
+    public static function obtenerProductoxMarca($marca)
+    {
+        $con = Connection::Conectar();
+        $stmt = $con->prepare("exec sp_ReporteVentasMarca ?");
+        $stmt->bindParam(1, $marca, PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Devuelve un array asociativo
+    }
+    
 }

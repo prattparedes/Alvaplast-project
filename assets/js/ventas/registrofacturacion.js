@@ -1,7 +1,9 @@
+
 function ListarRegistroFacturacion() {
   let fecha1Value = document.getElementById("fecha1").value;
   let fecha2Value = document.getElementById("fecha2").value;
 
+  
   // Verificar si se han establecido fechas
   if (!fecha1Value.trim() || !fecha2Value.trim()) {
     alert("Por favor, establece ambas fechas.");
@@ -25,6 +27,33 @@ function ListarRegistroFacturacion() {
     ("0" + (fecha2.getMonth() + 1)).slice(-2) +
     "-" +
     fecha2.getFullYear();
+
+
+//-----------------
+// Convertir las cadenas de fecha en objetos Date
+// let fecha1 = new Date(fecha1Value + "T00:00:00Z");
+// let fecha2 = new Date(fecha2Value + "T23:59:59Z");
+
+// // Obtener la fecha actual y convertirla a UTC
+// let today = new Date();
+// let formattedToday =
+//   today.getFullYear() +
+//   "-" +
+//   ("0" + (today.getMonth() + 1)).slice(-2) +
+//   "-" +
+//   ("0" + today.getDate()).slice(-2);
+
+// // Verificar si las fechas son iguales a la fecha actual
+// if (formattedFecha1 === formattedToday || formattedFecha2 === formattedToday) {
+//   // Si las fechas son iguales a la fecha actual, sumar un día a la fecha 2
+//   fecha2.setDate(fecha2.getDate() + 1);
+// }
+
+// // Convertir las fechas a UTC para evitar problemas de zona horaria
+// let formattedFecha1 = fecha1.toISOString().split("T")[0];
+// let formattedFecha2 = fecha2.toISOString().split("T")[0];
+
+
 
   // Función para formatear números a 2 decimales
   const formatNumber = (num) => {
@@ -124,4 +153,3 @@ function ListarRegistroFacturacion() {
     }
   };
 }
-

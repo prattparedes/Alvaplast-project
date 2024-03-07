@@ -48,12 +48,15 @@
                     </div>
                 </div>
                 <div class="col-md-12" style="margin-top: 7px;">
-                    <a style="width: 80px;" id="" class="btn btn-primary me-2" href="#" role="button" onclick="NuevaFacturación()">Nuevo</a>
-                    <a style="width: 75px;margin-left:-10px;" type="button" class="btn btn-success me-2 bill_submit">Grabar</a>
-                    <a style="width: 70px;margin-left:-10px;" name="" id="" class="btn btn-warning me-2 bill_submit" href="#" role="button">Anular</a>
-                    <a style="width: 80px;margin-left:-10px;" name="" id="" class="btn btn-danger bill_submit" href="#" role="button">Eliminar</a>
-                    <a style="width: 80px;margin-left:-3px;" name="" id="" class="btn btn-info" href="#" role="button">Imprimir</a>
-                    <a style="width: 80px;" style="margin-left:8px" class="btn btn-secondary me-2" href="#" onclick="loadContent('views/modals/filtroregistrofacturacion.php')" role="button">Buscar</a>
+                    <a style="width: 90px;" id="" class="btn btn-primary me-2" href="#" role="button" onclick="NuevaFacturación()">Nuevo</a>
+                    <a style="width: 90px;margin-left:-10px;" type="button" class="btn btn-success me-2 bill_submit">Grabar</a>
+                    <a style="width: 90px;margin-left:-10px;" name="" id="" class="btn btn-warning me-2 bill_submit" href="#" role="button">Anular</a>
+                    <a style="width: 90px;margin-left:-10px;" name="" id="" class="btn btn-danger bill_submit" href="#" role="button">Eliminar</a>
+                    <a style="width: 90px;margin-left:-1px;margin-top:1px" class="btn btn-secondary me-2" href="#" onclick="loadContent('views/modals/filtroregistrofacturacion.php')" role="button">Buscar</a>
+                    <a style="width: 90px;margin-left:-10px;margin-top:2px" name="" id="" class="btn btn-info" href="#" role="button"onclick="exportarFacturacionPDF()">Imprimir</a>
+                    
+                    <a style="width: 90px;margin-left:-3px;margin-top:2px" name="" id="" class="btn btn-danger" href="#" role="button" onclick="loadContent('views/home.php')">Salir</a>
+                  
                 </div>
 
 
@@ -284,13 +287,22 @@
             </div>
             <div class="kardex__right">
                 <div style="display:flex; align-items:center;">
-                    <div style="display:flex; flex-direction:column; margin-top:4px">
+                    <div style="display:flex; flex-direction:column; margin-top:-20px">
 
 
 
                         <hr>
                     </div>
                 </div>
+                <?php
+                date_default_timezone_set('America/Lima'); // Establecer la zona horaria de Perú
+                ?>
+                <b>
+                    <p style="font-size: 32px;color:brown;margin-top:-5px">AlvaPlastic</p>
+                </b>
+                <h5>Fecha: <?= date('d/m/Y g:ia'); ?></h5>
+
+
 
                 <h5 style="background: teal; color: white; text-align:left;" class="titulo">DETALLE DE FACTURACIÓN</h5>
                 <hr>

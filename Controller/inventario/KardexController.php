@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($_POST["metodo"] === "Grabar") {
         $response1 = Kardex::registrarKardex($idKardex, $fechaFormateada, $numeroDocumento, $serieDocumento, $idDocumento, $idProducto, $idAlmacen, $idMovimiento, $stock, $cantidad, $precio, $descuento, $tipo, $total, $ruc, $nombre);
         $response = Kardex::regularizarKardexFecha($idProducto, $idAlmacen, $fechaFormateada);
-        $message = ($response) ? "todo correcto kbron" : "todo mal chabon";
+        $message = ($response) ? "Se registro correctamente" : "Error de Transacion";
         echo $message;
     } else if ($_POST["metodo"] === "Anular" || $_POST["metodo"] === "Eliminar") {
         $fechaK = Facturacion::obtenerFecha($idKardex, $idProducto, $idAlmacen);

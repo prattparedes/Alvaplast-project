@@ -18,4 +18,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $message = ($result) ? "marca eliminada" : "no se pudo eliminar la marca, esta registrada en otras operaciones";
     }
     echo $message;
+ } else if ($_SERVER["REQUEST_METHOD"] === "GET") {
+    if (isset($_GET["marca"])) {
+        $marca = $_GET["marca"];
+        $data = Marca::obtenerProductoxMarca($marca);
+        echo json_encode($data);
+    } else {
+        echo "No se recibió la marca.";
+    }
+    
+    
 }

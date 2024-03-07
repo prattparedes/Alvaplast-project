@@ -2,6 +2,7 @@
 
 <body>
     <header>
+        
         <?php
         require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
 
@@ -23,11 +24,16 @@
                         <?php
                         date_default_timezone_set('America/Lima'); // Establecer la zona horaria de Perú
                         $currentDateTime = date('Y-m-d H:i');
+
+                        // Restar un mes a la fecha actual
+                        $fechaAnterior = date('Y-m-d H:i', strtotime('-1 month', strtotime($currentDateTime)));
+
+                        
                         ?>
 
                         <div class="col-md-4" style="width: 400px;">
                             <label for="inputStartDate" class="col-form-label">Fecha de Inicio:</label>
-                            <input type="datetime-local" id="fecha1" class="form-control" aria-describedby="passwordHelpInline" value="<?php echo $currentDateTime; ?>">
+                            <input type="datetime-local" id="fecha1" class="form-control" aria-describedby="passwordHelpInline" value="<?php echo $fechaAnterior; ?>">
                         </div>
 
 
@@ -38,11 +44,11 @@
                         </div>
 
                         <div class="col-12">
-                       <br><br>
-                       <a style="width: 90px;" class="btn btn-primary" type="button" onclick="ListarRegistroFacturacion()">Consultar</a>
-                        <a name="" id="" class="btn btn-warning" href="#" role="button">Limpiar</a>
-                        <a name="" id="" class="btn btn-danger" href="#" onclick="loadContent('views/ventas/facturacion.php')" role="button">Cancelar</a>
-
+                       <br><br><hr style="margin-top: -10px;">
+                       <a style="width: 100px;" class="btn btn-primary" type="button" onclick="ListarRegistroFacturacion()">Consultar</a>
+                        <!-- <a name="" id="" class="btn btn-warning" href="#" role="button">Limpiar</a> -->
+                        <a style="width: 100px;" name="" id="" class="btn btn-danger" href="#" onclick="loadContent('views/ventas/facturacion.php')" role="button">Cancelar</a>
+                        <hr>
                     </div>
                     </div>
 
@@ -96,3 +102,5 @@
                 </div>
             </div>
         </div>
+
+      

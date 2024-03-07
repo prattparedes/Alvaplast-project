@@ -5,13 +5,6 @@
         <?php
         require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
 
-        use Models\maintenance_models\Sucursal;
-        use Models\maintenance_models\Almacen;
-        use Models\maintenance_models\Moneda;
-        use Models\maintenance_models\Unidad;
-        use Models\compras\Compra;
-
-
         ?>
 
         <div class="kardex__movement">
@@ -26,22 +19,28 @@
                     <div class="row">
                     <label for="inputPassword6" class="col-form-label">Productos</label>
                     <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn btn-outline-secondary" style="width: 40px;height:35px" href="" onclick="loadContent('views/modals/listadoproductoscompras.php')" type="button" id="button-addon2">....</button>
+                            <input type="text" class="form-control" id="producto" placeholder="Seleccione producto" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <input type="hidden" id="idProducto">
+                            <button class="btn btn-outline-secondary" style="width: 40px;height:35px" href="" onclick="loadContent('views/modals/listadoproductosReporte.php')" type="button" id="button-addon2">....</button>
                         </div>
 
                        
                     </div>
 
-                
+                   
 
-                    <div class="col-md-12" style="margin-top: 30px;">
-
-                     
-                    </div>
-                    <br><br>
+                   
+                    <br>
                 </div>
                 <hr>
+                <div class="col-md-12"style="margin-top: -15px;">
+                            <br>
+                            <button style="width: 100px;" class="btn btn-success" type="button" onclick="consultarReportexProducto()">Consultar</button>
+                            <button style="width: 100px;" class="btn btn-primary" type="button">Exportar</button>
+                            <button style="width: 115px;" class="btn btn-secondary" type="button" onclick="exportarVProductoPDF()">ImprimirPDF</button>
+                            <button style="width: 100px;margin-top:2px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
+                            <br><br>
+                        </div>
                 <div class="" id="">
 
                 </div>
@@ -51,21 +50,14 @@
                     <div style="display:flex; flex-direction:column; margin-top:5px">
 
 
-                    <div class="col-md-12"style="margin-top: -15px;">
-                            <br>
-                            <button style="width: 90px;" class="btn btn-success" type="button">Consultar</button>
-                            <button style="width: 90px;" class="btn btn-primary" type="button">Exportar</button>
-                            <button style="width: 90px;" class="btn btn-warning" type="button">Imprimir</button>
-                            <button style="width: 90px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
-                            <br><br>
-                        </div>
+                    
                     <!-- <h6>REPORTE DE VENTAS</h6> -->
                     <h5 style="background: teal; color: white; text-align:left;" class="titulo">REPORTE DE VENTAS</h5>
                         <hr style="margin-top: -7px;">
 
                         
                         <div class="table--container">
-                            <table class="tbl_venta" style="width: 850px;">
+                            <table class="tbl_venta" style="width: 850px;" id="ventaxproducto">
                             <thead>
                                     <tr>
                                         <th scope="col">Cliente</th>
@@ -77,14 +69,7 @@
                                     </tr>
                                 </thead>
                                 <tbody id="detalle_venta">
-                                    <tr class="">
-                                        <td scope="row">VASO Nº 6 SOL TRANSP.</td>
-                                        <td class="textcenter">10,00</td>
-                                        <td scope="row">SOLES</td>
-                                        <td scope="row"> 1 050,00</td>
-                                        <td scope="row">26/04/2023 7:48:00</td>
-                                        <td scope="row">NC-B/001-0005451</td>
-                                    </tr>
+                                  
                                 </tbody>
                             </table>
                         </div>

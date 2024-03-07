@@ -27,10 +27,10 @@
                     </div>
                     <br>
                     <div class="col-md-12">
-                        <a style="width: 90px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="NuevoIngreso()">Nuevo</a>
-                        <a style="width: 90px;" name="" id="" class="btn btn-success kardex_submit" href="#" role="button">Grabar</a>
-                        <a style="width: 90px;" name="" id="" class="btn btn-warning" href="#" role="button">Exportar</a>
-                        <a style="width: 90px;margin-top:1px" name="" id="" class="btn btn-danger " href="#" role="button" onclick="loadContent('views/home.php')">Salir</a>
+                        <a style="width: 100px;" name="" id="" class="btn btn-primary" href="#" role="button" onclick="NuevoIngreso()">Nuevo</a>
+                        <a style="width: 100px;" name="" id="" class="btn btn-success kardex_submit" href="#" role="button">Grabar</a>
+                        <a style="width: 100px;margin-top:1px" name="" id="" class="btn btn-danger " href="#" role="button" onclick="loadContent('views/home.php')">Salir</a>
+                        <a style="width: 120px;margin-top:2px" name="" id="" class="btn btn-success" href="#" role="button"onclick="exportarKardexExcel()">ExportarExcel</a>
                     </div>
 
                     <hr>
@@ -119,9 +119,15 @@
 
             <div class="kardex__right">
                 <div style="display:flex; align-items:center;">
-                    <div style="display:flex; flex-direction:column; margin-top:4px">
+                    <div style="display:flex; flex-direction:column; margin-top:10px">
 
-
+                    <?php
+                date_default_timezone_set('America/Lima'); // Establecer la zona horaria de Perú
+                ?>
+                <b>
+                    <p style="font-size: 32px;color:brown;margin-top:-10px">AlvaPlastic</p>
+                </b>
+                <h5>Fecha: <?= date('d/m/Y g:ia'); ?></h5>
 
 
                         <b>
