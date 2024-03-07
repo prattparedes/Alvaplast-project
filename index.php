@@ -1,126 +1,223 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Title</title>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Bootstrap CSS v5.2.1 -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="assets/css/styles.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>AlvaPlastic</title>
+
+    <!-- Bootstrap Core CSS -->
+    
+    <link href="./plantilla/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="./plantilla/css/landing-page.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="./plantilla/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 
 <body>
-  <main>
-    <div class="main__container">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#" onclick="loadContent('views/home.php')">
-            <svg class="bi pe-none me-2" width="40" height="32">
-              <use xlink:href="#bootstrap" />
-            </svg>
-            ALVAPLASTIC
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav" style="justify-content:center; align-items:center;">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link text-white btn btn-secondary" aria-current="page" href="#" onclick="loadContent('views/home.php')">
-                  <i class="bi bi-house-door"></i>
-                  INICIO
-                </a>
-              </li>
-              <li class="nav-item">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-table"></i>
-                    VENTAS
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/sellorder.php')">Orden de Venta</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/billing.php')">Facturación</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Regula Documento</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Estado de Cuenta</a></li>
-                  </ul>
-                </div>
-              <li class="nav-item">
-                <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/buyorder.php')">
-                  <i class="bi bi-grid"></i>
-                  COMPRA
-                </a>
-              </li>
-              <li class="nav-item">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="reportsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-table"></i>
-                    REPORTES
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="reportsDropdown">
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/sellrecords.php')">Registro de Ventas</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/buyrecords.php')">Registro de Compras</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/billingrecords.php')">Registro de Facturación</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <div class="dropdown">
-                  <button class="btn btn-secondary dropdown-toggle" type="button" id="inventoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-table"></i>
-                    INVENTARIOS
-                  </button>
-                  <ul class="dropdown-menu" aria-labelledby="inventoryDropdown">
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/stockentry.php')">Ingreso al Kardex</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/stockmovement.php')">Movimiento de Kardex</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link" onclick="loadContent('views/stockproducts.php')">Stock de Productos</a></li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/maintenance.php')">
-                  <i class="bi bi-clipboard-plus"></i>
-                  MANTENIMIENTO
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/users.php')">
-                  <i class="bi bi-people"></i>
-                  USUARIOS
-                </a>
-              </li>
-            </ul>
-          </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="#">AlvaPlastic</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#about">Inicio</a>
+                    </li>
+                    <li>
+                        <a href="#services">Servicios</a>
+                    </li>
+                    <li>
+                        <a href="#contact">Contactanos</a>
+                    </li>
+
+                    <li>
+                        <a href="login.php">Iniciar Sesion</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
         </div>
-      </nav>
-      <div class="main__content">
-        <?php include 'views/home.php'; ?>
-      </div>
+        <!-- /.container -->
+    </nav>
+
+
+    <!-- Header -->
+    <a name="about"></a>
+    <div class="intro-header">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-message">
+                        <h1>AlvaPlastic</h1>
+                        <h3>Venta al por mayor no especializada</h3>
+                        <hr class="intro-divider">
+                        <ul class="list-inline intro-social-buttons">
+                            <li>
+                                <a href="" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                            </li>
+                           
+                            <li>
+                                <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
     </div>
-  </main>
-  <footer>
-    <!-- place footer here -->
-  </footer>
-  <!-- Bootstrap JavaScript Libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-  </script>
+    <!-- /.intro-header -->
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-  </script>
+    <!-- Page Content -->
 
-  <script>
-    var triggerEl = document.querySelector('#navId a')
-    bootstrap.Tab.getInstance(triggerEl).show() // Select tab by name
-  </script>
-  <script src="assets/js/loadcontent.js"></script>
-  <script src="assets/js/modals.js"></script>
-  <script src="assets/js/orders.js"></script>
-  <script src="assets/js/formController.js"></script>
-  <script src="assets/js/kardexController.js"></script>
+	<a  name="services"></a>
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Death to the Stock Photo:<br>Special Thanks</h2>
+                    <p class="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="./plantilla/img/bolsas.jpg" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">3D Device Mockups<br>by PSDCovers</h2>
+                    <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
+                </div>
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <img class="img-responsive" src="./plantilla/img/plato.jpg" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->
+
+    <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Google Web Fonts and<br>Font Awesome Icons</h2>
+                    <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="./plantilla/img/phones.jpg" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+	<a  name="contact"></a>
+    <div class="banner">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <h2>Contactanos por:</h2>
+                </div>
+                <div class="col-lg-6">
+                    <ul class="list-inline banner-social-buttons">
+                        <li>
+                            <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                        </li>
+                        <li>
+                            <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.banner -->
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <ul class="list-inline">
+                       
+                    </ul>
+                    <p class="copyright text-muted small">Copyright &copy; Nuestra Compañia Alvaplastic 2024. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
 </body>
 
 </html>
