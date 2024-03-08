@@ -1,7 +1,7 @@
 <body>
     <header>
         <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/autoload.php');
 
         use Models\maintenance_models\Ubigeo;
         use Models\maintenance_models\Proveedor;

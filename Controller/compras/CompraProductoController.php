@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/autoload.php');
 
 use Models\compras\CompraProducto;
 use Models\maintenance_models\Almacen;
