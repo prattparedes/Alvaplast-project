@@ -48,7 +48,7 @@
             <ul class="navbar-nav">
 
               <li style="font-size: 13px;" class="nav-item">
-                <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/compras/ordencompra.php')">
+                <a class="nav-link text-white btn btn-secondary" onclick="loadContent('views/compras/ordenCompra.php')">
                   <i class="bi bi-grid"></i>
                   COMPRAS
                 </a>
@@ -62,7 +62,7 @@
                     VENTAS
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/ventas/ordenVENTA.php')">Orden de Venta</a>
+                    <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/ventas/ordenVenta.php')">Orden de Venta</a>
                     <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/ventas/facturacion.php')">Facturación</a>
                     <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/ventas/regulardocumento.php')">Regular documento</a>
                     <a style="font-size: 13px;" class="dropdown-item" href="#" class="nav-link" onclick="loadContent('views/ventas/estadocuenta.php')">Estado de cuenta</a>
@@ -71,7 +71,7 @@
               </li>
 
               <!-- <li style="font-size: 13px;" class="nav-item">
-                <a style="width: 105px;" class="nav-link text-white btn btn-secondary" onclick="loadContent('views/compras/ordencompra.php')">
+                <a style="width: 105px;" class="nav-link text-white btn btn-secondary" onclick="loadContent('views/compras/ordenCompra.php')">
                   <i class="bi bi-grid"></i>
                   COMPRAS
                 </a>
@@ -213,7 +213,7 @@
   <script src="assets/js/habilitar.js"></script>
   <script src="assets/js/ventas/facturacion.js"></script>
   <script src="assets/js/alerts/alertmodal.js"></script>
-  <script src="assets/js/ventas/EstadoCuenta.js"></script>
+  <script src="assets/js/ventas/estadoCuenta.js"></script>
   <script src="assets/js/ventas/regularDocumento.js"></script>
   <script src="assets/js/ventas/registrofacturacion.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/xlsx@0.17.1/dist/xlsx.full.min.js"></script>

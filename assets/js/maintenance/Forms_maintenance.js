@@ -4,7 +4,7 @@ function listarProvincia(ubigeo) {
         return;
     }
     const xhr = new XMLHttpRequest();
-    const url = "/Alvaplast-project/Controller/maintenance_models/ubigeoController.php"; // Ruta del controlador PHP
+    const url = "/Controller/maintenance_models/ubigeoController.php"; // Ruta del controlador PHP
 
     // Configurar la solicitud
     xhr.open("POST", url, true);
@@ -48,7 +48,7 @@ function listarProvincia(ubigeo) {
 function listarDistrito(idprovincia) {
     // Crear una solicitud XMLHttpRequest
     const xhr = new XMLHttpRequest();
-    const url = "/Alvaplast-project/Controller/maintenance_models/ubigeoController.php"; // Ruta del controlador PHP
+    const url = "/Controller/maintenance_models/ubigeoController.php"; // Ruta del controlador PHP
 
     // Configurar la solicitud
     xhr.open("POST", url, true);
@@ -122,7 +122,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         }
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
-        const url = "/Alvaplast-project/Controller/maintenance_models/ProductoController.php"; // Ruta del controlador PHP
+        const url = "/Controller/maintenance_models/ProductoController.php"; // Ruta del controlador PHP
 
         // Configurar la solicitud
         xhr.open("POST", url, true);
@@ -177,7 +177,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         }
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
-        const url = "/Alvaplast-project/Controller/maintenance_models/ClienteController.php"; // Ruta del controlador PHP
+        const url = "/Controller/maintenance_models/ClienteController.php"; // Ruta del controlador PHP
 
         // Configurar la solicitud
         xhr.open("POST", url, true);
@@ -233,7 +233,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         }
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
-        const url = "/Alvaplast-project/Controller/maintenance_models/ProveedorController.php"; // Ruta del controlador PHP
+        const url = "/Controller/maintenance_models/ProveedorController.php"; // Ruta del controlador PHP
 
         // Configurar la solicitud
         xhr.open("POST", url, true);
@@ -279,7 +279,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         }
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
-        const url = "/Alvaplast-project/Controller/maintenance_models/LineaController.php"; // Ruta del controlador PHP
+        const url = "/Controller/maintenance_models/LineaController.php"; // Ruta del controlador PHP
 
         // Configurar la solicitud
         xhr.open("POST", url, true);
@@ -324,7 +324,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         }
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
-        const url = "/Alvaplast-project/Controller/maintenance_models/MarcaController.php"; // Ruta del controlador PHP
+        const url = "/Controller/maintenance_models/MarcaController.php"; // Ruta del controlador PHP
 
         // Configurar la solicitud
         xhr.open("POST", url, true);
@@ -368,7 +368,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         }
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
-        const url = "/Alvaplast-project/Controller/maintenance_models/UnidadController.php"; // Ruta del controlador PHP
+        const url = "/Controller/maintenance_models/UnidadController.php"; // Ruta del controlador PHP
 
         // Configurar la solicitud
         xhr.open("POST", url, true);
@@ -417,7 +417,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         }
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
-        const url = "/Alvaplast-project/Controller/maintenance_models/MonedaController.php"; // Ruta del controlador PHP
+        const url = "/Controller/maintenance_models/MonedaController.php"; // Ruta del controlador PHP
 
         // Configurar la solicitud
         xhr.open("POST", url, true);
@@ -464,7 +464,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
 
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
-        const url = "/Alvaplast-project/Controller/maintenance_models/SucursalController.php"; // Ruta del controlador PHP
+        const url = "/Controller/maintenance_models/SucursalController.php"; // Ruta del controlador PHP
 
         // Configurar la solicitud
         xhr.open("POST", url, true);
@@ -511,7 +511,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
 
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
-        const url = "/Alvaplast-project/Controller/maintenance_models/AlmacenController.php"; // Ruta del controlador PHP
+        const url = "/Controller/maintenance_models/AlmacenController.php"; // Ruta del controlador PHP
 
         // Configurar la solicitud
         xhr.open("POST", url, true);
@@ -562,7 +562,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
 
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
-        const url = "/Alvaplast-project/Controller/maintenance_models/VehiculoController.php"; // Ruta del controlador PHP
+        const url = "/Controller/maintenance_models/VehiculoController.php"; // Ruta del controlador PHP
 
         // Configurar la solicitud
         xhr.open("POST", url, true);
@@ -611,7 +611,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
 
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
-        const url = "/Alvaplast-project/Controller/maintenance_models/DocumentoController.php"; // Ruta del controlador PHP
+        const url = "/Controller/maintenance_models/DocumentoController.php"; // Ruta del controlador PHP
 
         // Configurar la solicitud
         xhr.open("POST", url, true);
@@ -663,7 +663,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
         }
         // Crear una solicitud XMLHttpRequest
         const xhr = new XMLHttpRequest();
-        const url = "/Alvaplast-project/Controller/maintenance_models/TransportistaController.php"; // Ruta del controlador PHP
+        const url = "/Controller/maintenance_models/TransportistaController.php"; // Ruta del controlador PHP
 
         // Configurar la solicitud
         xhr.open("POST", url, true);

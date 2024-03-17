@@ -478,7 +478,7 @@ function listarProvincia(ubigeo) {
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
   const url =
-    "/Alvaplast-project/Controller/maintenance_models/ubigeoController.php"; // Ruta del controlador PHP
+    "/Controller/maintenance_models/ubigeoController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);
@@ -526,7 +526,7 @@ function listarDistrito(idprovincia) {
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
   const url =
-    "/Alvaplast-project/Controller/maintenance_models/ubigeoController.php"; // Ruta del controlador PHP
+    "/Controller/maintenance_models/ubigeoController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);
@@ -730,7 +730,7 @@ function listarProductosMantenimiento() {
   };
   xhr.open(
     "GET",
-    "/Alvaplast-project/views/modals/maintenance_modals/products_table.php",
+    "/views/modals/maintenance_modals/products_table.php",
     true
   );
   xhr.send();

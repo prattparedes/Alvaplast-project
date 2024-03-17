@@ -7,7 +7,7 @@ use PDOException;
 
 class Connection
 {
-    private static $host = "localhost";
+    private static $host = "201.218.159.67";
     private static $database = "BD_BLING";
 
     static function Conectar()

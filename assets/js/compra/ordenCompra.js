@@ -16,7 +16,7 @@ function nuevaOrdenCompra() {
 
   // Conseguir id de compra nuevo
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/compras/CompraController.php"; // Ruta del controlador PHP
+  const url = "/Controller/compras/CompraController.php"; // Ruta del controlador PHP
   xhr.open("GET", url, true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("idCompra=" + 999999999);
@@ -64,7 +64,7 @@ function seleccionarProveedor(fila) {
   const providerDirection = contenidoFila[3];
 
   // Cambiar al formulario y luego cambiar el html
-  loadContent("views/compras/ordencompra.php").then(() => {
+  loadContent("views/compras/ordenCompra.php").then(() => {
     //----------------------------
     document
       .getElementById("btnRegister")
@@ -109,7 +109,7 @@ function seleccionarProductoCompra(fila) {
   const productPrice = contenidoFila[6];
 
   // Cambiar al formulario y luego cambiar el html
-  loadContent("views/compras/ordencompra.php").then(() => {
+  loadContent("views/compras/ordenCompra.php").then(() => {
     document
       .getElementById("btnRegister")
       .classList.remove("order__btn--inactive");
@@ -149,7 +149,7 @@ function abrirListadoCompras() {
     return;
   }
   guardarCopiaSeguridadCompra(copiaSeguridadFormulario);
-  loadContent("views/modals/listaordencompra.php");
+  loadContent("views/modals/listaordenCompra.php");
 }
 
 // Función para seleccionar una Orden de Compra y llenar el formulario
@@ -190,7 +190,7 @@ async function seleccionarOrdenCompra(fila) {
     const [datosProveedor] = await responseProveedor.json();
 
     // Regresar al formulario y llenarlo con los datos obtenidos
-    loadContent("views/compras/ordencompra.php").then(() => {
+    loadContent("views/compras/ordenCompra.php").then(() => {
       rellenarFormularioCompra(
         datosCompra,
         datosCompraProducto,
@@ -844,7 +844,7 @@ document
 
       // Crear una solicitud XMLHttpRequest
       const xhr = new XMLHttpRequest();
-      const url = "/Alvaplast-project/Controller/compras/CompraController.php"; // Ruta del controlador PHP
+      const url = "/Controller/compras/CompraController.php"; // Ruta del controlador PHP
 
       // Configurar la solicitud
       xhr.open("POST", url, true);
@@ -935,7 +935,7 @@ function RegistrarDatosTablaCompra(idCompra, metodo, idalmacen, almacen) {
     // comenzamos con el protocolo http
     const http = new XMLHttpRequest();
     const url =
-      "/Alvaplast-project/Controller/compras/CompraProductoController.php";
+      "/Controller/compras/CompraProductoController.php";
     //configuración de la solicitud
     http.open("POST", url, true);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -989,7 +989,7 @@ function RegistrarDatosTablaCompra(idCompra, metodo, idalmacen, almacen) {
 
 // Función Cancelar en el listado/productos/proveedores
 function CancelarYRestaurarCompra() {
-  loadContent("views/compras/ordencompra.php").then(() => {
+  loadContent("views/compras/ordenCompra.php").then(() => {
     restaurarCopiaSeguridadCompra(copiaSeguridadFormulario);
     activarInputs();
     // Ver si había productos en la tabla para activar moneda

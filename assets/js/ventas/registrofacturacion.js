@@ -62,7 +62,7 @@ function ListarRegistroFacturacion() {
 
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/ventas/registroFacturacionController.php"; // Ruta del controlador PHP
+  const url = "/Controller/ventas/registroFacturacionController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);

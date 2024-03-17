@@ -236,7 +236,7 @@ function listarProductosStockXAlmacen(idAlmacen) {
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
   const url =
-    "/Alvaplast-project/Controller/maintenance_models/ProductoController.php"; // Ruta del controlador PHP
+    "/Controller/maintenance_models/ProductoController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);
@@ -327,7 +327,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     const metodo = event.target.innerHTML
     const ruc = document.getElementById("rucDni").value
     const xhr = new XMLHttpRequest();
-    const url = "/Alvaplast-project/Controller/movimientos/MovimientoController.php";
+    const url = "/Controller/movimientos/MovimientoController.php";
 
     xhr.open("POST", url, true)
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -374,7 +374,7 @@ function mandarDatosKardex(fecha, numeroDocumento, serieDocumento, idDocumento, 
     // comenzamos con el protocolo http
     const http = new XMLHttpRequest();
     const url =
-      "/Alvaplast-project/Controller/inventario/KardexController.php";
+      "/Controller/inventario/KardexController.php";
     //configuración de la solicitud
     http.open("POST", url, true);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -502,7 +502,7 @@ function exportarStockPDF() {
 
 function listarProductoxMarca() {
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/maintenance_models/MarcaController.php";
+  const url = "/Controller/maintenance_models/MarcaController.php";
 
   xhr.open("POST", url, true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");

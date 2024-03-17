@@ -277,7 +277,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     const ruc = document.getElementById("rucDni").value
     console.log(idKardex);
     const xhr = new XMLHttpRequest();
-    const url = "/Alvaplast-project/Controller/movimientos/MovimientoController.php";
+    const url = "/Controller/movimientos/MovimientoController.php";
     xhr.open("POST", url, true)
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     if (idCaja, idOperacion) {
@@ -341,7 +341,7 @@ function mandarDatosKardexFact(idKardex, fecha, numeroDocumento, serieDocumento,
     // comenzamos con el protocolo http
     const http = new XMLHttpRequest();
     const url =
-      "/Alvaplast-project/Controller/inventario/KardexController.php";
+      "/Controller/inventario/KardexController.php";
     //configuración de la solicitud
     http.open("POST", url, true);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

@@ -33,7 +33,7 @@ function ListarDocumentosVentas() {
 
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/ventas/regulardocumentoController.php"; // Ruta del controlador PHP
+  const url = "/Controller/ventas/regulardocumentoController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);

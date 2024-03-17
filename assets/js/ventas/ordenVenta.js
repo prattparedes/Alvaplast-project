@@ -18,7 +18,7 @@ function nuevaOrdenVenta() {
 
   // Conseguir id de venta nuevo
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/ventas/VentaController.php"; // Ruta del controlador PHP
+  const url = "/Controller/ventas/VentaController.php"; // Ruta del controlador PHP
   xhr.open("GET", url, true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send("idVenta=" + 999999999);
@@ -660,7 +660,7 @@ document
 
       // Crear una solicitud XMLHttpRequest
       const xhr = new XMLHttpRequest();
-      const url = "/Alvaplast-project/Controller/ventas/VentaController.php"; // Ruta del controlador PHP
+      const url = "/Controller/ventas/VentaController.php"; // Ruta del controlador PHP
 
       // Configurar la solicitud
       xhr.open("POST", url, true);
@@ -744,7 +744,7 @@ function RegistrarDatosTablaVenta(idVenta, metodo) {
     // comenzamos con el protocolo http
     const http = new XMLHttpRequest();
     const url =
-      "/Alvaplast-project/Controller/ventas/VentaProductoController.php";
+      "/Controller/ventas/VentaProductoController.php";
     //configuración de la solicitud
     http.open("POST", url, true);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

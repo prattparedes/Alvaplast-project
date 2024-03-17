@@ -36,7 +36,7 @@ function listarEstadoCuenta() {
 
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/ventas/EstadoCuentaController.php"; // Ruta del controlador PHP
+  const url = "/Controller/ventas/EstadoCuentaController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);

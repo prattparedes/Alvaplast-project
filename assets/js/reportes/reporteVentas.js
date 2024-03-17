@@ -35,7 +35,7 @@ function consultarReporteVentas() {
 
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
+  const url = "/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);
@@ -149,7 +149,7 @@ function consultarReporteCompras() {
 
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
+  const url = "/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);
@@ -265,7 +265,7 @@ function consultarReportexDocumento() {
 
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
+  const url = "/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);
@@ -405,7 +405,7 @@ function consultarReportexFechas() {
 
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
+  const url = "/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);
@@ -511,7 +511,7 @@ function consultarReportexSerie() {
 
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
+  const url = "/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);
@@ -584,7 +584,7 @@ function consultarReportexCliente() {
 
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
+  const url = "/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);
@@ -664,7 +664,7 @@ function consultarReportexProducto() {
 
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
+  const url = "/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);
@@ -765,7 +765,7 @@ function consultarReportexUtilidad() {
 
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
+  const url = "/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);
@@ -883,7 +883,7 @@ function consultarDatosCosto() {
 
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
+  const url = "/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
 
   // Configurar la solicitud
   xhr.open("POST", url, true);
