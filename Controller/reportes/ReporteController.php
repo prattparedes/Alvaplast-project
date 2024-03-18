@@ -50,9 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 echo json_encode($result);
                 break;
             case "EstadoCuenta":
-                $fechaIni = (string) $_POST["fechaIni"] . ":00";
-                $fechaFin = (string) $_POST["fechaFin"] . ":00";
-                $result = Reporte::listar($fechaIni, $fechaFin);
+                $idCuenta = (int) $_POST["idCuenta"];
+                $result = Reporte::listarEstadoCuentaCuotas($idCuenta);
                 echo json_encode($result);
                 break;
 

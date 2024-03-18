@@ -171,4 +171,13 @@ class Reporte
             return false;
         }
     }
+
+    public static function listarEstadoCuentaCuotas(int $idCuenta)
+    {
+        $con = Connection::Conectar();
+        $stmt = $con->prepare("exec sp_ListarEstadoCuenta_Cuotas :idCuenta");
+        $stmt->bindParam(":idCuenta", $idCuenta, PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
+    }
 }
