@@ -26,10 +26,10 @@ function listarEstadoCuenta() {
   // Enviar la solicitud al servidor con el tipo de documento
   xhr.send(
     "fechaIni=" +
-      fecha1Value +
-      "&fechaFin=" +
-      fecha2Value +
-      "&metodo=EstadoCuenta"
+    fecha1Value +
+    "&fechaFin=" +
+    fecha2Value +
+    "&metodo=EstadoCuenta"
   );
 
   // Manejar la respuesta del servidor
@@ -339,7 +339,7 @@ function abrirPagarCuota(fila) {
       idCuenta = fila.getElementsByTagName('td')[8].textContent;
       Total = fila.getElementsByTagName('td')[5].textContent;
       Debe = fila.getElementsByTagName('td')[6].textContent;
-      
+
       document.getElementById('idCuenta').value = idCuenta;
       document.getElementById('total').value = Total;
       document.getElementById('debe').value = Debe;
@@ -361,20 +361,73 @@ function cerrarPagarCuota() {
 
 function pagarCuota() {
   // Lógica de pagar una cuota
-  montoAPagar = document.getElementById('monto-pago').value;
-  console.log('Se pagó la cuota con exito, monto: ', montoAPagar)
+  const idCuota = document.getElementById("idCuenta").value;
+  const montoAPagar = document.getElementById('monto-pago').value;
+  const total = document.getElementById('total').value;
+  console.log(idCuota, montoAPagar, total)
 
-  // Refrescar tabla de cuotas
-  idCuenta = document.getElementById('idCuenta').value;
-  verCuotasPorId(idCuenta)
+  if (montoAPagar > total) {
+    return alert("el monto a pagar excede al total")
+  }
+  const http = new XMLHttpRequest();
+  const url = "/Alvaplast-project/Controller/ventas/EstadoCuentaController.php";
+  // Configurar la solicitud
+  http.open("POST", url, true);
+  http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  if (idCuota && total) {
+    // Enviar los datos del formulario incluyendo descripcion y abreviatura
+    http.send("tipo=Grabar&total=" + total + "&idCuenta=" + idCuota + "&pago=" + montoAPagar);
+  } else {
+    alert("faltan datos")
+  }
+  http.onreadystatechange = function () {
+    if (http.readyState === XMLHttpRequest.DONE) {
+      if (http.status === 200) {
+        // La solicitud se completó correctamente
+        // Puedes manejar la respuesta del servidor aquí
+        alert(http.responseText);
+        // Refrescar tabla de cuotas
+        verCuotasPorId(idCuenta)
+      } else {
+        // Hubo un error en la solicitud
+        console.error('Error en la solicitud.');
+      }
+    }
+  };
 }
 
 function anularPago() {
   // Lógica de anular un pago
+  const idCuota = document.getElementById("idCuenta").value;
+  const total = document.getElementById('total').value;
+  console.log(idCuota, total)
+  const http = new XMLHttpRequest();
+  const url = "/Alvaplast-project/Controller/ventas/EstadoCuentaController.php";
+  // Configurar la solicitud
+  http.open("POST", url, true);
+  http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-  // Refrescar tabla de cuotas
-  idCuenta = document.getElementById('idCuenta').value;
-  verCuotasPorId(idCuenta)
+  if (idCuota && total) {
+    // Enviar los datos del formulario incluyendo descripcion y abreviatura
+    http.send("tipo=Anular&total=" + total + "&idCuenta=" + idCuota + "&pago=0");
+  } else {
+    alert("faltan datos")
+  }
+  http.onreadystatechange = function () {
+    if (http.readyState === XMLHttpRequest.DONE) {
+      if (http.status === 200) {
+        // La solicitud se completó correctamente
+        // Puedes manejar la respuesta del servidor aquí
+        alert(http.responseText);
+        // Refrescar tabla de cuotas
+        verCuotasPorId(idCuenta)
+      } else {
+        // Hubo un error en la solicitud
+        console.error('Error en la solicitud.');
+      }
+    }
+  };
 }
 
 function verCuotasPorId(idCuenta) {
@@ -396,13 +449,13 @@ function verCuotasPorId(idCuenta) {
         if (xhr.responseText) {
           const data = JSON.parse(xhr.responseText);
           const tbody = document.getElementById('cuotas--table').querySelector('tbody');
-          
+
           // Vaciar el tbody
           tbody.innerHTML = "";
 
           data.forEach(item => {
             const row = document.createElement('tr');
-        
+
             // Llena la fila con los datos correspondientes
             row.innerHTML = `
               <td>${item.item}</td>
@@ -410,7 +463,7 @@ function verCuotasPorId(idCuenta) {
               <td>${item.Estado_Cuota}</td>
               <td>${item.fecha_pago}</td>
             `;
-        
+
             // Inserta la fila en el cuerpo de la tabla
             tbody.appendChild(row);
           });

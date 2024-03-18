@@ -37,7 +37,7 @@ class EstadoCuenta
             $stmt->bindParam(":monto", $pago, PDO::PARAM_STR);
             $stmt->bindParam(":total", $total, PDO::PARAM_STR);
             $stmt->execute();
-            return ($stmt->rowCount() > 2) ? true : false;
+            return ($stmt->rowCount() > 0) ? true : false;
         } catch (PDOException $err) {
             $err->getMessage();
         }

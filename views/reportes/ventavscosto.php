@@ -40,12 +40,12 @@
 
                     <div class="col-md-8">
                         <label for="inputEndDate" class="col-form-label">Fecha de Inicio:</label>
-                        <input type="datetime-local" id="fecha1" class="form-control" aria-describedby="passwordHelpInline" value="<?php echo $fechaConHoraCero2; ?>">
+                        <input type="datetime-local" id="fecha1" class="form-control" aria-describedby="passwordHelpInline" value="<?php echo $fechaConHoraCero2; ?>" onchange="cambiarFecha1('fechain',this.value)">
                     </div>
 
                     <div class="col-md-8">
                         <label for="inputFilter" class="col-form-label">Fecha Fin:</label>
-                        <input type="datetime-local" id="fecha2" class="form-control" aria-describedby="passwordHelpInline" value="<?php echo $fechaConHoraCero; ?>">
+                        <input type="datetime-local" id="fecha2" class="form-control" aria-describedby="passwordHelpInline" value="<?php echo $fechaConHoraCero; ?>" onchange="cambiarFecha1('fechafi',this.value)">
                     </div>
                 </div>
                 <br>
@@ -86,10 +86,10 @@
                         <br>
 
 
-                        <label for="suma_utilidades_fecha_inicio" id="suma_utilidades_fecha_inicio">Suma de Utilidades (Fecha de Inicio): </label>
+                        <label for="suma_utilidades_fecha_inicio" id="suma_utilidades_fecha_inicio">Suma de Utilidades (Fecha de Inicio): <b id="fechain"></b></label>
 
                         <br>
-                        <label for="suma_utilidades_fecha_fin" id="suma_utilidades_fecha_fin">Suma de Utilidades (Fecha de Fin): </label>
+                        <label for="suma_utilidades_fecha_fin" id="suma_utilidades_fecha_fin">Suma de Utilidades (Fecha de Fin): <b id="fechafi"></b> </label>
 
 
 

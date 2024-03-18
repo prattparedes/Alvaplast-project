@@ -839,14 +839,6 @@ function consultarDatosCosto() {
           // const inputSumaUtilidades = document.getElementById("suma_utilidades");
           // inputSumaUtilidades.value = sumaUtilidades.toFixed(2);
 
-          // Capturar la suma total de utilidades de la fecha de inicio en un label
-          const labelSumaUtilidadesFechaInicio = document.getElementById("suma_utilidades_fecha_inicio");
-          labelSumaUtilidadesFechaInicio.textContent = "Suma de Utilidades (Fecha de Inicio): " + sumasPorDia[formattedFecha1];
-
-          // Capturar la suma total de utilidades de la fecha de fin en otro label
-          const labelSumaUtilidadesFechaFin = document.getElementById("suma_utilidades_fecha_fin");
-          labelSumaUtilidadesFechaFin.textContent = "Suma de Utilidades (Fecha de Fin): " + sumasPorDia[formattedFecha2];
-
           // Iterar sobre los datos y agregar filas a la tabla
           dataFromServer.sort((a, b) => {
             // Convertir las fechas a objetos Date y comparar
@@ -1157,4 +1149,9 @@ async function registrarFacturacionmodel() {
   let idCompra = document.getElementById("idCompra").value;
   // Esperar a que se complete obtenerDatosOCKardex
   await obtenerDatosOCKardex(idCompra);
+}
+
+
+function cambiarFecha1(item, valor) {
+  document.getElementById(item).innerText = valor
 }
