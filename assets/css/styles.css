@@ -285,12 +285,12 @@ select:focus {
     display: flex;
     justify-content: center;
   }
-  .nav-item .dropdown{
+  .nav-item .dropdown {
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-  .nav-item button{
+  .nav-item button {
     width: 165.05px;
   }
   .nav-item .nav-link {
@@ -311,11 +311,11 @@ select:focus {
   }
 
   .product__details div:nth-child(1) {
-    width: 105px !important;  
+    width: 105px !important;
   }
 
   .product__details div:nth-child(2) {
-    width: 80px !important;  
+    width: 80px !important;
   }
 
   .product__details div:nth-child(3) {
@@ -637,7 +637,15 @@ Alert
   z-index: 2; /* Sitúa el alertModal encima de la superposición */
 }
 
-#alertModal button {
+.pagarCuotaModal {
+  display: block !important;
+  width: fit-content !important;
+  max-width: none !important;
+  max-height: none !important;
+  overflow-y: visible !important;
+}
+
+#btnSi, #btnNo {
   width: 20%;
   margin: 10px 20px;
   padding: 6px;
