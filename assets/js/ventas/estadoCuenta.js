@@ -1,13 +1,13 @@
 function formatNumber(number) {
   // Formatear el número utilizando la función toLocaleString() para separadores de miles y decimales
-  return number.toLocaleString('es-ES', { minimumFractionDigits: 2 });
+  return number.toLocaleString("es-ES", { minimumFractionDigits: 2 });
 }
 
 function listarEstadoCuenta() {
   let fecha1Value = document.getElementById("fecha1").value;
   let fecha2Value = document.getElementById("fecha2").value;
-  console.log(fecha1Value)
-  console.log(fecha2Value)
+  console.log(fecha1Value);
+  console.log(fecha2Value);
   // Obtener el tipo de documento seleccionado
   // Verificar si se han establecido fechas
   if (!fecha1Value.trim() || !fecha2Value.trim()) {
@@ -25,7 +25,11 @@ function listarEstadoCuenta() {
 
   // Enviar la solicitud al servidor con el tipo de documento
   xhr.send(
-    "fechaIni=" + fecha1Value + "&fechaFin=" + fecha2Value + "&metodo=EstadoCuenta"
+    "fechaIni=" +
+      fecha1Value +
+      "&fechaFin=" +
+      fecha2Value +
+      "&metodo=EstadoCuenta"
   );
 
   // Manejar la respuesta del servidor
@@ -43,7 +47,9 @@ function listarEstadoCuenta() {
           });
 
           // Obtener la referencia del cuerpo de la tabla
-          const tbody = document.getElementById("estadoCuenta--table").getElementsByTagName("tbody")[0];
+          const tbody = document
+            .getElementById("estadoCuenta--table")
+            .getElementsByTagName("tbody")[0];
 
           // Limpiar el cuerpo de la tabla antes de agregar nuevos datos
           tbody.innerHTML = "";
@@ -103,19 +109,19 @@ function listarEstadoCuenta() {
               const separatorRow = document.createElement("tr");
               const separatorCell = document.createElement("td");
               separatorCell.style.backgroundColor = "#67bfd1"; // Establecer el color de fondo de la celda
-              separatorCell.style.fontSize = "20px";  // Establecer el tamaño de la fuente en la celda
+              separatorCell.style.fontSize = "20px"; // Establecer el tamaño de la fuente en la celda
               separatorCell.colSpan = 8; // Ajustar el número de columnas según tu diseño
-              separatorCell.textContent = "Tipo de documento: " + item.TipoDocumento;
+              separatorCell.textContent =
+                "Tipo de documento: " + item.TipoDocumento;
               separatorRow.appendChild(separatorCell);
               tbody.appendChild(separatorRow);
 
               tipoDocumentoActual = item.TipoDocumento; // Actualizar el tipo de documento actual
             }
 
-
             // Crear la fila para el dato actual
             const row = document.createElement("tr");
-            row.setAttribute("onclick", "alert('esta en estadoCuenta.js')");
+            row.setAttribute("onclick", "abrirPagarCuota(this)");
             // Crear celdas para cada propiedad del objeto y agregarlas a la fila
             const fechaVenta = document.createElement("td");
             fechaVenta.textContent = item.FechaVenta;
@@ -149,13 +155,13 @@ function listarEstadoCuenta() {
 
             const acuenta = document.createElement("td");
             acuenta.textContent = formatNumber(item.A_Cuenta);
-            acuenta.style.textAlign = 'center';
+            acuenta.style.textAlign = "center";
             acuenta.style.backgroundColor = "#caf5fd";
             row.appendChild(acuenta);
 
             const id_ECuenta = document.createElement("td");
             id_ECuenta.textContent = item.id_ECuenta;
-            id_ECuenta.style.display = "none"
+            id_ECuenta.style.display = "none";
             row.appendChild(id_ECuenta);
 
             // Agregar la fila a la tabla
@@ -202,13 +208,25 @@ function listarEstadoCuenta() {
           }
 
           // Calcular y mostrar las sumas totales en etiquetas <label>
-          const totalTotalGlobal = dataFromServer.reduce((total, item) => total + parseFloat(item.Total), 0);
-          const totalDebeGlobal = dataFromServer.reduce((total, item) => total + parseFloat(item.Debe), 0);
-          const totalACuentaGlobal = dataFromServer.reduce((total, item) => total + parseFloat(item.A_Cuenta), 0);
+          const totalTotalGlobal = dataFromServer.reduce(
+            (total, item) => total + parseFloat(item.Total),
+            0
+          );
+          const totalDebeGlobal = dataFromServer.reduce(
+            (total, item) => total + parseFloat(item.Debe),
+            0
+          );
+          const totalACuentaGlobal = dataFromServer.reduce(
+            (total, item) => total + parseFloat(item.A_Cuenta),
+            0
+          );
 
-          document.getElementById("totalTotalLabel").textContent = "Total Total Global: " + totalTotalGlobal.toFixed(2);
-          document.getElementById("totalDebeLabel").textContent = "Total Debe Global: " + totalDebeGlobal.toFixed(2);
-          document.getElementById("totalACuentaLabel").textContent = "Total A Cuenta Global: " + totalACuentaGlobal.toFixed(2);
+          document.getElementById("totalTotalLabel").textContent =
+            "Total Total Global: " + totalTotalGlobal.toFixed(2);
+          document.getElementById("totalDebeLabel").textContent =
+            "Total Debe Global: " + totalDebeGlobal.toFixed(2);
+          document.getElementById("totalACuentaLabel").textContent =
+            "Total A Cuenta Global: " + totalACuentaGlobal.toFixed(2);
         }
       } else {
         // Hubo un error en la solicitud
@@ -218,23 +236,20 @@ function listarEstadoCuenta() {
   };
 }
 
-
-
 //----------------------------------------------------------------------------------Nuevo
 
 //Repote compras---------------------------
 function exportarEstadoPDF() {
   var doc = new jsPDF();
-  var tabla = document.getElementById('estadoCuenta--table');
+  var tabla = document.getElementById("estadoCuenta--table");
   doc.autoTable({ html: tabla });
 
   // Mostrar el PDF en una nueva ventana emergente
-  doc.output('dataurlnewwindow');
+  doc.output("dataurlnewwindow");
 
   // Guardar el PDF en un archivo
   // doc.save('tabla.pdf');
 }
-
 
 //---------------------------------------------------------------------------------------------
 function exportarEstadoExcel() {
@@ -254,7 +269,7 @@ function exportarEstadoExcel() {
 
   var autorizado = ["AUTORIZADO: SUSAN PAREDES V."];
 
-  var additionalTitle = [['Fecha/hora:', fechaHora]]; // Modificar según sea necesario
+  var additionalTitle = [["Fecha/hora:", fechaHora]]; // Modificar según sea necesario
   var proveedor = ["PROVEEDOR:"];
   var t = [""];
   // Agregar el título y la fecha/hora del sistema al principio de la hoja
@@ -265,7 +280,6 @@ function exportarEstadoExcel() {
   XLSX.utils.sheet_add_aoa(worksheet, [[telef]], { origin: -1 }); // Insertar fila del título al principio de la hoja
   XLSX.utils.sheet_add_aoa(worksheet, additionalTitle, { origin: -1 }); // Insertar fila de fecha/hora al principio de la hoja
   XLSX.utils.sheet_add_aoa(worksheet, [[t]], { origin: -1 }); // Insertar fila del título al principio de la hoja
-
 
   // Obtener los datos de la tabla
   var table = document.getElementById("estadoCuenta--table");
@@ -289,7 +303,7 @@ function exportarEstadoExcel() {
   XLSX.utils.sheet_add_aoa(worksheet, data, { origin: -1 });
 
   // Ajustar el ancho de las columnas al contenido
-  var range = XLSX.utils.decode_range(worksheet['!ref']);
+  var range = XLSX.utils.decode_range(worksheet["!ref"]);
   for (var C = range.s.c; C <= range.e.c; ++C) {
     var colWidth = 0;
     for (var R = range.s.r; R <= range.e.r; ++R) {
@@ -298,20 +312,115 @@ function exportarEstadoExcel() {
       var cellTextLength = cell.v ? String(cell.v).length : 0;
       if (colWidth < cellTextLength) colWidth = cellTextLength;
     }
-    if (!worksheet['!cols']) worksheet['!cols'] = [];
-    worksheet['!cols'][C] = { wch: colWidth }; // Establecer el ancho de la columna
+    if (!worksheet["!cols"]) worksheet["!cols"] = [];
+    worksheet["!cols"][C] = { wch: colWidth }; // Establecer el ancho de la columna
   }
 
   // Agregar la hoja al libro de trabajo
-  XLSX.utils.book_append_sheet(workbook, worksheet, 'Datos');
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Datos");
 
   // Generar el archivo Excel y guardarlo en el cliente
-  XLSX.writeFile(workbook, 'tabla_exportada_' + fechaHora + '.xlsx');
+  XLSX.writeFile(workbook, "tabla_exportada_" + fechaHora + ".xlsx");
 }
-
 
 function cargarCuotas(fila) {
   const columnas = fila.querySelectorAll("td");
-  let id = columnas[8].innerText.trim()
-  loadContentIntoModal("views/modals/EstadoCuentamodal.php", `data=${id}`)
+  let id = columnas[8].innerText.trim();
+  loadContentIntoModal("views/modals/EstadoCuentamodal.php", `data=${id}`);
+}
+
+function abrirPagarCuota(fila) {
+  fetch("views/modals/pagarcuota.php")
+    .then((response) => response.text())
+    .then((data) => {
+      document.getElementById("overlay").style.display = "block";
+      document.getElementById("alertModal").classList.add('pagarCuotaModal');
+      document.getElementById("alertModal").innerHTML = data;
+      idCuenta = fila.getElementsByTagName('td')[8].textContent;
+      Total = fila.getElementsByTagName('td')[5].textContent;
+      Debe = fila.getElementsByTagName('td')[6].textContent;
+      
+      document.getElementById('idCuenta').value = idCuenta;
+      document.getElementById('total').value = Total;
+      document.getElementById('debe').value = Debe;
+      document.getElementById('monto-pago').value = Debe;
+
+      verCuotasPorId(idCuenta);
+    }).catch(error => {
+      console.error('Error al cargar el archivo pagarcuota.php, error: ' + error)
+    })
+}
+
+function cerrarPagarCuota() {
+  document.getElementById("overlay").style.display = "none";
+  document.getElementById("alertModal").classList.remove('pagarCuotaModal');
+  document.getElementById("alertModal").innerHTML = `<p id="alertText">Nuevo Valor: <input type="text" id="nuevoValor"></p>
+  <button onclick="closeAlertModal(true)" id="btnSi">Sí</button>
+  <button onclick="closeAlertModal(false)" id="btnNo">No</button>`;
+}
+
+function pagarCuota() {
+  // Lógica de pagar una cuota
+  montoAPagar = document.getElementById('monto-pago').value;
+  console.log('Se pagó la cuota con exito, monto: ', montoAPagar)
+
+  // Refrescar tabla de cuotas
+  idCuenta = document.getElementById('idCuenta').value;
+  verCuotasPorId(idCuenta)
+}
+
+function anularPago() {
+  // Lógica de anular un pago
+
+  // Refrescar tabla de cuotas
+  idCuenta = document.getElementById('idCuenta').value;
+  verCuotasPorId(idCuenta)
+}
+
+function verCuotasPorId(idCuenta) {
+  // Crear una solicitud XMLHttpRequest
+  const xhr = new XMLHttpRequest();
+  const url =
+    "/Alvaplast-project/Controller/reportes/ReporteController.php"; // Ruta del controlador PHP
+
+  // Configurar la solicitud
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.send("idCuenta=" + idCuenta + "&metodo=EstadoCuenta");
+
+  // Manejar la respuesta del servidor
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        // La solicitud se completó correctamente
+        if (xhr.responseText) {
+          const data = JSON.parse(xhr.responseText);
+          const tbody = document.getElementById('cuotas--table').querySelector('tbody');
+          
+          // Vaciar el tbody
+          tbody.innerHTML = "";
+
+          data.forEach(item => {
+            const row = document.createElement('tr');
+        
+            // Llena la fila con los datos correspondientes
+            row.innerHTML = `
+              <td>${item.item}</td>
+              <td>${item.monto_cuota}</td>
+              <td>${item.Estado_Cuota}</td>
+              <td>${item.fecha_pago}</td>
+            `;
+        
+            // Inserta la fila en el cuerpo de la tabla
+            tbody.appendChild(row);
+          });
+        } else {
+          alert("Ocurrió un error al obtener las cuotas.");
+        }
+      } else {
+        // Hubo un error en la solicitud
+        console.error("Error en la solicitud.");
+      }
+    }
+  };
 }
