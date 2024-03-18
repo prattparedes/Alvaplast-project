@@ -10,26 +10,14 @@ function NuevaFacturación() {
   activarInputs();
 }
 
-// Función para seleccionar orden de venta en facturación
 async function seleccionarOrdenVentaFacturación(fila) {
   const columnas = fila.querySelectorAll("td");
   // Obtener el valor de la segunda columna
-  const valorSegundaColumna = columnas[1].innerText.trim().substring(7);
-
-  // Realizar la solicitud fetch y esperar la respuesta
-  const response = await fetch(
-    `http://localhost/Alvaplast-project/Controller/ventas/VentaController.php?serieDocumento=${valorSegundaColumna}`
-  );
-
-  // Verificar si la solicitud fue exitosa
-  if (!response.ok) {
-    throw new Error("No se pudo obtener la ID de la venta.");
-  }
-
-  // Extraer el cuerpo de la respuesta como JSON
-  const data = await response.json();
-  const idVenta = data.id_venta;
-
+  const idVenta = columnas[7].innerText.trim()
+  await obtenerDatosFacturacion(idVenta)
+}
+// Función para seleccionar orden de venta en facturación
+async function obtenerDatosFacturacion(idVenta) {
   // URLs dinámicas basadas en los valores extraídos
   const urlVenta = `http://localhost/Alvaplast-project/Controller/ventas/VentaController.php?idVenta=${idVenta}`;
   const urlVentaProducto = `http://localhost/Alvaplast-project/Controller/ventas/VentaProductoController.php?idVenta=${idVenta}`;
@@ -285,10 +273,10 @@ document.querySelector(".main__content").addEventListener("click", function (eve
     } else {
       //alert("faltan datos")
       alertify
-      .alert("Falta agregar datos.", function(){
-      //  alertify.error('Error');
-      });
-     
+        .alert("Falta agregar datos.", function () {
+          //  alertify.error('Error');
+        });
+
     }
     xhr.onreadystatechange = function () {
       if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -300,21 +288,21 @@ document.querySelector(".main__content").addEventListener("click", function (eve
           var idMovimiento = xhr.responseText;
           if (metodo == "Grabar") {
             mandarDatosKardexFact(1, fecha, numeroDocumento, serieDocumento, idDocumento, idAlmacen, idMovimiento, monto, ruc, metodo)
-           // alert("Se grabo correctamente la factura")
-           alertify
-           .alert("Se grabo correctamente la factura.", function(){
-             alertify.message('OK');
-           });
+            // alert("Se grabo correctamente la factura")
+            alertify
+              .alert("Se grabo correctamente la factura.", function () {
+                alertify.message('OK');
+              });
           } else if (metodo == "Anular " || "Eliminar") {
             mandarDatosKardexFact(idKardex, fecha, numeroDocumento, serieDocumento, idDocumento, idAlmacen, idMovimiento, monto, ruc, metodo)
-           // alert("Se elimino la factura hecha")
-           alertify.confirm("Desea eliminar Factura.",
-          function(){
-          alertify.success('Ok');
-          },
-          function(){
-          alertify.error('Cancel');
-          });
+            // alert("Se elimino la factura hecha")
+            alertify.confirm("Desea eliminar Factura.",
+              function () {
+                alertify.success('Ok');
+              },
+              function () {
+                alertify.error('Cancel');
+              });
           }
         } else {
           // Hubo un error en la solicitud
@@ -350,11 +338,11 @@ function mandarDatosKardexFact(idKardex, fecha, numeroDocumento, serieDocumento,
       http.send("fecha=" + fecha + "&numeroDocumento=" + numeroDocumento + "&serieDocumento=" + serieDocumento + "&idDocumento=" + idDocumento + "&idProducto=" + idProducto + "&idAlmacen=" + idAlmacen + "&idMovimiento=" + idMovimiento + "&cantidad=" + cantidad + "&precio=" + precioCompra + "&descuento=" + descuento + "&tipo=" + tipo + "&total=" + total + "&ruc=" + rucDni + "&nombre=" + nombreProducto + "&metodo=" + metodo + "&idKardex=" + idKardex);
     } else {
       //alert("faltan datos");
-      
+
       alertify
-      .alert("Falta agregar datos.", function(){
-       // alertify.error('Error');
-      });
+        .alert("Falta agregar datos.", function () {
+          // alertify.error('Error');
+        });
     }
 
     http.onreadystatechange = function () {
@@ -373,6 +361,7 @@ function mandarDatosKardexFact(idKardex, fecha, numeroDocumento, serieDocumento,
     };
   });
 }
+
 
 
 function filtrarRegistroFacturacion(filtro) {
@@ -477,23 +466,23 @@ async function seleccionarFactura(fila) {
 // window.jsPDF = window.jspdf.jsPDF;
 function exportarFacturacionPDF() {
   var doc = new jsPDF();
-  
+
   // Agregar título al documento
   var titulo = "Reporte de Factuación"; // Cambia "Reporte de Ventas" por el título que desees
   doc.text(titulo, 20, 10);
-  
+
   // Obtener fecha y hora actual
   var fechaHoraActual = new Date().toLocaleString();
-  
+
   // Agregar fecha y hora al documento
   doc.text("Fecha y hora: " + fechaHoraActual, 20, 20);
-  
+
   var tabla = document.getElementById('ordertable');
   doc.autoTable({ html: tabla });
-  
+
   // Mostrar el PDF en una nueva ventana emergente
   doc.output('dataurlnewwindow');
-  
+
   // Guardar el PDF en un archivo
   // doc.save('tabla.pdf');
 }

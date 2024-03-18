@@ -854,31 +854,31 @@ document
         // Enviar los datos del formulario incluyendo descripcion y abreviatura
         xhr.send(
           "idCompra=" +
-            idCompra +
-            "&fecha=" +
-            fecha +
-            "&total=" +
-            total +
-            "&subtotal=" +
-            subtotal +
-            "&igv=" +
-            igv +
-            "&idMoneda=" +
-            idMoneda +
-            "&numeroDocumento=" +
-            numeroDocumento +
-            "&serieDocumento=" +
-            serieDocumento +
-            "&idProveedor=" +
-            idProveedor +
-            "&idAlmacen=" +
-            idAlmacen +
-            "&tipoPago=" +
-            tipoPago +
-            "&idPersonal=" +
-            idPersonal +
-            "&metodo=" +
-            metodo
+          idCompra +
+          "&fecha=" +
+          fecha +
+          "&total=" +
+          total +
+          "&subtotal=" +
+          subtotal +
+          "&igv=" +
+          igv +
+          "&idMoneda=" +
+          idMoneda +
+          "&numeroDocumento=" +
+          numeroDocumento +
+          "&serieDocumento=" +
+          serieDocumento +
+          "&idProveedor=" +
+          idProveedor +
+          "&idAlmacen=" +
+          idAlmacen +
+          "&tipoPago=" +
+          tipoPago +
+          "&idPersonal=" +
+          idPersonal +
+          "&metodo=" +
+          metodo
         );
       } else {
         alert("faltan datos");
@@ -900,6 +900,9 @@ document
               idAlmacen,
               nombreAlmacen
             );
+            if (metodo === "Grabar") {
+              abrirAlertaConfirmación("Deseas registrar la compra en Kardex?", registrarCompraKardex, nuevaOrdenCompra);
+            }
           } else {
             // Hubo un error en la solicitud
             console.error("Error en la solicitud.");
@@ -943,25 +946,25 @@ function RegistrarDatosTablaCompra(idCompra, metodo, idalmacen, almacen) {
       //Enviamos los datos al controlador
       http.send(
         "idCompra=" +
-          idCompra +
-          "&idProducto=" +
-          idProducto +
-          "&cantidad=" +
-          cantidad +
-          "&precioCompra=" +
-          precioCompra +
-          "&descuento=" +
-          descuento +
-          "&subtotal=" +
-          subTotal +
-          " &metodo=" +
-          metodo +
-          "&idAlmacen=" +
-          idalmacen +
-          "&nombreProducto=" +
-          nombreProducto +
-          "&nombreAlmacen=" +
-          almacen
+        idCompra +
+        "&idProducto=" +
+        idProducto +
+        "&cantidad=" +
+        cantidad +
+        "&precioCompra=" +
+        precioCompra +
+        "&descuento=" +
+        descuento +
+        "&subtotal=" +
+        subTotal +
+        " &metodo=" +
+        metodo +
+        "&idAlmacen=" +
+        idalmacen +
+        "&nombreProducto=" +
+        nombreProducto +
+        "&nombreAlmacen=" +
+        almacen
       );
     } else {
       alert("faltan datos");
@@ -975,9 +978,7 @@ function RegistrarDatosTablaCompra(idCompra, metodo, idalmacen, almacen) {
           console.log(http.responseText);
 
           // Envío a Kardex
-          if (metodo === "Grabar") {
-            abrirAlertaConfirmación("Deseas registrar la compra en Kardex?", registrarCompraKardex, nuevaOrdenCompra);
-          }
+
         } else {
           // Hubo un error en la solicitud
           console.error("Error en la insercion de los datos");
@@ -1074,35 +1075,35 @@ function exportarTablaExcelorden() {
 
   // Iterar sobre las filas de la tabla (tbody)
   for (var i = 0; i < tbody.rows.length; i++) {
-      var rowData = [];
-      var cells = tbody.rows[i].cells;
+    var rowData = [];
+    var cells = tbody.rows[i].cells;
 
-      // Iterar sobre las celdas de cada fila, comenzando desde la segunda celda
-      for (var j = 1; j < cells.length; j++) {
-          rowData.push(cells[j].textContent);
-      }
+    // Iterar sobre las celdas de cada fila, comenzando desde la segunda celda
+    for (var j = 1; j < cells.length; j++) {
+      rowData.push(cells[j].textContent);
+    }
 
-      // Agregar los datos de la fila al conjunto de datos
-      data.push(rowData);
+    // Agregar los datos de la fila al conjunto de datos
+    data.push(rowData);
   }
 
   // Iterar sobre las filas del tfoot
   for (var i = 0; i < tfoot.rows.length; i++) {
-      var rowData = [];
-      var cells = tfoot.rows[i].cells;
+    var rowData = [];
+    var cells = tfoot.rows[i].cells;
 
-      // Agregar celdas en blanco antes de las celdas con contenido
-      for (var k = 0; k < 4; k++) {
-          rowData.push("");
-      }
+    // Agregar celdas en blanco antes de las celdas con contenido
+    for (var k = 0; k < 4; k++) {
+      rowData.push("");
+    }
 
-      // Iterar sobre las celdas de cada fila
-      for (var j = 0; j < cells.length; j++) {
-          rowData.push(cells[j].textContent);
-      }
+    // Iterar sobre las celdas de cada fila
+    for (var j = 0; j < cells.length; j++) {
+      rowData.push(cells[j].textContent);
+    }
 
-      // Agregar los datos de la fila al conjunto de datos
-      data.push(rowData);
+    // Agregar los datos de la fila al conjunto de datos
+    data.push(rowData);
   }
 
   // Convertir los datos a un formato de hoja de cálculo
@@ -1126,15 +1127,15 @@ function exportarTablaExcelorden() {
 function getColumnWidths(data) {
   var widths = [];
   for (var i = 0; i < data[0].length; i++) {
-      var maxLength = 0;
-      for (var j = 0; j < data.length; j++) {
-          var length = data[j][i] ? data[j][i].toString().length : 0;
-          if (length > maxLength) {
-              maxLength = length;
-          }
+    var maxLength = 0;
+    for (var j = 0; j < data.length; j++) {
+      var length = data[j][i] ? data[j][i].toString().length : 0;
+      if (length > maxLength) {
+        maxLength = length;
       }
-      var width = { wch: maxLength + 2 }; // Add extra padding
-      widths.push(width);
+    }
+    var width = { wch: maxLength + 2 }; // Add extra padding
+    widths.push(width);
   }
   return widths;
 }

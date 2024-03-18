@@ -8,7 +8,8 @@ function nuevaOrdenVenta() {
   document.getElementById("tipoPago").value = "E";
   document.getElementById("tipoDocumento").value = "001";
   document.getElementById("vendedor").value = "1";
-  
+  document.getElementById("overlay").style.display = "none";
+  document.getElementById("alertModal").style.display = "none";
   activarInputs();
   document
     .getElementById("btnRegister")
@@ -21,17 +22,14 @@ function nuevaOrdenVenta() {
   const url = "/Alvaplast-project/Controller/ventas/VentaController.php"; // Ruta del controlador PHP
   xhr.open("GET", url, true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  xhr.send("idVenta=" + 999999999);
+  xhr.send("?idVenta=" + 999999999);
 
   // Manejar la respuesta del servidor
   xhr.onreadystatechange = function () {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
         // Puedes manejar la respuesta del servidor aquí
-        document.getElementById("idVenta").value = xhr.responseText.replace(
-          /^"|"$/g,
-          ""
-        );
+        document.getElementById("serieDocumento").value = xhr.responseText
         console.log(xhr.responseText);
       } else {
         console.error("Error en la solicitud.");
@@ -126,10 +124,10 @@ function abrirListadoProductosVenta() {
   xhttp.open(
     "GET",
     "views/modals/listadoproductosventa.php" +
-      "?idAlmacen=" +
-      encodeURIComponent(opcion) +
-      "&idCliente=" +
-      encodeURIComponent(cliente),
+    "?idAlmacen=" +
+    encodeURIComponent(opcion) +
+    "&idCliente=" +
+    encodeURIComponent(cliente),
     true
   );
   xhttp.send();
@@ -190,22 +188,8 @@ function abrirListadoVentas() {
 async function seleccionarOrdenVenta(fila) {
   const columnas = fila.querySelectorAll("td");
 
-  // Obtener el valor de la segunda columna
-  const valorSegundaColumna = columnas[1].innerText.trim().substring(7);
-
+  const idVenta = parseInt(columnas[7].innerText.trim())
   // Realizar la solicitud fetch y esperar la respuesta
-  const response = await fetch(
-    `http://localhost/Alvaplast-project/Controller/ventas/VentaController.php?serieDocumento=${valorSegundaColumna}`
-  );
-
-  // Verificar si la solicitud fue exitosa
-  if (!response.ok) {
-    throw new Error("No se pudo obtener la ID de la venta.");
-  }
-
-  // Extraer el cuerpo de la respuesta como JSON
-  const data = await response.json();
-  const idVenta = data.id_venta;
 
   // URLs dinámicas basadas en los valores extraídos
   const urlVenta = `http://localhost/Alvaplast-project/Controller/ventas/VentaController.php?idVenta=${idVenta}`;
@@ -337,6 +321,7 @@ function guardarCopiaSeguridadVenta(formulario) {
   // Guardar las claves y valores principales
   if (formulario === copiaSeguridadFormulario) {
     copiaSeguridadFormulario = {
+      serie: document.getElementById("serieDocumento").value,
       id_venta: document.getElementById("idVenta").value,
       cliente: document.getElementById("cliente").value,
       id_cliente: document.getElementById("idcliente").value,
@@ -355,6 +340,7 @@ function guardarCopiaSeguridadVenta(formulario) {
       tipoDocumento: document.getElementById("tipoDocumento").value,
       notas: document.getElementById("notas").value,
       modificarActivo: document.getElementById("btnModify").innerHTML,
+      metodo: document.getElementById("metodo").value,
       precios: datosPrecios, // Guardar el array con los valores de la tabla precios
       productos: [], // Inicializar un array vacío para los productos
     };
@@ -492,6 +478,7 @@ function restaurarCopiaSeguridadVenta(formulario) {
 
   // Restaurar los valores principales del formulario
   let copy = formulario;
+  document.getElementById("serieDocumento").value = copy.serie;
   document.getElementById("idVenta").value = copy.id_venta;
   document.getElementById("cliente").value = copy.cliente;
   document.getElementById("idcliente").value = copy.id_cliente;
@@ -509,7 +496,7 @@ function restaurarCopiaSeguridadVenta(formulario) {
   document.getElementById("fecha").value = copy.fecha;
   document.getElementById("tipoDocumento").value = copy.tipoDocumento;
   document.getElementById("notas").value = copy.notas;
-
+  document.getElementById("metodo").value = copy.metodo;
   console.log(copy);
 
   if (copy.modificarActivo === "Cancelar") {
@@ -670,35 +657,35 @@ document
         // Enviar los datos del formulario incluyendo descripcion y abreviatura
         xhr.send(
           "idVenta=" +
-            idVenta +
-            "&fecha=" +
-            fecha +
-            "&total=" +
-            total +
-            "&subtotal=" +
-            subtotal +
-            "&igv=" +
-            igv +
-            "&idMoneda=" +
-            idMoneda +
-            "&numeroDocumento=" +
-            numeroDocumento +
-            "&serieDocumento=" +
-            serieDocumento +
-            "&idCliente=" +
-            idCliente +
-            "&idAlmacen=" +
-            idAlmacen +
-            "&tipoPago=" +
-            tipoPago +
-            "&idPersonal=" +
-            idPersonal +
-            "&metodo=" +
-            metodo +
-            "&idDocumento=" +
-            idDocumento +
-            "&pagoInicial=" +
-            pagoInicial
+          idVenta +
+          "&fecha=" +
+          fecha +
+          "&total=" +
+          total +
+          "&subtotal=" +
+          subtotal +
+          "&igv=" +
+          igv +
+          "&idMoneda=" +
+          idMoneda +
+          "&numeroDocumento=" +
+          numeroDocumento +
+          "&serieDocumento=" +
+          serieDocumento +
+          "&idCliente=" +
+          idCliente +
+          "&idAlmacen=" +
+          idAlmacen +
+          "&tipoPago=" +
+          tipoPago +
+          "&idPersonal=" +
+          idPersonal +
+          "&metodo=" +
+          metodo +
+          "&idDocumento=" +
+          idDocumento +
+          "&pagoInicial=" +
+          pagoInicial
         );
       } else {
         alert("faltan datos");
@@ -711,6 +698,7 @@ document
             // Puedes manejar la respuesta del servidor aquí
             //Envio de los datos de VentaProducto
             if (metodo == "Eliminar") {
+              console.log(xhr.responseText)
               alert("venta eliminada");
               loadContent("views/ventas/ordenVenta.php");
             } else if (metodo == "modificar") {
@@ -719,6 +707,8 @@ document
             } else if (metodo == "Grabar") {
               alert("venta nueva creada . id :" + xhr.responseText);
               RegistrarDatosTablaVenta(xhr.responseText, metodo);
+              document.getElementById("idVenta").value = xhr.responseText;
+              abrirAlertaConfirmación("Deseas registrar la venta en facturacion?", registrarFacturacionOrden, nuevaOrdenVenta);
             }
           } else {
             // Hubo un error en la solicitud
@@ -728,6 +718,14 @@ document
       };
     }
   });
+async function registrarFacturacionOrden() {
+  // Cerramos el alert
+  document.getElementById("overlay").style.display = "none";
+  document.getElementById("alertModal").style.display = "none";
+  // Esperar a que se complete obtenerDatosOCKardex
+  const idVenta = document.getElementById("idVenta").value
+  await obtenerDatosFacturacion(idVenta);
+}
 
 function RegistrarDatosTablaVenta(idVenta, metodo) {
   const tabla = document.getElementById("ordertable");
@@ -752,19 +750,19 @@ function RegistrarDatosTablaVenta(idVenta, metodo) {
       //Enviamos los datos al controlador
       http.send(
         "idVenta=" +
-          idVenta +
-          "&idProducto=" +
-          idProducto +
-          "&cantidad=" +
-          cantidad +
-          "&precioVenta=" +
-          precioVenta +
-          "&descuento=" +
-          descuento +
-          "&subtotal=" +
-          subTotal +
-          "&metodo=" +
-          metodo
+        idVenta +
+        "&idProducto=" +
+        idProducto +
+        "&cantidad=" +
+        cantidad +
+        "&precioVenta=" +
+        precioVenta +
+        "&descuento=" +
+        descuento +
+        "&subtotal=" +
+        subTotal +
+        "&metodo=" +
+        metodo
       );
     } else {
       alert("faltan datos");
@@ -778,9 +776,6 @@ function RegistrarDatosTablaVenta(idVenta, metodo) {
           console.log(http.responseText);
 
           // Envío a Kardex
-          if (metodo === "Grabar") {
-            loadContent("views/ventas/OrdenVenta.php");
-          }
         } else {
           // Hubo un error en la solicitud
           console.error("Error en la insercion de los datos");

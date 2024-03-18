@@ -348,6 +348,7 @@ document.querySelector(".main__content").addEventListener("click", function (eve
           console.log(xhr.responseText);
           //Envio de los datos de CompraProducto
           var idMovimiento = xhr.responseText;
+          if (metodo == "Grabar") { alert("Se registro en el kardex") }
           mandarDatosKardex(fecha, numeroDocumento, serieDocumento, idDocumento, idAlmacen, idMovimiento, monto, ruc, metodo)
         } else {
           // Hubo un error en la solicitud

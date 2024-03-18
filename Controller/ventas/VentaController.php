@@ -8,7 +8,7 @@ use Models\maintenance_models\TipoCambio;
 use Models\ventas\Venta;
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
-    $id = (isset($_POST["idVenta"]) && $_POST["idVenta"] !== "0") ? (int) $_POST["idVenta"] : 1;
+    $id = (int) (isset($_POST["idVenta"]) && $_POST["idVenta"] !== "0") ? (int) $_POST["idVenta"] : 1;
     $idAlmacen = (int) $_POST["idAlmacen"];
     $idPersonal = (int) $_POST["idPersonal"];
     $idDocumento = $_POST["idDocumento"];
@@ -35,15 +35,19 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         }
         $data = Venta::obtenerVentaXDocumento($serieDocumento);
         $message = ($response) ? $data->id_venta  : "error en el registro";
-    } else if ($_POST["metodo"] === "Modificar") {
+    } else if ($_POST["metodo"] === "modificar") {
         $response = Venta::modificarVenta($id, $idAlmacen, $idPersonal, $idDocumento, $idCliente, $fechaFormateada, $total, $subtotal, $igv, $idMoneda, $numeroDocumento, $serieDocumento, $tipoPago, $pagoInicial, $montoFinanciado, $numCuotas, $montoCuota);
         VentaProducto::eliminarProductoVenta($id);
-        $message = ($response) ? "modificado" : "error";
+        $data = Venta::obtenerVentaXDocumento($serieDocumento);
+        $message = ($response) ? $data->id_venta : "error";
     } else if ($_POST["metodo"] === "Eliminar") {
-        $response = Venta::eliminarVenta($idVenta);
+        $response = Venta::eliminarVenta($id);
         $message = ($response) ? "eliminado correctamente" : "error al eliminar";
     }
-    echo $message;
+    if ($message) {
+
+        echo $message;
+    }
 } else if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (isset($_GET['serieDocumento'])) {
         $serieDocumento = (int) $_GET["serieDocumento"];
@@ -54,5 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         $idVenta = (int) $_GET["idVenta"];
         $data = Venta::getVentaXId($idVenta);
         echo json_encode($data);
+    } else {
+        $id = Venta::obtenerVentaId();
+        echo $id;
     }
 }

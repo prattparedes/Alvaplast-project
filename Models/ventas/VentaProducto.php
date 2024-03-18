@@ -14,7 +14,7 @@ class VentaProducto
     {
         try {
             $con = Connection::Conectar();
-            $stmt = $con->prepare("sp_RegistrarVenta_Producto :idVenta,:idProducto,:cantidad,:precioVenta,:descuento,:subtotal");
+            $stmt = $con->prepare("exec sp_RegistrarVenta_Producto :idVenta,:idProducto,:cantidad,:precioVenta,:descuento,:subtotal");
             $stmt->bindParam(":idVenta", $idVenta, PDO::PARAM_INT);
             $stmt->bindParam(":idProducto", $idProducto, PDO::PARAM_INT);
             $stmt->bindParam(":cantidad", $cantidad, PDO::PARAM_STR);
@@ -48,7 +48,7 @@ class VentaProducto
     {
         try {
             $con = Connection::Conectar();
-            $stmt = $con->prepare("exec exec sp_EliminarVenta_Producto :idVenta");
+            $stmt = $con->prepare("exec sp_EliminarVenta_Producto :idVenta");
             $stmt->bindParam(":idVenta", $idVenta, PDO::PARAM_INT);
             $stmt->execute();
             $result = ($stmt->rowCount() > 0) ? true : false;

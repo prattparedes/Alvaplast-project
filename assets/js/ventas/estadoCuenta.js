@@ -1,38 +1,19 @@
+function formatNumber(number) {
+  // Formatear el número utilizando la función toLocaleString() para separadores de miles y decimales
+  return number.toLocaleString('es-ES', { minimumFractionDigits: 2 });
+}
+
 function listarEstadoCuenta() {
   let fecha1Value = document.getElementById("fecha1").value;
   let fecha2Value = document.getElementById("fecha2").value;
-
+  console.log(fecha1Value)
+  console.log(fecha2Value)
   // Obtener el tipo de documento seleccionado
-  let tipoDocumento = document.getElementById("tipodoc").value;
-
   // Verificar si se han establecido fechas
   if (!fecha1Value.trim() || !fecha2Value.trim()) {
     alert("Por favor, establece ambas fechas.");
     return;
   }
-
-  // Convertir las cadenas de fecha en objetos Date
-  let fecha1 = new Date(fecha1Value);
-  let fecha2 = new Date(fecha2Value);
-
-  // Extraer día, mes y año de las fechas
-  let formattedFecha1 =
-    ("0" + fecha1.getDate()).slice(-2) +
-    "-" +
-    ("0" + (fecha1.getMonth() + 1)).slice(-2) +
-    "-" +
-    fecha1.getFullYear();
-  let formattedFecha2 =
-    ("0" + fecha2.getDate()).slice(-2) +
-    "-" +
-    ("0" + (fecha2.getMonth() + 1)).slice(-2) +
-    "-" +
-    fecha2.getFullYear();
-
-  // Función para formatear números a 2 decimales
-  const formatNumber = (num) => {
-    return parseFloat(num).toFixed(2);
-  };
 
   // Crear una solicitud XMLHttpRequest
   const xhr = new XMLHttpRequest();
@@ -44,7 +25,7 @@ function listarEstadoCuenta() {
 
   // Enviar la solicitud al servidor con el tipo de documento
   xhr.send(
-    "fechaIni=" + formattedFecha1 + "&fechaFin=" + formattedFecha2 + "&tipoDocumento=" + tipoDocumento
+    "fechaIni=" + fecha1Value + "&fechaFin=" + fecha2Value + "&metodo=EstadoCuenta"
   );
 
   // Manejar la respuesta del servidor
@@ -134,7 +115,7 @@ function listarEstadoCuenta() {
 
             // Crear la fila para el dato actual
             const row = document.createElement("tr");
-
+            row.setAttribute("onclick", "alert('esta en estadoCuenta.js')");
             // Crear celdas para cada propiedad del objeto y agregarlas a la fila
             const fechaVenta = document.createElement("td");
             fechaVenta.textContent = item.FechaVenta;
@@ -172,6 +153,11 @@ function listarEstadoCuenta() {
             acuenta.style.backgroundColor = "#caf5fd";
             row.appendChild(acuenta);
 
+            const id_ECuenta = document.createElement("td");
+            id_ECuenta.textContent = item.id_ECuenta;
+            id_ECuenta.style.display = "none"
+            row.appendChild(id_ECuenta);
+
             // Agregar la fila a la tabla
             tbody.appendChild(row);
 
@@ -181,39 +167,39 @@ function listarEstadoCuenta() {
             tipoACuenta += parseFloat(item.A_Cuenta);
           });
 
-         // Agregar fila de totales para el último tipo de documento
-if (tipoDocumentoActual !== null) {
-  const totalRow = document.createElement("tr");
+          // Agregar fila de totales para el último tipo de documento
+          if (tipoDocumentoActual !== null) {
+            const totalRow = document.createElement("tr");
 
-   // Crear celdas para los totales y agregarlas a la fila
-   for (let i = 0; i < 4; i++) {
-    const totalCell = document.createElement("td");
-    totalCell.textContent = "";
-    totalRow.appendChild(totalCell);
-  }
+            // Crear celdas para los totales y agregarlas a la fila
+            for (let i = 0; i < 4; i++) {
+              const totalCell = document.createElement("td");
+              totalCell.textContent = "";
+              totalRow.appendChild(totalCell);
+            }
 
-  const totalCell = document.createElement("td");
-  totalCell.textContent = "Total:";
-  totalRow.appendChild(totalCell);
+            const totalCell = document.createElement("td");
+            totalCell.textContent = "Total:";
+            totalRow.appendChild(totalCell);
 
-  const totalTotalCell = document.createElement("td");
-  totalTotalCell.textContent = formatNumber(tipoTotal);
-  totalTotalCell.style.fontWeight = "bold"; // Aplicar negrita al total
-  totalRow.appendChild(totalTotalCell);
+            const totalTotalCell = document.createElement("td");
+            totalTotalCell.textContent = formatNumber(tipoTotal);
+            totalTotalCell.style.fontWeight = "bold"; // Aplicar negrita al total
+            totalRow.appendChild(totalTotalCell);
 
-  const totalDebeCell = document.createElement("td");
-  totalDebeCell.textContent = formatNumber(tipoDebe);
-  totalDebeCell.style.fontWeight = "bold"; // Aplicar negrita al total de "Debe"
-  totalRow.appendChild(totalDebeCell);
+            const totalDebeCell = document.createElement("td");
+            totalDebeCell.textContent = formatNumber(tipoDebe);
+            totalDebeCell.style.fontWeight = "bold"; // Aplicar negrita al total de "Debe"
+            totalRow.appendChild(totalDebeCell);
 
-  const totalACuentaCell = document.createElement("td");
-  totalACuentaCell.textContent = formatNumber(tipoACuenta);
-  totalACuentaCell.style.fontWeight = "bold"; // Aplicar negrita al total de "A Cuenta"
-  totalRow.appendChild(totalACuentaCell);
+            const totalACuentaCell = document.createElement("td");
+            totalACuentaCell.textContent = formatNumber(tipoACuenta);
+            totalACuentaCell.style.fontWeight = "bold"; // Aplicar negrita al total de "A Cuenta"
+            totalRow.appendChild(totalACuentaCell);
 
-  // Agregar fila de totales al cuerpo de la tabla
-  tbody.appendChild(totalRow);
-}
+            // Agregar fila de totales al cuerpo de la tabla
+            tbody.appendChild(totalRow);
+          }
 
           // Calcular y mostrar las sumas totales en etiquetas <label>
           const totalTotalGlobal = dataFromServer.reduce((total, item) => total + parseFloat(item.Total), 0);
@@ -324,3 +310,8 @@ function exportarEstadoExcel() {
 }
 
 
+function cargarCuotas(fila) {
+  const columnas = fila.querySelectorAll("td");
+  let id = columnas[8].innerText.trim()
+  loadContentIntoModal("views/modals/EstadoCuentamodal.php", `data=${id}`)
+}

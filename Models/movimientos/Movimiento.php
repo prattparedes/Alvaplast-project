@@ -63,6 +63,7 @@ class Movimiento
             $stmt = $con->prepare("exec sp_AtenderVenta :idVenta, :estado");
             $stmt->bindParam(":idVenta", $idOperacion, PDO::PARAM_INT);
             $stmt->bindParam(":estado", $estado, PDO::PARAM_INT);
+            $stmt->execute();
         } catch (PDOException $err) {
             echo $err->getMessage();
         }

@@ -1,7 +1,7 @@
 function openAlertModal() {
   document.getElementById('alertModal').innerHTML = '<p id="alertText">Nuevo Valor: <input type="text" id="nuevoValor"></p>' +
-  '<button onclick="closeAlertModal(true)" id="btnSi">Sí</button>' +
-  '<button onclick="closeAlertModal(false)" id="btnNo">No</button>';
+    '<button onclick="closeAlertModal(true)" id="btnSi">Sí</button>' +
+    '<button onclick="closeAlertModal(false)" id="btnNo">No</button>';
   document.getElementById("overlay").style.display = "block";
   document.getElementById("alertModal").style.display = "block";
   document.getElementById("nuevoValor").value = celdaSeleccionada.textContent;
@@ -50,3 +50,4 @@ function abrirAlertaConfirmación(texto, funcion1, funcion2) {
   document.getElementById("btnSi").onclick = funcion1;
   document.getElementById("btnNo").onclick = funcion2;
 }
+

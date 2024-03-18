@@ -1149,45 +1149,12 @@ function exportarVUtilidadesPDF() {
 }
 //----VSCOSTO---------------------------------------------------------------------------listar
 
-function ListarEstadoCuenta() {
-  let fecha1Value = document.getElementById("fecha1").value;
-  let fecha2Value = document.getElementById("fecha2").value;
-  let fecha1 = new Date(fecha1Value);
-  let fecha2 = new Date(fecha2Value);
+async function registrarFacturacionmodel() {
+  // Cerramos el alert
+  document.getElementById("overlay").style.display = "none";
+  document.getElementById("alertModal").style.display = "none";
 
-  let formattedFecha1 =
-    ("0" + fecha1.getDate()).slice(-2) +
-    "-" +
-    ("0" + (fecha1.getMonth() + 1)).slice(-2) +
-    "-" +
-    fecha1.getFullYear();
-  let formattedFecha2 =
-    ("0" + fecha2.getDate()).slice(-2) +
-    "-" +
-    ("0" + (fecha2.getMonth() + 1)).slice(-2) +
-    "-" +
-    fecha2.getFullYear();
-
-  // Verificar si se han establecido fechas
-  if (!fecha1 || !fecha2) {
-    alert("Por favor, establece ambas fechas.");
-    return;
-  }
-  const http = new XMLHttpRequest();
-  const url = "/Alvaplast-project/Controller/reportes/ReporteController.php";
-
-  http.open("POST", url, true);
-  http.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-  http.send("?fechaIni=" + formattedFecha1 + "&fechaFin=" + formattedFecha2 + "&metodo=EstadoCuenta");
-
-  http.onreadystatechange = function () {
-    if (http.readyState === XMLHttpRequest.DONE) {
-      if (http.status === 200) {
-        if (http.responseText) {
-          const body = document.getElementById("detalle_venta")
-        }
-      }
-    }
-  }
+  let idCompra = document.getElementById("idCompra").value;
+  // Esperar a que se complete obtenerDatosOCKardex
+  await obtenerDatosOCKardex(idCompra);
 }
