@@ -3,7 +3,7 @@
 <body>
     <header>
         <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/autoload.php');
 
         use Models\maintenance_models\Almacen;
         use Models\maintenance_models\Moneda;
@@ -53,10 +53,10 @@
                     <a style="width: 90px;margin-left:-10px;" name="" id="" class="btn btn-warning me-2 bill_submit" href="#" role="button">Anular</a>
                     <a style="width: 90px;margin-left:-10px;" name="" id="" class="btn btn-danger bill_submit" href="#" role="button">Eliminar</a>
                     <a style="width: 90px;margin-left:-1px;margin-top:1px" class="btn btn-secondary me-2" href="#" onclick="loadContent('views/modals/filtroregistrofacturacion.php')" role="button">Buscar</a>
-                    <a style="width: 90px;margin-left:-10px;margin-top:2px" name="" id="" class="btn btn-info" href="#" role="button"onclick="exportarFacturacionPDF()">Imprimir</a>
-                    
+                    <a style="width: 90px;margin-left:-10px;margin-top:2px" name="" id="" class="btn btn-info" href="#" role="button" onclick="exportarFacturacionPDF()">Imprimir</a>
+
                     <a style="width: 90px;margin-left:-3px;margin-top:2px" name="" id="" class="btn btn-danger" href="#" role="button" onclick="loadContent('views/home.php')">Salir</a>
-                  
+
                 </div>
 
 

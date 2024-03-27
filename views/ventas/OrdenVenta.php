@@ -6,7 +6,7 @@
 
     <header>
         <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/autoload.php');
 
         use Models\maintenance_models\Sucursal;
         use Models\maintenance_models\Almacen;
@@ -41,10 +41,10 @@
                     <a style="width: 95px; margin: 0 3px;" name="" id="btnRegister" class="btn btn-success order__btn--inactive sell_submit" role="button">Grabar</a>
                     <a style="width: 95px; margin: 0 3px;" name="" id="btnModify" class="btn btn-warning order__btn--inactive" onclick="modificarVenta()">Editar</a>
                     <a style="width: 95px; margin: 0 3px;" name="" id="btnDelete" class="btn btn-danger order__btn--inactive sell_submit" role="button">Eliminar</a>
-                   
+
                 </div>
                 <div class="">
-                <button style="width: 95px;margin-top:2px " class="btn btn-secondary" id="btnSearch" onclick="abrirListadoVentas()">Buscar</button>
+                    <button style="width: 95px;margin-top:2px " class="btn btn-secondary" id="btnSearch" onclick="abrirListadoVentas()">Buscar</button>
                 </div>
                 <hr>
                 <div class="row">
@@ -204,13 +204,13 @@
             <div class="kardex__right">
                 <div style="display:flex; align-items:center;">
                     <div style="display:flex; flex-direction:column; margin-top:4px">
-                    <?php
-                date_default_timezone_set('America/Lima'); // Establecer la zona horaria de Perú
-                ?>
-                <b>
-                    <p style="font-size: 32px;color:brown;margin-top:-5px">AlvaPlastic</p>
-                </b>
-                <h5>Fecha: <?= date('d/m/Y g:ia'); ?></h5>
+                        <?php
+                        date_default_timezone_set('America/Lima'); // Establecer la zona horaria de Perú
+                        ?>
+                        <b>
+                            <p style="font-size: 32px;color:brown;margin-top:-5px">AlvaPlastic</p>
+                        </b>
+                        <h5>Fecha: <?= date('d/m/Y g:ia'); ?></h5>
                         <br>
                         <hr style="margin-top: -15px;">
                         <b>

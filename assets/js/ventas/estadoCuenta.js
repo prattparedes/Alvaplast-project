@@ -352,6 +352,7 @@ function abrirPagarCuota(fila) {
 }
 
 function cerrarPagarCuota() {
+  listarEstadoCuenta();
   document.getElementById("overlay").style.display = "none";
   document.getElementById("alertModal").classList.remove('pagarCuotaModal');
   document.getElementById("alertModal").innerHTML = `<p id="alertText">Nuevo Valor: <input type="text" id="nuevoValor"></p>

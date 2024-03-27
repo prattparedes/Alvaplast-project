@@ -3,7 +3,7 @@
 <body>
     <header>
         <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/autoload.php');
 
 
         use Models\compras\Compra;
@@ -18,14 +18,14 @@
 
 
                     <b> <span class="">Buscar por:</span></b>
-                <div class="col-12">
-                    <label for="inputPassword6" class="col-form-label">Proveedor</label>
+                    <div class="col-12">
+                        <label for="inputPassword6" class="col-form-label">Proveedor</label>
 
-                    <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" onkeyup="filtrarOrdenCompra(this.value)">
-                    <br>
-                <button style="width: 120px;" class="btn btn-danger" onclick="CancelarYRestaurarCompra()" type="button" id="">Cancelar</button>
-                </div>
-                           
+                        <input type="text" id="disabledTextInput" class="form-control" aria-describedby="passwordHelpInline" onkeyup="filtrarOrdenCompra(this.value)">
+                        <br>
+                        <button style="width: 120px;" class="btn btn-danger" onclick="CancelarYRestaurarCompra()" type="button" id="">Cancelar</button>
+                    </div>
+
                 </div>
 
                 <div class="" id=""></div>
@@ -43,39 +43,39 @@
                         <br>
                         <div class="table--container" style="margin-top: -15px;">
                             <div class="table-responsive">
-                            <table class="table border=1" id="buyorderlist">
-                            <thead>
-                                <tr>
-                                    <th scope="col-md-1">Proveedor</th>
-                                    <th scope="col-md-1">Orden</th>
-                                    <th scope="col-1">Fecha Emisión</th>
-                                    <th scope="col-1">Moneda</th>
-                                    <th scope="col-1">Importe</th>
-                                    <th scope="col-1">Personal</th>
+                                <table class="table border=1" id="buyorderlist">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col-md-1">Proveedor</th>
+                                            <th scope="col-md-1">Orden</th>
+                                            <th scope="col-1">Fecha Emisión</th>
+                                            <th scope="col-1">Moneda</th>
+                                            <th scope="col-1">Importe</th>
+                                            <th scope="col-1">Personal</th>
 
 
-                                </tr>
-                            </thead>
+                                        </tr>
+                                    </thead>
 
-                            <tbody>
-                                <?php
+                                    <tbody>
+                                        <?php
 
-                                $compras = Compra::getCompras();
-                                foreach ($compras as $compra) {
-                                ?>
-                                    <tr onclick="seleccionarOrdenCompra(this)">
-                                        <td><?= $compra->razon_social ?></td>
-                                        <td><?= $compra->numero_documento . $compra->serie_documento ?></td>
-                                        <td><?= explode(' ', $compra->fecha_compra)[0] ?></td>
-                                        <td><?= $compra->Moneda ?></td>
-                                        <td><?= $compra->total ?></td>
-                                        <td><?= $compra->Personal ?></td>
-                                        <td style="display:none"><?= $compra->id_compra ?></td>
-                                    </tr>
-                                <?php } ?>
+                                        $compras = Compra::getCompras();
+                                        foreach ($compras as $compra) {
+                                        ?>
+                                            <tr onclick="seleccionarOrdenCompra(this)">
+                                                <td><?= $compra->razon_social ?></td>
+                                                <td><?= $compra->numero_documento . $compra->serie_documento ?></td>
+                                                <td><?= explode(' ', $compra->fecha_compra)[0] ?></td>
+                                                <td><?= $compra->Moneda ?></td>
+                                                <td><?= $compra->total ?></td>
+                                                <td><?= $compra->Personal ?></td>
+                                                <td style="display:none"><?= $compra->id_compra ?></td>
+                                            </tr>
+                                        <?php } ?>
 
-                            </tbody>
-                        </table>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

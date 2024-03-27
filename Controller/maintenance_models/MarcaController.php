@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/autoload.php");
 
 use Models\maintenance_models\Marca;
 
@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $message = ($result) ? "marca eliminada" : "no se pudo eliminar la marca, esta registrada en otras operaciones";
     }
     echo $message;
- } else if ($_SERVER["REQUEST_METHOD"] === "GET") {
+} else if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (isset($_GET["marca"])) {
         $marca = $_GET["marca"];
         $data = Marca::obtenerProductoxMarca($marca);
@@ -26,6 +26,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         echo "No se recibió la marca.";
     }
-    
-    
 }

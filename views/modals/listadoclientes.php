@@ -3,7 +3,7 @@
 <body>
     <header>
         <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/autoload.php');
 
 
         use Models\maintenance_models\Cliente;
@@ -23,7 +23,7 @@
                     <div class="row">
                         <div class="col-md-4" style="width: 400px;">
                             <label for="inputRazonSocial" class="col-form-label">Razón Social</label>
-                            <input type="text" id="inputRazonSocial" class="form-control" onkeyup="filtrarClienteVenta(this.value)"/>
+                            <input type="text" id="inputRazonSocial" class="form-control" onkeyup="filtrarClienteVenta(this.value)" />
                         </div>
 
 

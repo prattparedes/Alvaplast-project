@@ -3,7 +3,7 @@
 <body>
     <header>
         <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/autoload.php');
 
         use Models\maintenance_models\Unidad;
         use Models\compras\Compra;
@@ -14,7 +14,7 @@
                 <div class="row">
 
                     <h5 style="background: black; color: white; text-align:center;" class="titulo">REPORTE DE VENTAS POR CLIENTE</h5>
-                   
+
                     <div class="row">
                         <label for="inputPassword6" class="col-form-label">Cliente</label>
                         <div class="input-group mb-3">
@@ -23,19 +23,19 @@
                             <button class="btn btn-outline-secondary" style="width: 40px;height:35px" href="" onclick="loadContent('views/modals/listadoclientesReporte.php')" type="button" id="button-addon2">....</button>
                         </div>
                     </div>
-                   
-                  
+
+
                     <br>
                 </div>
                 <hr>
                 <div class="col-md-12" style="margin-top: -15px;">
-                        <br>
-                        <button style="width: 100px;" class="btn btn-success" type="button" onclick="consultarReportexCliente()">Consultar</button>
-                        <button style="width: 115px;" class="btn btn-secondary" type="button" onclick="exportarVClientePDF()">ImprimirPDF</button>
-                        <!-- <button style="width: 90px;" class="btn btn-warning" type="button">Imprimir</button> -->
-                        <button style="width: 100px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
-                        <br><br>
-                    </div>
+                    <br>
+                    <button style="width: 100px;" class="btn btn-success" type="button" onclick="consultarReportexCliente()">Consultar</button>
+                    <button style="width: 115px;" class="btn btn-secondary" type="button" onclick="exportarVClientePDF()">ImprimirPDF</button>
+                    <!-- <button style="width: 90px;" class="btn btn-warning" type="button">Imprimir</button> -->
+                    <button style="width: 100px;margin-top:1px" class="btn btn-danger" type="button" onclick="loadContent('views/home.php')">Salir</button>
+                    <br><br>
+                </div>
                 <div class="" id="">
 
                 </div>
@@ -64,7 +64,7 @@
                                 </thead>
                                 <tbody id="detalle_venta">
                                     <tr class="">
-                                      
+
                                     </tr>
                                 </tbody>
                             </table>

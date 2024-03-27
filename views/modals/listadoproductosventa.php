@@ -3,7 +3,7 @@
 <body>
     <header>
         <?php
-        require_once($_SERVER['DOCUMENT_ROOT'] . '/Alvaplast-project/autoload.php');
+        require_once($_SERVER['DOCUMENT_ROOT'] . '/autoload.php');
 
 
         use Models\maintenance_models\Producto;
@@ -77,11 +77,11 @@
                                             foreach ($productos as $product) {
                                         ?>
                                                 <tr onclick="seleccionarProductoVenta(this)">
-                                                    <td><?= $product->id_producto?></td>
-                                                    <td><?= $product->nombre_producto?></td>
-                                                    
-                                                    <td><?= $product->procedencia?></td>
-                                                    <td><?= number_format($product->precio_compra, 2)*$cambio ?></td>
+                                                    <td><?= $product->id_producto ?></td>
+                                                    <td><?= $product->nombre_producto ?></td>
+
+                                                    <td><?= $product->procedencia ?></td>
+                                                    <td><?= number_format($product->precio_compra, 2) * $cambio ?></td>
                                                     <td><?= number_format($product->precio_venta, 2) ?></td>
                                                     <td style="display:none;"><?= $product->id_unidad ?></td>
                                                     <td><?= $product->stock ?></td>

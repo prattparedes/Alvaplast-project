@@ -1,11 +1,11 @@
 <?php
-require_once($_SERVER["DOCUMENT_ROOT"] . "/Alvaplast-project/autoload.php");
+require_once($_SERVER["DOCUMENT_ROOT"] . "/autoload.php");
 
 use Models\maintenance_models\Almacen;
 use Models\maintenance_models\Producto;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    if(isset($_POST["idAlmacen"])) {
+    if (isset($_POST["idAlmacen"])) {
         $idalmacen = (int)$_POST["idAlmacen"];
         $result = Producto::getProductosByAlmacen($idalmacen);
         echo json_encode($result);
